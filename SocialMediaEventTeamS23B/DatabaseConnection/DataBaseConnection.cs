@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnection
 {
-    public class Class1
+    public class DataBaseConnection
     {
+        private DataBaseConnector dbConnector;
+
+        public DataBaseConnection()
+        {
+            
+        }
     }
 }
