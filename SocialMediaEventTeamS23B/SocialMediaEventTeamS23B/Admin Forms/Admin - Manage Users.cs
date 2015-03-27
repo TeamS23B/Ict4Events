@@ -16,5 +16,15 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         {
             InitializeComponent();
         }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

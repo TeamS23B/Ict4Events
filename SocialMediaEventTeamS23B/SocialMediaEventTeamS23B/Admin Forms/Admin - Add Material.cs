@@ -16,5 +16,10 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         {
             InitializeComponent();
         }
+
+        private void Admin___Add_Material_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

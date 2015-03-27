@@ -82,8 +82,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
+      <DependentUpon>Admin - Add Material.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
       <DependentUpon>Admin - Main Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
+      <DependentUpon>Admin - Manage Users.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
