@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SocialMediaEventTeamS23B
 {
-    public partial class frmMain : Form
+    public partial class AccesContol : Form
     {
-        public frmMain()
+        public AccesContol()
         {
             InitializeComponent();
         }
