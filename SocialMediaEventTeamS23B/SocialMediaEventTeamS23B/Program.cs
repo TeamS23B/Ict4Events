@@ -16,7 +16,7 @@ namespace SocialMediaEventTeamS23B
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmLogin());
         }
     }
 }
