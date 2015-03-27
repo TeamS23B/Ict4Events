@@ -94,6 +94,29 @@
     <Compile Include="SocialMediaSharing\SMSShowMessageComment.Designer.cs">
       <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
     </Compile>
+    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.Designer.cs">
+      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
+      <DependentUpon>Admin - Add Material.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
+      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
+      <DependentUpon>Admin - Manage Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="ReservationMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationMaterial.Designer.cs">
+      <DependentUpon>ReservationMaterial.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AccesContol.resx">
       <DependentUpon>AccesContol.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +126,9 @@
     <Compile Include="ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.resx">
+      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
