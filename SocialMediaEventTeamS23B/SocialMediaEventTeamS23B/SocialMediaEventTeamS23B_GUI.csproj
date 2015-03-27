@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.Designer.cs">
+      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AccesContol.resx">
@@ -70,6 +76,9 @@
     <Compile Include="ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.resx">
+      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
