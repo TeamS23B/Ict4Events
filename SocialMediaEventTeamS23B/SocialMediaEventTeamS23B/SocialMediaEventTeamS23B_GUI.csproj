@@ -103,6 +103,12 @@
     <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
       <DependentUpon>Admin - Manage Users.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="ReservationConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationConfirmation.Designer.cs">
+      <DependentUpon>ReservationConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReservationMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReservationConfirmation.resx">
+      <DependentUpon>ReservationConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReservationDetails.resx">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </EmbeddedResource>
