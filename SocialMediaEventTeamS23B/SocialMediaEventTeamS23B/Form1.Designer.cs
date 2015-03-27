@@ -163,6 +163,7 @@
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsername);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
