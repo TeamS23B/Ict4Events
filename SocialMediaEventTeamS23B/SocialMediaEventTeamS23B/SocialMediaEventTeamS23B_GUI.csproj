@@ -44,6 +44,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin Forms\Admin - Add Material.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Add Material.Designer.cs">
+      <DependentUpon>Admin - Add Material.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Main Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Main Menu.Designer.cs">
+      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Create Event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Create Event.Designer.cs">
+      <DependentUpon>Admin - Create Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Manage Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Manage Users.Designer.cs">
+      <DependentUpon>Admin - Manage Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Social Media Sharing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Social Media Sharing.Designer.cs">
+      <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
+      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
