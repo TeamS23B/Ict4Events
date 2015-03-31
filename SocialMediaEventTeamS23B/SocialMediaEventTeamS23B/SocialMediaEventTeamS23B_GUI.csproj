@@ -94,11 +94,17 @@
     <Compile Include="SocialMediaSharing\SMSShowMessageComment.Designer.cs">
       <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
     </Compile>
-    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.cs">
+    <Compile Include="MaterialRent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.Designer.cs">
-      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    <Compile Include="MaterialRent.Designer.cs">
+      <DependentUpon>MaterialRent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationLocation.Designer.cs">
+      <DependentUpon>ReservationLocation.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
       <DependentUpon>Admin - Add Material.cs</DependentUpon>
@@ -109,6 +115,12 @@
     <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
       <DependentUpon>Admin - Manage Users.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="ReservationConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationConfirmation.Designer.cs">
+      <DependentUpon>ReservationConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReservationMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,8 +136,8 @@
     <Compile Include="ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.resx">
-      <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
+    <EmbeddedResource Include="MaterialRent.resx">
+      <DependentUpon>MaterialRent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -136,6 +148,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReservationConfirmation.resx">
+      <DependentUpon>ReservationConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReservationDetails.resx">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SocialMediaSharing\SMSShowMessageComment.resx">
       <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="ReservationLocation.resx">
+      <DependentUpon>ReservationLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationMaterial.resx">
+      <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

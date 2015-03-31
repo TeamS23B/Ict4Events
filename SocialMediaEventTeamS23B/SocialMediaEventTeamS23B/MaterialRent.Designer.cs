@@ -1,6 +1,6 @@
 ﻿namespace SocialMediaEventTeamS23B
 {
-    partial class MATERIAALVERHUUR_MATERIAALVERHUURcs
+    partial class MaterialRent
     {
         /// <summary>
         /// Required designer variable.

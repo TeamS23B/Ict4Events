@@ -135,7 +135,7 @@
             this.btnReservationMaterialPrevious.Name = "btnReservationMaterialPrevious";
             this.btnReservationMaterialPrevious.Size = new System.Drawing.Size(145, 23);
             this.btnReservationMaterialPrevious.TabIndex = 29;
-            this.btnReservationMaterialPrevious.Text = "Volgende stap";
+            this.btnReservationMaterialPrevious.Text = "Terug";
             this.btnReservationMaterialPrevious.UseVisualStyleBackColor = true;
             // 
             // ReservationMaterial

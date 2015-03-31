@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace SocialMediaEventTeamS23B
 {
-    public partial class MATERIAALVERHUUR_MATERIAALVERHUURcs : Form
+    public partial class ReservationLocation : Form
     {
-        public MATERIAALVERHUUR_MATERIAALVERHUURcs()
+        public ReservationLocation()
         {
             InitializeComponent();
         }
 
-        private void MATERIAALVERHUUR_MATERIAALVERHUURcs_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
