@@ -100,8 +100,6 @@
     <Compile Include="MATERIAALVERHUUR_MATERIAALVERHUURcs.Designer.cs">
       <DependentUpon>MATERIAALVERHUUR_MATERIAALVERHUURcs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
       <DependentUpon>Admin - Add Material.cs</DependentUpon>
     </EmbeddedResource>
