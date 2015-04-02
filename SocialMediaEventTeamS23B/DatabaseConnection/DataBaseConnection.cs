@@ -14,5 +14,10 @@ namespace DatabaseConnection
         {
             
         }
+
+        public double GetRentPrice(int eventId, int materialId)
+        {
+            
+        }
     }
 }
