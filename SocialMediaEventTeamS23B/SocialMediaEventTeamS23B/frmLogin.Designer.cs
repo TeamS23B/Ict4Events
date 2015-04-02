@@ -1,6 +1,6 @@
 ﻿namespace SocialMediaEventTeamS23B
 {
-    partial class frmMain
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -170,10 +170,10 @@
             this.Text = "Social Media Event - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
+
 
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
@@ -188,4 +188,3 @@
         private System.Windows.Forms.Button btnReserving;
     }
 }
-

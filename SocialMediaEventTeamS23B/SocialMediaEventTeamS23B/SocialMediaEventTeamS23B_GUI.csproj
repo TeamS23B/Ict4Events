@@ -44,47 +44,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin Forms\Admin - Add Material.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Add Material.Designer.cs">
-      <DependentUpon>Admin - Add Material.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Main Menu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Main Menu.Designer.cs">
-      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Create Event.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Create Event.Designer.cs">
-      <DependentUpon>Admin - Create Event.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Manage Users.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Manage Users.Designer.cs">
-      <DependentUpon>Admin - Manage Users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Social Media Sharing.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Social Media Sharing.Designer.cs">
-      <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
-    </Compile>
     <Compile Include="AccesContol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AccesContol.Designer.cs">
       <DependentUpon>AccesContol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialMediaSharing\SMSCreatePost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSCreatePost.Designer.cs">
+      <DependentUpon>SMSCreatePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMain.Designer.cs">
+      <DependentUpon>SMSMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMesageMainMedia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMesageMainMedia.Designer.cs">
+      <DependentUpon>SMSMesageMainMedia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMessageMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSMessageMain.Designer.cs">
+      <DependentUpon>SMSMessageMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSShowMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSShowMessage.Designer.cs">
+      <DependentUpon>SMSShowMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSShowMessageComment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSShowMessageComment.Designer.cs">
+      <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialRent.cs">
       <SubType>Form</SubType>
@@ -92,45 +100,58 @@
     <Compile Include="MaterialRent.Designer.cs">
       <DependentUpon>MaterialRent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReservationLocation.cs">
+    <Compile Include="Reservation\ReservationLocation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReservationLocation.Designer.cs">
+    <Compile Include="Reservation\ReservationLocation.Designer.cs">
       <DependentUpon>ReservationLocation.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
       <DependentUpon>Admin - Add Material.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Admin Forms\Admin - Add Material.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Add Material.Designer.cs">
+      <DependentUpon>Admin - Add Material.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
       <DependentUpon>Admin - Main Menu.cs</DependentUpon>
     </EmbeddedResource>
+        <Compile Include="Admin Forms\Admin - Main Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Main Menu.Designer.cs">
+      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
       <DependentUpon>Admin - Manage Users.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="ReservationConfirmation.cs">
+    <Compile Include="Admin Forms\Admin - Manage Users.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReservationConfirmation.Designer.cs">
+    <Compile Include="Admin Forms\Admin - Manage Users.Designer.cs">
+      <DependentUpon>Admin - Manage Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservation\ReservationConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservation\ReservationConfirmation.Designer.cs">
       <DependentUpon>ReservationConfirmation.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReservationMaterial.cs">
+    <Compile Include="Reservation\ReservationMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReservationMaterial.Designer.cs">
+    <Compile Include="Reservation\ReservationMaterial.Designer.cs">
       <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AccesContol.resx">
       <DependentUpon>AccesContol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="ReservationDetails.cs">
+    <Compile Include="Reservation\ReservationDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReservationDetails.Designer.cs">
+    <Compile Include="Reservation\ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MaterialRent.resx">
@@ -145,16 +166,35 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReservationConfirmation.resx">
+    <EmbeddedResource Include="Reservation\ReservationConfirmation.resx">
       <DependentUpon>ReservationConfirmation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReservationDetails.resx">
+    <EmbeddedResource Include="Reservation\ReservationDetails.resx">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReservationLocation.resx">
+    <EmbeddedResource Include="SocialMediaSharing\SMSCreatePost.resx">
+      <DependentUpon>SMSCreatePost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSMain.resx">
+      <DependentUpon>SMSMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSMesageMainMedia.resx">
+      <DependentUpon>SMSMesageMainMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSMessageMain.resx">
+      <DependentUpon>SMSMessageMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSShowMessage.resx">
+      <DependentUpon>SMSShowMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSShowMessageComment.resx">
+      <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservation\ReservationLocation.resx">
       <DependentUpon>ReservationLocation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReservationMaterial.resx">
+    <EmbeddedResource Include="Reservation\ReservationMaterial.resx">
       <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
