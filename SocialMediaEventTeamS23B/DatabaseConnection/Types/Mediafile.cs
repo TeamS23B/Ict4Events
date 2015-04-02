@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
@@ -14,12 +16,28 @@ namespace DatabaseConnection.Types
 
         protected Mediafile(string title, string pathToFile)
         {
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(pathToFile))
+            {
+                throw new InvalidDataException("Title or PathToFile is empty");
+            }
             Title = title;
             PathToFile = pathToFile;
         }
 
         public abstract Control GetViewer();
 
+        public override string ToString()
+        {
+            PropertyDescriptorCollection coll = TypeDescriptor.GetProperties(this);
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{");
+            foreach (PropertyDescriptor pd in coll)
+            {
+                builder.Append(string.Format("{0}={1},", pd.Name, pd.GetValue(this).ToString()));
+            }
+            builder.Append("}");
+            return builder.ToString();
+        }
     }
 
     public class VideoFile : Mediafile

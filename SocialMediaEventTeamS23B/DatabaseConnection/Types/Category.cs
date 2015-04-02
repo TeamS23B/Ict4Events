@@ -29,5 +29,10 @@ namespace DatabaseConnection.Types
             
         }
 
+        public override string ToString()
+        {
+            var postsString = string.Join(",", Posts.Select(post => post.ToString()));
+            return String.Format("{{Title={0},Parrent={1},Posts=[{2}]}}", Title, Parrent.Title, Posts);
+        }
     }
 }

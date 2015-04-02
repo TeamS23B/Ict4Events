@@ -20,17 +20,17 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("MaterialId < 0");
             }
-            if (name.Length < 1)
+            if (string.IsNullOrEmpty(name))
             {
-                throw new InvalidDataException("name.Length < 1");
+                throw new InvalidDataException("Name is empty");
             }
             if (price < 0)
             {
                 throw new InvalidDataException("price < 0");
             }
-            if (state.Length < 1)
+            if (string.IsNullOrEmpty(state))
             {
-                throw  new InvalidDataException("state.Length < 1");
+                throw  new InvalidDataException("State is empty");
             }
             MaterialId = materialId;
             Name = name;
@@ -40,7 +40,7 @@ namespace DatabaseConnection.Types
 
         public override string ToString()
         {
-            return String.Format("{{MaterialId={0},Name={1},Price={2},RentPric{3}}}",MaterialId,Name,Price,RentPrice);
+            return String.Format("{{MaterialId={0},Name={1},Price={2},State{3}}}",MaterialId,Name,Price,State);
         }
     }
 }

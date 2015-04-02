@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
@@ -12,10 +13,14 @@ namespace DatabaseConnection.Types
         public Visitor GroupLeader { get; private set; }
         public List<MapLocation> Locations { get; private set; }
 
-        public Reservation(List<Visitor> groupMembers, Visitor groupLeaader, List<MapLocation> locations)
+        public Reservation(List<Visitor> groupMembers, Visitor groupLeader, List<MapLocation> locations)
         {
+            if (groupMembers == null || groupLeader == null || locations == null)
+            {
+                throw new InvalidDataException("Groupmembers, Groupleader or locations is empty");
+            }
             GroupMembers = groupMembers;
-            GroupLeader = groupLeaader;
+            GroupLeader = groupLeader;
             Locations = locations;
         }
 

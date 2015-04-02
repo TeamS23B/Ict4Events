@@ -18,7 +18,7 @@ namespace DatabaseConnection.Types
 
         public AdressInfo(string street, string city, int number, string suffix, string country, string postalcode)
         {
-            if (street == "" || city == "" || country == "" || postalcode == "")
+            if (string.IsNullOrEmpty(street) || string.IsNullOrEmpty(city)|| string.IsNullOrEmpty(country) || string.IsNullOrEmpty())
             {
                 throw new InvalidDataException("Street, city, country or postalcode is empty");
             }

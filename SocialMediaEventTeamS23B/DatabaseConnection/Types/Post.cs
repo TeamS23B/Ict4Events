@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,5 +49,17 @@ namespace DatabaseConnection.Types
             
         }
 
+        public override string ToString()
+        {
+            PropertyDescriptorCollection coll = TypeDescriptor.GetProperties(this);
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{");
+            foreach (PropertyDescriptor pd in coll)
+            {
+                builder.Append(string.Format("{0}={1},", pd.Name, pd.GetValue(this).ToString()));
+            }
+            builder.Append("}");
+            return builder.ToString();
+        }
     }
 }
