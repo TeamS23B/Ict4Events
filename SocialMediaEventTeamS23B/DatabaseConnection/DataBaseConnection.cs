@@ -17,7 +17,8 @@ namespace DatabaseConnection
 
         public double GetRentPrice(int eventId, int materialId)
         {
-            
+            //TODO: Useful return value in the end...
+            return 0;
         }
     }
 }
