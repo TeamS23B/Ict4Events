@@ -7,7 +7,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class Rented
+    public class Rented
     {
         public List<Material> Materials { get; private set; }
         public DateTime BeginHire { get; private set; }

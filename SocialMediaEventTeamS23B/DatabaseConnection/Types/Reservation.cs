@@ -7,7 +7,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class Reservation
+    public class Reservation
     {
         public List<Visitor> GroupMembers { get; private set; }
         public Visitor GroupLeader { get; private set; }

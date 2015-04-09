@@ -7,7 +7,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class Event
+    public class Event
     {
         public int EventId { get; private set; }
         public Location Location { get; private set; }

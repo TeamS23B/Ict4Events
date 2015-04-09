@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnection.Types
 {
-    class Location
+    public class Location
     {
         public String Street { get; private set; }
         public int Number { get; private set; }

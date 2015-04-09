@@ -7,7 +7,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class AdressInfo
+    public class AdressInfo
     {
         public String Street { get; private set; }
         public String City { get; private set; }

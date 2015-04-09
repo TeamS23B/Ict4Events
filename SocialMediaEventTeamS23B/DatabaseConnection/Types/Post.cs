@@ -8,7 +8,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class Post
+    public class Post
     {
         public List<Post> Comments { get; private set; }
         public Mediafile Mediafile { get; private set; }

@@ -7,7 +7,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class Category
+    public class Category
     {
         public String Title { get; private set; }
         public Category Parrent { get; private set; }

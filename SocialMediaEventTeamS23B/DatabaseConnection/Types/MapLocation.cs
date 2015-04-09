@@ -8,7 +8,7 @@ using DatabaseConnection.Exeptions;
 
 namespace DatabaseConnection.Types
 {
-    class MapLocation
+    public class MapLocation
     {
         public int LocationNumber { get; private set; }
         public Point Coordinates { get; private set; }
