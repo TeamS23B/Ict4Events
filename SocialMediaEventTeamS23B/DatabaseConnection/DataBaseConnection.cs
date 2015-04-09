@@ -12,13 +12,14 @@ namespace DatabaseConnection
 
         public DataBaseConnection()
         {
-            
+            dbConnector = new DataBaseConnector("SYSTEM","aapje");
         }
 
         public double GetRentPrice(int eventId, int materialId)
         {
-            //TODO: Useful return value in the end...
-            return 0;
+            var querry = String.Format(
+                "SELECT Huurprijs FROM materiaal_event WHERE eventId = {0} AND materiaalId = {1}", eventId, materialId);
+            return dbConnector.QuerryScalar<double>(querry);
         }
     }
 }
