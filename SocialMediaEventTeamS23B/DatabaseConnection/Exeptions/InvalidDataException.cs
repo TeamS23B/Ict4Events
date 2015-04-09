@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnection.Exeptions
 {
-    class InvalidDataException:Exception
+    public class InvalidDataException:Exception
     {
         public InvalidDataException(String message):base(message)
         {

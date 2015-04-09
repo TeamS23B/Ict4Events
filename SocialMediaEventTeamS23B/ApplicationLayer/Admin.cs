@@ -9,7 +9,7 @@ namespace ApplicationLayer
 {
     class Admin
     {
-        public List<Material> matrials { get; private set; }
+        public List<Material> materials { get; private set; }
 
         public List<Event> events { get; private set; }
         public Admin()

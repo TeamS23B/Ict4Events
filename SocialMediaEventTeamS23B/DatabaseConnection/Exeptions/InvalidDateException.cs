@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnection.Exeptions
 {
-    class InvalidDateException:Exception
+    public class InvalidDateException:Exception
     {
         public InvalidDateException(string message):base(message)
         {

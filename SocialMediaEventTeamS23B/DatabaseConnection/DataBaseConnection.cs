@@ -28,10 +28,14 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<double>(query);
         }
 
+        public char GetPayInfo(String RFID)
+        {
+            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0});", RFID);
+            return dbConnector.QueryScalar<char>(query);
+        }
+
         /*
-         * String.format("SELECT isBetaald
-            FROM reservering
-            WHERE LeiderId = {0};",RFID)
+         *
          * */
         #endregion
 
