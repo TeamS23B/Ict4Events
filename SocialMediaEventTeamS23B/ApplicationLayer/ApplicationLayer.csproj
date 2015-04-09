@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AccessControl.cs" />
     <Compile Include="Exceptions\NotLoggedInException.cs" />
+    <Compile Include="Exceptions\NullException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
   </ItemGroup>
