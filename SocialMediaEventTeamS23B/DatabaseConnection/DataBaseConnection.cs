@@ -19,15 +19,19 @@ namespace DatabaseConnection
 
         public double GetRentPrice(int eventId, int materialId)
         {
-            var querry = String.Format(
+            var query = String.Format(
                 "SELECT Huurprijs " +
                 "FROM materiaal_event " +
                 "WHERE EventId = {0} " +
                 "AND MateriaalId = {1};", 
                 eventId, materialId);
-            return dbConnector.QuerryScalar<double>(querry);
+            return dbConnector.QueryScalar<double>(query);
         }
 
+        public double GetLoginData(String username, String password)
+        {
+
+        }
         #endregion
 
     }

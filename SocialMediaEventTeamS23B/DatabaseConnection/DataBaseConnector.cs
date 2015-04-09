@@ -29,15 +29,15 @@ namespace DatabaseConnection
         }
 
         /// <summary>
-        /// Run a querry with no result
+        /// Run a query with no result
         /// </summary>
-        /// <param name="querry">The querry which to run</param>
+        /// <param name="query">The query which to run</param>
         /// <returns>Amount of rows affected</returns>
-        public int QuerryNoResult(String querry)
+        public int QueryNoResult(String query)
         {
-            //open connection and run command in non querry mode
+            //open connection and run command in non query mode
             connection.Open();
-            var command = new OracleCommand(querry, connection);
+            var command = new OracleCommand(query, connection);
             var result = command.ExecuteNonQuery();
             connection.Close();
             return result;
@@ -47,13 +47,13 @@ namespace DatabaseConnection
         /// Run a scalar request(one response)
         /// </summary>
         /// <typeparam name="T">The type to cast te respons to</typeparam>
-        /// <param name="querry">The querry to run</param>
+        /// <param name="query">The query to run</param>
         /// <returns>The value from the response as type T</returns>
-        public T QuerryScalar<T>(String querry)
+        public T QueryScalar<T>(String query)
         {
             //open connection an execute in scalar mode
             connection.Open();
-            var comand = new OracleCommand(querry, connection);
+            var comand = new OracleCommand(query, connection);
             //cast result to <T>
             T result = (T)comand.ExecuteScalar();
             connection.Close();
@@ -61,20 +61,20 @@ namespace DatabaseConnection
         }
 
         /// <summary>
-        /// Runs a querry and get a reader to read all data, run CloseConnection() after command
+        /// Runs a query and get a reader to read all data, run CloseConnection() after command
         /// </summary>
-        /// <param name="querry">The querry to run</param>
+        /// <param name="query">The query to run</param>
         /// <returns>The reader object wich you can get all data from</returns>
-        public OracleDataReader QuerryReader(String querry)
+        public OracleDataReader QueryReader(String query)
         {
             //open connection and and execute a command in reader mode
             //connection.Open();
-            var command = new OracleCommand(querry, connection);
+            var command = new OracleCommand(query, connection);
             return command.ExecuteReader();
         }
 
         /// <summary>
-        /// Closes the connection, run after Querry Reader
+        /// Closes the connection, run after Query Reader
         /// </summary>
         public void CloseConnection()
         {
