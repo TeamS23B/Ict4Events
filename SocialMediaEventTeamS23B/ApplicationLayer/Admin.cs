@@ -17,9 +17,11 @@ namespace ApplicationLayer
 
         }
 
-        public void AddMaterial(int materialId, string name, double price, String state)
+        public void AddMaterial(string name, string type, double price, String state)
         {
-            //db.addmaterial
+            DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
+            dbc.AddMaterial(name, type, price, state);
+            //TODO: later nog controles toevoegen
         }
         public void EditMaterial(Material material)
         {

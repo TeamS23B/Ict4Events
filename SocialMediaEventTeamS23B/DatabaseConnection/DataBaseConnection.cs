@@ -23,7 +23,7 @@ namespace DatabaseConnection
                 "SELECT Huurprijs " +
                 "FROM materiaal_event " +
                 "WHERE EventId = {0} " +
-                "AND MateriaalId = {1};", 
+                "AND MateriaalId = {1};",
                 eventId, materialId);
             return dbConnector.QueryScalar<double>(query);
         }
@@ -34,10 +34,31 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<char>(query);
         }
 
-        /*
-         *
-         * */
-        #endregion
+        public int GetHighestId(string idType)
+        {
+            if (idType == "Materiaal")
+            {
+                var query = String.Format("SELECT MAX(MateriaalId) FROM Materiaal;");
+                return dbConnector.QueryScalar<int>(query);
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
+        #endregion
+        #region INSERT INTO
+
+        public int AddMaterial(string name, string type, double price, String state)
+        {
+            int maxId = GetHighestId("Materiaal");
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4});", maxId, name, type, price, state);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+        #endregion
     }
 }
+/*
+
+*/
