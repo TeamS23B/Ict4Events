@@ -1,6 +1,6 @@
 ﻿namespace SocialMediaEventTeamS23B
 {
-    partial class AccesContol
+    partial class AccessControl
     {
         /// <summary>
         /// Required designer variable.

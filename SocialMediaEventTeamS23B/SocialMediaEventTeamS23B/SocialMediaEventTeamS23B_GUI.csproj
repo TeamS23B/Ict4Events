@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesContol.cs">
+    <Compile Include="AccessControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccesContol.Designer.cs">
-      <DependentUpon>AccesContol.cs</DependentUpon>
+    <Compile Include="AccessControl.Designer.cs">
+      <DependentUpon>AccessControl.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -118,7 +118,7 @@
     <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
       <DependentUpon>Admin - Main Menu.cs</DependentUpon>
     </EmbeddedResource>
-        <Compile Include="Admin Forms\Admin - Main Menu.cs">
+    <Compile Include="Admin Forms\Admin - Main Menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Admin Forms\Admin - Main Menu.Designer.cs">
@@ -145,8 +145,8 @@
     <Compile Include="Reservation\ReservationMaterial.Designer.cs">
       <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AccesContol.resx">
-      <DependentUpon>AccesContol.cs</DependentUpon>
+    <EmbeddedResource Include="AccessControl.resx">
+      <DependentUpon>AccessControl.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Reservation\ReservationDetails.cs">
       <SubType>Form</SubType>
