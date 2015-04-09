@@ -24,7 +24,7 @@ namespace ApplicationLayer
         /// <returns>True if the user has payed, false if the user hasn't</returns>
         public bool CheckPayment(int RFID)
         {
-            return true; //retun db.checkPayment(RFID);
+            return true; //return db.checkPayment(RFID);
         }
 
 
