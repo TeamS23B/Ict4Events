@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLayer.Exceptions;
 using DatabaseConnection.Types;
 
 namespace ApplicationLayer
@@ -13,9 +14,10 @@ namespace ApplicationLayer
 
         public Reservation(List<Visitor> groupMember, Visitor groupLeader, List<MapLocation> Location)
         {
-            groupMember = null;
-            Location = null;
-
+            if (groupMember == null || Location == null)
+            {
+                throw new NullException("Lists don't exist");
+            }
         }
 
     }
