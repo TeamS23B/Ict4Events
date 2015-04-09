@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,6 +49,12 @@
     </Compile>
     <Compile Include="AccessControl.Designer.cs">
       <DependentUpon>AccessControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Add Material - Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Add Material - Add.Designer.cs">
+      <DependentUpon>Admin - Add Material - Add.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -106,6 +112,9 @@
     <Compile Include="Reservation\ReservationLocation.Designer.cs">
       <DependentUpon>ReservationLocation.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Admin Forms\Admin - Add Material - Add.resx">
+      <DependentUpon>Admin - Add Material - Add.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin Forms\Admin - Add Material.resx">
       <DependentUpon>Admin - Add Material.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,7 +142,6 @@
     <Compile Include="Admin Forms\Admin - Social Media Sharing.Designer.cs">
       <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
     </Compile>
-
     <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
       <DependentUpon>Admin - Main Menu.cs</DependentUpon>
     </EmbeddedResource>

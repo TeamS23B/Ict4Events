@@ -46,8 +46,8 @@
   <ItemGroup>
     <Compile Include="DataBaseConnection.cs" />
     <Compile Include="DataBaseConnector.cs" />
-    <Compile Include="Exeptions\InvalidDataException.cs" />
-    <Compile Include="Exeptions\InvalidDateException.cs" />
+    <Compile Include="Exceptions\InvalidDataException.cs" />
+    <Compile Include="Exceptions\InvalidDateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\AdressInfo.cs" />
     <Compile Include="Types\Category.cs" />
