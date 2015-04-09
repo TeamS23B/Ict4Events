@@ -16,14 +16,20 @@ namespace ApplicationLayer
         {
 
         }
-        public void AddEvent()
-        {
 
-        }
-        public void AddMaterial()
+        public void AddMaterial(int materialId, string name, double price, String state)
         {
-
+            //db.addmaterial
         }
+        public void EditMaterial(Material material)
+        {
+            //db.editmaterial
+        }
+        public void AddEvent(int eventId, Location location, DateTime startDate, DateTime endDate)
+        {
+            //db.addevent
+        }
+        
         public void GetLocation()
         {
 
@@ -32,10 +38,7 @@ namespace ApplicationLayer
         {
 
         }
-        public void EditMaterial()
-        {
-
-        }
+        
         public void EditFlaggingControl()
         {
 
