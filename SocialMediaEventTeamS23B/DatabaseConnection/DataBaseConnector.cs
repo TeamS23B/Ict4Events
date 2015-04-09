@@ -21,11 +21,11 @@ namespace DatabaseConnection
         /// <param name="ipAdress">The ipadress of the server</param>
         /// <param name="hostname">The name you are know as by the server</param>
         /// <param name="port">the port to whicht to connect</param>
-        public DataBaseConnector(string username, string password,string ipAdress,string hostname, string port="1521")
+        public DataBaseConnector(string username, string password,string ipAdress="192.168.20.112",string hostname="orcl.localhost", string port="1521")
         {
             connection =
                 new OracleConnection(String.Format(CONNECTIONSTRING, ipAdress, port, hostname, username, password));
-            connection.Open();
+            //connection.Open();
         }
 
         /// <summary>
@@ -38,7 +38,9 @@ namespace DatabaseConnection
             //open connection and run command in non querry mode
             connection.Open();
             var command = new OracleCommand(querry, connection);
-            return command.ExecuteNonQuery();
+            var result = command.ExecuteNonQuery();
+            connection.Close();
+            return result;
         }
 
         /// <summary>
@@ -53,20 +55,30 @@ namespace DatabaseConnection
             connection.Open();
             var comand = new OracleCommand(querry, connection);
             //cast result to <T>
-            return (T)comand.ExecuteScalar();
+            T result = (T)comand.ExecuteScalar();
+            connection.Close();
+            return result;
         }
 
         /// <summary>
-        /// Runs a querry and get a reader to read all data
+        /// Runs a querry and get a reader to read all data, run CloseConnection() after command
         /// </summary>
         /// <param name="querry">The querry to run</param>
         /// <returns>The reader object wich you can get all data from</returns>
         public OracleDataReader QuerryReader(String querry)
         {
             //open connection and and execute a command in reader mode
-            connection.Open();
+            //connection.Open();
             var command = new OracleCommand(querry, connection);
             return command.ExecuteReader();
+        }
+
+        /// <summary>
+        /// Closes the connection, run after Querry Reader
+        /// </summary>
+        public void CloseConnection()
+        {
+            connection.Close();   
         }
 
     }
