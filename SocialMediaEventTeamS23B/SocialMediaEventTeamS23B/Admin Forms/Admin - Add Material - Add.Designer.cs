@@ -93,7 +93,6 @@
             this.cbType.Items.AddRange(new object[] {
             "Videocamera",
             "Fotocamera",
-            "Combocamera",
             "Laptop",
             "Smartphone",
             "Tablet",

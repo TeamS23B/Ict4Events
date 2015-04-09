@@ -38,56 +38,88 @@ namespace SocialMediaEventTeamS23B
             if (cbType.SelectedItem == "Fotocamera")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony Handycam CX405");
-                cbModel.Items.Add("Sony Handycam PJ410");
-                cbModel.Items.Add("Sony CX240E");
-                cbModel.Items.Add("Canon VIXIA HF R60");
-                cbModel.Items.Add("Canon VIXIA HF R500");
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
+            }
+                  // Hier ben ik gebleven     
+            if (cbType.SelectedItem == "Laptop")
+            {
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "Smartphone")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "Tablet")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "Lader")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "Accu")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "SD-Kaart")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "USB-Stick")
             {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
 
-            if (cbType.SelectedItem == "Fotocamera")
+            if (cbType.SelectedItem == "Muis")
             {
-
-            }
-
-            if (cbType.SelectedItem == "Fotocamera")
-            {
-
-            }
-
-            if (cbType.SelectedItem == "Fotocamera")
-            {
-
+                cbModel.Items.Clear();
+                cbModel.Items.Add("Sony ILCE-3000");
+                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Canon PowerShot S120 ");
+                cbModel.Items.Add("Canon PowerShot S200");
+                cbModel.Items.Add("Canon IXUS 170");
             }
         }
     }
