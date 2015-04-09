@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -115,6 +115,25 @@
     <Compile Include="Admin Forms\Admin - Add Material.Designer.cs">
       <DependentUpon>Admin - Add Material.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Admin Forms\Admin - Create Event.resx">
+      <DependentUpon>Admin - Create Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Admin Forms\Admin - Create Event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Create Event.Designer.cs">
+      <DependentUpon>Admin - Create Event.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin Forms\Admin - Social Media Sharing.resx">
+      <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Admin Forms\Admin - Social Media Sharing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Social Media Sharing.Designer.cs">
+      <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
+    </Compile>
+
     <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
       <DependentUpon>Admin - Main Menu.cs</DependentUpon>
     </EmbeddedResource>

@@ -16,5 +16,10 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         {
             InitializeComponent();
         }
+
+        private void lblAllMessages_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

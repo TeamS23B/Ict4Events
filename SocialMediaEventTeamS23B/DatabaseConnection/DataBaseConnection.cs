@@ -28,10 +28,11 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<double>(query);
         }
 
-        public double GetLoginData(String username, String password)
-        {
-
-        }
+        /*
+         * String.format("SELECT isBetaald
+            FROM reservering
+            WHERE LeiderId = {0};",RFID)
+         * */
         #endregion
 
     }
