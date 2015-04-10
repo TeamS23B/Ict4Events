@@ -14,7 +14,8 @@ namespace ApplicationLayer
         public List<Event> events { get; private set; }
         public Admin()
         {
-
+            materials = new List<Material>();
+            events = new List<Event>();
         }
 
         public void AddMaterial(string name, string type, double price, String state)
