@@ -234,7 +234,7 @@ namespace DatabaseConnection
                 }
                 reader.Close();
                 dbConnector.CloseConnection();
-                if(function != null)
+                if(!string.IsNullOrEmpty(function))
                 {
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
@@ -271,6 +271,10 @@ namespace DatabaseConnection
                     }
                     reader.Close();
                     dbConnector.CloseConnection();
+                }
+                else
+                {
+                    function = "NonUser";
                 }
                 return function;
             }
@@ -391,13 +395,13 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        public int LikePost(string rfid, string title)
+        /*public int LikePost(string rfid, string title)
         {
             decimal postId = Get
             var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
             
-        }
+        }*/
 
         /// <summary>
         /// Increase the amount of 'flags' on the given post by 1.
