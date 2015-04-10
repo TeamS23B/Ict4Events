@@ -19,7 +19,8 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
 
         private void btnAdminAddMaterial_Click(object sender, EventArgs e)
         {
-
+            Admin___Add_Material AdminAddMaterial = new Admin___Add_Material();
+            AdminAddMaterial.Show();
         }
     }
 }

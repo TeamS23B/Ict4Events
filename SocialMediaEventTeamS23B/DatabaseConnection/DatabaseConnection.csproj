@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>I:\install me\ODAC112040Xcopy_32bit\odp.net4\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+      <HintPath>..\..\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

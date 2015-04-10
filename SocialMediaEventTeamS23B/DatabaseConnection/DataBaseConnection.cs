@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -293,7 +294,8 @@ namespace DatabaseConnection
                     function = (string)reader[0];
                 }
                 reader.Close();
-                if(function != null)
+                dbConnector.CloseConnection();
+                if(!string.IsNullOrEmpty(function))
                 {
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
@@ -330,6 +332,10 @@ namespace DatabaseConnection
                     }
                     reader.Close();
                     dbConnector.CloseConnection();
+                }
+                else
+                {
+                    function = "NonUser";
                 }
                 return function;
             }
@@ -458,7 +464,7 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId,rfid,letter);
             return dbConnector.QueryNoResult(nonquery);
 
-        }
+        }*/
 
         /// <summary>
         /// Increase the amount of 'flags' on the given post by 1.
@@ -480,6 +486,25 @@ namespace DatabaseConnection
         
 
        
+
+        #endregion
+       
+        #region FTP
+
+        /// <summary>
+        /// Upload a file to the remote server
+        /// </summary>
+        /// <param name="localFile">the local file to upload (fullPath)</param>
+        /// <param name="remoteFile">the remote file, starting from the base, example upload/file1.txt</param>
+        /// <returns></returns>
+        public void FtpUpload(String localFile, String remoteFile)
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Credentials=new NetworkCredential("Uploader","aapje");
+                wc.UploadFile("ftp://192.168.20.112/"+remoteFile, localFile);
+            }
+        }
 
         #endregion
     }
