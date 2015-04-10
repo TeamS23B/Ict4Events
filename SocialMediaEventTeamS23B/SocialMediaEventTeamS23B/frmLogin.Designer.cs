@@ -82,6 +82,7 @@
             this.btLogin.TabIndex = 4;
             this.btLogin.Text = "Login";
             this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // lblLoggedIn
             // 
@@ -147,7 +148,7 @@
             this.btnReserving.UseVisualStyleBackColor = true;
             this.btnReserving.Visible = false;
             // 
-            // frmMain
+            // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -166,10 +167,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmMain";
+            this.Name = "frmLogin";
             this.Text = "Social Media Event - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

@@ -181,6 +181,9 @@
     <Compile Include="Reservation\ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialRent.resx">
       <DependentUpon>MaterialRent.cs</DependentUpon>
     </EmbeddedResource>
