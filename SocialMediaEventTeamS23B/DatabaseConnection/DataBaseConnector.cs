@@ -9,7 +9,7 @@ namespace DatabaseConnection
 {
     internal class DataBaseConnector
     {
-        private const string CONNECTIONSTRING = "SERVER=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVICE_NAME={2})));uid={3};pwd={4};";
+        private const string CONNECTIONSTRING = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVICE_NAME={2})));User Id={3};Password={4};";
 
         private readonly OracleConnection connection;
 

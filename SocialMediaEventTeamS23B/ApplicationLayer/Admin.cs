@@ -9,27 +9,28 @@ namespace ApplicationLayer
 {
     class Admin
     {
+        DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
         public List<Material> materials { get; private set; }
 
         public List<Event> events { get; private set; }
         public Admin()
         {
-
+            materials = new List<Material>();
+            events = new List<Event>();
         }
 
-        public void AddMaterial(string name, string type, double price, String state)
+        public void AddMaterial(String name, String type, double price, String state)
         {
-            DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
-            dbc.AddMaterial(name, type, price, state);
-            //TODO: later nog controles toevoegen
+            dbc.AddMaterial(name, type, (Decimal)price, state);
+            materials.Add(new Material(dbc.GetHighestId("Materiaal"), name, type, price, state));
         }
         public void EditMaterial(Material material)
         {
-            //db.editmaterial
+            //should
         }
         public void AddEvent(int eventId, Location location, DateTime startDate, DateTime endDate)
         {
-            //db.addevent
+            dbc.AddEvent(location.Number, startDate, endDate);
         }
         
         public Location GetLocation()
@@ -41,6 +42,10 @@ namespace ApplicationLayer
             //return;
         }
         
+        public void AddMaterialToEvent (Material){}
+
+        public void RemoveMaterialFromEvent (Material){}
+
         public void EditFlaggingControl()
         {
             //

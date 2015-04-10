@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApplicationLayer;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -19,7 +20,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-
+            Login Login = new Login(tbUsername.Text, tbPassword.Text);
         }
     }
 }

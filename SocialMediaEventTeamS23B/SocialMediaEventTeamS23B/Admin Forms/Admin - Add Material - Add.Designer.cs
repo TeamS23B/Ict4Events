@@ -43,9 +43,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(16, 125);
+            this.btnAdd.Location = new System.Drawing.Point(12, 102);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(254, 54);
+            this.btnAdd.Size = new System.Drawing.Size(190, 44);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Voeg Toe";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -53,36 +54,40 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(13, 13);
+            this.lblType.Location = new System.Drawing.Point(10, 11);
+            this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(44, 17);
+            this.lblType.Size = new System.Drawing.Size(34, 13);
             this.lblType.TabIndex = 5;
             this.lblType.Text = "Type:";
             // 
             // lblModel
             // 
             this.lblModel.AutoSize = true;
-            this.lblModel.Location = new System.Drawing.Point(13, 41);
+            this.lblModel.Location = new System.Drawing.Point(10, 33);
+            this.lblModel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(50, 17);
+            this.lblModel.Size = new System.Drawing.Size(39, 13);
             this.lblModel.TabIndex = 6;
             this.lblModel.Text = "Model:";
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(13, 69);
+            this.lblPrice.Location = new System.Drawing.Point(10, 56);
+            this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(39, 17);
+            this.lblPrice.Size = new System.Drawing.Size(29, 13);
             this.lblPrice.TabIndex = 7;
             this.lblPrice.Text = "Prijs:";
             // 
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(13, 97);
+            this.lblState.Location = new System.Drawing.Point(10, 79);
+            this.lblState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(45, 17);
+            this.lblState.Size = new System.Drawing.Size(35, 13);
             this.lblState.TabIndex = 8;
             this.lblState.Text = "Staat:";
             // 
@@ -101,9 +106,10 @@
             "SD-Kaart",
             "Muis",
             "USB-Stick"});
-            this.cbType.Location = new System.Drawing.Point(102, 13);
+            this.cbType.Location = new System.Drawing.Point(76, 11);
+            this.cbType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(168, 24);
+            this.cbType.Size = new System.Drawing.Size(127, 21);
             this.cbType.TabIndex = 9;
             this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
@@ -111,9 +117,10 @@
             // 
             this.cbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModel.FormattingEnabled = true;
-            this.cbModel.Location = new System.Drawing.Point(102, 41);
+            this.cbModel.Location = new System.Drawing.Point(76, 33);
+            this.cbModel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbModel.Name = "cbModel";
-            this.cbModel.Size = new System.Drawing.Size(168, 24);
+            this.cbModel.Size = new System.Drawing.Size(127, 21);
             this.cbModel.TabIndex = 10;
             // 
             // cbState
@@ -125,39 +132,43 @@
             "Gebruikt",
             "Beschadigd",
             "Defect"});
-            this.cbState.Location = new System.Drawing.Point(102, 97);
+            this.cbState.Location = new System.Drawing.Point(76, 79);
+            this.cbState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbState.Name = "cbState";
-            this.cbState.Size = new System.Drawing.Size(168, 24);
+            this.cbState.Size = new System.Drawing.Size(127, 21);
             this.cbState.TabIndex = 11;
             // 
             // tbEuros
             // 
-            this.tbEuros.Location = new System.Drawing.Point(102, 69);
+            this.tbEuros.Location = new System.Drawing.Point(76, 56);
+            this.tbEuros.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbEuros.Name = "tbEuros";
-            this.tbEuros.Size = new System.Drawing.Size(81, 22);
+            this.tbEuros.Size = new System.Drawing.Size(62, 20);
             this.tbEuros.TabIndex = 12;
             // 
             // tbCents
             // 
-            this.tbCents.Location = new System.Drawing.Point(208, 69);
+            this.tbCents.Location = new System.Drawing.Point(156, 56);
+            this.tbCents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbCents.Name = "tbCents";
-            this.tbCents.Size = new System.Drawing.Size(62, 22);
+            this.tbCents.Size = new System.Drawing.Size(48, 20);
             this.tbCents.TabIndex = 13;
             // 
             // lblComma
             // 
             this.lblComma.AutoSize = true;
-            this.lblComma.Location = new System.Drawing.Point(189, 74);
+            this.lblComma.Location = new System.Drawing.Point(142, 60);
+            this.lblComma.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblComma.Name = "lblComma";
-            this.lblComma.Size = new System.Drawing.Size(12, 17);
+            this.lblComma.Size = new System.Drawing.Size(10, 13);
             this.lblComma.TabIndex = 14;
             this.lblComma.Text = ",";
             // 
             // Admin___Add_Material___Add
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 191);
+            this.ClientSize = new System.Drawing.Size(222, 157);
             this.Controls.Add(this.lblComma);
             this.Controls.Add(this.tbCents);
             this.Controls.Add(this.tbEuros);
@@ -169,6 +180,7 @@
             this.Controls.Add(this.lblModel);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnAdd);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Admin___Add_Material___Add";
             this.Text = "Admin___Add_Material___Add";
             this.ResumeLayout(false);
