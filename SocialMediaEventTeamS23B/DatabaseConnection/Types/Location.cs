@@ -8,6 +8,7 @@ namespace DatabaseConnection.Types
 {
     public class Location
     {
+        public int LocatieId { get; set; }
         public String Street { get; private set; }
         public int Number { get; private set; }
         public String Adition { get; private set; }
@@ -15,8 +16,9 @@ namespace DatabaseConnection.Types
         public String Zipcode { get; private set; }
         public String Map { get; private set; }
 
-        public Location(string street, int number, string adition, string town, string zipcode, string map)
+        public Location(int locatieId, string street, int number, string adition, string town, string zipcode, string map)
         {
+            LocatieId = locatieId
             Street = street;
             Number = number;
             Adition = adition;
