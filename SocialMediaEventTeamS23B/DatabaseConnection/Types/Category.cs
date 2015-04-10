@@ -10,17 +10,17 @@ namespace DatabaseConnection.Types
     public class Category
     {
         public String Title { get; private set; }
-        public Category Parrent { get; private set; }
+        public Category Parent { get; private set; }
         public List<Post> Posts { get; private set; }
 
-        public Category(string title, Category parrent, List<Post> posts)
+        public Category(string title, Category parent, List<Post> posts)
         {
             if (string.IsNullOrEmpty(title))
             {
                 throw new InvalidDataException("title is null or empty");
             }
             Title = title;
-            Parrent = parrent;
+            Parent = parent;
             Posts = posts;
         }
 
@@ -32,7 +32,7 @@ namespace DatabaseConnection.Types
         public override string ToString()
         {
             var postsString = string.Join(",", Posts.Select(post => post.ToString()));
-            return String.Format("{{Title={0},Parrent={1},Posts=[{2}]}}", Title, Parrent.Title, Posts);
+            return String.Format("{{Title={0},Parrent={1},Posts=[{2}]}}", Title, Parent.Title, Posts);
         }
     }
 }

@@ -50,8 +50,11 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        public int AddPost(int postId, string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost)
+        // AddPost bevat (nog) geen link naar een bestand.
+        public int AddPost(string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost)
         {
+            decimal maxId = GetHighestId("Bericht") + 1;
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7});", maxId, rfid, category, title, text, commentOn, timeOfPost);
             return dbConnector.QueryNoResult(nonquery);
         }
 
