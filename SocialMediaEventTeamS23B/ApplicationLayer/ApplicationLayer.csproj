@@ -46,7 +46,7 @@
     <Compile Include="Exceptions\InvalidInputException.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reservation.cs" />
+    <Compile Include="Reservations.cs" />
     <Compile Include="SocialMediaSharing.cs" />
   </ItemGroup>
   <ItemGroup>
