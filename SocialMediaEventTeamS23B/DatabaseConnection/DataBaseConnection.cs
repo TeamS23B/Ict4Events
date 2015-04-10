@@ -69,7 +69,7 @@ namespace DatabaseConnection
         }
         public List<Material> GetMaterialsInEvent()
         {
-
+            return null;
         }
         //public List<Material> 
 
