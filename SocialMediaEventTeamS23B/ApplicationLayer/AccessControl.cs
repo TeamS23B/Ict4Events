@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApplicationLayer.Exceptions;
+using DatabaseConnection;
 using DatabaseConnection.Types;
 
 namespace ApplicationLayer
@@ -11,11 +12,11 @@ namespace ApplicationLayer
     public class AccessControl
     {
         public List<Visitor> AllPresent { get; private set; }
-        DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
+        private DataBaseConnection dbc;
 
-        public AccessControl()
+        public AccessControl(DataBaseConnection dbc)
         {
-            
+            this.dbc = dbc;
         }
 
         /// <summary>
@@ -25,21 +26,15 @@ namespace ApplicationLayer
         /// <returns>True if the user has payed, false if the user hasn't</returns>
         public bool CheckPayment(string RFID)
         {
-            char status = dbc.GetPayInfo(RFID);
-            if (status == 'J')
+            switch (dbc.GetPayInfo(RFID))
             {
-                return true;
-            }
-            else if (status == 'N')
-            {
-                return false;
-            }
-            else
-            {
-                throw new DatabaseConnection.Exeptions.InvalidDataException("Error: Payment Unknown");
+                case 'J':
+                    return true;
+                case 'N':
+                    return false;
+                default:
+                    throw new DatabaseConnection.Exeptions.InvalidDataException("Error: Payment Unknown");
             }
         }
-
-
     }
 }

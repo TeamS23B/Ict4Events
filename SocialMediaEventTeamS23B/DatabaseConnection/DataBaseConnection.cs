@@ -119,12 +119,31 @@ namespace DatabaseConnection
 
             return locations;
         }
-        public List<Material> GetMaterialsInEvent()
+        public List<Material> GetAllMaterials()
         {
-            List<Material> Materials = new List<Material>();
+            List<Material> materials = new List<Material>();
             try
             {
                 var query = "SELECT * FROM materiaal";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch(Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
             }
             return null;
         }
