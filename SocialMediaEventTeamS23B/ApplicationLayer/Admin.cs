@@ -37,15 +37,17 @@ namespace ApplicationLayer
         public Location GetLocation()
         {
             //return;
+            return null;
         }
         public Material GetMaterial()
         {
             //return;
+            return null;
         }
         
-        public void AddMaterialToEvent (Material){}
+        public void AddMaterialToEvent (Material Material ){}
 
-        public void RemoveMaterialFromEvent (Material){}
+        public void RemoveMaterialFromEvent (Material Material ){}
 
         public void EditFlaggingControl()
         {

@@ -44,7 +44,7 @@ namespace SocialMediaEventTeamS23B
             {
                 MessageBox.Show("Dit is geen gebruiker");
             }
-            else if(ArrayFuncties.Contains(Login.SendToDatabase(tbUsername.Text, tbPassword.Text))
+            else if(ArrayFuncties.Contains(Login.SendToDatabase(tbUsername.Text, tbPassword.Text)))
             {
                 btnAdmin.Visible = true;
                 btnAccesControl.Visible = true;
