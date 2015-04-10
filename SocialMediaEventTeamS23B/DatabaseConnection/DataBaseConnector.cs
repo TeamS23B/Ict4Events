@@ -21,7 +21,7 @@ namespace DatabaseConnection
         /// <param name="ipAdress">The ipadress of the server</param>
         /// <param name="hostname">The name you are know as by the server</param>
         /// <param name="port">the port to whicht to connect</param>
-        public DataBaseConnector(string username, string password,string ipAdress="192.168.20.112",string hostname="orcl.localhost", string port="1521")
+        public DataBaseConnector(string username, string password,string ipAdress="192.168.20.112",string hostname="orcl.localdomain", string port="1521")
         {
             connection =
                 new OracleConnection(String.Format(CONNECTIONSTRING, ipAdress, port, hostname, username, password));
@@ -68,7 +68,7 @@ namespace DatabaseConnection
         public OracleDataReader QueryReader(String query)
         {
             //open connection and and execute a command in reader mode
-            //connection.Open();
+            connection.Open();
             var command = new OracleCommand(query, connection);
             return command.ExecuteReader();
         }

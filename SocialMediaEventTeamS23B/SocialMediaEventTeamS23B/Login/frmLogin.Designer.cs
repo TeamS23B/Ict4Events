@@ -95,7 +95,6 @@
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Enabled = false;
             this.btnAdmin.Location = new System.Drawing.Point(12, 289);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(120, 60);
@@ -106,7 +105,6 @@
             // 
             // btnAccesControl
             // 
-            this.btnAccesControl.Enabled = false;
             this.btnAccesControl.Location = new System.Drawing.Point(138, 289);
             this.btnAccesControl.Name = "btnAccesControl";
             this.btnAccesControl.Size = new System.Drawing.Size(120, 60);
@@ -117,7 +115,6 @@
             // 
             // btnSocialMediaSharing
             // 
-            this.btnSocialMediaSharing.Enabled = false;
             this.btnSocialMediaSharing.Location = new System.Drawing.Point(264, 289);
             this.btnSocialMediaSharing.Name = "btnSocialMediaSharing";
             this.btnSocialMediaSharing.Size = new System.Drawing.Size(156, 60);
@@ -128,7 +125,6 @@
             // 
             // btnMaterial
             // 
-            this.btnMaterial.Enabled = false;
             this.btnMaterial.Location = new System.Drawing.Point(426, 289);
             this.btnMaterial.Name = "btnMaterial";
             this.btnMaterial.Size = new System.Drawing.Size(120, 60);
@@ -139,7 +135,6 @@
             // 
             // btnReserving
             // 
-            this.btnReserving.Enabled = false;
             this.btnReserving.Location = new System.Drawing.Point(552, 289);
             this.btnReserving.Name = "btnReserving";
             this.btnReserving.Size = new System.Drawing.Size(120, 60);

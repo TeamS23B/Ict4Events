@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialMediaSharing\SMSAddCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocialMediaSharing\SMSAddCategory.Designer.cs">
+      <DependentUpon>SMSAddCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="SocialMediaSharing\SMSCreatePost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     <EmbeddedResource Include="Reservation\ReservationDetails.resx">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SocialMediaSharing\SMSAddCategory.resx">
+      <DependentUpon>SMSAddCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SocialMediaSharing\SMSCreatePost.resx">
       <DependentUpon>SMSCreatePost.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -218,7 +227,6 @@
     <EmbeddedResource Include="Reservation\ReservationMaterial.resx">
       <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

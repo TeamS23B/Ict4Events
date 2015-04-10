@@ -30,7 +30,7 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
         private Visitor user;
         private SocialMediaSharing Sms;
 
-        private List<SMSMessageMain> messages;
+        private List<SMSMessageMain> messages; 
         private List<SMSMessageMain> trendingMessages;
         private List<SMSMessageMain> myMessages;
 
@@ -40,18 +40,18 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
             if (panel2.VerticalScroll.Value > panel2.VerticalScroll.Maximum - 300)
             {
                 var newContent = Sms.CheckContent(messages.Last());
-                foreach (Post content in newContent)
-                {
-                    var obj = new SMSMessageMain(content);
-                    obj.Width = panel2.Width - 24;
-                    obj.Left = 12;
+            foreach (Post content in newContent)
+            {
+                var obj = new SMSMessageMain(content);
+                obj.Width = panel2.Width - 24;
+                obj.Left = 12;
                     var lastMessage = messages.LastOrDefault();
                     if (lastMessage == null)
                         obj.Top = 12;
                     else
-                        obj.Top = lastMessage.Top + lastMessage.Height + 12;
-                    panel2.Controls.Add(obj);
-                }
+                obj.Top = lastMessage.Top + lastMessage.Height + 12;
+                panel2.Controls.Add(obj);
+            }
 
             }
 
