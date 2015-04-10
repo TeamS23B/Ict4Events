@@ -56,6 +56,11 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4});", maxId, name, type, price, state);
             return dbConnector.QueryNoResult(nonquery);
         }
+
+        public int AddPost(int postId, string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost)
+        {
+            return dbConnector.QueryNoResult(nonquery);
+        }
         #endregion
     }
 }
