@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.DataAccess.Client;
+
 
 namespace DatabaseConnection
 {
@@ -52,6 +54,44 @@ namespace DatabaseConnection
 
         public int AddEvent()
         #endregion
+        public string Login(string username,string password)
+        {
+            string functie = "";
+            try
+            {
+                //Kijken of het personeel is 
+                string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = "+username+" AND Wachtwoord="+password+"";
+                OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
+                
+                while(reader.Read())
+                {
+                    functie = (string)reader[0];
+                }
+
+                if(dbConnector.QueryReader(sqlWerknemer)==null)
+                {
+                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = "+username+" AND Wachtwoord ="+password+"";
+                    reader = dbConnector.QueryReader(sqlDeelnemer);
+                    while(reader.Read())
+                    {
+                        if(username == reader[0].ToString() && password == reader[1].ToString())
+                        {
+                            functie = "User";
+                        }
+                        else
+                        {
+                            functie = "NonUser";
+                        }
+                    }
+
+                }
+                return functie;
+            }
+            catch
+            {
+                return functie = "error";
+            }
+        }
     }
 }
 /*
