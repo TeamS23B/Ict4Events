@@ -60,7 +60,7 @@
             this.tblLayout.Controls.Add(this.btNewMessage, 2, 0);
             this.tblLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayout.Location = new System.Drawing.Point(0, 0);
-            this.tblLayout.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tblLayout.Margin = new System.Windows.Forms.Padding(5);
             this.tblLayout.Name = "tblLayout";
             this.tblLayout.RowCount = 2;
             this.tblLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.85042F));
@@ -74,7 +74,7 @@
             this.panel1.Controls.Add(this.lblMyContent);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(5, 66);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(259, 373);
             this.panel1.TabIndex = 1;
@@ -95,7 +95,7 @@
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(274, 5);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(5);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(390, 55);
             this.tbSearch.TabIndex = 2;
@@ -106,7 +106,7 @@
             this.panel2.Controls.Add(this.lblContent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(274, 66);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(390, 373);
             this.panel2.TabIndex = 3;
@@ -139,7 +139,7 @@
             this.panel3.Controls.Add(this.lblTrening);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(674, 66);
-            this.panel3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel3.Margin = new System.Windows.Forms.Padding(5);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(237, 373);
             this.panel3.TabIndex = 4;
@@ -159,7 +159,7 @@
             // 
             this.btNewMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btNewMessage.Location = new System.Drawing.Point(674, 5);
-            this.btNewMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btNewMessage.Margin = new System.Windows.Forms.Padding(5);
             this.btNewMessage.Name = "btNewMessage";
             this.btNewMessage.Size = new System.Drawing.Size(237, 51);
             this.btNewMessage.TabIndex = 5;
@@ -177,7 +177,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 444);
             this.Controls.Add(this.tblLayout);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SMSMain";
             this.Text = "Social Media Sharing";
             this.tblLayout.ResumeLayout(false);

@@ -44,13 +44,12 @@ namespace DatabaseConnection.Types
             PostedOn = postedOn;
             Uploader = uploader;
             Category = category;
+            }
 
-        }
-
-        /*public Post(List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category):this(comments,null,description,likes,flags,postedOn,uploader,category)
+        public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category):this(title,comments,null,description,likes,flags,postedOn,uploader,category)
         {
             
-        }*/
+        }
 
         public override string ToString()
         {
