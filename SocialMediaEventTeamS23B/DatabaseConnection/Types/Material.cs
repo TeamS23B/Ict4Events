@@ -11,10 +11,11 @@ namespace DatabaseConnection.Types
     {
         public int MaterialId { get; private set; }
         public String Name { get; private set; }
+        public String Type { get; private set; }
         public Double Price { get; private set; }
         public String State { get; private set; }
 
-        public Material(int materialId, string name, double price, String state)
+        public Material(int materialId, string name, string type, double price, String state)
         {
             if (materialId < 0)
             {
@@ -28,12 +29,17 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("price < 0");
             }
+            if (string.IsNullOrEmpty(type))
+            {
+                throw new InvalidDataException("Type is empty");
+            }
             if (string.IsNullOrEmpty(state))
             {
                 throw  new InvalidDataException("State is empty");
             }
             MaterialId = materialId;
             Name = name;
+            Type = type;
             Price = price;
             State = state;
         }
