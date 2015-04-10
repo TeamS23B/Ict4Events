@@ -34,25 +34,18 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<char>(query);
         }
 
-        public int GetHighestId(string idType)
+        public decimal GetHighestId(string idType)
         {
-            if (idType == "Materiaal")
-            {
-                var query = String.Format("SELECT MAX(MateriaalId) FROM Materiaal;");
-                return dbConnector.QueryScalar<int>(query);
+            var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
+            return dbConnector.QueryScalar<decimal>(query);
             }
-            else
-            {
-                return 0;
-            }
-        }
 
         #endregion
         #region INSERT INTO
 
-        public int AddMaterial(string name, string type, double price, String state)
+        public int AddMaterial(string name, string type, Decimal price, String state)
         {
-            int maxId = GetHighestId("Materiaal");
+            decimal maxId = GetHighestId("Materiaal") + 1;
             var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4});", maxId, name, type, price, state);
             return dbConnector.QueryNoResult(nonquery);
         }
@@ -61,6 +54,8 @@ namespace DatabaseConnection
         {
             return dbConnector.QueryNoResult(nonquery);
         }
+
+        public int AddEvent()
         #endregion
     }
 }
