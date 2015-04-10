@@ -36,6 +36,29 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<decimal>(query);
         }
 
+        /// <summary>
+        /// Returns the amount of likes submitted to the given post.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public decimal GetLikesFromPost(string title)
+        {
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalLikes FROM LIKEFLAG WHERE LikeOfFlag = 'L' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            return dbConnector.QueryScalar<decimal>(query);
+        
+        }
+
+        /// <summary>
+        /// Returns the amount of flags submitted to the given post.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public decimal GetFlagsFromPost(string title)
+        {
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalFlags FROM LIKEFLAG WHERE LikeOfFlag = 'F' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            return dbConnector.QueryScalar<decimal>(query);
+        
+        }
         
         /// <summary>
         /// Returns the identifier that belongs to the given category name.
@@ -111,31 +134,36 @@ namespace DatabaseConnection
 
         /// <summary>
         /// Returns a list of post objects belonging to the current user.
+        /// ------ WORK IN PROGRESS --------
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public List<Post> GetPostsFromUser(string username)
-        {
-            List<Post> posts = new List<Post>();
-            try
-            {
-                string sqlPost = "SELECT * FROM Bericht WHERE Gebruikersnaam = '" + username + "'";
-                OracleDataReader reader = dbConnector.QueryReader(sqlPost);
+        //public List<Post> GetPostsFromUser(string username)
+        //{
+        //    List<Post> posts = new List<Post>();
+        //    try
+        //    {
+        //        string sqlPost = "SELECT * FROM Bericht WHERE Gebruikersnaam = '" + username + "'";
+        //        OracleDataReader reader = dbConnector.QueryReader(sqlPost);
 
-                while (reader.Read)
-                {
-                    comments;
-                    Mediafile = mediafile;//nullable
+        //        while (reader.Read())
+        //        {
                     
-                    string description;
-                    decimal likes;
-                    decimal flags;
-                    DateTime postedOn;
-                    string uploader;
-                    Category category;
-                }
-            }
-        }
+        //            Mediafile mediafile;//nullable
+                    
+        //            string description;
+        //            decimal likes;
+        //            decimal flags;
+        //            DateTime postedOn;
+        //            string uploader;
+        //            Category category;
+        //        }
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
 
         public string Login(string username, string password)
         {
@@ -254,6 +282,33 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
+        #endregion
+
+        #region UPDATE
+
+        
+
+        /// <summary>
+        /// Increase the amount of 'likes' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int LikePost(string title)
+        {
+
+            
+        }
+
+        /// <summary>
+        /// Increase the amount of 'flags' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int FlagPost(string title)
+        {
+
+        }
+
         #endregion
     }
 }
