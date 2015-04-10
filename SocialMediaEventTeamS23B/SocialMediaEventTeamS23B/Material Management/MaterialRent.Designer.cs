@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblMaterialRentProductsInStorage = new System.Windows.Forms.Label();
-            this.lblMaterialRentProductsInList = new System.Windows.Forms.ListBox();
+            this.lbMaterialRentProductsInList = new System.Windows.Forms.ListBox();
             this.lblMaterialRentDetails = new System.Windows.Forms.Label();
             this.lblMaterialRentStatus = new System.Windows.Forms.Label();
             this.lblMaterialRentHireCost = new System.Windows.Forms.Label();
@@ -50,13 +50,13 @@
             this.lblMaterialRentProductsInStorage.TabIndex = 0;
             this.lblMaterialRentProductsInStorage.Text = "Producten op voorraad";
             // 
-            // lblMaterialRentProductsInList
+            // lbMaterialRentProductsInList
             // 
-            this.lblMaterialRentProductsInList.FormattingEnabled = true;
-            this.lblMaterialRentProductsInList.Location = new System.Drawing.Point(34, 93);
-            this.lblMaterialRentProductsInList.Name = "lblMaterialRentProductsInList";
-            this.lblMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
-            this.lblMaterialRentProductsInList.TabIndex = 1;
+            this.lbMaterialRentProductsInList.FormattingEnabled = true;
+            this.lbMaterialRentProductsInList.Location = new System.Drawing.Point(34, 93);
+            this.lbMaterialRentProductsInList.Name = "lbMaterialRentProductsInList";
+            this.lbMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
+            this.lbMaterialRentProductsInList.TabIndex = 1;
             // 
             // lblMaterialRentDetails
             // 
@@ -151,7 +151,7 @@
             this.Controls.Add(this.lblMaterialRentHireCost);
             this.Controls.Add(this.lblMaterialRentStatus);
             this.Controls.Add(this.lblMaterialRentDetails);
-            this.Controls.Add(this.lblMaterialRentProductsInList);
+            this.Controls.Add(this.lbMaterialRentProductsInList);
             this.Controls.Add(this.lblMaterialRentProductsInStorage);
             this.Name = "MaterialRent";
             this.Text = "MaterialRent";
@@ -164,7 +164,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblMaterialRentProductsInStorage;
-        private System.Windows.Forms.ListBox lblMaterialRentProductsInList;
+        private System.Windows.Forms.ListBox lbMaterialRentProductsInList;
         private System.Windows.Forms.Label lblMaterialRentDetails;
         private System.Windows.Forms.Label lblMaterialRentStatus;
         private System.Windows.Forms.Label lblMaterialRentHireCost;

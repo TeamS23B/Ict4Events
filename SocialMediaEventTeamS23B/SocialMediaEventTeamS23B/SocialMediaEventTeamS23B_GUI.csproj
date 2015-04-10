@@ -44,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessControl.cs">
+    <Compile Include="Control\AccessControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccessControl.Designer.cs">
+    <Compile Include="Control\AccessControl.Designer.cs">
       <DependentUpon>AccessControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin Forms\Admin - Add Material - Add.cs">
@@ -56,10 +56,10 @@
     <Compile Include="Admin Forms\Admin - Add Material - Add.Designer.cs">
       <DependentUpon>Admin - Add Material - Add.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -100,10 +100,10 @@
     <Compile Include="SocialMediaSharing\SMSShowMessageComment.Designer.cs">
       <DependentUpon>SMSShowMessageComment.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialRent.cs">
+    <Compile Include="Material Management\MaterialRent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialRent.Designer.cs">
+    <Compile Include="Material Management\MaterialRent.Designer.cs">
       <DependentUpon>MaterialRent.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservation\ReservationLocation.cs">
@@ -142,15 +142,6 @@
     <Compile Include="Admin Forms\Admin - Social Media Sharing.Designer.cs">
       <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Admin Forms\Admin - Main Menu.resx">
-      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="Admin Forms\Admin - Main Menu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin Forms\Admin - Main Menu.Designer.cs">
-      <DependentUpon>Admin - Main Menu.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Admin Forms\Admin - Manage Users.resx">
       <DependentUpon>Admin - Manage Users.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,7 +163,7 @@
     <Compile Include="Reservation\ReservationMaterial.Designer.cs">
       <DependentUpon>ReservationMaterial.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AccessControl.resx">
+    <EmbeddedResource Include="Control\AccessControl.resx">
       <DependentUpon>AccessControl.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Reservation\ReservationDetails.cs">
@@ -181,7 +172,10 @@
     <Compile Include="Reservation\ReservationDetails.Designer.cs">
       <DependentUpon>ReservationDetails.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MaterialRent.resx">
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material Management\MaterialRent.resx">
       <DependentUpon>MaterialRent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -244,6 +238,7 @@
       <Name>ApplicationLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
