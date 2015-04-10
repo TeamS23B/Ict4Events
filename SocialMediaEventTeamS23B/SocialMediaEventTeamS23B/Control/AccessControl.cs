@@ -16,5 +16,10 @@ namespace SocialMediaEventTeamS23B
         {
             InitializeComponent();
         }
+
+        private void AccessControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

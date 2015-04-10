@@ -121,7 +121,7 @@ namespace DatabaseConnection
 
         public string Login(string username, string password)
         {
-            string functie = "";
+            string function = "";
             try
             {
                 //Kijken of het personeel is 
@@ -130,7 +130,24 @@ namespace DatabaseConnection
 
                 while (reader.Read())
                 {
-                    functie = (string)reader[0];
+                    function = (string)reader[0];
+                }
+                reader.Close();
+                if(function != null)
+                {
+                    string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
+                    reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
+                    while (reader.Read())
+                    {
+                        if (username == reader[0].ToString() && password == reader[1].ToString())
+                        {
+                            function = function + "User";
+                        }
+                        else
+                        {
+                            function = function;
+                        }
+                    }
                 }
 
                 reader.Close();
@@ -144,21 +161,21 @@ namespace DatabaseConnection
                     {
                         if (username == reader[0].ToString() && password == reader[1].ToString())
                         {
-                            functie = "User";
+                            function = "User";
                         }
                         else
                         {
-                            functie = "NonUser";
+                            function = "NonUser";
                         }
                     }
                     reader.Close();
                     dbConnector.CloseConnection();
                 }
-                return functie;
+                return function;
             }
             catch
             {
-                return functie = "error";
+                return function = "error";
             }
         }
         #endregion

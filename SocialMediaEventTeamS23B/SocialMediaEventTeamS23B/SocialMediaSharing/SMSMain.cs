@@ -46,6 +46,11 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
                 panel2.Controls.Add(obj);
             }
         }
+
+        private void SMSMain_Load(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

@@ -88,7 +88,7 @@
             this.lblError.Size = new System.Drawing.Size(0, 26);
             this.lblError.TabIndex = 4;
             // 
-            // AccesContol
+            // AccessControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,8 +101,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AccesContol";
+            this.Name = "AccessControl";
             this.Text = "Toegangs controlle";
+            this.Load += new System.EventHandler(this.AccessControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
