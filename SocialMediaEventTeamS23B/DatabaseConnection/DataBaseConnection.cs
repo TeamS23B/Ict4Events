@@ -36,17 +36,7 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<decimal>(query);
         }
 
-        /// <summary>
-        /// Returns a list of post objects belonging to the current user.
-        /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
-        public List<Post> GetPostsFromUser(string username)
-        {
-            List<Post> posts = new List<Post>();
-
-        }
-
+        
         /// <summary>
         /// Returns the identifier that belongs to the given category name.
         /// </summary>
@@ -118,6 +108,34 @@ namespace DatabaseConnection
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
             return dbConnector.QueryScalar<decimal>(query);
             }
+
+        /// <summary>
+        /// Returns a list of post objects belonging to the current user.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public List<Post> GetPostsFromUser(string username)
+        {
+            List<Post> posts = new List<Post>();
+            try
+            {
+                string sqlPost = "SELECT * FROM Bericht WHERE Gebruikersnaam = '" + username + "'";
+                OracleDataReader reader = dbConnector.QueryReader(sqlPost);
+
+                while (reader.Read)
+                {
+                    comments;
+                    Mediafile = mediafile;//nullable
+                    
+                    string description;
+                    decimal likes;
+                    decimal flags;
+                    DateTime postedOn;
+                    string uploader;
+                    Category category;
+                }
+            }
+        }
 
         public string Login(string username, string password)
         {
