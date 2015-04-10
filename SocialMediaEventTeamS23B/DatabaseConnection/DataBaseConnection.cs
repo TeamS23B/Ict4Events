@@ -31,7 +31,7 @@ namespace DatabaseConnection
                 "SELECT Huurprijs " +
                 "FROM materiaal_event " +
                 "WHERE EventId = {0} " +
-                "AND MateriaalId = {1};",
+                "AND MateriaalId = {1}",
                 eventId, materialId);
             return dbConnector.QueryScalar<decimal>(query);
         }
@@ -51,7 +51,7 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<decimal>(query);
         }
 
-        
+
         /// <summary>
         /// Returns either 'J' if the given RFID has status 'paid', or 'N' if this is not the case.
         /// </summary>
@@ -59,7 +59,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public char GetPayInfo(String RFID)
         {
-            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0});", RFID);
+            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
 
@@ -68,8 +68,7 @@ namespace DatabaseConnection
             List<Location> locations = new List<Location>();
             try
             {
-
-                var query = "SELECT * FROM locatie;";
+                var query = "SELECT * FROM locatie";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
@@ -96,15 +95,16 @@ namespace DatabaseConnection
         }
         public List<Material> GetMaterialsInEvent()
         {
+            List<Material> Materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal";
+            }
             return null;
         }
         //public List<Material> 
 
-        public decimal GetHighestId(string idType)
-        {
-            var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
-            return dbConnector.QueryScalar<decimal>(query);
-            }
+
 
         public string Login(string username, string password)
         {
@@ -148,6 +148,12 @@ namespace DatabaseConnection
                 return functie = "error";
             }
         }
+
+        public decimal GetHighestId(string idType)
+        {
+            var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
+            return dbConnector.QueryScalar<decimal>(query);
+        }
         #endregion
         #region INSERT INTO
 
@@ -162,7 +168,7 @@ namespace DatabaseConnection
         public int AddMaterial(string name, string type, Decimal price, String state)
         {
             decimal maxId = GetHighestId("Materiaal") + 1;
-            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4});", maxId, name, type, price, state);
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4})", maxId, name, type, price, state);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -171,7 +177,7 @@ namespace DatabaseConnection
         {
             decimal maxId = GetHighestId("Bericht") + 1;
             string postDate = timeOfPost.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7});", maxId, rfid, category, title, text, commentOn, timeOfPost);
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", maxId, rfid, category, title, text, commentOn, timeOfPost);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -179,7 +185,7 @@ namespace DatabaseConnection
         public int AddCategory(string name, string parentCategory)
         {
             decimal maxId = GetHighestId("Categorie") + 1;
-            var nonquery = String.Format("INSERT INTO bericht (CategorieId, Naam, HoortBij) VALUES ({0}, {1}, {2}, {3});", maxId, name, parentCategory);
+            var nonquery = String.Format("INSERT INTO bericht (CategorieId, Naam, HoortBij) VALUES ({0}, {1}, {2}, {3})", maxId, name, parentCategory);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -188,7 +194,7 @@ namespace DatabaseConnection
             decimal maxId = GetHighestId("Event") + 1;
             string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
             string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4});", maxId, locatieId, name, beginDateString, endDateString);
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
         #endregion
