@@ -19,8 +19,8 @@ namespace SocialMediaEventTeamS23B
         }
 
         private void btLogin_Click(object sender, EventArgs e)
-        {
-            Login Login = new Login(tbUsername.Text, tbPassword.Text);
+        {//TODO: hash
+            ApplicationLayer.Login login = new ApplicationLayer.Login(tbUsername.Text, tbPassword.Text);
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.DataAccess.Client;
 
 namespace DatabaseConnection
 {
@@ -34,11 +36,48 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<char>(query);
         }
 
+        public List<Location> GetLocations()
+        {
+            List<Location> locations = new List<Location>();
+            try
+            {
+
+                var query = "SELECT * FROM locatie;";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int locatieId = Convert.ToInt32(odr["LocatieId"]);
+                    string street = Convert.ToString(odr["Straatnaam"]);
+                    int number = Convert.ToInt32(odr["Huisnummer"]);
+                    string adition = Convert.ToString(odr["Toevoeging"]);
+                    string town = Convert.ToString(odr["Plaatsnaam"]);
+                    string zipcode = Convert.ToString(odr["Postcode"]);
+                    string map = Convert.ToString(odr["Plattegrond"]);
+                    locations.Add(new Location(locatieId, street, number, adition, town, zipcode, map));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+
+            return locations;
+        }
+        public List<Material> GetMaterialsInEvent()
+        {
+
+        }
+        //public List<Material> 
+
         public decimal GetHighestId(string idType)
         {
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
             return dbConnector.QueryScalar<decimal>(query);
-            }
+        }
 
         #endregion
         #region INSERT INTO

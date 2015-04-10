@@ -34,18 +34,23 @@ namespace ApplicationLayer
             dbc.AddEvent((decimal)location.LocatieId, name, startDate, endDate);
         }
         
-        public Location GetLocation()
+        public List<Location> GetLocations()
+        {
+            return dbc.GetLocations();
+        }
+        public List<Material> GetMaterialsInEvent()
         {
             //return;
         }
-        public Material GetMaterial()
+
+        public List<Material> GetMaterialsNotInEvent()
         {
-            //return;
+
         }
         
-        public void AddMaterialToEvent (Material){}
+        //public void AddMaterialToEvent (Material){}
 
-        public void RemoveMaterialFromEvent (Material){}
+        //public void RemoveMaterialFromEvent (Material){}
 
         public void EditFlaggingControl()
         {
