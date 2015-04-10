@@ -60,6 +60,7 @@
             this.tblLayout.Controls.Add(this.btNewMessage, 2, 0);
             this.tblLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayout.Location = new System.Drawing.Point(0, 0);
+            this.tblLayout.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayout.Name = "tblLayout";
             this.tblLayout.RowCount = 2;
             this.tblLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.85042F));
@@ -72,9 +73,10 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.lblMyContent);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 53);
+            this.panel1.Location = new System.Drawing.Point(4, 54);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(194, 305);
+            this.panel1.Size = new System.Drawing.Size(194, 303);
             this.panel1.TabIndex = 1;
             // 
             // lblMyContent
@@ -91,9 +93,10 @@
             // 
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(203, 3);
+            this.tbSearch.Location = new System.Drawing.Point(206, 4);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(294, 45);
+            this.tbSearch.Size = new System.Drawing.Size(292, 45);
             this.tbSearch.TabIndex = 2;
             // 
             // panel2
@@ -101,9 +104,10 @@
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.lblContent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(203, 53);
+            this.panel2.Location = new System.Drawing.Point(206, 54);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(294, 305);
+            this.panel2.Size = new System.Drawing.Size(292, 303);
             this.panel2.TabIndex = 3;
             // 
             // lblContent
@@ -131,9 +135,10 @@
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.lblTrening);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(503, 53);
+            this.panel3.Location = new System.Drawing.Point(506, 54);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(178, 305);
+            this.panel3.Size = new System.Drawing.Size(178, 303);
             this.panel3.TabIndex = 4;
             // 
             // lblTrening
@@ -149,9 +154,10 @@
             // btNewMessage
             // 
             this.btNewMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btNewMessage.Location = new System.Drawing.Point(503, 3);
+            this.btNewMessage.Location = new System.Drawing.Point(506, 4);
+            this.btNewMessage.Margin = new System.Windows.Forms.Padding(4);
             this.btNewMessage.Name = "btNewMessage";
-            this.btNewMessage.Size = new System.Drawing.Size(178, 44);
+            this.btNewMessage.Size = new System.Drawing.Size(178, 42);
             this.btNewMessage.TabIndex = 5;
             this.btNewMessage.Text = "Nieuw Bericht";
             this.btNewMessage.UseVisualStyleBackColor = true;
@@ -167,6 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.tblLayout);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SMSMain";
             this.Text = "Social Media Sharing";
             this.tblLayout.ResumeLayout(false);

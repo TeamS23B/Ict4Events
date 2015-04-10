@@ -19,12 +19,14 @@ namespace DatabaseConnection.Types
         public String Uploader { get; private set; }
         public Category Category { get; private set; }
 
-        public Post(List<Post> comments, Mediafile mediafile, string description, int likes, int flags, DateTime postedOn, string uploader, Category category)
+        public String Title  { get; set; }
+
+        public Post(string title, List<Post> comments, Mediafile mediafile, string description, int likes, int flags, DateTime postedOn, string uploader, Category category)
         {
             if(comments==null)Comments=new List<Post>();//if no comments create empty list(to avoid errors)
-            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(uploader))
+            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(uploader) || string.IsNullOrEmpty(title))
             {
-                throw new InvalidDataException("Uploader or Descirption is empty");
+                throw new InvalidDataException("Title, Uploader or Descirption is empty");
             }
             if (likes <= 0 || flags <= 0)
             {
@@ -42,6 +44,7 @@ namespace DatabaseConnection.Types
             PostedOn = postedOn;
             Uploader = uploader;
             Category = category;
+
         }
 
         public Post(List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category):this(comments,null,description,likes,flags,postedOn,uploader,category)

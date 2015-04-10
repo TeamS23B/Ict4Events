@@ -21,16 +21,17 @@ namespace ApplicationLayer
 
         public void AddMaterial(String name, String type, double price, String state)
         {
+            materials.Add(new Material((int)dbc.GetHighestId("Materiaal") + 1, name, type, price, state));
             dbc.AddMaterial(name, type, (Decimal)price, state);
-            materials.Add(new Material(dbc.GetHighestId("Materiaal"), name, type, price, state));
         }
         public void EditMaterial(Material material)
         {
             //should
         }
-        public void AddEvent(int eventId, Location location, DateTime startDate, DateTime endDate)
+        public void AddEvent(int eventId, Location location, String name, DateTime startDate, DateTime endDate)
         {
-            dbc.AddEvent(location.Number, startDate, endDate);
+            events.Add(new Event((int)dbc.GetHighestId("Event") + 1, location, name, startDate, endDate));
+            dbc.AddEvent((decimal)location.LocatieId, name, startDate, endDate);
         }
         
         public Location GetLocation()

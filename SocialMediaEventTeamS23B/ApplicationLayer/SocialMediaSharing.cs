@@ -8,6 +8,15 @@ namespace ApplicationLayer
 {
     class SocialMediaSharing
     {
+        public string Username { get; set; }
 
+        public SocialMediaSharing(string username)
+        {
+            this.Username = username;
+        }
+
+        
+
+     
     }
 }
