@@ -187,6 +187,8 @@ namespace SocialMediaEventTeamS23B
         {
             MaakAlleButtonsOntzichtbaar();
             btnLogOut.Visible = false;
+            tbPassword.Clear();
+            tbUsername.Clear();
         }
     }
 }
