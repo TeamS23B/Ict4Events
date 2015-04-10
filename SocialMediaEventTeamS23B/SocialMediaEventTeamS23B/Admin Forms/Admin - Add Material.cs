@@ -17,9 +17,10 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
             InitializeComponent();
         }
 
-        private void Admin___Add_Material_Load(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            Admin___Add_Material___Add AdminAddMatAdd = new Admin___Add_Material___Add();
+            AdminAddMatAdd.Show();
         }
     }
 }

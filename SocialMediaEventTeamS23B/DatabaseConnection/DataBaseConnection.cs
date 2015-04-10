@@ -225,6 +225,7 @@ namespace DatabaseConnection
                     function = (string)reader[0];
                 }
                 reader.Close();
+                dbConnector.CloseConnection();
                 if(function != null)
                 {
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
@@ -384,7 +385,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public int LikePost(string title)
         {
-
+            return 0;
             
         }
 
@@ -395,7 +396,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public int FlagPost(string title)
         {
-
+            return 0;
         }
 
         #endregion

@@ -28,8 +28,8 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = false;
         }
 
-        
-        private enum Functions { Admin, Receptionist, Guard, MaterialRent, User, NonUser, error,AdminUser, ReceptionistUser,GuardUser,MaterialRentUser}
+
+        private enum Functions { Beheerder, Receptionist, Portier, Materiaalverhuur, User, NonUser, error, BeheerderUser, ReceptionistUser, PortierUser, MateriaalverhuurUser }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
@@ -51,32 +51,32 @@ namespace SocialMediaEventTeamS23B
                 btnReserving.Visible = true;
             }*/
 
-            var en= (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
+            var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
 
             switch (en)
             {
-                case Functions.AdminUser:
+                case Functions.BeheerderUser:
                     AdminUserControl();
                     break;
-                case Functions.GuardUser:
+                case Functions.PortierUser:
                     GuardUserControl();
                     break;
-                case Functions.MaterialRentUser:
+                case Functions.MateriaalverhuurUser:
                     MaterialRentUserControl();
                     break;
                 case Functions.ReceptionistUser:
                     ReceptionistUserControl();
                     break;
-                case Functions.Admin:
+                case Functions.Beheerder:
                     AdminstratieMachtiging();
                     break;
-                case Functions.Guard:
+                case Functions.Portier:
                     AccesControl();
                     break;
                 case Functions.Receptionist:
                     ReserveControl();
                     break;
-                case Functions.MaterialRent:
+                case Functions.Materiaalverhuur:
                     MaterialControl();
                     break;
                 case Functions.User:
@@ -87,7 +87,7 @@ namespace SocialMediaEventTeamS23B
                     break;
                 case Functions.error:
                     NonUserControl();
-                    break;               
+                    break;
                 default:
                     NonUserControl();
                     break;
@@ -156,7 +156,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnAccesControl_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnAccesControl_Click_1(object sender, EventArgs e)
@@ -167,7 +167,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnMaterial_Click(object sender, EventArgs e)
@@ -184,7 +184,8 @@ namespace SocialMediaEventTeamS23B
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-
+            Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu();
+            AdminMenu.Show();
         }
     }
 }
