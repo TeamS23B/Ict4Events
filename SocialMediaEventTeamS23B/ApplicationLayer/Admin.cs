@@ -33,18 +33,18 @@ namespace ApplicationLayer
             //db.addevent
         }
         
-        public void GetLocation()
+        public Location GetLocation()
         {
-
+            //return;
         }
-        public void GetMaterial()
+        public Material GetMaterial()
         {
-
+            //return;
         }
         
         public void EditFlaggingControl()
         {
-
+            //
         }
     }
 }
