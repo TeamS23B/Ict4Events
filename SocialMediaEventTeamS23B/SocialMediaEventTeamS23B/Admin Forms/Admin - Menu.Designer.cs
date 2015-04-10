@@ -42,6 +42,7 @@
             this.btnAdminAddMaterial.TabIndex = 0;
             this.btnAdminAddMaterial.Text = "Add Material";
             this.btnAdminAddMaterial.UseVisualStyleBackColor = true;
+            this.btnAdminAddMaterial.Click += new System.EventHandler(this.btnAdminAddMaterial_Click);
             // 
             // btnAdminCreateEvent
             // 
