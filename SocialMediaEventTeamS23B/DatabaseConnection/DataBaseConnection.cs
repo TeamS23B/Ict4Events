@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
-
 
 namespace DatabaseConnection
 {
@@ -36,11 +36,48 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<char>(query);
         }
 
+        public List<Location> GetLocations()
+        {
+            List<Location> locations = new List<Location>();
+            try
+            {
+
+                var query = "SELECT * FROM locatie;";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int locatieId = Convert.ToInt32(odr["LocatieId"]);
+                    string street = Convert.ToString(odr["Straatnaam"]);
+                    int number = Convert.ToInt32(odr["Huisnummer"]);
+                    string adition = Convert.ToString(odr["Toevoeging"]);
+                    string town = Convert.ToString(odr["Plaatsnaam"]);
+                    string zipcode = Convert.ToString(odr["Postcode"]);
+                    string map = Convert.ToString(odr["Plattegrond"]);
+                    locations.Add(new Location(locatieId, street, number, adition, town, zipcode, map));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+
+            return locations;
+        }
+        public List<Material> GetMaterialsInEvent()
+        {
+
+        }
+        //public List<Material> 
+
         public decimal GetHighestId(string idType)
         {
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
             return dbConnector.QueryScalar<decimal>(query);
-            }
+        }
 
         #endregion
         #region INSERT INTO
@@ -69,44 +106,6 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
         #endregion
-        public string Login(string username,string password)
-        {
-            string functie = "";
-            try
-            {
-                //Kijken of het personeel is 
-                string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = "+username+" AND Wachtwoord="+password+"";
-                OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
-                
-                while(reader.Read())
-                {
-                    functie = (string)reader[0];
-                }
-
-                if(dbConnector.QueryReader(sqlWerknemer)==null)
-                {
-                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = "+username+" AND Wachtwoord ="+password+"";
-                    reader = dbConnector.QueryReader(sqlDeelnemer);
-                    while(reader.Read())
-                    {
-                        if(username == reader[0].ToString() && password == reader[1].ToString())
-                        {
-                            functie = "User";
-                        }
-                        else
-                        {
-                            functie = "NonUser";
-                        }
-                    }
-
-                }
-                return functie;
-            }
-            catch
-            {
-                return functie = "error";
-            }
-        }
     }
 }
 /*
