@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,11 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<decimal>(query);
         }
 
-        
+        /// <summary>
+        /// Return the RFID of the given user.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public string GetRFIDFromUser(string username)
         {
             var query = String.Format("SELECT Rfid FROM Deelnemer WHERE Gebruikersnaam = {0};", username);
@@ -81,6 +86,23 @@ namespace DatabaseConnection
                 categoryName);
 
            
+            return dbConnector.QueryScalar<decimal>(query);
+        }
+
+        /// <summary>
+        /// Return the identifier of the given post.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public decimal GetPostId(string title)
+        {
+            var query = String.Format(
+                "SELECT BerichtId " +
+                "FROM Bericht " +
+                "WHERE Titel = {0}; ",
+                title);
+
+
             return dbConnector.QueryScalar<decimal>(query);
         }
 
@@ -184,7 +206,47 @@ namespace DatabaseConnection
             }
             return null;
         }
-        
+
+        // WORK IN PROGRESS
+        public List<Post> GetCommentsOfPost(string title)
+        {
+            try
+            {
+                List<Post> comments = new List<Post>();
+                decimal parentPostId = GetPostId(title);
+                String query = "SELECT b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR, COUNT(case when likeofflag = 'L' then 1 end) as likes, COUNT(case when likeofflag = 'F' then 1 end) as flags FROM bericht b LEFT OUTER JOIN likeflag l ON b.berichtId = l.berichtId GROUP BY b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR;";
+                OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
+
+                while (reader.Read())
+                {
+                    string rfid = Convert.ToString(reader["b.Rfid"]);
+                    int categoryId = Convert.ToInt32(reader["b.CategorieId"]);
+                    string commentTitle = Convert.ToString(reader["b.Titel"]);
+                    string pathToFile = Convert.ToString(reader["b.Bestand"]);
+                    string description = Convert.ToString(reader["b.Tekst"]);
+                    int commentOf = Convert.ToInt32(reader["b.ReactieOp"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["b.GeplaatsOm"]);
+                    string visible = Convert.ToString(reader["b.Zichtbaar"]);
+                    int likes = Convert.ToInt32(reader["Likes"]);
+                    int flags = Convert.ToInt32(reader["Flags"]);
+
+                    if (visible == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, )
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
         /// <summary>
         /// Returns a list of post objects belonging to the current user.
         /// ------ WORK IN PROGRESS --------
@@ -238,11 +300,11 @@ namespace DatabaseConnection
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
                     while (reader.Read())
-                    {
+                {
                         if (username == reader[0].ToString() && password == reader[1].ToString())
                         {
                             function = function + "User";
-                        }
+                }
                         else
                         {
                             function = function;
@@ -394,12 +456,14 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        /*public int LikePost(string rfid, string title)
+        public int LikePost(string username, string title)
         {
-            decimal postId = Get
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", maxId, locatieId, name, beginDateString, endDateString);
+            decimal postId = GetPostId(title);
+            string rfid = GetRFIDFromUser(username);
+            string letter = "L";
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId,rfid,letter);
             return dbConnector.QueryNoResult(nonquery);
-            
+
         }*/
 
         /// <summary>
@@ -407,9 +471,13 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        public int FlagPost(string title)
+        public int FlagPost(string username, string title)
         {
-            return 0;
+            decimal postId = GetPostId(title);
+            string rfid = GetRFIDFromUser(username);
+            string letter = "F";
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
+            return dbConnector.QueryNoResult(nonquery);
         }
         #endregion
 
@@ -418,6 +486,25 @@ namespace DatabaseConnection
         
 
        
+
+        #endregion
+       
+        #region FTP
+
+        /// <summary>
+        /// Upload a file to the remote server
+        /// </summary>
+        /// <param name="localFile">the local file to upload (fullPath)</param>
+        /// <param name="remoteFile">the remote file, starting from the base, example upload/file1.txt</param>
+        /// <returns></returns>
+        public void FtpUpload(String localFile, String remoteFile)
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Credentials=new NetworkCredential("Uploader","aapje");
+                wc.UploadFile("ftp://192.168.20.112/"+remoteFile, localFile);
+            }
+        }
 
         #endregion
     }
