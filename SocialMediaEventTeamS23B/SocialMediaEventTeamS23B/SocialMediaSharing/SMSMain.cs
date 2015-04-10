@@ -35,7 +35,7 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //checking for new content
-            var newContent = Sms.CheckContent(lastIndex);
+            /*var newContent = Sms.CheckContent(lastIndex);
             foreach (Post content in newContent)
             {
                 var obj = new SMSMessageMain(content);
@@ -44,7 +44,7 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
                 var lastMessage = messages.Last();
                 obj.Top = lastMessage.Top + lastMessage.Height + 12;
                 panel2.Controls.Add(obj);
-            }
+            }*/
         }
 
         private void SMSMain_Load(object sender, EventArgs e)
