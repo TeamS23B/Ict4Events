@@ -31,7 +31,7 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
         private List<SMSMessageMain> messages; 
 
         private int lastIndex;
-
+        
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //checking for new content
@@ -46,6 +46,6 @@ namespace SocialMediaEventTeamS23B.SocialMediaSharing
                 panel2.Controls.Add(obj);
             }
         }
-
+        
     }
 }

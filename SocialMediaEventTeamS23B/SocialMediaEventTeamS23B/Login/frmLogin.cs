@@ -30,7 +30,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            string[] ArrayFuncties = new string[3];
+            string[] ArrayFuncties = new string[4];
             ArrayFuncties[0] = "Beheerder";
             ArrayFuncties[1] = "Receptionist";
             ArrayFuncties[2] = "Portier";
