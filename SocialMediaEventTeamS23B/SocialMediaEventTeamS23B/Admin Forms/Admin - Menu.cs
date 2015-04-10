@@ -22,5 +22,23 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
             Admin___Add_Material AdminAddMaterial = new Admin___Add_Material();
             AdminAddMaterial.Show();
         }
+
+        private void btnAdminCreateEvent_Click(object sender, EventArgs e)
+        {
+            Beheer_Forms.Beheer___Event_Aanmaken AdminCreateEvent = new Beheer_Forms.Beheer___Event_Aanmaken();
+            AdminCreateEvent.Show();
+        }
+
+        private void btnAdminManageUsers_Click(object sender, EventArgs e)
+        {
+            Beheer_Forms.Beheer___Gebruikers_Beheren AdminManageUsers = new Beheer_Forms.Beheer___Gebruikers_Beheren();
+            AdminManageUsers.Show();
+        }
+
+        private void btnAdminSocialMediaSharing_Click(object sender, EventArgs e)
+        {
+            Admin___Social_Media_Sharing AdminSocialMediaSharing = new Admin___Social_Media_Sharing();
+            AdminSocialMediaSharing.Show();
+        }
     }
 }

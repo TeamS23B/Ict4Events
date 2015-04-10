@@ -52,6 +52,7 @@
             this.btnAdminCreateEvent.TabIndex = 1;
             this.btnAdminCreateEvent.Text = "Create Event";
             this.btnAdminCreateEvent.UseVisualStyleBackColor = true;
+            this.btnAdminCreateEvent.Click += new System.EventHandler(this.btnAdminCreateEvent_Click);
             // 
             // btnAdminManageUsers
             // 
@@ -61,6 +62,7 @@
             this.btnAdminManageUsers.TabIndex = 2;
             this.btnAdminManageUsers.Text = "Manage Users";
             this.btnAdminManageUsers.UseVisualStyleBackColor = true;
+            this.btnAdminManageUsers.Click += new System.EventHandler(this.btnAdminManageUsers_Click);
             // 
             // btnAdminSocialMediaSharing
             // 
@@ -70,6 +72,7 @@
             this.btnAdminSocialMediaSharing.TabIndex = 3;
             this.btnAdminSocialMediaSharing.Text = "Social Media Sharing";
             this.btnAdminSocialMediaSharing.UseVisualStyleBackColor = true;
+            this.btnAdminSocialMediaSharing.Click += new System.EventHandler(this.btnAdminSocialMediaSharing_Click);
             // 
             // Admin___Menu
             // 

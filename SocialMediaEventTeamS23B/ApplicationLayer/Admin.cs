@@ -7,7 +7,7 @@ using DatabaseConnection.Types;
 
 namespace ApplicationLayer
 {
-    class Admin
+    public class Admin
     {
         DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
         public List<Material> materials { get; private set; }
@@ -28,7 +28,7 @@ namespace ApplicationLayer
         {
             //should
         }
-        public void AddEvent(int eventId, Location location, String name, DateTime startDate, DateTime endDate)
+        public void AddEvent(Location location, String name, DateTime startDate, DateTime endDate)
         {
             events.Add(new Event((int)dbc.GetHighestId("Event") + 1, location, name, startDate, endDate));
             dbc.AddEvent((decimal)location.LocatieId, name, startDate, endDate);
