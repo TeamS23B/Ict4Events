@@ -39,6 +39,7 @@
             this.btnSocialMediaSharing = new System.Windows.Forms.Button();
             this.btnMaterial = new System.Windows.Forms.Button();
             this.btnReserving = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbUsername
@@ -78,7 +79,7 @@
             // 
             this.btLogin.Location = new System.Drawing.Point(275, 234);
             this.btLogin.Name = "btLogin";
-            this.btLogin.Size = new System.Drawing.Size(150, 23);
+            this.btLogin.Size = new System.Drawing.Size(61, 23);
             this.btLogin.TabIndex = 4;
             this.btLogin.Text = "Login";
             this.btLogin.UseVisualStyleBackColor = true;
@@ -148,11 +149,22 @@
             this.btnReserving.Visible = false;
             this.btnReserving.Click += new System.EventHandler(this.btnReserving_Click);
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(364, 234);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(61, 23);
+            this.btnLogOut.TabIndex = 11;
+            this.btnLogOut.Text = "Uitloggen";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnReserving);
             this.Controls.Add(this.btnMaterial);
             this.Controls.Add(this.btnSocialMediaSharing);
@@ -188,5 +200,6 @@
         private System.Windows.Forms.Button btnSocialMediaSharing;
         private System.Windows.Forms.Button btnMaterial;
         private System.Windows.Forms.Button btnReserving;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
