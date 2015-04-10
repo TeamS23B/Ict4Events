@@ -50,7 +50,14 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        public int AddEvent()
+        public int AddEvent(Decimal locatieId, String name, DateTime startDate, DateTime endDate)
+        {
+            decimal maxId = GetHighestId("Event") + 1;
+            string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
+            string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4});", maxId, locatieId, name, beginDateString, endDateString);
+            return dbConnector.QueryNoResult(nonquery);
+        }
         #endregion
     }
 }
