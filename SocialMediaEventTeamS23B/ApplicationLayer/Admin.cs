@@ -44,7 +44,7 @@ namespace ApplicationLayer
             return null;
         }
 
-        public List<Material> GetMaterialsNotInEvent()
+        public List<Material> GetAllMaterials()
         {
             //return;
             return null;
