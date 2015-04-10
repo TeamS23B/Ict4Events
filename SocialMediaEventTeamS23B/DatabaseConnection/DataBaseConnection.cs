@@ -36,6 +36,13 @@ namespace DatabaseConnection
             return dbConnector.QueryScalar<decimal>(query);
         }
 
+        
+        public string GetRFIDFromUser(string username)
+        {
+            var query = String.Format("SELECT Rfid FROM Deelnemer WHERE Gebruikersnaam = {0};", username);
+            return dbConnector.QueryScalar<string>(query);
+        }
+
         /// <summary>
         /// Returns the amount of likes submitted to the given post.
         /// </summary>
@@ -343,7 +350,7 @@ namespace DatabaseConnection
             decimal maxId = GetHighestId("Event") + 1;
             string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
             string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -383,9 +390,11 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        public int LikePost(string title)
+        public int LikePost(string rfid, string title)
         {
-            return 0;
+            decimal postId = Get
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", maxId, locatieId, name, beginDateString, endDateString);
+            return dbConnector.QueryNoResult(nonquery);
             
         }
 
@@ -398,6 +407,13 @@ namespace DatabaseConnection
         {
             return 0;
         }
+        #endregion
+
+        #region UPDATE
+
+        
+
+       
 
         #endregion
     }
