@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin Forms\Admin - Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin Forms\Admin - Menu.Designer.cs">
+      <DependentUpon>Admin - Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\AccessControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,9 @@
     <Compile Include="Admin Forms\Admin - Create Event.Designer.cs">
       <DependentUpon>Admin - Create Event.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Admin Forms\Admin - Menu.resx">
+      <DependentUpon>Admin - Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin Forms\Admin - Social Media Sharing.resx">
       <DependentUpon>Admin - Social Media Sharing.cs</DependentUpon>
     </EmbeddedResource>
