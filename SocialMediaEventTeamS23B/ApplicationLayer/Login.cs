@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApplicationLayer.Exceptions;
-using DatabaseConnection.Types;
+using DatabaseConnection;
 
 namespace ApplicationLayer
 {
@@ -23,6 +23,11 @@ namespace ApplicationLayer
                 this.Username = Username;
                 this.Password = Password;
             }
+        }
+        public string SendToDatabase(string username, string password)
+        {
+            DataBaseConnection LoginDatabaseConnection = new DataBaseConnection();
+            return LoginDatabaseConnection.Login(username, password);
         }
     }
 }
