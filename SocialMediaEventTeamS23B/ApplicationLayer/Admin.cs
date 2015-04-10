@@ -41,16 +41,18 @@ namespace ApplicationLayer
         public List<Material> GetMaterialsInEvent()
         {
             //return;
+            return null;
         }
 
         public List<Material> GetMaterialsNotInEvent()
         {
-
+            //return;
+            return null;
         }
         
-        //public void AddMaterialToEvent (Material){}
+        public void AddMaterialToEvent (Material Material ){}
 
-        //public void RemoveMaterialFromEvent (Material){}
+        public void RemoveMaterialFromEvent (Material Material ){}
 
         public void EditFlaggingControl()
         {
