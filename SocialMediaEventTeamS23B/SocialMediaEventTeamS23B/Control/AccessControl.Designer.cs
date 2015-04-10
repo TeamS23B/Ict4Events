@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblRFIDTop = new System.Windows.Forms.Label();
             this.lblRFID = new System.Windows.Forms.Label();
             this.lblPayedTop = new System.Windows.Forms.Label();
             this.lblPayed = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
+            this.btReattatch = new System.Windows.Forms.Button();
+            this.delayClean = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblRFIDTop
@@ -88,11 +91,27 @@
             this.lblError.Size = new System.Drawing.Size(0, 26);
             this.lblError.TabIndex = 4;
             // 
+            // btReattatch
+            // 
+            this.btReattatch.Location = new System.Drawing.Point(12, 12);
+            this.btReattatch.Name = "btReattatch";
+            this.btReattatch.Size = new System.Drawing.Size(75, 23);
+            this.btReattatch.TabIndex = 5;
+            this.btReattatch.Text = "Reattatch";
+            this.btReattatch.UseVisualStyleBackColor = true;
+            this.btReattatch.Visible = false;
+            this.btReattatch.Click += new System.EventHandler(this.btReattatch_Click);
+            // 
+            // delayClean
+            // 
+            this.delayClean.Interval = 2000;
+            // 
             // AccessControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
+            this.Controls.Add(this.btReattatch);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblPayed);
             this.Controls.Add(this.lblPayedTop);
@@ -116,5 +135,7 @@
         private System.Windows.Forms.Label lblPayedTop;
         private System.Windows.Forms.Label lblPayed;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Button btReattatch;
+        private System.Windows.Forms.Timer delayClean;
     }
 }

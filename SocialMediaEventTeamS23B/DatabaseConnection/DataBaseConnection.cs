@@ -31,22 +31,35 @@ namespace DatabaseConnection
                 "SELECT Huurprijs " +
                 "FROM materiaal_event " +
                 "WHERE EventId = {0} " +
-                "AND MateriaalId = {1};",
+                "AND MateriaalId = {1}",
                 eventId, materialId);
             return dbConnector.QueryScalar<decimal>(query);
         }
 
         /// <summary>
-        /// Returns a list of post objects belonging to the current user.
+        /// Returns the amount of likes submitted to the given post.
         /// </summary>
-        /// <param name="username"></param>
+        /// <param name="title"></param>
         /// <returns></returns>
-        public List<Post> GetPostsFromUser(string username)
+        public decimal GetLikesFromPost(string title)
         {
-            List<Post> posts = new List<Post>();
-
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalLikes FROM LIKEFLAG WHERE LikeOfFlag = 'L' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            return dbConnector.QueryScalar<decimal>(query);
+        
         }
 
+        /// <summary>
+        /// Returns the amount of flags submitted to the given post.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public decimal GetFlagsFromPost(string title)
+        {
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalFlags FROM LIKEFLAG WHERE LikeOfFlag = 'F' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            return dbConnector.QueryScalar<decimal>(query);
+        
+        }
+        
         /// <summary>
         /// Returns the identifier that belongs to the given category name.
         /// </summary>
@@ -72,7 +85,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public char GetPayInfo(String RFID)
         {
-            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0});", RFID);
+            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
 
@@ -81,8 +94,7 @@ namespace DatabaseConnection
             List<Location> locations = new List<Location>();
             try
             {
-
-                var query = "SELECT * FROM locatie;";
+                var query = "SELECT * FROM locatie";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
@@ -107,17 +119,97 @@ namespace DatabaseConnection
 
             return locations;
         }
+
         public List<Material> GetMaterialsInEvent()
         {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT materiaalId FROM materiaal_event WHERE eventId = 1";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
             return null;
         }
-        //public List<Material> 
 
-        public decimal GetHighestId(string idType)
+        public List<Material> GetAllMaterials()
         {
-            var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
-            return dbConnector.QueryScalar<decimal>(query);
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
             }
+            catch(Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return null;
+        }
+        
+        /// <summary>
+        /// Returns a list of post objects belonging to the current user.
+        /// ------ WORK IN PROGRESS --------
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        //public List<Post> GetPostsFromUser(string username)
+        //{
+        //    List<Post> posts = new List<Post>();
+        //    try
+        //    {
+        //        string sqlPost = "SELECT * FROM Bericht WHERE Gebruikersnaam = '" + username + "'";
+        //        OracleDataReader reader = dbConnector.QueryReader(sqlPost);
+
+        //        while (reader.Read())
+        //        {
+                    
+        //            Mediafile mediafile;//nullable
+                    
+        //            string description;
+        //            decimal likes;
+        //            decimal flags;
+        //            DateTime postedOn;
+        //            string uploader;
+        //            Category category;
+        //        }
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
 
         public string Login(string username, string password)
         {
@@ -178,6 +270,12 @@ namespace DatabaseConnection
                 return function = "error";
             }
         }
+
+        public decimal GetHighestId(string idType)
+        {
+            var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
+            return dbConnector.QueryScalar<decimal>(query);
+        }
         #endregion
         #region INSERT INTO
 
@@ -189,10 +287,10 @@ namespace DatabaseConnection
         /// <param name="price"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public int AddMaterial(string name, string type, Decimal price, String state)
+        public int AddMaterial(string name, string type, Decimal price, Decimal rent, String state)
         {
             decimal maxId = GetHighestId("Materiaal") + 1;
-            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4});", maxId, name, type, price, state);
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4}, {5})", maxId, name, type, price, rent, state);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -201,7 +299,7 @@ namespace DatabaseConnection
         {
             decimal maxId = GetHighestId("Bericht") + 1;
             string postDate = timeOfPost.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7});", maxId, rfid, category, title, text, commentOn, postDate);
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", maxId, rfid, category, title, text, commentOn, timeOfPost);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -244,9 +342,62 @@ namespace DatabaseConnection
             decimal maxId = GetHighestId("Event") + 1;
             string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
             string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4});", maxId, locatieId, name, beginDateString, endDateString);
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
+
+        public int AddMaterialToEvent(Decimal materialId)
+        {
+            var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES 1, {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+        #endregion
+
+        #region DELETE FROM
+
+        public int RmvMaterialFromEvent(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        #endregion
+
+        #region UPDATE
+
+        public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
+        {
+            var nonquery = String.Format("UPDATE flagRules SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak '{3}'", flags, ratio, time, autoCleanUp);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        #endregion
+
+        #region UPDATE
+
+        
+
+        /// <summary>
+        /// Increase the amount of 'likes' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int LikePost(string title)
+        {
+
+            
+        }
+
+        /// <summary>
+        /// Increase the amount of 'flags' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int FlagPost(string title)
+        {
+
+        }
+
         #endregion
     }
 }

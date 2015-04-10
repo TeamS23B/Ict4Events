@@ -19,10 +19,10 @@ namespace ApplicationLayer
             events = new List<Event>();
         }
 
-        public void AddMaterial(String name, String type, double price, String state)
+        public void AddMaterial(String name, String type, double price, double rent, String state)
         {
-            materials.Add(new Material((int)dbc.GetHighestId("Materiaal") + 1, name, type, price, state));
-            dbc.AddMaterial(name, type, (Decimal)price, state);
+            materials.Add(new Material((int)dbc.GetHighestId("Materiaal") + 1, name, type, price, rent, state));
+            dbc.AddMaterial(name, type, (Decimal)price, (Decimal)rent, state);
         }
         public void EditMaterial(Material material)
         {
@@ -40,23 +40,33 @@ namespace ApplicationLayer
         }
         public List<Material> GetMaterialsInEvent()
         {
-            //return;
-            return null;
+            return dbc.GetMaterialsInEvent();
         }
 
-        public List<Material> GetMaterialsNotInEvent()
+        public List<Material> GetAllMaterials()
         {
-            //return;
-            return null;
+            return dbc.GetAllMaterials();
         }
         
-        public void AddMaterialToEvent (Material Material ){}
-
-        public void RemoveMaterialFromEvent (Material Material ){}
-
-        public void EditFlaggingControl()
+        public void AddMaterialToEvent (Material Material )
         {
-            //
+            dbc.AddMaterialToEvent(Material.MaterialId);
+        }
+
+        public void RemoveMaterialFromEvent (Material Material )
+        {
+            dbc.RmvMaterialFromEvent(Material.MaterialId);
+        }
+
+        public void EditFlaggingControl(int flags, int ratio, int time, bool autoCleanUp)
+        {
+            if(autoCleanUp){
+                dbc.UpdFlagRules(flags, ratio, time, 'J');
+            }
+            else if (!autoCleanUp)
+            {
+                dbc.UpdFlagRules(flags, ratio, time, 'N');
+            }           
         }
     }
 }

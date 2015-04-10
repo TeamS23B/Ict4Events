@@ -13,9 +13,10 @@ namespace DatabaseConnection.Types
         public String Name { get; private set; }
         public String Type { get; private set; }
         public Double Price { get; private set; }
+        public Double Rent { get; private set; }
         public String State { get; private set; }
 
-        public Material(int materialId, string name, string type, double price, String state)
+        public Material(int materialId, string name, string type, double price, double rent, String state)
         {
             if (materialId < 0)
             {
@@ -25,9 +26,13 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("Name is empty");
             }
-            if (price < 0)
+            if (price <= 0)
             {
-                throw new InvalidDataException("price < 0");
+                throw new InvalidDataException("price <= 0");
+            }
+            if (rent <= 0)
+            {
+                throw new InvalidDataException("Rent <= 0");
             }
             if (string.IsNullOrEmpty(type))
             {
@@ -41,12 +46,13 @@ namespace DatabaseConnection.Types
             Name = name;
             Type = type;
             Price = price;
+            Rent = rent;
             State = state;
         }
 
         public override string ToString()
         {
-            return String.Format("{{MaterialId={0},Name={1},Price={2},State{3}}}",MaterialId,Name,Price,State);
+            return String.Format("{{MaterialId={0},Name={1},Price={2},Rent={3},State{4}}}",MaterialId,Name,Price,Rent,State);
         }
     }
 }
