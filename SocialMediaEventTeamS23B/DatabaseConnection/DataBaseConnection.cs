@@ -125,7 +125,7 @@ namespace DatabaseConnection
             try
             {
                 //Kijken of het personeel is 
-                string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = " + username + " AND Wachtwoord=" + password + "";
+                string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -133,9 +133,12 @@ namespace DatabaseConnection
                     functie = (string)reader[0];
                 }
 
+                reader.Close();
+                dbConnector.CloseConnection();
+
                 if (dbConnector.QueryReader(sqlWerknemer) == null)
                 {
-                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = " + username + " AND Wachtwoord =" + password + "";
+                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlDeelnemer);
                     while (reader.Read())
                     {
@@ -148,7 +151,8 @@ namespace DatabaseConnection
                             functie = "NonUser";
                         }
                     }
-
+                    reader.Close();
+                    dbConnector.CloseConnection();
                 }
                 return functie;
             }
