@@ -102,6 +102,7 @@
             this.btnAdmin.Text = "Administration";
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Visible = false;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
             // btnAccesControl
             // 
@@ -112,6 +113,7 @@
             this.btnAccesControl.Text = "Toegangs Controlle";
             this.btnAccesControl.UseVisualStyleBackColor = true;
             this.btnAccesControl.Visible = false;
+            this.btnAccesControl.Click += new System.EventHandler(this.btnAccesControl_Click_1);
             // 
             // btnSocialMediaSharing
             // 
@@ -122,6 +124,7 @@
             this.btnSocialMediaSharing.Text = "Social Media Sharing";
             this.btnSocialMediaSharing.UseVisualStyleBackColor = true;
             this.btnSocialMediaSharing.Visible = false;
+            this.btnSocialMediaSharing.Click += new System.EventHandler(this.btnSocialMediaSharing_Click);
             // 
             // btnMaterial
             // 
@@ -132,6 +135,7 @@
             this.btnMaterial.Text = "Materiaal uitleen";
             this.btnMaterial.UseVisualStyleBackColor = true;
             this.btnMaterial.Visible = false;
+            this.btnMaterial.Click += new System.EventHandler(this.btnMaterial_Click);
             // 
             // btnReserving
             // 
@@ -142,6 +146,7 @@
             this.btnReserving.Text = "Reservering";
             this.btnReserving.UseVisualStyleBackColor = true;
             this.btnReserving.Visible = false;
+            this.btnReserving.Click += new System.EventHandler(this.btnReserving_Click);
             // 
             // frmLogin
             // 

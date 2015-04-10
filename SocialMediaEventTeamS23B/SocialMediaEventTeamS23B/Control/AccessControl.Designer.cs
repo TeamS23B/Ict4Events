@@ -122,6 +122,7 @@
             this.MinimizeBox = false;
             this.Name = "AccessControl";
             this.Text = "Toegangs controlle";
+            this.Load += new System.EventHandler(this.AccessControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
