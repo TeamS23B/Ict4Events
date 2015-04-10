@@ -39,12 +39,16 @@
             this.tbEuros = new System.Windows.Forms.TextBox();
             this.tbCents = new System.Windows.Forms.TextBox();
             this.lblComma = new System.Windows.Forms.Label();
+            this.lblHuurPrijs = new System.Windows.Forms.Label();
+            this.tbAdminEuros = new System.Windows.Forms.TextBox();
+            this.tbAdminCents = new System.Windows.Forms.TextBox();
+            this.lblComma2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 102);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Location = new System.Drawing.Point(13, 129);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(190, 44);
             this.btnAdd.TabIndex = 4;
@@ -54,7 +58,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(10, 11);
+            this.lblType.Location = new System.Drawing.Point(10, 14);
             this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 13);
@@ -64,7 +68,7 @@
             // lblModel
             // 
             this.lblModel.AutoSize = true;
-            this.lblModel.Location = new System.Drawing.Point(10, 33);
+            this.lblModel.Location = new System.Drawing.Point(10, 36);
             this.lblModel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModel.Name = "lblModel";
             this.lblModel.Size = new System.Drawing.Size(39, 13);
@@ -74,7 +78,7 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(10, 56);
+            this.lblPrice.Location = new System.Drawing.Point(10, 59);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(29, 13);
@@ -84,7 +88,7 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(10, 79);
+            this.lblState.Location = new System.Drawing.Point(10, 107);
             this.lblState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(35, 13);
@@ -107,7 +111,7 @@
             "Muis",
             "USB-Stick"});
             this.cbType.Location = new System.Drawing.Point(76, 11);
-            this.cbType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbType.Margin = new System.Windows.Forms.Padding(2);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(127, 21);
             this.cbType.TabIndex = 9;
@@ -118,7 +122,7 @@
             this.cbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModel.FormattingEnabled = true;
             this.cbModel.Location = new System.Drawing.Point(76, 33);
-            this.cbModel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbModel.Margin = new System.Windows.Forms.Padding(2);
             this.cbModel.Name = "cbModel";
             this.cbModel.Size = new System.Drawing.Size(127, 21);
             this.cbModel.TabIndex = 10;
@@ -132,8 +136,8 @@
             "Gebruikt",
             "Beschadigd",
             "Defect"});
-            this.cbState.Location = new System.Drawing.Point(76, 79);
-            this.cbState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbState.Location = new System.Drawing.Point(76, 104);
+            this.cbState.Margin = new System.Windows.Forms.Padding(2);
             this.cbState.Name = "cbState";
             this.cbState.Size = new System.Drawing.Size(127, 21);
             this.cbState.TabIndex = 11;
@@ -141,7 +145,7 @@
             // tbEuros
             // 
             this.tbEuros.Location = new System.Drawing.Point(76, 56);
-            this.tbEuros.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbEuros.Margin = new System.Windows.Forms.Padding(2);
             this.tbEuros.Name = "tbEuros";
             this.tbEuros.Size = new System.Drawing.Size(62, 20);
             this.tbEuros.TabIndex = 12;
@@ -149,7 +153,7 @@
             // tbCents
             // 
             this.tbCents.Location = new System.Drawing.Point(156, 56);
-            this.tbCents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCents.Margin = new System.Windows.Forms.Padding(2);
             this.tbCents.Name = "tbCents";
             this.tbCents.Size = new System.Drawing.Size(48, 20);
             this.tbCents.TabIndex = 13;
@@ -164,11 +168,51 @@
             this.lblComma.TabIndex = 14;
             this.lblComma.Text = ",";
             // 
+            // lblHuurPrijs
+            // 
+            this.lblHuurPrijs.AutoSize = true;
+            this.lblHuurPrijs.Location = new System.Drawing.Point(10, 83);
+            this.lblHuurPrijs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHuurPrijs.Name = "lblHuurPrijs";
+            this.lblHuurPrijs.Size = new System.Drawing.Size(55, 13);
+            this.lblHuurPrijs.TabIndex = 15;
+            this.lblHuurPrijs.Text = "Huur Prijs:";
+            // 
+            // tbAdminEuros
+            // 
+            this.tbAdminEuros.Location = new System.Drawing.Point(76, 80);
+            this.tbAdminEuros.Margin = new System.Windows.Forms.Padding(2);
+            this.tbAdminEuros.Name = "tbAdminEuros";
+            this.tbAdminEuros.Size = new System.Drawing.Size(62, 20);
+            this.tbAdminEuros.TabIndex = 16;
+            // 
+            // tbAdminCents
+            // 
+            this.tbAdminCents.Location = new System.Drawing.Point(156, 80);
+            this.tbAdminCents.Margin = new System.Windows.Forms.Padding(2);
+            this.tbAdminCents.Name = "tbAdminCents";
+            this.tbAdminCents.Size = new System.Drawing.Size(48, 20);
+            this.tbAdminCents.TabIndex = 17;
+            // 
+            // lblComma2
+            // 
+            this.lblComma2.AutoSize = true;
+            this.lblComma2.Location = new System.Drawing.Point(142, 83);
+            this.lblComma2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblComma2.Name = "lblComma2";
+            this.lblComma2.Size = new System.Drawing.Size(10, 13);
+            this.lblComma2.TabIndex = 18;
+            this.lblComma2.Text = ",";
+            // 
             // Admin___Add_Material___Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 157);
+            this.ClientSize = new System.Drawing.Size(222, 186);
+            this.Controls.Add(this.lblComma2);
+            this.Controls.Add(this.tbAdminCents);
+            this.Controls.Add(this.tbAdminEuros);
+            this.Controls.Add(this.lblHuurPrijs);
             this.Controls.Add(this.lblComma);
             this.Controls.Add(this.tbCents);
             this.Controls.Add(this.tbEuros);
@@ -180,7 +224,7 @@
             this.Controls.Add(this.lblModel);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnAdd);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Admin___Add_Material___Add";
             this.Text = "Admin___Add_Material___Add";
             this.ResumeLayout(false);
@@ -201,5 +245,9 @@
         private System.Windows.Forms.TextBox tbEuros;
         private System.Windows.Forms.TextBox tbCents;
         private System.Windows.Forms.Label lblComma;
+        private System.Windows.Forms.Label lblHuurPrijs;
+        private System.Windows.Forms.TextBox tbAdminEuros;
+        private System.Windows.Forms.TextBox tbAdminCents;
+        private System.Windows.Forms.Label lblComma2;
     }
 }

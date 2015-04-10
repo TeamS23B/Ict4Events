@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\odp.net.x86.112.3.20\lib\net40\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -245,6 +249,10 @@
     <ProjectReference Include="..\ApplicationLayer\ApplicationLayer.csproj">
       <Project>{430a0a89-32c7-46e6-877e-7467995c00c0}</Project>
       <Name>ApplicationLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseConnection\DatabaseConnection.csproj">
+      <Project>{776f1dfe-3ce3-4c8b-a031-d3a58c967776}</Project>
+      <Name>DatabaseConnection</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

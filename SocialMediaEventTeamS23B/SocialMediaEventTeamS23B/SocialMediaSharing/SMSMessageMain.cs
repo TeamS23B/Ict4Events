@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection.Types;
 
 namespace SocialMediaEventTeamS23B.SocialMediaSharing
 {
     public partial class SMSMessageMain : UserControl
     {
-        public SMSMessageMain()
+        public Post Post { get; private set; }
+
+        public SMSMessageMain(Post post)
         {
             InitializeComponent();
+            Post = post;
+            lblTitle.Text = "";
+            lblUsername.Text = post.Uploader;
+            lblContent.Text = post.Description;
         }
     }
 }
