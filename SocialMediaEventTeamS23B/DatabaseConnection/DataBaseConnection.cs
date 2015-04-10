@@ -96,6 +96,36 @@ namespace DatabaseConnection
 
             return locations;
         }
+
+        public List<Material> GetMaterialsInEvent()
+        {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT materiaalId FROM materiaal_event WHERE eventId = 1";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return null;
+        }
+
         public List<Material> GetAllMaterials()
         {
             List<Material> materials = new List<Material>();
@@ -124,10 +154,7 @@ namespace DatabaseConnection
             }
             return null;
         }
-        //public List<Material> 
-
-
-
+        
         /// <summary>
         /// Returns a list of post objects belonging to the current user.
         /// </summary>
@@ -215,10 +242,10 @@ namespace DatabaseConnection
         /// <param name="price"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public int AddMaterial(string name, string type, Decimal price, String state)
+        public int AddMaterial(string name, string type, Decimal price, Decimal rent, String state)
         {
             decimal maxId = GetHighestId("Materiaal") + 1;
-            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4})", maxId, name, type, price, state);
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4}, {5})", maxId, name, type, price, rent, state);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -273,6 +300,32 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, {2}, {3}, {4})", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
+
+        public int AddMaterialToEvent(Decimal materialId)
+        {
+            var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES 1, {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+        #endregion
+
+        #region DELETE FROM
+
+        public int RmvMaterialFromEvent(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        #endregion
+
+        #region UPDATE
+
+        public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
+        {
+            var nonquery = String.Format("UPDATE flagRules SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak '{3}'", flags, ratio, time, autoCleanUp);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
         #endregion
     }
 }

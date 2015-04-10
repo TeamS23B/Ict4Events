@@ -40,8 +40,7 @@ namespace ApplicationLayer
         }
         public List<Material> GetMaterialsInEvent()
         {
-            //return;
-            return null;
+            return dbc.GetMaterialsInEvent();
         }
 
         public List<Material> GetAllMaterials()
@@ -51,17 +50,23 @@ namespace ApplicationLayer
         
         public void AddMaterialToEvent (Material Material )
         {
-
+            dbc.AddMaterialToEvent(Material.MaterialId);
         }
 
         public void RemoveMaterialFromEvent (Material Material )
         {
-
+            dbc.RmvMaterialFromEvent(Material.MaterialId);
         }
 
-        public void EditFlaggingControl()
+        public void EditFlaggingControl(int flags, int ratio, int time, bool autoCleanUp)
         {
-            //
+            if(autoCleanUp){
+                dbc.UpdFlagRules(flags, ratio, time, 'J');
+            }
+            else if (!autoCleanUp)
+            {
+                dbc.UpdFlagRules(flags, ratio, time, 'N');
+            }           
         }
     }
 }
