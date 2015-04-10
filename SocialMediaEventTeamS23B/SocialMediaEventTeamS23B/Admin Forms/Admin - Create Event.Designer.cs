@@ -230,7 +230,7 @@
             // 
             // btnAddLocation
             // 
-            this.btnAddLocation.Location = new System.Drawing.Point(14, 153);
+            this.btnAddLocation.Location = new System.Drawing.Point(14, 157);
             this.btnAddLocation.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddLocation.Name = "btnAddLocation";
             this.btnAddLocation.Size = new System.Drawing.Size(106, 35);
