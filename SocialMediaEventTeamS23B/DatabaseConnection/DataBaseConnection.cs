@@ -37,6 +37,17 @@ namespace DatabaseConnection
         }
 
         /// <summary>
+        /// Returns a list of post objects belonging to the current user.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public List<Post> GetPostsFromUser(string username)
+        {
+            List<Post> posts = new List<Post>();
+
+        }
+
+        /// <summary>
         /// Returns the identifier that belongs to the given category name.
         /// </summary>
         /// <param name="categoryName"></param>
@@ -48,10 +59,12 @@ namespace DatabaseConnection
                 "FROM Categorie " +
                 "WHERE Naam = {0}; ",
                 categoryName);
+
+           
             return dbConnector.QueryScalar<decimal>(query);
         }
 
-
+        
         /// <summary>
         /// Returns either 'J' if the given RFID has status 'paid', or 'N' if this is not the case.
         /// </summary>
@@ -181,13 +194,39 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        // Nog niet af.
+        /// <summary>
+        /// Insert a category with a given name into the database. 
+        /// This category will become a subcategory of the given parent category.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parentCategory"></param>
+        /// <returns></returns>
         public int AddCategory(string name, string parentCategory)
         {
             decimal maxId = GetHighestId("Categorie") + 1;
-            var nonquery = String.Format("INSERT INTO bericht (CategorieId, Naam, HoortBij) VALUES ({0}, {1}, {2}, {3})", maxId, name, parentCategory);
+            decimal parentId = GetCategoryId(parentCategory);
+            if (parentId != null)
+            {
+                var nonquery = String.Format("INSERT INTO bericht (CategorieId, Naam, HoortBij) VALUES ({0}, {1}, {2}, {3});", maxId, name, parentId);
+                return dbConnector.QueryNoResult(nonquery);
+            }
+            throw new NullReferenceException("Hoofdcategorie niet gevonden.");
+            
+        }
+
+        /// <summary>
+        /// Insert a category with a given name into the database.
+        /// This category will be a 'first-generation' category; it has no parent category.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public int AddCategory(string name)
+        {
+            decimal maxId = GetHighestId("Categorie") + 1;
+            var nonquery = String.Format("INSERT INTO bericht (CategorieId, Naam, HoortBij) VALUES ({0}, {1}, {2}, {3});", maxId, name, null);
             return dbConnector.QueryNoResult(nonquery);
         }
+
 
         public int AddEvent(Decimal locatieId, String name, DateTime startDate, DateTime endDate)
         {
