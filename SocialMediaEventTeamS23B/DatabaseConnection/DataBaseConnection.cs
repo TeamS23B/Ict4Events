@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -414,6 +415,25 @@ namespace DatabaseConnection
         
 
        
+
+        #endregion
+
+        #region FTP
+
+        /// <summary>
+        /// Upload a file to the remote server
+        /// </summary>
+        /// <param name="localFile">the local file to upload (fullPath)</param>
+        /// <param name="remoteFile">the remote file, starting from the base, example upload/file1.txt</param>
+        /// <returns></returns>
+        public void FtpUpload(String localFile, String remoteFile)
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Credentials=new NetworkCredential("Uploader","aapje");
+                wc.UploadFile("ftp://192.168.20.112/"+remoteFile, localFile);
+            }
+        }
 
         #endregion
     }
