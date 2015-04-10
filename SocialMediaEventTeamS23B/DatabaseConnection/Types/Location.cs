@@ -18,7 +18,7 @@ namespace DatabaseConnection.Types
 
         public Location(int locatieId, string street, int number, string adition, string town, string zipcode, string map)
         {
-            LocatieId = locatieId
+            LocatieId = locatieId;
             Street = street;
             Number = number;
             Adition = adition;
