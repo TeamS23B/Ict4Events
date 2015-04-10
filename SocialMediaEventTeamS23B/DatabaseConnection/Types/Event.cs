@@ -11,15 +11,21 @@ namespace DatabaseConnection.Types
     {
         public int EventId { get; private set; }
         public Location Location { get; private set; }
+        public String Name { get; set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
 
-        public Event(int eventId, Location location, DateTime startDate, DateTime endDate)
+        public Event(int eventId, Location location, String name, DateTime startDate, DateTime endDate)
         {
             if (endDate < startDate)
             {
                 throw new InvalidDateException("endDate is before startDate");
             }
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new DatabaseConnection.Exeptions.InvalidDataException("Name is empty");
+            }
+            Name = name;
             EventId = eventId;
             Location = location;
             StartDate = startDate;
