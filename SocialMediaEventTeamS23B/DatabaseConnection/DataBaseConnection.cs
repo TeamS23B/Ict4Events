@@ -464,10 +464,12 @@ namespace DatabaseConnection
         /// <param name="price"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public int AddMaterial(string name, string type, Decimal price, Decimal rent, String state)
+        public int AddMaterial(string name, string type, Double price, Double rent, String state)
         {
             decimal maxId = GetHighestId("Materiaal") + 1;
-            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4}, {5})", maxId, name, type, price, rent, state);
+            string pricestr = price.ToString().Replace(",",".");
+            string rentstr = rent.ToString().Replace(",", ".");
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, '{1}', '{2}', {3}, {4}, '{5}')", maxId, name, type, pricestr, rentstr, state);
             return dbConnector.QueryNoResult(nonquery);
         }
 

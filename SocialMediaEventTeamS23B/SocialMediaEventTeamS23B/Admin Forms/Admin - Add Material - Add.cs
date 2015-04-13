@@ -125,7 +125,23 @@ namespace SocialMediaEventTeamS23B
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //adminMat.AddMaterial(cbModel.SelectedItem, cbType.SelectedItem, );
+            try
+            {
+                double price = StringsToDouble(tbEuros.Text, tbCents.Text);
+                double rent = StringsToDouble(tbAdminEuros.Text, tbCents.Text);
+                adminMat.AddMaterial((string)cbType.SelectedItem, (string)cbModel.SelectedItem, price, rent, (string)cbState.SelectedItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public double StringsToDouble(string upper, string lower)
+        {
+            int upInt = Convert.ToInt32(upper);
+            int lowerInt = Convert.ToInt32(lower);
+            return upInt * 1d + Math.Pow(0.1d, lower.Length) * lowerInt;
         }
     }
 }

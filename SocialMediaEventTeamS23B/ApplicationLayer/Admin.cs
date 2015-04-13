@@ -22,7 +22,7 @@ namespace ApplicationLayer
         public void AddMaterial(String name, String type, double price, double rent, String state)
         {
             materials.Add(new Material((int)dbc.GetHighestId("Materiaal") + 1, name, type, price, rent, state));
-            dbc.AddMaterial(name, type, (Decimal)price, (Decimal)rent, state);
+            dbc.AddMaterial(name, type, price, rent, state);
         }
         public void EditMaterial(Material material)
         {
