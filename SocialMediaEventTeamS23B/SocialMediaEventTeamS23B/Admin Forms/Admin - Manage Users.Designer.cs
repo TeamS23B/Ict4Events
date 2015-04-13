@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.gbUsers = new System.Windows.Forms.GroupBox();
-            this.lvUsers = new System.Windows.Forms.ListView();
-            this.chUsername = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chLikes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbMessages = new System.Windows.Forms.GroupBox();
             this.lbMessages = new System.Windows.Forms.ListBox();
             this.gbGroupLeader = new System.Windows.Forms.GroupBox();
@@ -44,6 +40,7 @@
             this.cbUserBlocked = new System.Windows.Forms.CheckBox();
             this.lbMaterials = new System.Windows.Forms.ListBox();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lbVisitors = new System.Windows.Forms.ListBox();
             this.gbUsers.SuspendLayout();
             this.gbMessages.SuspendLayout();
             this.gbGroupLeader.SuspendLayout();
@@ -52,52 +49,23 @@
             // 
             // gbUsers
             // 
-            this.gbUsers.Controls.Add(this.lvUsers);
+            this.gbUsers.Controls.Add(this.lbVisitors);
             this.gbUsers.Location = new System.Drawing.Point(9, 9);
-            this.gbUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbUsers.Margin = new System.Windows.Forms.Padding(2);
             this.gbUsers.Name = "gbUsers";
-            this.gbUsers.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbUsers.Padding = new System.Windows.Forms.Padding(2);
             this.gbUsers.Size = new System.Drawing.Size(222, 303);
             this.gbUsers.TabIndex = 4;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Gebruikers";
             // 
-            // lvUsers
-            // 
-            this.lvUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chUsername,
-            this.chLikes,
-            this.chFlags});
-            this.lvUsers.Location = new System.Drawing.Point(12, 15);
-            this.lvUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.lvUsers.Name = "lvUsers";
-            this.lvUsers.Size = new System.Drawing.Size(198, 276);
-            this.lvUsers.TabIndex = 11;
-            this.lvUsers.UseCompatibleStateImageBehavior = false;
-            this.lvUsers.View = System.Windows.Forms.View.Details;
-            // 
-            // chUsername
-            // 
-            this.chUsername.Text = "Gebruikersnaam";
-            this.chUsername.Width = 153;
-            // 
-            // chLikes
-            // 
-            this.chLikes.Text = "Likes";
-            this.chLikes.Width = 58;
-            // 
-            // chFlags
-            // 
-            this.chFlags.Text = "Flags";
-            this.chFlags.Width = 48;
-            // 
             // gbMessages
             // 
             this.gbMessages.Controls.Add(this.lbMessages);
             this.gbMessages.Location = new System.Drawing.Point(236, 10);
-            this.gbMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMessages.Margin = new System.Windows.Forms.Padding(2);
             this.gbMessages.Name = "gbMessages";
-            this.gbMessages.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMessages.Padding = new System.Windows.Forms.Padding(2);
             this.gbMessages.Size = new System.Drawing.Size(222, 303);
             this.gbMessages.TabIndex = 5;
             this.gbMessages.TabStop = false;
@@ -107,7 +75,7 @@
             // 
             this.lbMessages.FormattingEnabled = true;
             this.lbMessages.Location = new System.Drawing.Point(4, 16);
-            this.lbMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbMessages.Margin = new System.Windows.Forms.Padding(2);
             this.lbMessages.Name = "lbMessages";
             this.lbMessages.Size = new System.Drawing.Size(214, 277);
             this.lbMessages.TabIndex = 0;
@@ -117,9 +85,9 @@
             this.gbGroupLeader.Controls.Add(this.lblGroupLeaderPaid);
             this.gbGroupLeader.Controls.Add(this.lblGroupLeader);
             this.gbGroupLeader.Location = new System.Drawing.Point(236, 318);
-            this.gbGroupLeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbGroupLeader.Margin = new System.Windows.Forms.Padding(2);
             this.gbGroupLeader.Name = "gbGroupLeader";
-            this.gbGroupLeader.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbGroupLeader.Padding = new System.Windows.Forms.Padding(2);
             this.gbGroupLeader.Size = new System.Drawing.Size(222, 63);
             this.gbGroupLeader.TabIndex = 6;
             this.gbGroupLeader.TabStop = false;
@@ -152,9 +120,9 @@
             this.gbUserInfo.Controls.Add(this.cbUserBlocked);
             this.gbUserInfo.Controls.Add(this.lbMaterials);
             this.gbUserInfo.Location = new System.Drawing.Point(462, 10);
-            this.gbUserInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbUserInfo.Margin = new System.Windows.Forms.Padding(2);
             this.gbUserInfo.Name = "gbUserInfo";
-            this.gbUserInfo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbUserInfo.Padding = new System.Windows.Forms.Padding(2);
             this.gbUserInfo.Size = new System.Drawing.Size(159, 302);
             this.gbUserInfo.TabIndex = 9;
             this.gbUserInfo.TabStop = false;
@@ -175,7 +143,7 @@
             this.cbMessageVisible.AutoSize = true;
             this.cbMessageVisible.Enabled = false;
             this.cbMessageVisible.Location = new System.Drawing.Point(15, 39);
-            this.cbMessageVisible.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbMessageVisible.Margin = new System.Windows.Forms.Padding(2);
             this.cbMessageVisible.Name = "cbMessageVisible";
             this.cbMessageVisible.Size = new System.Drawing.Size(111, 17);
             this.cbMessageVisible.TabIndex = 11;
@@ -188,7 +156,7 @@
             this.cbUserBlocked.AutoSize = true;
             this.cbUserBlocked.Enabled = false;
             this.cbUserBlocked.Location = new System.Drawing.Point(15, 17);
-            this.cbUserBlocked.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbUserBlocked.Margin = new System.Windows.Forms.Padding(2);
             this.cbUserBlocked.Name = "cbUserBlocked";
             this.cbUserBlocked.Size = new System.Drawing.Size(140, 17);
             this.cbUserBlocked.TabIndex = 10;
@@ -199,7 +167,7 @@
             // 
             this.lbMaterials.FormattingEnabled = true;
             this.lbMaterials.Location = new System.Drawing.Point(15, 91);
-            this.lbMaterials.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbMaterials.Margin = new System.Windows.Forms.Padding(2);
             this.lbMaterials.Name = "lbMaterials";
             this.lbMaterials.Size = new System.Drawing.Size(131, 199);
             this.lbMaterials.TabIndex = 9;
@@ -207,13 +175,23 @@
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(21, 331);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(123, 50);
             this.btnBack.TabIndex = 10;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // lbVisitors
+            // 
+            this.lbVisitors.FormattingEnabled = true;
+            this.lbVisitors.Location = new System.Drawing.Point(4, 17);
+            this.lbVisitors.Margin = new System.Windows.Forms.Padding(2);
+            this.lbVisitors.Name = "lbVisitors";
+            this.lbVisitors.Size = new System.Drawing.Size(214, 277);
+            this.lbVisitors.TabIndex = 1;
+            this.lbVisitors.Click += new System.EventHandler(this.lbVisitors_Click);
             // 
             // Beheer___Gebruikers_Beheren
             // 
@@ -225,9 +203,10 @@
             this.Controls.Add(this.gbGroupLeader);
             this.Controls.Add(this.gbMessages);
             this.Controls.Add(this.gbUsers);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Beheer___Gebruikers_Beheren";
             this.Text = "Beheer___Gebruikers_Beheren";
+            this.Click += new System.EventHandler(this.Beheer___Gebruikers_Beheren_Click);
             this.gbUsers.ResumeLayout(false);
             this.gbMessages.ResumeLayout(false);
             this.gbGroupLeader.ResumeLayout(false);
@@ -252,9 +231,6 @@
         private System.Windows.Forms.ListBox lbMaterials;
         private System.Windows.Forms.Label lblMaterials;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.ListView lvUsers;
-        private System.Windows.Forms.ColumnHeader chUsername;
-        private System.Windows.Forms.ColumnHeader chLikes;
-        private System.Windows.Forms.ColumnHeader chFlags;
+        private System.Windows.Forms.ListBox lbVisitors;
     }
 }
