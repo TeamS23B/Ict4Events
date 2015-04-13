@@ -464,7 +464,7 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId,rfid,letter);
             return dbConnector.QueryNoResult(nonquery);
 
-        }*/
+        }
 
         /// <summary>
         /// Increase the amount of 'flags' on the given post by 1.
