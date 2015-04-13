@@ -236,7 +236,7 @@ namespace DatabaseConnection
                     }
                     else
                     {
-                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, )
+                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, );
                     }
                 }
             }
