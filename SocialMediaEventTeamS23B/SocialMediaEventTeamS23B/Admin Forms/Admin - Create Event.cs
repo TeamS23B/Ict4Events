@@ -45,7 +45,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                 }
             }
             DateTime startDate = new DateTime((int)nudStartYear.Value, (int)nudStartMonth.Value, (int)nudStartDay.Value);
-            DateTime endDate = new DateTime((int)nudEndYear.Value, (int)nudEndMonth.Value, (int)nudEndDay.Value)
+            DateTime endDate = new DateTime((int)nudEndYear.Value, (int)nudEndMonth.Value, (int)nudEndDay.Value);
             admin.AddEvent(EventLocation, tbName.Text, startDate, endDate);
         }
     }

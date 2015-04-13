@@ -236,7 +236,7 @@ namespace DatabaseConnection
                     }
                     else
                     {
-                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, )
+                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, );
                     }
                 }
             }
@@ -315,7 +315,7 @@ namespace DatabaseConnection
                 reader.Close();
                 dbConnector.CloseConnection();
 
-                if (dbConnector.QueryReader(sqlWerknemer) == null)
+                /*if (dbConnector.QueryReader(sqlWerknemer) == null)
                 {
                     string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlDeelnemer);
@@ -337,6 +337,7 @@ namespace DatabaseConnection
                 {
                     function = function;
                 }
+                 */
                 return function;
             }
             catch
