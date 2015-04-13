@@ -1,4 +1,4 @@
-﻿namespace SocialMediaEventTeamS23B.SocialMediaSharing
+﻿namespace SocialMediaEventTeamS23B.SMSForms
 {
     partial class SMSCreatePost
     {

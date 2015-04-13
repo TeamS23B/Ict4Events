@@ -7,26 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApplicationLayer;
+using DatabaseConnection;
 using DatabaseConnection.Types;
 
-namespace SocialMediaEventTeamS23B.SocialMediaSharing
+namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSMain : Form
     {
-        public SMSMain(Visitor user)
+        public SMSMain(DataBaseConnection dbConnection, Visitor user)
         {
             InitializeComponent();
             this.user = user;
             lblUsername.Text = user.Username;
             
-            Sms = new object();
+            Sms = new SocialMediaSharing(dbConnection,user.Username);
             messages=new List<SMSMessageMain>();
 
             tmrRefresh.Enabled = true;
         }
 
         private Visitor user;
-        private object Sms;
+        private SocialMediaSharing Sms;
 
         private List<SMSMessageMain> messages; 
 

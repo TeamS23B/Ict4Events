@@ -77,7 +77,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             foreach(Location L in locations)
             {
                 string townSteet = L.Town +" "+ L.Street;
-                if(cbLocations.ToString() == townSteet)
+                if(cbLocations.Text == townSteet)
                 {
                     EventLocation = L;
                 }
@@ -102,6 +102,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     {
                         lbMaterialOnLocation.Items.Add(M.MaterialId + ": " + M.Name);
                         lbAllMaterial.Items.Remove(M.MaterialId + ": " + M.Name);
+                        materialsInEvent.Add(M);
                         admin.AddMaterialToEvent(M);
                     }
                 }
@@ -122,9 +123,14 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     {
                         lbAllMaterial.Items.Add(ME.MaterialId + ": " + ME.Name);
                         lbMaterialOnLocation.Items.Remove(ME.MaterialId + ": " + ME.Name);
+                        materialsInEvent.Remove(ME);
                         admin.RemoveMaterialFromEvent(ME);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
