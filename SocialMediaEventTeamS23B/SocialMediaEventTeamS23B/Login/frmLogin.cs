@@ -54,7 +54,7 @@ namespace SocialMediaEventTeamS23B
                     ReceptionistUserControl();
                     break;
                 case Functions.Beheerder:
-                    AdminstratieMachtiging();
+                    AdminControl();
                     break;
                 case Functions.Portier:
                     AccesControl();
@@ -85,6 +85,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
         }
 
         private void MaterialRentUserControl()
@@ -92,6 +93,8 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void GuardUserControl()
@@ -99,6 +102,8 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void AdminUserControl()
@@ -109,44 +114,58 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
-        private static void NonUserControl()
+        private void NonUserControl()
         {
             MessageBox.Show("Dit is geen gebruiker");
+            lblLoggedIn.Text = "Not logged in";
+
         }
 
         private void UserControl()
         {
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void MaterialControl()
         {
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void ReserveControl()
         {
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void AccesControl()
         {
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
-        private void AdminstratieMachtiging()
+        private void AdminControl()
         {
             btnAdmin.Visible = true;
             btnAccesControl.Visible = true;
             btnMaterial.Visible = true;
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void btnAccesControl_Click(object sender, EventArgs e)
