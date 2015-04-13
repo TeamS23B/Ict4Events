@@ -125,7 +125,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //adminMat.AddMaterial(cbModel.SelectedItem, )
+            //adminMat.AddMaterial(cbModel.SelectedItem, cbType.SelectedItem, );
         }
     }
 }

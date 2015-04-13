@@ -20,8 +20,8 @@ namespace SocialMediaEventTeamS23B
         public frmLogin()
         {
             InitializeComponent();
-            dbConnetion=new DataBaseConnection();
-            login=new Login(dbConnetion);
+            dbConnetion = new DataBaseConnection();
+            login = new Login(dbConnetion);
             MakeAllButtonsInvisible();
         }
 
@@ -46,18 +46,18 @@ namespace SocialMediaEventTeamS23B
             Functions en;
             if (login.IsLoggedIn)
             {
-                MessageBox.Show("User is already logged in!");
+                MessageBox.Show("User is al ingelogd");
             }
             try
             {
                 en =
                     (Functions)
-                        Enum.Parse(typeof (Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
+                        Enum.Parse(typeof(Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
 
             }
             catch (InvalidDataException iDataEx)
             {
-                MessageBox.Show("Username or Password is not correct!");
+                MessageBox.Show("Username of Password is niet correct!");
                 return;
             }
             catch (ArgumentException ex)
@@ -71,50 +71,44 @@ namespace SocialMediaEventTeamS23B
                 return;
             }
 
-                switch (en)
-                {
-                    case Functions.BeheerderUser:
-                        AdminUserControl();
-                        break;
-                    case Functions.PortierUser:
-                        GuardUserControl();
-                        break;
-                    case Functions.MateriaalverhuurUser:
-                        MaterialRentUserControl();
-                        break;
-                    case Functions.ReceptionistUser:
-                        ReceptionistUserControl();
-                        break;
-                    case Functions.Beheerder:
-                        AdminControl();
-                        break;
-                    case Functions.Portier:
-                        AccesControl();
-                        break;
-                    case Functions.Receptionist:
-                        ReserveControl();
-                        break;
-                    case Functions.Materiaalverhuur:
-                        MaterialControl();
-                        break;
-                    case Functions.User:
-                        UserControl();
-                        break;
-                    case Functions.NonUser:
-                        NonUserControl();
-                        break;
-                    case Functions.error:
-                        NonUserControl();
-                        break;
-                    default:
-                        NonUserControl();
-                        break;
-                }
-            }
-            catch(Exception ex)
+            switch (en)
             {
-                MessageBox.Show(ex.Message);
-                lblLoggedIn.Text = "U bent niet ingelogd";
+                case Functions.BeheerderUser:
+                    AdminUserControl();
+                    break;
+                case Functions.PortierUser:
+                    GuardUserControl();
+                    break;
+                case Functions.MateriaalverhuurUser:
+                    MaterialRentUserControl();
+                    break;
+                case Functions.ReceptionistUser:
+                    ReceptionistUserControl();
+                    break;
+                case Functions.Beheerder:
+                    AdminControl();
+                    break;
+                case Functions.Portier:
+                    AccesControl();
+                    break;
+                case Functions.Receptionist:
+                    ReserveControl();
+                    break;
+                case Functions.Materiaalverhuur:
+                    MaterialControl();
+                    break;
+                case Functions.User:
+                    UserControl();
+                    break;
+                case Functions.NonUser:
+                    NonUserControl();
+                    break;
+                case Functions.error:
+                    NonUserControl();
+                    break;
+                default:
+                    NonUserControl();
+                    break;
             }
         }
 
@@ -214,7 +208,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
-            SMSMain smsMainForm = new SMSMain(dbConnetion,login.GetVisitor());
+            SMSMain smsMainForm = new SMSMain(dbConnetion, login.GetVisitor());
             smsMainForm.Show();
         }
 

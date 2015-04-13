@@ -147,6 +147,7 @@
             // 
             this.tbEuros.Location = new System.Drawing.Point(76, 56);
             this.tbEuros.Margin = new System.Windows.Forms.Padding(2);
+            this.tbEuros.MaxLength = 4;
             this.tbEuros.Name = "tbEuros";
             this.tbEuros.Size = new System.Drawing.Size(62, 20);
             this.tbEuros.TabIndex = 12;
@@ -155,6 +156,7 @@
             // 
             this.tbCents.Location = new System.Drawing.Point(156, 56);
             this.tbCents.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCents.MaxLength = 2;
             this.tbCents.Name = "tbCents";
             this.tbCents.Size = new System.Drawing.Size(48, 20);
             this.tbCents.TabIndex = 13;
@@ -183,6 +185,7 @@
             // 
             this.tbAdminEuros.Location = new System.Drawing.Point(76, 80);
             this.tbAdminEuros.Margin = new System.Windows.Forms.Padding(2);
+            this.tbAdminEuros.MaxLength = 4;
             this.tbAdminEuros.Name = "tbAdminEuros";
             this.tbAdminEuros.Size = new System.Drawing.Size(62, 20);
             this.tbAdminEuros.TabIndex = 16;

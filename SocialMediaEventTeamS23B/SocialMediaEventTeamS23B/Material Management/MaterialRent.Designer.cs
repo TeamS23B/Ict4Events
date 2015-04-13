@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblMaterialRentProductsInStorage = new System.Windows.Forms.Label();
             this.lbMaterialRentProductsInList = new System.Windows.Forms.ListBox();
             this.lblMaterialRentDetails = new System.Windows.Forms.Label();
@@ -39,6 +40,8 @@
             this.lblMaterialRentChooseEndDate = new System.Windows.Forms.Label();
             this.dateTimePickerMaterialRentEndDate = new System.Windows.Forms.DateTimePicker();
             this.btnMaterialRentConfirm = new System.Windows.Forms.Button();
+            this.delayClean = new System.Windows.Forms.Timer(this.components);
+            this.btnReattach = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMaterialRentProductsInStorage
@@ -136,12 +139,27 @@
             this.btnMaterialRentConfirm.TabIndex = 10;
             this.btnMaterialRentConfirm.Text = "Bevestigen";
             this.btnMaterialRentConfirm.UseVisualStyleBackColor = true;
+            this.btnMaterialRentConfirm.Click += new System.EventHandler(this.btnMaterialRentConfirm_Click);
+            // 
+            // delayClean
+            // 
+            this.delayClean.Interval = 2000;
+            // 
+            // btnReattach
+            // 
+            this.btnReattach.Location = new System.Drawing.Point(34, 12);
+            this.btnReattach.Name = "btnReattach";
+            this.btnReattach.Size = new System.Drawing.Size(75, 23);
+            this.btnReattach.TabIndex = 11;
+            this.btnReattach.Text = "Reattachment";
+            this.btnReattach.UseVisualStyleBackColor = true;
             // 
             // MaterialRent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 425);
+            this.Controls.Add(this.btnReattach);
             this.Controls.Add(this.btnMaterialRentConfirm);
             this.Controls.Add(this.dateTimePickerMaterialRentEndDate);
             this.Controls.Add(this.lblMaterialRentChooseEndDate);
@@ -155,7 +173,6 @@
             this.Controls.Add(this.lblMaterialRentProductsInStorage);
             this.Name = "MaterialRent";
             this.Text = "MaterialRent";
-            this.Load += new System.EventHandler(this.MATERIAALVERHUUR_MATERIAALVERHUURcs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +191,7 @@
         private System.Windows.Forms.Label lblMaterialRentChooseEndDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerMaterialRentEndDate;
         private System.Windows.Forms.Button btnMaterialRentConfirm;
+        private System.Windows.Forms.Timer delayClean;
+        private System.Windows.Forms.Button btnReattach;
     }
 }
