@@ -90,9 +90,9 @@
             this.lblLoggedIn.AutoSize = true;
             this.lblLoggedIn.Location = new System.Drawing.Point(12, 9);
             this.lblLoggedIn.Name = "lblLoggedIn";
-            this.lblLoggedIn.Size = new System.Drawing.Size(70, 13);
+            this.lblLoggedIn.Size = new System.Drawing.Size(102, 13);
             this.lblLoggedIn.TabIndex = 5;
-            this.lblLoggedIn.Text = "Not logged in";
+            this.lblLoggedIn.Text = "U bent niet ingelogd";
             // 
             // btnAdmin
             // 
