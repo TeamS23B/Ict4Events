@@ -546,7 +546,7 @@ namespace DatabaseConnection
 
         public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
         {
-            var nonquery = String.Format("UPDATE flagRules SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak '{3}'", flags, ratio, time, autoCleanUp);
+            var nonquery = String.Format("UPDATE flagRegels SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak = '{3}'", flags, ratio, time, autoCleanUp);
             return dbConnector.QueryNoResult(nonquery);
         }
 
