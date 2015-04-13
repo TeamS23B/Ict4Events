@@ -12,48 +12,42 @@ namespace DatabaseConnection.Types
         public String Name { get; private set; }
         public String Surname { get; private set; }
         public AdressInfo Adress { get; private set; }
-        public int Age { get; private set; }
-        public int RFID { get; private set; }
-        public String Phonenumber { get; private set; }
+        public string RFID { get; private set; }
 
 
         //"User"
-        public String Username { get; private set; }//todo what? how?
-        public int Authorisation { get; private set; }//todo what? how?
-        //todo login?
+        public String Username { get; private set; }
 
 
-        public Visitor(string name, string surname, AdressInfo adress, int age, int rfid, string phonenumber):this(name,surname,adress,age,rfid,phonenumber,true)
+        public Visitor(string username, string name, string surname, AdressInfo adress, string rfid):this( username, name,surname,adress,rfid,true)
         {
             
         }
 
-        public Visitor(string name, string surname, int rfid):this(name,surname,null,0,rfid,null,false)
+        public Visitor(string username, string name, string surname, string rfid):this(username,name,surname,null,rfid,false)
         {
             
         }
 
-        private Visitor(string name, string surname, AdressInfo adress, int age, int rfid, string phonenumber,bool isLeader)
+        private Visitor(string username, string name, string surname, AdressInfo adress, string rfid,bool isLeader)
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username))
             {
-                throw new InvalidDataException("(Sur)name is emtpy or null");
+                throw new InvalidDataException("(User)(Sur)name is emtpy or null");
             }
-            if (isLeader && (adress == null || age <= 0 || string.IsNullOrEmpty(phonenumber)))
+            if (isLeader && (adress == null ))
             {
                 throw new InvalidDataException("Missing leader info");
             }
             Name = name;
             Surname = surname;
             Adress = adress;
-            Age = age;
             RFID = rfid;
-            Phonenumber = phonenumber;
         }
 
         public override string ToString()
         {
-            return string.Format("{{Name={0},Surname={1},Adress={2},Age={3},RFID={4},Phonenumber={5}}}",Name,Surname,Adress,Age,RFID,Phonenumber);
+            return string.Format("{{Name={0},Surname={1},Adress={2},RFID={3}}}",Name,Surname,Adress,RFID);
         }
     }
 }

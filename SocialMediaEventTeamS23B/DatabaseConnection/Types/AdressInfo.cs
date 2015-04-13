@@ -16,9 +16,9 @@ namespace DatabaseConnection.Types
         public String Country { get; private set; }
         public String Postalcode { get; private set; }
 
-        public AdressInfo(string street, string city, int number, string suffix, string country, string postalcode)
+        public AdressInfo(string street, string city, int number, string suffix, string postalcode)
         {
-            if (string.IsNullOrEmpty(street) || string.IsNullOrEmpty(city)|| string.IsNullOrEmpty(country) || string.IsNullOrEmpty(postalcode))
+            if (string.IsNullOrEmpty(street) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(postalcode))
             {
                 throw new InvalidDataException("Street, city, country or postalcode is empty");
             }
@@ -30,12 +30,11 @@ namespace DatabaseConnection.Types
             City = city;
             Number = number;
             Suffix = suffix;
-            Country = country;
             Postalcode = postalcode;
         }
 
-        public AdressInfo(string street, string city, int number, string country, string postalcode)
-            : this(street, city, number,"", country, postalcode)
+        public AdressInfo(string street, string city, int number, string postalcode)
+            : this(street, city, number,"", postalcode)
         {
 
         }

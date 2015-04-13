@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using DatabaseConnection.Exeptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -351,6 +352,38 @@ namespace DatabaseConnection
         {
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
             return dbConnector.QueryScalar<decimal>(query);
+        }
+
+        /// <summary>
+        /// Get a visitor by a specific username
+        /// </summary>
+        /// <param name="username">the username</param>
+        /// <returns>A visitor reperesenting the user</returns>
+        public Visitor GetVistitorFomUsername(String username)
+        {
+            var querry = String.Format("SELECT * " +
+                                       "FROM deelnemer " +
+                                       "WHERE gebruikersnaam = {0}",username);
+            var reader = dbConnector.QueryReader(querry);
+            if (!reader.HasRows)
+            {
+                throw new InvalidDataException("Unkowm username!");
+            }
+            reader.Read();
+            Visitor visitor;
+            if (reader["HoortBij"] != DBNull.Value)
+            {
+                var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], address, (string)reader["rfid"]);
+            }
+            else
+            {
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["rfid"]);
+            }
+            reader.Close();
+            dbConnector.CloseConnection();
+            return visitor;
+
         }
         #endregion
         #region INSERT INTO
