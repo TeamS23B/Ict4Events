@@ -20,8 +20,8 @@ namespace SocialMediaEventTeamS23B
         public frmLogin()
         {
             InitializeComponent();
-            dbConnetion=new DataBaseConnection();
-            login=new Login(dbConnetion);
+            dbConnetion = new DataBaseConnection();
+            login = new Login(dbConnetion);
             MakeAllButtonsInvisible();
         }
 
@@ -52,7 +52,7 @@ namespace SocialMediaEventTeamS23B
             {
                 en =
                     (Functions)
-                        Enum.Parse(typeof (Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
+                        Enum.Parse(typeof(Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
 
             }
             catch (InvalidDataException iDataEx)
@@ -71,45 +71,44 @@ namespace SocialMediaEventTeamS23B
                 return;
             }
 
-                switch (en)
-                {
-                    case Functions.BeheerderUser:
-                        AdminUserControl();
-                        break;
-                    case Functions.PortierUser:
-                        GuardUserControl();
-                        break;
-                    case Functions.MateriaalverhuurUser:
-                        MaterialRentUserControl();
-                        break;
-                    case Functions.ReceptionistUser:
-                        ReceptionistUserControl();
-                        break;
-                    case Functions.Beheerder:
-                        AdminControl();
-                        break;
-                    case Functions.Portier:
-                        AccesControl();
-                        break;
-                    case Functions.Receptionist:
-                        ReserveControl();
-                        break;
-                    case Functions.Materiaalverhuur:
-                        MaterialControl();
-                        break;
-                    case Functions.User:
-                        UserControl();
-                        break;
-                    case Functions.NonUser:
-                        NonUserControl();
-                        break;
-                    case Functions.error:
-                        NonUserControl();
-                        break;
-                    default:
-                        NonUserControl();
-                        break;
-                }
+            switch (en)
+            {
+                case Functions.BeheerderUser:
+                    AdminUserControl();
+                    break;
+                case Functions.PortierUser:
+                    GuardUserControl();
+                    break;
+                case Functions.MateriaalverhuurUser:
+                    MaterialRentUserControl();
+                    break;
+                case Functions.ReceptionistUser:
+                    ReceptionistUserControl();
+                    break;
+                case Functions.Beheerder:
+                    AdminControl();
+                    break;
+                case Functions.Portier:
+                    AccesControl();
+                    break;
+                case Functions.Receptionist:
+                    ReserveControl();
+                    break;
+                case Functions.Materiaalverhuur:
+                    MaterialControl();
+                    break;
+                case Functions.User:
+                    UserControl();
+                    break;
+                case Functions.NonUser:
+                    NonUserControl();
+                    break;
+                case Functions.error:
+                    NonUserControl();
+                    break;
+                default:
+                    NonUserControl();
+                    break;
             }
         }
 
@@ -209,7 +208,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
-            SMSMain smsMainForm = new SMSMain(dbConnetion,login.GetVisitor());
+            SMSMain smsMainForm = new SMSMain(dbConnetion, login.GetVisitor());
             smsMainForm.Show();
         }
 
