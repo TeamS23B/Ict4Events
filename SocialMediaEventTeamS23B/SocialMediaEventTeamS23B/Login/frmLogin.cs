@@ -110,11 +110,6 @@ namespace SocialMediaEventTeamS23B
                         break;
                 }
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                lblLoggedIn.Text = "U bent niet ingelogd";
-            }
         }
 
         private void ReceptionistUserControl()
