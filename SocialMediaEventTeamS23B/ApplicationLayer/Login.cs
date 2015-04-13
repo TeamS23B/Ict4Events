@@ -14,7 +14,7 @@ namespace ApplicationLayer
         public string Password { get; set; }
         public Login(string Username, string Password)
         {
-            if(Username =="" || Password =="")
+            if(Username =="" || Password =="" || Password.Contains(" ") || Username.Contains(" "))
             {
                 throw new NullException("Voer correcte gebruikersnaam en wachtwoord in");
             }

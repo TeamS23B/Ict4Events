@@ -45,9 +45,9 @@
             // 
             this.gbMaterial.Controls.Add(this.lvMaterial);
             this.gbMaterial.Location = new System.Drawing.Point(10, 11);
-            this.gbMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.gbMaterial.Name = "gbMaterial";
-            this.gbMaterial.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMaterial.Padding = new System.Windows.Forms.Padding(2);
             this.gbMaterial.Size = new System.Drawing.Size(260, 223);
             this.gbMaterial.TabIndex = 0;
             this.gbMaterial.TabStop = false;
@@ -61,7 +61,7 @@
             this.chPrice,
             this.chState});
             this.lvMaterial.Location = new System.Drawing.Point(5, 18);
-            this.lvMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.lvMaterial.Name = "lvMaterial";
             this.lvMaterial.Size = new System.Drawing.Size(251, 201);
             this.lvMaterial.TabIndex = 0;
@@ -89,7 +89,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(283, 18);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(119, 50);
             this.btnAdd.TabIndex = 1;
@@ -100,7 +100,7 @@
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(283, 73);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(119, 50);
             this.btnEdit.TabIndex = 2;
@@ -110,7 +110,7 @@
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(283, 128);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(119, 50);
             this.btnRemove.TabIndex = 3;
@@ -120,12 +120,13 @@
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(10, 270);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(119, 50);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Admin___Add_Material
             // 
@@ -137,7 +138,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbMaterial);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Admin___Add_Material";
             this.Text = "Admin___Add_Material";
             this.gbMaterial.ResumeLayout(false);

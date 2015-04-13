@@ -236,7 +236,7 @@ namespace DatabaseConnection
                     }
                     else
                     {
-                        Post comment = new Post(commentTitle, null, description, null, null, placedOn, );
+                        //Post comment = new Post(commentTitle, null, description, null, null, placedOn, );
                     }
                 }
             }
@@ -244,6 +244,7 @@ namespace DatabaseConnection
             {
 
             }
+            return null;
         }
 
 
@@ -335,8 +336,9 @@ namespace DatabaseConnection
                 }
                 else
                 {
-                    function = "NonUser";
+                    function = function;
                 }
+                 
                 return function;
             }
             catch

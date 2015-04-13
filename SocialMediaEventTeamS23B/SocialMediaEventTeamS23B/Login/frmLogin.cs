@@ -35,48 +35,55 @@ namespace SocialMediaEventTeamS23B
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            Login Login = new Login(tbUsername.Text, tbPassword.Text);
-
-            var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
-
-            switch (en)
+            try
             {
-                case Functions.BeheerderUser:
-                    AdminUserControl();
-                    break;
-                case Functions.PortierUser:
-                    GuardUserControl();
-                    break;
-                case Functions.MateriaalverhuurUser:
-                    MaterialRentUserControl();
-                    break;
-                case Functions.ReceptionistUser:
-                    ReceptionistUserControl();
-                    break;
-                case Functions.Beheerder:
-                    AdminstratieMachtiging();
-                    break;
-                case Functions.Portier:
-                    AccesControl();
-                    break;
-                case Functions.Receptionist:
-                    ReserveControl();
-                    break;
-                case Functions.Materiaalverhuur:
-                    MaterialControl();
-                    break;
-                case Functions.User:
-                    UserControl();
-                    break;
-                case Functions.NonUser:
-                    NonUserControl();
-                    break;
-                case Functions.error:
-                    NonUserControl();
-                    break;
-                default:
-                    NonUserControl();
-                    break;
+                Login Login = new Login(tbUsername.Text, tbPassword.Text);
+
+                var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
+
+                switch (en)
+                {
+                    case Functions.BeheerderUser:
+                        AdminUserControl();
+                        break;
+                    case Functions.PortierUser:
+                        GuardUserControl();
+                        break;
+                    case Functions.MateriaalverhuurUser:
+                        MaterialRentUserControl();
+                        break;
+                    case Functions.ReceptionistUser:
+                        ReceptionistUserControl();
+                        break;
+                    case Functions.Beheerder:
+                        AdminControl();
+                        break;
+                    case Functions.Portier:
+                        AccesControl();
+                        break;
+                    case Functions.Receptionist:
+                        ReserveControl();
+                        break;
+                    case Functions.Materiaalverhuur:
+                        MaterialControl();
+                        break;
+                    case Functions.User:
+                        UserControl();
+                        break;
+                    case Functions.NonUser:
+                        NonUserControl();
+                        break;
+                    case Functions.error:
+                        NonUserControl();
+                        break;
+                    default:
+                        NonUserControl();
+                        break;
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -85,6 +92,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "U bent ingelogd";
         }
 
         private void MaterialRentUserControl()
@@ -92,6 +100,8 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "U bent ingelogd";
+
         }
 
         private void GuardUserControl()
@@ -99,6 +109,8 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void AdminUserControl()
@@ -109,44 +121,58 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
-        private static void NonUserControl()
+        private void NonUserControl()
         {
             MessageBox.Show("Dit is geen gebruiker");
+            lblLoggedIn.Text = "Not logged in";
+
         }
 
         private void UserControl()
         {
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void MaterialControl()
         {
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void ReserveControl()
         {
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void AccesControl()
         {
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
-        private void AdminstratieMachtiging()
+        private void AdminControl()
         {
             btnAdmin.Visible = true;
             btnAccesControl.Visible = true;
             btnMaterial.Visible = true;
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
+            lblLoggedIn.Text = "Logged in";
+
         }
 
         private void btnAccesControl_Click(object sender, EventArgs e)
