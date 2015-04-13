@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationLayer;
+using Phidgets;
+using Phidgets.Events;
 
 namespace SocialMediaEventTeamS23B
 {

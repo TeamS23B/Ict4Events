@@ -131,10 +131,5 @@ namespace SocialMediaEventTeamS23B
                 rfid.LED = false;
             }
         }
-
-        private void AccessControl_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
