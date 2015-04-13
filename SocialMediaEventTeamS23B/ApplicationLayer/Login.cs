@@ -44,7 +44,7 @@ namespace ApplicationLayer
 
         public Visitor GetVisitor()
         {
-            return null
+            return null;
         }
     }
 }

@@ -201,7 +201,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnAccesControl_Click_1(object sender, EventArgs e)
         {
-            AccessControl AccesControlForm = new AccessControl();
+            AccessControl AccesControlForm = new AccessControl(dbConnetion);
             AccesControlForm.Show();
         }
 
@@ -212,19 +212,19 @@ namespace SocialMediaEventTeamS23B
 
         private void btnMaterial_Click(object sender, EventArgs e)
         {
-            MaterialRent MaterialRent = new MaterialRent();
+            MaterialRent MaterialRent = new MaterialRent(dbConnetion);
             MaterialRent.Show();
         }
 
         private void btnReserving_Click(object sender, EventArgs e)
         {
-            ReservationDetails ReservationForm = new ReservationDetails();
+            ReservationDetails ReservationForm = new ReservationDetails(dbConnetion);
             ReservationForm.Show();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu();
+            Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu(dbConnetion);
             AdminMenu.Show();
         }
 
