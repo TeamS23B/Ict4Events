@@ -48,6 +48,7 @@
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(150, 20);
             this.tbUsername.TabIndex = 0;
+            this.tbUsername.Text = "JimS";
             // 
             // tbPassword
             // 
@@ -55,6 +56,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(150, 20);
             this.tbPassword.TabIndex = 1;
+            this.tbPassword.Text = "WACHTWOORDHASH123456";
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // lblUsername
