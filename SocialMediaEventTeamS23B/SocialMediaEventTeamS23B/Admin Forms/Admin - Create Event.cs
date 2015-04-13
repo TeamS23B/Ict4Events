@@ -15,10 +15,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
 {
     public partial class Beheer___Event_Aanmaken : Form
     {
-        Admin admin;
-        List<Location> locations;
-        List<Material> materials;
-        List<Material> materialsInEvent;
+        private Admin admin;
+        private List<Location> locations;
+        private List<Material> materials;
+        private List<Material> materialsInEvent;
         public Beheer___Event_Aanmaken()
         {
             InitializeComponent();

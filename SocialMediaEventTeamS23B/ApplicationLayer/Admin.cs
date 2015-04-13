@@ -60,13 +60,31 @@ namespace ApplicationLayer
 
         public void EditFlaggingControl(int flags, int ratio, int time, bool autoCleanUp)
         {
-            if(autoCleanUp){
+            if(autoCleanUp)
+            {
                 dbc.UpdFlagRules(flags, ratio, time, 'J');
             }
             else if (!autoCleanUp)
             {
                 dbc.UpdFlagRules(flags, ratio, time, 'N');
             }           
+        }
+        public List<Visitor> GetVisitors()
+        {
+            return null;
+        }
+
+        public List<Post> GetPosts()
+        {
+            return null;
+        }
+        public void EditVisitor(Visitor visitor)
+        {
+
+        }
+        public List<Material> VisitorMaterial(Visitor visitor)
+        {
+            return null;
         }
     }
 }
