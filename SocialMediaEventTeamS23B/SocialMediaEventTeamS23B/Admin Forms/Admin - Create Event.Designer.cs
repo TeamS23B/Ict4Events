@@ -105,6 +105,7 @@
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Toevoegen >>";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnRemove
             // 
@@ -115,6 +116,7 @@
             this.btnRemove.TabIndex = 11;
             this.btnRemove.Text = "Verwijderen <<";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // cbLocations
             // 
@@ -211,6 +213,7 @@
             this.btnBack.TabIndex = 22;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblEventName
             // 

@@ -21,5 +21,10 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         {
 
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
