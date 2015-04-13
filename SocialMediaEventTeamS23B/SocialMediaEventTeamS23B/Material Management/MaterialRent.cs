@@ -64,7 +64,7 @@ namespace SocialMediaEventTeamS23B
 
         void rfid_Tag(object sender, Phidgets.Events.TagEventArgs e)
         {
-            lblRFID.Text = e.Tag;
+            //lblRFID.Text = e.Tag;
             delayClean.Enabled = false;
             var payed = false;
             try
@@ -80,14 +80,14 @@ namespace SocialMediaEventTeamS23B
 
             if (payed)
             {
-                lblPayed.Text = "Betaald";
-                lblPayed.ForeColor = Color.LimeGreen;
+                //lblPayed.Text = "Betaald";
+                //lblPayed.ForeColor = Color.LimeGreen;
                 tr.Start(true);//flash good
             }
             else
             {
-                lblPayed.Text = "Niet Betaald";
-                lblPayed.ForeColor = Color.Red;
+                //lblPayed.Text = "Niet Betaald";
+                //lblPayed.ForeColor = Color.Red;
                 tr.Start(false);//flash error
             }
 
@@ -101,9 +101,9 @@ namespace SocialMediaEventTeamS23B
         private void timer1_Tick(object sender, EventArgs e)
         {
             delayClean.Stop();
-            lblRFID.Text = "00000000";
-            lblPayed.Text = "-";
-            lblPayed.ForeColor = Color.Black;
+            //lblRFID.Text = "00000000";
+            //lblPayed.Text = "-";
+            //lblPayed.ForeColor = Color.Black;
         }
 
         private void flash(object good)
