@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationLayer;
+using DatabaseConnection;
+using DatabaseConnection.Exeptions;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -17,10 +19,15 @@ namespace SocialMediaEventTeamS23B
         public frmLogin()
         {
             InitializeComponent();
-            MaakAlleButtonsOntzichtbaar();
+            dbConnetion=new DataBaseConnection();
+            login=new Login(dbConnetion);
+            MakeAllButtonsInvisible();
         }
 
-        private void MaakAlleButtonsOntzichtbaar()
+        private Login login;
+        private DataBaseConnection dbConnetion;
+
+        private void MakeAllButtonsInvisible()
         {
             btnAccesControl.Visible = false;
             btnAdmin.Visible = false;
@@ -35,10 +42,29 @@ namespace SocialMediaEventTeamS23B
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            Login Login = new Login(tbUsername.Text, tbPassword.Text);
+            Functions en;
+            if (login.IsLoggedIn)
+            {
+                MessageBox.Show("User is already logged in!");
+            }
+            try
+            {
+                en =
+                    (Functions)
+                        Enum.Parse(typeof (Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
 
-            var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
-
+            }
+            catch (InvalidDataException iDataEx)
+            {
+                MessageBox.Show("Username or Password is not correct!");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            
             switch (en)
             {
                 case Functions.BeheerderUser:
@@ -168,11 +194,6 @@ namespace SocialMediaEventTeamS23B
 
         }
 
-        private void btnAccesControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAccesControl_Click_1(object sender, EventArgs e)
         {
             AccessControl AccesControlForm = new AccessControl();
@@ -204,7 +225,8 @@ namespace SocialMediaEventTeamS23B
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            MaakAlleButtonsOntzichtbaar();
+            MakeAllButtonsInvisible();
+            login.LogoutFromApplication();
             btnLogOut.Visible = false;
             tbPassword.Clear();
             tbUsername.Clear();

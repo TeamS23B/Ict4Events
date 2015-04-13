@@ -5,29 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationLayer.Exceptions;
 using DatabaseConnection;
+using DatabaseConnection.Exeptions;
+using DatabaseConnection.Types;
 
 namespace ApplicationLayer
 {
     public class Login
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public Login(string Username, string Password)
+        public string Username { get; private set; }
+        public bool IsLoggedIn { get { return !string.IsNullOrEmpty(Username); } }
+
+        private DataBaseConnection dbConnection;
+
+        public Login(DataBaseConnection dbConnection)
         {
-            if(Username =="" || Password =="")
+            this.dbConnection = dbConnection;
+            if(dbConnection==null)
             {
-                throw new NullException("Voer correcte gebruikersnaam en wachtwoord in");
-            }
-            else
-            {
-                this.Username = Username;
-                this.Password = Password;
+                throw new NullException("dbConnection is empty!");
             }
         }
-        public string SendToDatabase(string username, string password)
+
+        public string LoginToApplication(string username, string password)
         {
-            DataBaseConnection LoginDatabaseConnection = new DataBaseConnection();
-            return LoginDatabaseConnection.Login(username, password);
+            var result = dbConnection.Login(username, password);
+            if (string.IsNullOrEmpty(result) || result == "error")
+            {
+                throw new InvalidDataException("Username or Password is incorrect!");
+            }
+            Username = username;
+            return result;
+        }
+
+        public void LogoutFromApplication()
+        {
+            if (!string.IsNullOrEmpty(Username)) Username = "";
+        }
+
+        public Visitor GetVisitor()
+        {
+            
         }
     }
 }
