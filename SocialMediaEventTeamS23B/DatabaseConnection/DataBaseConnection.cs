@@ -190,16 +190,16 @@ namespace DatabaseConnection
             List<Material> materials = new List<Material>();
             try
             {
-                var query = "SELECT * FROM gehuurd_materiaal gm, materiaal m, huur h WHERE gm.MateriaalId = m.MateriaalId AND h.HuurId = gm.HuurId AND h.RFID = '" + RFID + "'";
+                var query = String.Format("SELECT m.MATERIAALID, m.MATMODEL, m.MATTYPE, m.KOSTPRIJS, m.HUURPRIJS, m.STATUS FROM gehuurd_materiaal gm INNER JOIN materiaal m ON gm.MateriaalId = m.MateriaalId INNER JOIN huur h ON h.HuurId = gm.HuurId WHERE h.RFID = '{0}'", RFID);
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
-                    int MaterialId = Convert.ToInt32(odr["m.MateriaalId"]);
-                    String Name = Convert.ToString(odr["m.MatModel"]);
-                    String Type = Convert.ToString(odr["m.MatType"]);
-                    double Price = Convert.ToDouble(odr["m.Kostprijs"]);
-                    double Rent = Convert.ToDouble(odr["m.Huurprijs"]);
-                    String State = Convert.ToString(odr["m.Status"]);
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
                     materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
                 }
             }
@@ -231,7 +231,7 @@ namespace DatabaseConnection
                     string description = Convert.ToString(reader["Tekst"]);
                     int commentOf = Convert.ToInt32(reader["ReactieOp"]);
                     DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
-                    string visible = Convert.ToString(reader["Zichtbaar"]);
+                    //string visible = Convert.ToString(reader["Zichtbaar"]);
                     posts.Add(new Post(commentTitle, null,description, 0,0,placedOn,rfid, null));
                 }
             }
