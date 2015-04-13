@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection;
 
 namespace SocialMediaEventTeamS23B
 {
     public partial class MaterialRent : Form
     {
-        public MaterialRent()
+        public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
         }
