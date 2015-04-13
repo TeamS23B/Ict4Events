@@ -16,7 +16,7 @@ namespace SocialMediaEventTeamS23B
         {
             InitializeComponent();
         }
-
+        ApplicationLayer.Admin adminMat = new ApplicationLayer.Admin();
 
         /// <summary>
         /// Fills the 'Model' combobox with information related to the selected 'Type'.
@@ -121,6 +121,11 @@ namespace SocialMediaEventTeamS23B
                 cbModel.Items.Add("Canon PowerShot S200");
                 cbModel.Items.Add("Canon IXUS 170");
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //adminMat.AddMaterial(cbModel.SelectedItem, )
         }
     }
 }

@@ -81,9 +81,10 @@ namespace SocialMediaEventTeamS23B
                         break;
                 }
             }
-            catch(ArgumentException ex)
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                lblLoggedIn.Text = "U bent niet ingelogd";
             }
         }
 
@@ -109,7 +110,7 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -121,14 +122,14 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
         private void NonUserControl()
         {
             MessageBox.Show("Dit is geen gebruiker");
-            lblLoggedIn.Text = "Not logged in";
+            lblLoggedIn.Text = "U bent niet ingelogd";
 
         }
 
@@ -136,7 +137,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -144,7 +145,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -152,7 +153,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -160,7 +161,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -171,7 +172,7 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -215,6 +216,7 @@ namespace SocialMediaEventTeamS23B
             btnLogOut.Visible = false;
             tbPassword.Clear();
             tbUsername.Clear();
+            lblLoggedIn.Text = "U bent uitgelogd";
         }
     }
 }
