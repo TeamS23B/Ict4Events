@@ -80,11 +80,11 @@ namespace ApplicationLayer
         }
         public void EditVisitor(Visitor visitor)
         {
-
+            
         }
         public List<Material> VisitorMaterial(Visitor visitor)
         {
-            return null;
+            return dbc.MaterialsOfVisitor(visitor.RFID);
         }
     }
 }

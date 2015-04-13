@@ -185,6 +185,34 @@ namespace DatabaseConnection
             }
             return visitors;
         }
+        public List<Material> MaterialsOfVisitor(string RFID)
+        {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM gehuurd_materiaal gm, materiaal m, huur h WHERE gm.MateriaalId = m.MateriaalId AND h.HuurId = gm.HuurId AND h.RFID = '" + RFID + "'";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["m.MateriaalId"]);
+                    String Name = Convert.ToString(odr["m.MatModel"]);
+                    String Type = Convert.ToString(odr["m.MatType"]);
+                    double Price = Convert.ToDouble(odr["m.Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["m.Huurprijs"]);
+                    String State = Convert.ToString(odr["m.Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return materials;
+        }
         public List<Post> GetPostsOf()
         {
             List<Post> posts = new List<Post>();
