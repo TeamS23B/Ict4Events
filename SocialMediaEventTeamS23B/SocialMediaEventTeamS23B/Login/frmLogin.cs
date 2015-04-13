@@ -71,44 +71,50 @@ namespace SocialMediaEventTeamS23B
                 return;
             }
 
-            switch (en)
+                switch (en)
+                {
+                    case Functions.BeheerderUser:
+                        AdminUserControl();
+                        break;
+                    case Functions.PortierUser:
+                        GuardUserControl();
+                        break;
+                    case Functions.MateriaalverhuurUser:
+                        MaterialRentUserControl();
+                        break;
+                    case Functions.ReceptionistUser:
+                        ReceptionistUserControl();
+                        break;
+                    case Functions.Beheerder:
+                        AdminControl();
+                        break;
+                    case Functions.Portier:
+                        AccesControl();
+                        break;
+                    case Functions.Receptionist:
+                        ReserveControl();
+                        break;
+                    case Functions.Materiaalverhuur:
+                        MaterialControl();
+                        break;
+                    case Functions.User:
+                        UserControl();
+                        break;
+                    case Functions.NonUser:
+                        NonUserControl();
+                        break;
+                    case Functions.error:
+                        NonUserControl();
+                        break;
+                    default:
+                        NonUserControl();
+                        break;
+                }
+            }
+            catch(Exception ex)
             {
-                case Functions.BeheerderUser:
-                    AdminUserControl();
-                    break;
-                case Functions.PortierUser:
-                    GuardUserControl();
-                    break;
-                case Functions.MateriaalverhuurUser:
-                    MaterialRentUserControl();
-                    break;
-                case Functions.ReceptionistUser:
-                    ReceptionistUserControl();
-                    break;
-                case Functions.Beheerder:
-                    AdminControl();
-                    break;
-                case Functions.Portier:
-                    AccesControl();
-                    break;
-                case Functions.Receptionist:
-                    ReserveControl();
-                    break;
-                case Functions.Materiaalverhuur:
-                    MaterialControl();
-                    break;
-                case Functions.User:
-                    UserControl();
-                    break;
-                case Functions.NonUser:
-                    NonUserControl();
-                    break;
-                case Functions.error:
-                    NonUserControl();
-                    break;
-                default:
-                    NonUserControl();
-                    break;
+                MessageBox.Show(ex.Message);
+                lblLoggedIn.Text = "U bent niet ingelogd";
             }
         }
 
@@ -134,7 +140,7 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -146,14 +152,14 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
         private void NonUserControl()
         {
             MessageBox.Show("Dit is geen gebruiker");
-            lblLoggedIn.Text = "Not logged in";
+            lblLoggedIn.Text = "U bent niet ingelogd";
 
         }
 
@@ -161,7 +167,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -169,7 +175,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -177,7 +183,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -185,7 +191,7 @@ namespace SocialMediaEventTeamS23B
         {
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -196,7 +202,7 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 
@@ -237,6 +243,7 @@ namespace SocialMediaEventTeamS23B
             btnLogOut.Visible = false;
             tbPassword.Clear();
             tbUsername.Clear();
+            lblLoggedIn.Text = "U bent uitgelogd";
         }
     }
 }

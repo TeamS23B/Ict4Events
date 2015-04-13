@@ -154,7 +154,7 @@ namespace DatabaseConnection
             List<Material> materials = new List<Material>();
             try
             {
-                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT materiaalId FROM materiaal_event WHERE eventId = 1";
+                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT materiaalId FROM materiaal_event WHERE eventId = 1)";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
@@ -175,7 +175,7 @@ namespace DatabaseConnection
             {
                 dbConnector.CloseConnection();
             }
-            return null;
+            return materials;
         }
 
         public List<Material> GetAllMaterials()
@@ -204,7 +204,7 @@ namespace DatabaseConnection
             {
                 dbConnector.CloseConnection();
             }
-            return null;
+            return materials;
         }
 
         // WORK IN PROGRESS
@@ -424,7 +424,7 @@ namespace DatabaseConnection
 
         public int AddMaterialToEvent(Decimal materialId)
         {
-            var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES 1, {0}", materialId);
+            var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES (1, {0})", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
         #endregion

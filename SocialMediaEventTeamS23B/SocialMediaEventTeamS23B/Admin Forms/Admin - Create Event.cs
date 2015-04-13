@@ -126,6 +126,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
