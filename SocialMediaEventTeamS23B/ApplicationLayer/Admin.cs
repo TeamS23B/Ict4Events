@@ -71,12 +71,12 @@ namespace ApplicationLayer
         }
         public List<Visitor> GetVisitors()
         {
-            return null;
+            return dbc.GetVisitor();
         }
 
         public List<Post> GetPosts()
         {
-            return null;
+            return dbc.GetPostsOf();
         }
         public void EditVisitor(Visitor visitor)
         {

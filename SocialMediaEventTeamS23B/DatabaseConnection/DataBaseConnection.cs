@@ -150,6 +150,74 @@ namespace DatabaseConnection
             return locations;
         }
 
+        public List<Visitor> GetVisitor()
+        {
+            List<Visitor> visitors = new List<Visitor>();
+            try
+            {
+                var query = "SELECT * FROM deelnemer";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    string RFID = Convert.ToString(odr["RFID"]);
+                    string Name = Convert.ToString(odr["Voornaam"]);
+                    string Prefix =Convert.ToString(odr["Tussenvoegsel"]);
+                    string Surname = Convert.ToString(odr["Achternaam"]);
+                    string UserName = Convert.ToString(odr["Gebruikersnaam"]);
+                    string Leader = Convert.ToString(odr["IsLeider"]);
+                    if(Leader == "J")
+                    {
+                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                    }
+                    if(Leader == "N")
+                    {
+                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                    }                  
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return visitors;
+        }
+        public List<Post> GetPostsOf()
+        {
+            List<Post> posts = new List<Post>();
+            try
+            {
+                String query = "SELECT * FROM bericht";
+                OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
+
+                while (reader.Read())
+                {
+                    int postId = Convert.ToInt32(reader["BerichtId"]);
+                    string rfid = Convert.ToString(reader["Rfid"]);
+                    int categoryId = Convert.ToInt32(reader["CategorieId"]);
+                    string commentTitle = Convert.ToString(reader["Titel"]);
+                    string pathToFile = Convert.ToString(reader["Bestand"]);
+                    string description = Convert.ToString(reader["Tekst"]);
+                    int commentOf = Convert.ToInt32(reader["ReactieOp"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
+                    string visible = Convert.ToString(reader["Zichtbaar"]);
+                    posts.Add(new Post(commentTitle, null,description, 0,0,placedOn,rfid, null));
+                }
+            }
+            catch(Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return posts;
+        }
+
         public List<Material> GetMaterialsInEvent()
         {
             List<Material> materials = new List<Material>();

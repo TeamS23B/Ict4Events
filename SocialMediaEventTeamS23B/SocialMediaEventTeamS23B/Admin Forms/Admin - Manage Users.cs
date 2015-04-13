@@ -77,9 +77,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         }
         private void FillMaterials(Visitor v)
         {
+            materials = admin.VisitorMaterial(v);
             foreach (Material M in materials)
             {
-                
+                lbMaterials.Items.Add(M.MaterialId + ": " + M.Name);
             }
         }
 

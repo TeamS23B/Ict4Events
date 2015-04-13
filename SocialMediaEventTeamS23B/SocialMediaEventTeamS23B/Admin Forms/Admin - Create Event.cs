@@ -117,16 +117,19 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         {
             try
             {
+                Material RemoveMaterial = null;
                 foreach (Material ME in materialsInEvent)
                 {
+                    
                     if (ME.MaterialId + ": " + ME.Name == lbMaterialOnLocation.SelectedItem.ToString())
                     {
                         lbAllMaterial.Items.Add(ME.MaterialId + ": " + ME.Name);
                         lbMaterialOnLocation.Items.Remove(ME.MaterialId + ": " + ME.Name);
-                        materialsInEvent.Remove(ME);
+                        RemoveMaterial = ME;
                         admin.RemoveMaterialFromEvent(ME);
                     }
                 }
+                materialsInEvent.Remove(RemoveMaterial);
             }
             catch (Exception ex)
             {
