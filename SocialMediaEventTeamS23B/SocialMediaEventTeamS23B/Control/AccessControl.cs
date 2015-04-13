@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection;
 using Phidgets;
 namespace SocialMediaEventTeamS23B
 {
@@ -17,10 +18,10 @@ namespace SocialMediaEventTeamS23B
 
         private ApplicationLayer.AccessControl accessControl;
 
-        public AccessControl()
+        public AccessControl(DataBaseConnection dbc)
         {
             InitializeComponent();
-            accessControl = new ApplicationLayer.AccessControl(null);//todo dbc
+            accessControl = new ApplicationLayer.AccessControl(dbc);//todo dbc
             rfid = new RFID();
             rfid.open();
 
@@ -130,11 +131,6 @@ namespace SocialMediaEventTeamS23B
                 Thread.Sleep(300);
                 rfid.LED = false;
             }
-        }
-
-        private void AccessControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

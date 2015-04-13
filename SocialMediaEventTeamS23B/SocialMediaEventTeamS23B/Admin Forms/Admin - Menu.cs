@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection;
 
 namespace SocialMediaEventTeamS23B.Admin_Forms
 {
     public partial class Admin___Menu : Form
     {
-        public Admin___Menu()
+        public Admin___Menu(DataBaseConnection dbc)
         {
             InitializeComponent();
         }

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseConnection;
 
 namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationDetails : Form
     {
-        public ReservationDetails()
+        public ReservationDetails(DataBaseConnection dbc)
         {
             InitializeComponent();
         }
