@@ -59,12 +59,17 @@ namespace SocialMediaEventTeamS23B
                 MessageBox.Show("Username or Password is not correct!");
                 return;
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
-            
+
             switch (en)
             {
                 case Functions.BeheerderUser:
@@ -111,7 +116,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
         }
 
         private void MaterialRentUserControl()
@@ -119,7 +124,7 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
-            lblLoggedIn.Text = "Logged in";
+            lblLoggedIn.Text = "U bent ingelogd";
 
         }
 

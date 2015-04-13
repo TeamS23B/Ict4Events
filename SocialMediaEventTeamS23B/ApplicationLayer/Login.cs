@@ -35,7 +35,7 @@ namespace ApplicationLayer
             }
             Username = username;
             return result;
-        }
+            }
 
         public void LogoutFromApplication()
         {
@@ -44,7 +44,7 @@ namespace ApplicationLayer
 
         public Visitor GetVisitor()
         {
-            
+            return null
         }
     }
 }

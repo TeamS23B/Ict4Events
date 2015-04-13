@@ -22,5 +22,10 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
             Admin___Add_Material___Add AdminAddMatAdd = new Admin___Add_Material___Add();
             AdminAddMatAdd.Show();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
