@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SocialMediaEventTeamS23B.SocialMediaSharing
+namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSMesageMainMedia : UserControl
     {

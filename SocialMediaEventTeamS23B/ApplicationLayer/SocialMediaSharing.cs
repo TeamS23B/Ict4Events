@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using DatabaseConnection;
 
 namespace ApplicationLayer
 {
     public class SocialMediaSharing
     {
         public string Username { get; set; }
+        private DataBaseConnection dbConnection;
 
-        public SocialMediaSharing(string username)
+        public SocialMediaSharing(DataBaseConnection dbConnection, string username)
         {
             this.Username = username;
+            this.dbConnection = dbConnection;
         }
 
         // Prompts a windows explorer window to select a file. When OK is clicked, return the full path of the selected file.

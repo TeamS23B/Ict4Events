@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ApplicationLayer;
 using DatabaseConnection;
 using DatabaseConnection.Exeptions;
+using SocialMediaEventTeamS23B.SMSForms;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -207,7 +208,8 @@ namespace SocialMediaEventTeamS23B
 
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
-
+            SMSMain smsMainForm = new SMSMain(dbConnetion,login.GetVisitor());
+            smsMainForm.Show();
         }
 
         private void btnMaterial_Click(object sender, EventArgs e)
