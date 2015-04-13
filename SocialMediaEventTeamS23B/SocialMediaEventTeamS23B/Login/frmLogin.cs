@@ -45,7 +45,7 @@ namespace SocialMediaEventTeamS23B
             Functions en;
             if (login.IsLoggedIn)
             {
-                MessageBox.Show("User is already logged in!");
+                MessageBox.Show("User is al ingelogd");
             }
             try
             {
@@ -56,7 +56,7 @@ namespace SocialMediaEventTeamS23B
             }
             catch (InvalidDataException iDataEx)
             {
-                MessageBox.Show("Username or Password is not correct!");
+                MessageBox.Show("Username of Password is niet correct!");
                 return;
             }
             catch (ArgumentException ex)
