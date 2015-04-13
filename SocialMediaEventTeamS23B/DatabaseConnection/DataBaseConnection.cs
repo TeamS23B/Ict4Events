@@ -335,7 +335,7 @@ namespace DatabaseConnection
                 }
                 else
                 {
-                    function = "NonUser";
+                    function = function;
                 }
                 return function;
             }
