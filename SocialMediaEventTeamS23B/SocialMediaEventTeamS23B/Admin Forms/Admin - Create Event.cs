@@ -77,7 +77,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             foreach(Location L in locations)
             {
                 string townSteet = L.Town +" "+ L.Street;
-                if(cbLocations.Items.ToString() == townSteet)
+                if(cbLocations.Text == townSteet)
                 {
                     EventLocation = L;
                 }
