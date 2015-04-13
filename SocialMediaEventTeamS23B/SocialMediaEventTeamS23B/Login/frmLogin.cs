@@ -35,48 +35,55 @@ namespace SocialMediaEventTeamS23B
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            Login Login = new Login(tbUsername.Text, tbPassword.Text);
-
-            var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
-
-            switch (en)
+            try
             {
-                case Functions.BeheerderUser:
-                    AdminUserControl();
-                    break;
-                case Functions.PortierUser:
-                    GuardUserControl();
-                    break;
-                case Functions.MateriaalverhuurUser:
-                    MaterialRentUserControl();
-                    break;
-                case Functions.ReceptionistUser:
-                    ReceptionistUserControl();
-                    break;
-                case Functions.Beheerder:
-                    AdminControl();
-                    break;
-                case Functions.Portier:
-                    AccesControl();
-                    break;
-                case Functions.Receptionist:
-                    ReserveControl();
-                    break;
-                case Functions.Materiaalverhuur:
-                    MaterialControl();
-                    break;
-                case Functions.User:
-                    UserControl();
-                    break;
-                case Functions.NonUser:
-                    NonUserControl();
-                    break;
-                case Functions.error:
-                    NonUserControl();
-                    break;
-                default:
-                    NonUserControl();
-                    break;
+                Login Login = new Login(tbUsername.Text, tbPassword.Text);
+
+                var en = (Functions)Enum.Parse(typeof(Functions), Login.SendToDatabase(tbUsername.Text, tbPassword.Text));
+
+                switch (en)
+                {
+                    case Functions.BeheerderUser:
+                        AdminUserControl();
+                        break;
+                    case Functions.PortierUser:
+                        GuardUserControl();
+                        break;
+                    case Functions.MateriaalverhuurUser:
+                        MaterialRentUserControl();
+                        break;
+                    case Functions.ReceptionistUser:
+                        ReceptionistUserControl();
+                        break;
+                    case Functions.Beheerder:
+                        AdminControl();
+                        break;
+                    case Functions.Portier:
+                        AccesControl();
+                        break;
+                    case Functions.Receptionist:
+                        ReserveControl();
+                        break;
+                    case Functions.Materiaalverhuur:
+                        MaterialControl();
+                        break;
+                    case Functions.User:
+                        UserControl();
+                        break;
+                    case Functions.NonUser:
+                        NonUserControl();
+                        break;
+                    case Functions.error:
+                        NonUserControl();
+                        break;
+                    default:
+                        NonUserControl();
+                        break;
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
