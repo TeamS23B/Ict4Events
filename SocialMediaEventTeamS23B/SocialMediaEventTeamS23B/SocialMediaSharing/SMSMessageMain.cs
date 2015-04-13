@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection.Types;
 
-namespace SocialMediaEventTeamS23B.SocialMediaSharing
+namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSMessageMain : UserControl
     {
