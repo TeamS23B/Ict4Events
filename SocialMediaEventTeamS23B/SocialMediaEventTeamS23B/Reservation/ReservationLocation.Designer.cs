@@ -47,17 +47,16 @@
             // pictureBoxReservationLocationLocation
             // 
             this.pictureBoxReservationLocationLocation.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxReservationLocationLocation.Image")));
-            this.pictureBoxReservationLocationLocation.Location = new System.Drawing.Point(46, 36);
+            this.pictureBoxReservationLocationLocation.Location = new System.Drawing.Point(8, 12);
             this.pictureBoxReservationLocationLocation.Name = "pictureBoxReservationLocationLocation";
-            this.pictureBoxReservationLocationLocation.Size = new System.Drawing.Size(417, 267);
-            this.pictureBoxReservationLocationLocation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxReservationLocationLocation.Size = new System.Drawing.Size(789, 832);
             this.pictureBoxReservationLocationLocation.TabIndex = 0;
             this.pictureBoxReservationLocationLocation.TabStop = false;
             // 
             // lblReservationLocationDetails
             // 
             this.lblReservationLocationDetails.AutoSize = true;
-            this.lblReservationLocationDetails.Location = new System.Drawing.Point(43, 306);
+            this.lblReservationLocationDetails.Location = new System.Drawing.Point(474, 770);
             this.lblReservationLocationDetails.Name = "lblReservationLocationDetails";
             this.lblReservationLocationDetails.Size = new System.Drawing.Size(42, 13);
             this.lblReservationLocationDetails.TabIndex = 1;
@@ -67,7 +66,7 @@
             // lblReservationLocationBungalow
             // 
             this.lblReservationLocationBungalow.AutoSize = true;
-            this.lblReservationLocationBungalow.Location = new System.Drawing.Point(43, 324);
+            this.lblReservationLocationBungalow.Location = new System.Drawing.Point(474, 788);
             this.lblReservationLocationBungalow.Name = "lblReservationLocationBungalow";
             this.lblReservationLocationBungalow.Size = new System.Drawing.Size(116, 13);
             this.lblReservationLocationBungalow.TabIndex = 2;
@@ -75,7 +74,7 @@
             // 
             // btnReservationLocationPrevious
             // 
-            this.btnReservationLocationPrevious.Location = new System.Drawing.Point(43, 368);
+            this.btnReservationLocationPrevious.Location = new System.Drawing.Point(474, 832);
             this.btnReservationLocationPrevious.Name = "btnReservationLocationPrevious";
             this.btnReservationLocationPrevious.Size = new System.Drawing.Size(75, 23);
             this.btnReservationLocationPrevious.TabIndex = 3;
@@ -84,7 +83,7 @@
             // 
             // btnReservationLocationDivideGroup
             // 
-            this.btnReservationLocationDivideGroup.Location = new System.Drawing.Point(372, 314);
+            this.btnReservationLocationDivideGroup.Location = new System.Drawing.Point(803, 778);
             this.btnReservationLocationDivideGroup.Name = "btnReservationLocationDivideGroup";
             this.btnReservationLocationDivideGroup.Size = new System.Drawing.Size(91, 23);
             this.btnReservationLocationDivideGroup.TabIndex = 4;
@@ -94,7 +93,7 @@
             // 
             // btnReservationLocationNext
             // 
-            this.btnReservationLocationNext.Location = new System.Drawing.Point(494, 368);
+            this.btnReservationLocationNext.Location = new System.Drawing.Point(925, 832);
             this.btnReservationLocationNext.Name = "btnReservationLocationNext";
             this.btnReservationLocationNext.Size = new System.Drawing.Size(75, 23);
             this.btnReservationLocationNext.TabIndex = 5;
@@ -105,7 +104,7 @@
             // lblReservationLocationPersons
             // 
             this.lblReservationLocationPersons.AutoSize = true;
-            this.lblReservationLocationPersons.Location = new System.Drawing.Point(482, 36);
+            this.lblReservationLocationPersons.Location = new System.Drawing.Point(918, 59);
             this.lblReservationLocationPersons.Name = "lblReservationLocationPersons";
             this.lblReservationLocationPersons.Size = new System.Drawing.Size(87, 13);
             this.lblReservationLocationPersons.TabIndex = 6;
@@ -114,7 +113,7 @@
             // lblReservationLocationAmountOfPeople
             // 
             this.lblReservationLocationAmountOfPeople.AutoSize = true;
-            this.lblReservationLocationAmountOfPeople.Location = new System.Drawing.Point(507, 60);
+            this.lblReservationLocationAmountOfPeople.Location = new System.Drawing.Point(943, 83);
             this.lblReservationLocationAmountOfPeople.Name = "lblReservationLocationAmountOfPeople";
             this.lblReservationLocationAmountOfPeople.Size = new System.Drawing.Size(13, 13);
             this.lblReservationLocationAmountOfPeople.TabIndex = 7;
@@ -123,7 +122,7 @@
             // lblReservationLocationStillToDivide
             // 
             this.lblReservationLocationStillToDivide.AutoSize = true;
-            this.lblReservationLocationStillToDivide.Location = new System.Drawing.Point(491, 89);
+            this.lblReservationLocationStillToDivide.Location = new System.Drawing.Point(927, 112);
             this.lblReservationLocationStillToDivide.Name = "lblReservationLocationStillToDivide";
             this.lblReservationLocationStillToDivide.Size = new System.Drawing.Size(79, 13);
             this.lblReservationLocationStillToDivide.TabIndex = 8;
@@ -132,7 +131,7 @@
             // lblReservationLocationStillToDivideAmount
             // 
             this.lblReservationLocationStillToDivideAmount.AutoSize = true;
-            this.lblReservationLocationStillToDivideAmount.Location = new System.Drawing.Point(507, 117);
+            this.lblReservationLocationStillToDivideAmount.Location = new System.Drawing.Point(943, 140);
             this.lblReservationLocationStillToDivideAmount.Name = "lblReservationLocationStillToDivideAmount";
             this.lblReservationLocationStillToDivideAmount.Size = new System.Drawing.Size(13, 13);
             this.lblReservationLocationStillToDivideAmount.TabIndex = 9;
@@ -141,7 +140,7 @@
             // lblReservationLocationTotalAmount
             // 
             this.lblReservationLocationTotalAmount.AutoSize = true;
-            this.lblReservationLocationTotalAmount.Location = new System.Drawing.Point(491, 146);
+            this.lblReservationLocationTotalAmount.Location = new System.Drawing.Point(927, 169);
             this.lblReservationLocationTotalAmount.Name = "lblReservationLocationTotalAmount";
             this.lblReservationLocationTotalAmount.Size = new System.Drawing.Size(70, 13);
             this.lblReservationLocationTotalAmount.TabIndex = 10;
@@ -150,7 +149,7 @@
             // lblReservationLocationTotalAmountPrice
             // 
             this.lblReservationLocationTotalAmountPrice.AutoSize = true;
-            this.lblReservationLocationTotalAmountPrice.Location = new System.Drawing.Point(507, 171);
+            this.lblReservationLocationTotalAmountPrice.Location = new System.Drawing.Point(943, 194);
             this.lblReservationLocationTotalAmountPrice.Name = "lblReservationLocationTotalAmountPrice";
             this.lblReservationLocationTotalAmountPrice.Size = new System.Drawing.Size(25, 13);
             this.lblReservationLocationTotalAmountPrice.TabIndex = 11;
@@ -160,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 409);
+            this.ClientSize = new System.Drawing.Size(1032, 873);
             this.Controls.Add(this.lblReservationLocationTotalAmountPrice);
             this.Controls.Add(this.lblReservationLocationTotalAmount);
             this.Controls.Add(this.lblReservationLocationStillToDivideAmount);
