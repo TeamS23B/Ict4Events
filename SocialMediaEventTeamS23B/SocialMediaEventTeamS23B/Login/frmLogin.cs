@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationLayer;
 using DatabaseConnection;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 using SocialMediaEventTeamS23B.SMSForms;
 
 namespace SocialMediaEventTeamS23B
@@ -20,13 +20,13 @@ namespace SocialMediaEventTeamS23B
         public frmLogin()
         {
             InitializeComponent();
-            dbConnetion = new DataBaseConnection();
-            login = new Login(dbConnetion);
+            dbConnection = new DataBaseConnection();
+            login = new Login(dbConnection);
             MakeAllButtonsInvisible();
         }
 
         private Login login;
-        private DataBaseConnection dbConnetion;
+        private DataBaseConnection dbConnection;
 
         private void MakeAllButtonsInvisible()
         {
@@ -110,6 +110,7 @@ namespace SocialMediaEventTeamS23B
                     NonUserControl();
                     break;
             }
+            
         }
 
         private void ReceptionistUserControl()
@@ -118,6 +119,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
+            btLogin.Visible = false;
         }
 
         private void MaterialRentUserControl()
@@ -126,7 +128,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void GuardUserControl()
@@ -135,7 +137,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void AdminUserControl()
@@ -147,7 +149,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void NonUserControl()
@@ -162,7 +164,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void MaterialControl()
@@ -170,7 +172,7 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void ReserveControl()
@@ -178,7 +180,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void AccesControl()
@@ -186,7 +188,7 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void AdminControl()
@@ -197,36 +199,36 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-
+            btLogin.Visible = false;
         }
 
         private void btnAccesControl_Click_1(object sender, EventArgs e)
         {
-            AccessControl AccesControlForm = new AccessControl(dbConnetion);
+            AccessControl AccesControlForm = new AccessControl(dbConnection);
             AccesControlForm.Show();
         }
 
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
-            SMSMain smsMainForm = new SMSMain(dbConnetion, login.GetVisitor());
+            SMSMain smsMainForm = new SMSMain(dbConnection, login.GetVisitor());
             smsMainForm.Show();
         }
 
         private void btnMaterial_Click(object sender, EventArgs e)
         {
-            MaterialRent MaterialRent = new MaterialRent(dbConnetion);
+            MaterialRent MaterialRent = new MaterialRent(dbConnection);
             MaterialRent.Show();
         }
 
         private void btnReserving_Click(object sender, EventArgs e)
         {
-            ReservationDetails ReservationForm = new ReservationDetails(dbConnetion);
+            ReservationDetails ReservationForm = new ReservationDetails(dbConnection);
             ReservationForm.Show();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu(dbConnetion);
+            Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu(dbConnection);
             AdminMenu.Show();
         }
 
@@ -238,6 +240,7 @@ namespace SocialMediaEventTeamS23B
             tbPassword.Clear();
             tbUsername.Clear();
             lblLoggedIn.Text = "U bent uitgelogd";
+            btLogin.Visible = true;
         }
     }
 }

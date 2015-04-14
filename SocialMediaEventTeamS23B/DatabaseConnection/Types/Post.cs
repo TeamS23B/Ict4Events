@@ -4,13 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 
 namespace DatabaseConnection.Types
 {
     public class Post
     {
-        public List<Post> Comments { get; private set; }
+        public List<Post> Comments { get; set; }
         public Mediafile Mediafile { get; private set; }
         public String Description { get; private set; }
         public int Likes { get; private set; }
@@ -18,10 +18,11 @@ namespace DatabaseConnection.Types
         public DateTime PostedOn { get; private set; }
         public String Uploader { get; private set; }
         public Category Category { get; private set; }
+        public int Id { get; private set; }
 
         public String Title  { get; set; }
 
-        public Post(string title, List<Post> comments, Mediafile mediafile, string description, int likes, int flags, DateTime postedOn, string uploader, Category category)
+        public Post(string title, List<Post> comments, Mediafile mediafile, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id)
         {
             if(comments==null)Comments=new List<Post>();//if no comments create empty list(to avoid errors)
             if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(uploader) || string.IsNullOrEmpty(title))
@@ -32,10 +33,14 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("Likes or Flags is below zero");
             }
-            /*if (category == null)
+            //if (category == null)
+            //{
+            //    throw new InvalidDataException("category is null");
+            //}
+            if (id < 0)
             {
-                throw new InvalidDataException("category is null");
-            }*/
+                throw new InvalidDataException("id < 0");
+            }
             Comments = comments;
             Mediafile = mediafile;//nullable
             Description = description;
@@ -44,9 +49,10 @@ namespace DatabaseConnection.Types
             PostedOn = postedOn;
             Uploader = uploader;
             Category = category;
+            this.Id = id;
             }
 
-        public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category):this(title,comments,null,description,likes,flags,postedOn,uploader,category)
+        public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id):this(title,comments,null,description,likes,flags,postedOn,uploader,category,id)
         {
             
         }

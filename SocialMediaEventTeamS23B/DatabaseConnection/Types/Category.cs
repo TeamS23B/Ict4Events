@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 
 namespace DatabaseConnection.Types
 {
@@ -11,9 +11,8 @@ namespace DatabaseConnection.Types
     {
         public String Title { get; private set; }
         public Category Parent { get; private set; }
-        public List<Post> Posts { get; private set; }
 
-        public Category(string title, Category parent, List<Post> posts)
+        public Category(string title, Category parent)
         {
             if (string.IsNullOrEmpty(title))
             {
@@ -21,18 +20,16 @@ namespace DatabaseConnection.Types
             }
             Title = title;
             Parent = parent;
-            Posts = posts;
         }
 
-        public Category(string title, List<Post> posts) : this(title, null, posts)
+        public Category(string title) : this(title, null)
         {
             
         }
 
         public override string ToString()
         {
-            var postsString = string.Join(",", Posts.Select(post => post.ToString()));
-            return String.Format("{{Title={0},Parrent={1},Posts=[{2}]}}", Title, Parent.Title, Posts);
+            return String.Format("{{Title={0},Parrent={1}}}", Title, Parent.Title);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace ApplicationLayer
                 case 'N':
                     return false;
                 default:
-                    throw new DatabaseConnection.Exeptions.InvalidDataException("Error: Payment Unknown");
+                    throw new DatabaseConnection.Exceptions.InvalidDataException("Error: Payment Unknown");
             }
         }
     }

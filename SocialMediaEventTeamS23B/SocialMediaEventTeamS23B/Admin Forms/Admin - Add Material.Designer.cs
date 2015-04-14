@@ -141,6 +141,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Admin___Add_Material";
             this.Text = "Admin___Add_Material";
+            this.Activated += new System.EventHandler(this.Admin___Add_Material_Activated);
+            this.Load += new System.EventHandler(this.Admin___Add_Material_Load);
             this.gbMaterial.ResumeLayout(false);
             this.ResumeLayout(false);
 
