@@ -642,6 +642,21 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// Insert a reservation into the database.
+        /// </summary>
+        /// <param name="leiderRfid"></param>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        public int AddReservation(string leaderRfid, DateTime timeOfReservation)
+        {
+            decimal reservationId = GetHighestId("Reservering")+ 1;
+            string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
+
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
