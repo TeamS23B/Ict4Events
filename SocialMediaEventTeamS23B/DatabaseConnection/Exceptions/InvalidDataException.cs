@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseConnection.Exeptions
+namespace DatabaseConnection.Exceptions
 {
     public class InvalidDataException:Exception
     {

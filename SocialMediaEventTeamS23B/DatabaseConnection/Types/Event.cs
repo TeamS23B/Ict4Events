@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 
 namespace DatabaseConnection.Types
 {
@@ -23,7 +23,7 @@ namespace DatabaseConnection.Types
             }
             if (string.IsNullOrEmpty(name))
             {
-                throw new DatabaseConnection.Exeptions.InvalidDataException("Name is empty");
+                throw new DatabaseConnection.Exceptions.InvalidDataException("Name is empty");
             }
             Name = name;
             EventId = eventId;

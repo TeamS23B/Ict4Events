@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApplicationLayer;
 using DatabaseConnection;
+using DatabaseConnection.Exceptions;
+using DatabaseConnection.Types;
 using Phidgets;
 using Phidgets.Events;
 
@@ -19,9 +22,24 @@ namespace SocialMediaEventTeamS23B
         private RFID rfid;
 
         private ApplicationLayer.AccessControl accessControl;
+        private MaterialRentInfo MaterialRentCheckConnection;
+        private List<Material> ListMaterials = new List<Material>();
+        private DataBaseConnection dbConnection;
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
+            dbConnection = new DataBaseConnection();
+            MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
+            ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
+            foreach (Material material in ListMaterials)
+            {
+
+            }
+
+
+
+
+
             accessControl = new ApplicationLayer.AccessControl(dbc);//todo dbc
             rfid = new RFID();
             rfid.open();
@@ -136,6 +154,10 @@ namespace SocialMediaEventTeamS23B
             
 
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetInfoFromMaterialRentFromDatabase()
         {
 
         }
