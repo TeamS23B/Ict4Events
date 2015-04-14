@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ApplicationLayer.Exceptions;
@@ -12,6 +13,18 @@ namespace ApplicationLayer
 {
     public class Login
     {
+        /// <summary>
+        /// Hashes the input to bytes
+        /// usage (Encoding.[UTF8].GetBytes(input))
+        /// </summary>
+        /// <param name="input">What to hash</param>
+        /// <returns>hashed bytes, size=20</returns>
+        public static byte[] HashedBytes(byte[] input)
+        {
+            HashAlgorithm alg = new SHA1Managed();
+            return alg.ComputeHash(input);
+        }
+
         public string Username { get; private set; }
         public bool IsLoggedIn { get { return !string.IsNullOrEmpty(Username); } }
 
