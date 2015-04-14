@@ -13,6 +13,7 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
 {
     public partial class Admin___Add_Material : Form
     {
+        List<Material> Materials;
         ApplicationLayer.Admin adm = new ApplicationLayer.Admin();
         public Admin___Add_Material()
         {
@@ -22,10 +23,11 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         public void refreshListView()
         {
             lvMaterial.Items.Clear();
-            List<Material> materials = adm.GetAllMaterials();
-            foreach (Material material in materials)
+            Materials = adm.GetAllMaterials();
+            foreach (Material material in Materials)
             {
-                ListViewItem lvi = new ListViewItem(material.Type);
+                ListViewItem lvi = new ListViewItem(material.MaterialId.ToString());
+                lvi.SubItems.Add(material.Type);
                 lvi.SubItems.Add(material.Name);
                 lvi.SubItems.Add(material.Price.ToString());
                 lvi.SubItems.Add(material.State);
@@ -52,6 +54,17 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         private void Admin___Add_Material_Activated(object sender, EventArgs e)
         {
             refreshListView();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            int matId = Convert.ToInt32(lvMaterial.SelectedIndices[0]);
+            DialogResult dr = MessageBox.Show(String.Format("Weet u zeker dat u {0} {1} wilt verwijderen?", Materials.ElementAt(matId).Type, Materials.ElementAt(matId).Name), "Beheersysteem", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                adm.RemoveMaterial(Materials.ElementAt(matId));
+                refreshListView();
+            }
         }
 
     }
