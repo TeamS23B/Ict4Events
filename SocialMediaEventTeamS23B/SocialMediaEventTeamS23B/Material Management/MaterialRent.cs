@@ -108,7 +108,7 @@ namespace SocialMediaEventTeamS23B
             int MaterialId = CheckMaterial.MaterialId;
             DateTime Today = DateTime.Now;
             DateTime EndDate = dateTimePickerMaterialRentEndDate.Value;
-            MaterialRentInfoS.MakeRent(rfid, Today, EndDate, MaterialId);
+            MaterialRentInfoS.MakeRent(CheckRfid, Today, EndDate, MaterialId);
         }
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
