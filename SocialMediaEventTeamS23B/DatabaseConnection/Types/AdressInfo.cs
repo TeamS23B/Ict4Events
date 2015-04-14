@@ -13,7 +13,6 @@ namespace DatabaseConnection.Types
         public String City { get; private set; }
         public int Number { get; private set; }
         public String Suffix { get; private set; }
-        public String Country { get; private set; }
         public String Postalcode { get; private set; }
 
         public AdressInfo(string street, string city, int number, string suffix, string postalcode)
@@ -42,7 +41,7 @@ namespace DatabaseConnection.Types
         public override string ToString()
         {
             return String.Format("{{Street={0},City={1},Number={2},Suffix={3},Country={4},Postalcode={5}", Street, City,
-                Number, Suffix, Country, Postalcode);
+                Number, Suffix, Postalcode);
         }
     }
 }

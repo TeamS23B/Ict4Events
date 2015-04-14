@@ -15,10 +15,11 @@ namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationDetails : Form
     {
-        
+        List<String> members;
         public ReservationDetails(DataBaseConnection dbc)
         {
             InitializeComponent();
+            members = new List<String>();
         }
 
         private void btnReservationDetailsNext_Click(object sender, EventArgs e)
@@ -29,6 +30,16 @@ namespace SocialMediaEventTeamS23B
 
         private void btnReservationAddMember_Click(object sender, EventArgs e)
         {
+            try
+            {
+                members.Add(tbUserNameMember.Text + ": " + tbReservationFirstNameMember.Text + ": " + tbReservationPrefixMember.Text + ": " + tbReservationLastNameMember.Text + ": " + tbReservationEmailaddressMember.Text);
+                
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             //Login.HashedBytes(Encoding.UTF8.GetBytes(string aaaa));//encoding
         }
     }
