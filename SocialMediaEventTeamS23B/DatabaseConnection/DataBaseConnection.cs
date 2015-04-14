@@ -232,7 +232,7 @@ namespace DatabaseConnection
                     //int commentOf = Convert.ToInt32(reader["ReactieOp"]);
                     DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
                     string visible = Convert.ToString(reader["Zichtbaar"]);
-                    posts.Add(new Post(commentTitle, null,description, 0,0,placedOn,rfid, null));
+                    posts.Add(new Post(commentTitle, new List<Post>(),description, 0,0,placedOn,rfid, null));
                 }
             }
             catch(Exception e)
