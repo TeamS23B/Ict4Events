@@ -56,7 +56,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(150, 20);
             this.tbPassword.TabIndex = 1;
-            this.tbPassword.Text = "WACHTWOORDHASH123456";
+            this.tbPassword.Text = "aapje";
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // lblUsername
