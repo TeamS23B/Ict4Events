@@ -104,7 +104,11 @@ namespace SocialMediaEventTeamS23B
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
             string CheckRfid = lblMaterialRentRfid.Text;
-            
+            Material CheckMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
+            int MaterialId = CheckMaterial.MaterialId;
+            DateTime Today = DateTime.Now;
+            DateTime EndDate = dateTimePickerMaterialRentEndDate.Value;
+            MaterialRentInfoS.MakeRent(rfid, Today, EndDate, MaterialId);
         }
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -130,9 +134,7 @@ namespace SocialMediaEventTeamS23B
         private void btnConfirmItemRent_Click(object sender, EventArgs e)
         {
             gbRfidScan.Enabled = true;
-            //Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
-            //SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
-
+            gbProducts.Enabled = false;
         }
 
 

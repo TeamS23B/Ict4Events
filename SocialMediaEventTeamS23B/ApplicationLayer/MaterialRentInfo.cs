@@ -31,6 +31,12 @@ namespace ApplicationLayer
         {
            return dbConnection.PersonMaterialRentInfo(RFID);
         }
+        public void MakeRent(string rfid, DateTime startdate, DateTime enddate, int materiaalId)
+        {
+            dbConnection.AddRent(startdate, enddate, rfid);
+            int highestId = (int)dbConnection.GetHighestId("Huur");
+            dbConnection.AddRentMaterial(highestId, materiaalId);
+        }
     }
 
 }

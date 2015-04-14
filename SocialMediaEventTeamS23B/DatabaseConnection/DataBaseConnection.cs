@@ -154,8 +154,8 @@ namespace DatabaseConnection
                     int yMap = Convert.ToInt32(odr["yPlattegrond"]);
                     int width = Convert.ToInt32(odr["Breedte"]);
                     int height = Convert.ToInt32(odr["Hoogte"]);
-                    //string Category = Convert.ToString(odr["Categorie"]);
-                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
+                    string Cat = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationNr, new Point(xMap, yMap), new Point(width, height), Cat));
                 }
             }
             catch
