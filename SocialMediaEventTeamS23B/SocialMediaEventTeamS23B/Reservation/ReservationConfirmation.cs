@@ -30,6 +30,7 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             members = new List<Visitor>();
             GetData();
+            
         }
         private void GetData()
         {
@@ -38,7 +39,25 @@ namespace SocialMediaEventTeamS23B
 
         private void btnReservationConfirmationNext_Click(object sender, EventArgs e)
         {
+            string leaderId = leader.RFID;
+            res.AddVisitorLeader(leader);
+            if(members != null)
+            {
+                foreach (Visitor V in members)
+                {
+                    res.AddVisitor(V, leaderId);
+                }
+            }
 
+
+            
+            foreach(Material M in toReserve)
+            {
+                res.RentWithMaterialId(M.MaterialId);
+            }
+
+
+            
             //sent alles close alls
         }
 
