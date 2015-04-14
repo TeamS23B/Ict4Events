@@ -799,6 +799,12 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int AddMaterialToReserved(int MaterialId)
+        {
+            var insertquery = String.Format("INSERT INTO Gehuurd_materiaal(HuurId, MateriaalId) VALUES (1,{0})", MaterialId);
+            return dbConnector.QueryNoResult(insertquery);
+        }
+
 
         #endregion
 

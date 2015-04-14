@@ -87,5 +87,26 @@ namespace SocialMediaEventTeamS23B
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Material M in materials)
+                {
+                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    {
+                        lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                        lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
