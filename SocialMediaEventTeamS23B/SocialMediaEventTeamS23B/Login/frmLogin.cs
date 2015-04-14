@@ -256,6 +256,11 @@ namespace SocialMediaEventTeamS23B
             tbUsername.Clear();
             lblLoggedIn.Text = "U bent uitgelogd";
             btLogin.Visible = true;
+            lblUsername.Visible = true;
+            lblPassword.Visible = true;
+            tbPassword.Visible = true;
+            tbUsername.Visible = true;
+
         }
     }
 }
