@@ -834,7 +834,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public int AddVisitor(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string leaderRfid)
         {
-            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, HoortBij) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})", rfid, "N", name, prefix, surname, email, password, userName, eventId, leaderRfid);
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, HoortBij) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', {8}, '{9}')", rfid, 'N', name, prefix, surname, email, password, userName, eventId, leaderRfid);
             return dbConnector.QueryNoResult(nonquery);
         }
 
