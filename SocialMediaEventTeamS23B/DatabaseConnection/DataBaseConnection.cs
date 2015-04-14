@@ -200,7 +200,7 @@ namespace DatabaseConnection
             List<Visitor> visitors = new List<Visitor>();
             try
             {
-                AdressInfo Adress = new AdressInfo("Unknown","Unknown",0,"Unknown");
+                AdressInfo Adress = new AdressInfo("Unknown","Unknown",999,"Unknown");
                 var query = "SELECT * FROM deelnemer";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
@@ -455,7 +455,7 @@ namespace DatabaseConnection
             {
                 //Kijken of het personeel is 
                 string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
-                Console.WriteLine(sqlWerknemer);
+                
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -464,54 +464,29 @@ namespace DatabaseConnection
                 }
                 reader.Close();
                 dbConnector.CloseConnection();
-                if(!string.IsNullOrEmpty(function))
-                {
+                
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
                     while (reader.Read())
-                {
-                        if (username == reader[0].ToString() && password == reader[1].ToString())
                         {
-                            function = function + "User";
-                }
-                        else
-                        {
-                            function = function;
+                            if (!string.IsNullOrEmpty((string)reader[0])&&!string.IsNullOrEmpty((string)reader[1]))
+                            {
+                                function += "User";
+                            }
+                            
                         }
-                    }
-                }
+                    
 
-                reader.Close();
-                dbConnector.CloseConnection();
-
-                if (dbConnector.QueryReader(sqlWerknemer) == null)
-                {
-                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
-                    reader = dbConnector.QueryReader(sqlDeelnemer);
-                    while (reader.Read())
-                    {
-                        if (username == reader[0].ToString() && password == reader[1].ToString())
-                        {
-                            function = "User";
-                        }
-                        else
-                        {
-                            function = "NonUser";
-                        }
-                    }
                     reader.Close();
                     dbConnector.CloseConnection();
-                }
-                else
-                {
-                    function = function;
-                }
+
+                
                  
                 return function;
             }
             catch
             {
-                return function = "error";
+                return "error";
             }
         }
 
@@ -530,7 +505,7 @@ namespace DatabaseConnection
         {
             var querry = String.Format("SELECT * " +
                                        "FROM deelnemer " +
-                                       "WHERE gebruikersnaam = {0}",username);
+                                       "WHERE gebruikersnaam = '{0}'",username);
             var reader = dbConnector.QueryReader(querry);
             if (!reader.HasRows)
             {
@@ -540,12 +515,26 @@ namespace DatabaseConnection
             Visitor visitor;
             if (reader["HoortBij"] != DBNull.Value)
             {
-                var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["emailadres"],(string)reader["iban"], address, (string)reader["rfid"]);
+                var t = reader["Toevoeging"];
+                AdressInfo address;
+                if (t == DBNull.Value)
+                {
+                    address = new AdressInfo((string) reader["straatnaam"], (string) reader["plaatsnaam"],
+                        (int) reader["Huisnummer"], (string) reader["Postcode"]);
+                }
+                else
+                {
+                    address = new AdressInfo((string)reader["straatnaam"], (string)reader["plaatsnaam"], (int)reader["Huisnummer"],(string)reader["toevoeging"], (string)reader["Postcode"]);
+                }
+
+                var tus = reader["tussenvoegsel"];
+
+                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
+                var tus = reader["tussenvoegsel"];
+                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
@@ -703,10 +692,48 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// Insert a connection between an event, a location and a reservation into the database
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="locationId"></param>
+        /// <param name="reservationId"></param>
+        /// <returns></returns>
         public int AddLocationToReservation(int eventId, int locationId, int reservationId)
         {
             
             var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Add a record to the database that tells you which RFID has rented something.
+        /// To record which items were in fact rented, use the 'AddRentMaterial' method.
+        /// </summary>
+        /// <param name="rentDate"></param>
+        /// <param name="returnDate"></param>
+        /// <param name="renteeRfid"></param>
+        /// <returns></returns>
+        public int AddRent(DateTime rentDate, DateTime returnDate, string renteeRfid)
+        {
+            decimal rentId = GetHighestId("Huur") + 1;
+            string rentDateString = rentDate.ToString("MM/dd/yyyy hh:mm:ss");
+            string returnDateString = returnDate.ToString("MM/dd/yyyy hh:mm:ss");
+
+            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, {1}, {2}, {3})", rentId, rentDateString, returnDateString,renteeRfid);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Connect a 'rent' record to actual materials.
+        /// When this method is executed, the materials will be connected to a rent date and return date.
+        /// </summary>
+        /// <param name="rentId"></param>
+        /// <param name="materialId"></param>
+        /// <returns></returns>
+        public int AddRentMaterial(int rentId, int materialId)
+        {
+            var nonquery = String.Format("INSERT INTO Reservering_Materiaal (HuurId, MateriaalId) VALUES ({0}, {1})", rentId, materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
