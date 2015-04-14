@@ -701,6 +701,13 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int AddLocationToReservation(int eventId, int locationId, int reservationId)
+        {
+            
+            var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
@@ -709,6 +716,12 @@ namespace DatabaseConnection
         public int RmvMaterialFromEvent(Decimal materialId)
         {
             var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int RmvMaterial(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal WHERE materiaalId = {0}", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
