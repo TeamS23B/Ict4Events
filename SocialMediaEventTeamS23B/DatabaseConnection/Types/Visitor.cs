@@ -32,7 +32,7 @@ namespace DatabaseConnection.Types
             
         }
 
-        private Visitor(string username,string prefix, string name, string surname, string email, string iban, AdressInfo adress, string rfid,bool isLeader)
+        private Visitor(string username,string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid,bool isLeader)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username))
             {

@@ -154,8 +154,8 @@ namespace DatabaseConnection
                     int yMap = Convert.ToInt32(odr["yPlattegrond"]);
                     int width = Convert.ToInt32(odr["Breedte"]);
                     int height = Convert.ToInt32(odr["Hoogte"]);
-                    //string Category = Convert.ToString(odr["Categorie"]);
-                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
+                    string Cat = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationNr, new Point(xMap, yMap), new Point(width, height), Cat));
                 }
             }
             catch
@@ -200,7 +200,7 @@ namespace DatabaseConnection
             List<Visitor> visitors = new List<Visitor>();
             try
             {
-                AdressInfo Adress = new AdressInfo("Unknown","Unknown",0,"Unknown");
+                AdressInfo Adress = new AdressInfo("Unknown","Unknown",999,"Unknown");
                 var query = "SELECT * FROM deelnemer";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
@@ -505,7 +505,7 @@ namespace DatabaseConnection
         {
             var querry = String.Format("SELECT * " +
                                        "FROM deelnemer " +
-                                       "WHERE gebruikersnaam = {0}",username);
+                                       "WHERE gebruikersnaam = '{0}'",username);
             var reader = dbConnector.QueryReader(querry);
             if (!reader.HasRows)
             {
@@ -515,12 +515,26 @@ namespace DatabaseConnection
             Visitor visitor;
             if (reader["HoortBij"] != DBNull.Value)
             {
-                var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["emailadres"],(string)reader["iban"], address, (string)reader["rfid"]);
+                var t = reader["Toevoeging"];
+                AdressInfo address;
+                if (t == DBNull.Value)
+                {
+                    address = new AdressInfo((string) reader["straatnaam"], (string) reader["plaatsnaam"],
+                        (int) reader["Huisnummer"], (string) reader["Postcode"]);
+                }
+                else
+                {
+                    address = new AdressInfo((string)reader["straatnaam"], (string)reader["plaatsnaam"], (int)reader["Huisnummer"],(string)reader["toevoeging"], (string)reader["Postcode"]);
+                }
+
+                var tus = reader["tussenvoegsel"];
+
+                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
+                var tus = reader["tussenvoegsel"];
+                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
