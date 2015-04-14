@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReservationLocation));
-            this.pictureBoxReservationLocationLocation = new System.Windows.Forms.PictureBox();
             this.lblReservationLocationDetails = new System.Windows.Forms.Label();
             this.lblReservationLocationBungalow = new System.Windows.Forms.Label();
             this.btnReservationLocationPrevious = new System.Windows.Forms.Button();
@@ -41,18 +40,7 @@
             this.lblReservationLocationStillToDivideAmount = new System.Windows.Forms.Label();
             this.lblReservationLocationTotalAmount = new System.Windows.Forms.Label();
             this.lblReservationLocationTotalAmountPrice = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReservationLocationLocation)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxReservationLocationLocation
-            // 
-            this.pictureBoxReservationLocationLocation.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxReservationLocationLocation.Image")));
-            this.pictureBoxReservationLocationLocation.Location = new System.Drawing.Point(12, -28);
-            this.pictureBoxReservationLocationLocation.Name = "pictureBoxReservationLocationLocation";
-            this.pictureBoxReservationLocationLocation.Size = new System.Drawing.Size(1100, 882);
-            this.pictureBoxReservationLocationLocation.TabIndex = 0;
-            this.pictureBoxReservationLocationLocation.TabStop = false;
-            this.pictureBoxReservationLocationLocation.Click += new System.EventHandler(this.pictureBoxReservationLocationLocation_Click);
             // 
             // lblReservationLocationDetails
             // 
@@ -160,6 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1286, 859);
             this.Controls.Add(this.lblReservationLocationTotalAmountPrice);
             this.Controls.Add(this.lblReservationLocationTotalAmount);
@@ -172,10 +161,8 @@
             this.Controls.Add(this.btnReservationLocationPrevious);
             this.Controls.Add(this.lblReservationLocationBungalow);
             this.Controls.Add(this.lblReservationLocationDetails);
-            this.Controls.Add(this.pictureBoxReservationLocationLocation);
             this.Name = "ReservationLocation";
             this.Text = "ReservationLocation";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReservationLocationLocation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,7 +170,6 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxReservationLocationLocation;
         private System.Windows.Forms.Label lblReservationLocationDetails;
         private System.Windows.Forms.Label lblReservationLocationBungalow;
         private System.Windows.Forms.Button btnReservationLocationPrevious;

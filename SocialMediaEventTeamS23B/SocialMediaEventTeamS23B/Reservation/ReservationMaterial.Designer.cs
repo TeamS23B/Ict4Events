@@ -138,6 +138,7 @@
             this.btnReservationMaterialPrevious.TabIndex = 29;
             this.btnReservationMaterialPrevious.Text = "Terug";
             this.btnReservationMaterialPrevious.UseVisualStyleBackColor = true;
+            this.btnReservationMaterialPrevious.Click += new System.EventHandler(this.btnReservationMaterialPrevious_Click);
             // 
             // ReservationMaterial
             // 

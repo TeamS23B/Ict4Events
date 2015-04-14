@@ -135,7 +135,33 @@ namespace DatabaseConnection
             MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
             return info;
         }
+        public List<MapLocation> GetReserverdMapLocations()
+        {
+            List<MapLocation> Reserverdmaplocations = new List<MapLocation>();
+            try
+            {
+                var query = "SELECT * FROM plaats";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    //veel was niet nodig
+                    int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
+                    int locationId = Convert.ToInt32(odr["LocatieId"]);
+                    int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
+                    int xMap = Convert.ToInt32(odr["xPlattegrond"]);
+                    int yMap = Convert.ToInt32(odr["yPlattegrond"]);
+                    int width = Convert.ToInt32(odr["Breedte"]);
+                    int height = Convert.ToInt32(odr["Hoogte"]);
+                    string Cat = Convert.ToString(odr["Categorie"]);
+                    Reserverdmaplocations.Add(new MapLocation(mapLocationNr, new Point(xMap, yMap), new Point(width, height), Cat));
+                }
+            }
+            catch
+            {
 
+            }
+            return Reserverdmaplocations;
+        }
 
         public List<MapLocation> GetMapLocations()
         {
@@ -154,8 +180,8 @@ namespace DatabaseConnection
                     int yMap = Convert.ToInt32(odr["yPlattegrond"]);
                     int width = Convert.ToInt32(odr["Breedte"]);
                     int height = Convert.ToInt32(odr["Hoogte"]);
-                    //string Category = Convert.ToString(odr["Categorie"]);
-                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
+                    string Cat = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationNr, new Point(xMap, yMap), new Point(width, height), Cat));
                 }
             }
             catch
@@ -205,6 +231,7 @@ namespace DatabaseConnection
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
+                    int Number = 999;
                     string RFID = Convert.ToString(odr["RFID"]);
                     string Name = Convert.ToString(odr["Voornaam"]);
                     string Prefix =Convert.ToString(odr["Tussenvoegsel"]);
@@ -214,18 +241,17 @@ namespace DatabaseConnection
                     string Iban = Convert.ToString(odr["Iban"]);
                     string Email = Convert.ToString(odr["Emailadres"]);
                     string Street = Convert.ToString(odr["Straatnaam"]);
-                    int Number = Convert.ToInt32(odr["Huisnummer"]);
+                    if (Convert.ToString(odr["Huisnummer"])!= "")
+                    {
+                        Number = Convert.ToInt32(odr["Huisnummer"]);
+                    }
                     string Suffix = Convert.ToString(odr["Toevoeging"]);
                     string City = Convert.ToString(odr["Plaatsnaam"]);
                     string PostalCode = Convert.ToString(odr["Postcode"]);
-
-                    if (Street != null && Number != null && City != null && PostalCode != null)
-                    {
-                        Adress = new AdressInfo(Street, City, Number, PostalCode);
-                    }
-
+                                        
                     if(Leader == "J")
                     {
+                        Adress = new AdressInfo(Street, City, Number, PostalCode);
                         visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,Iban,Adress,RFID));
                     }
                     if(Leader == "N")
@@ -638,7 +664,7 @@ namespace DatabaseConnection
             decimal maxId = GetHighestId("Event") + 1;
             string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
             string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY HH24:MI:SS'), to_date('{4}','DD-MM-YYYY HH24:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY hh:MI:SS'), to_date('{4}','DD-MM-YYYY hh:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -688,7 +714,7 @@ namespace DatabaseConnection
             decimal reservationId = GetHighestId("Reservering")+ 1;
             string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY hh:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -720,7 +746,7 @@ namespace DatabaseConnection
             string rentDateString = rentDate.ToString("MM/dd/yyyy hh:mm:ss");
             string returnDateString = returnDate.ToString("MM/dd/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, {1}, {2}, {3})", rentId, rentDateString, returnDateString,renteeRfid);
+            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, to_date('{1}','DD-MM-YYYY hh:MI:SS'), to_date('{2}','DD-MM-YYYY hh:MI:SS'), '{3}')", rentId, rentDateString, returnDateString, renteeRfid);
             return dbConnector.QueryNoResult(nonquery);
         }
 
