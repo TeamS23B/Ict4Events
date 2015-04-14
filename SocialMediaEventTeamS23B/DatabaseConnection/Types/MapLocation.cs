@@ -12,8 +12,9 @@ namespace DatabaseConnection.Types
     {
         public int LocationNumber { get; private set; }
         public Point Coordinates { get; private set; }
+        public Point Seize { get; private set; }
 
-        public MapLocation(int locationNumber, Point coordinates)
+        public MapLocation(int locationNumber, Point coordinates, Point seize)
         {
             if (locationNumber <= 0)
             {
@@ -21,11 +22,12 @@ namespace DatabaseConnection.Types
             }
             LocationNumber = locationNumber;
             Coordinates = coordinates;
+            Seize = seize;
         }
 
         public override string ToString()
         {
-            return String.Format("{{LocationNumber={0},MapX={1},MapY={2}}}",LocationNumber,Coordinates.X,Coordinates.Y);
+            return String.Format("{{LocationNumber={0},MapX={1},MapY={2},SizeX={3},SizeY={4}}}",LocationNumber,Coordinates.X,Coordinates.Y, Seize.X, Seize.Y);
         }
     }
 }
