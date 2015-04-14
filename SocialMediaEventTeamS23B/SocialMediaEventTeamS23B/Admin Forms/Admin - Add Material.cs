@@ -20,6 +20,9 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Reload materials into the listview.
+        /// </summary>
         public void refreshListView()
         {
             lvMaterial.Items.Clear();
@@ -35,27 +38,52 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
             }
         }
 
+        /// <summary>
+        /// Open the form 'Admin - Add Material - Add'.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Admin___Add_Material___Add AdminAddMatAdd = new Admin___Add_Material___Add();
             AdminAddMatAdd.Show();
         }
 
+        /// <summary>
+        /// Close the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Execute refreshListView upon opening of the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Admin___Add_Material_Load(object sender, EventArgs e)
         {
             refreshListView();
         }
 
+        /// <summary>
+        /// When the form is activated, refresh the listview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Admin___Add_Material_Activated(object sender, EventArgs e)
         {
             refreshListView();
         }
 
+        /// <summary>
+        /// Remove the selected material.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             int matId = Convert.ToInt32(lvMaterial.SelectedIndices[0]);

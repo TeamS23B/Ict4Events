@@ -11,7 +11,7 @@ namespace ApplicationLayer
     public class Reservations
     {
         private DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
-        
+
         /// <summary>
         /// Constructor
         /// </summary>

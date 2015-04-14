@@ -118,6 +118,11 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        /// Adds the material to the database with the given cost price and rent price.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -134,6 +139,12 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        /// Transforms two separate strings into a single 'double'.
+        /// </summary>
+        /// <param name="upper"></param>
+        /// <param name="lower"></param>
+        /// <returns></returns>
         public double StringsToDouble(string upper, string lower)
         {
             int upInt = Convert.ToInt32(upper);
