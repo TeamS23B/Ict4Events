@@ -107,7 +107,8 @@ namespace SocialMediaEventTeamS23B
 
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
-
+            string CheckRfid = lblMaterialRentRfid.Text;
+            
         }
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -132,7 +133,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnConfirmItemRent_Click(object sender, EventArgs e)
         {
-            gbRfidScan.Enabled = false;
+            gbRfidScan.Enabled = true;
             Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
             SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
 
