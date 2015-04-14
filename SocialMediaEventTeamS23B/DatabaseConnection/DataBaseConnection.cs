@@ -318,12 +318,15 @@ namespace DatabaseConnection
             {
                 List<Post> comments = new List<Post>();
                 decimal parentPostId = GetPostId(title);
-                String query = "SELECT b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR, COUNT(case when likeofflag = 'L' then 1 end) as likes, COUNT(case when likeofflag = 'F' then 1 end) as flags FROM bericht b LEFT OUTER JOIN likeflag l ON b.berichtId = l.berichtId GROUP BY b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR;";
+                var query = String.Format(
+                    "SELECT b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR, COUNT(case when likeofflag = 'L' then 1 end) as likes, COUNT(case when likeofflag = 'F' then 1 end) as flags " +
+                    "FROM bericht b LEFT OUTER JOIN likeflag l ON b.berichtId = l.berichtId "+
+                    "WHERE b.REACTIEOP = {0} "+
+                    "GROUP BY b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR;",parentPostId);
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
                 {
-                    string rfid = Convert.ToString(reader["b.Rfid"]);
                     int categoryId = Convert.ToInt32(reader["b.CategorieId"]);
                     string commentTitle = Convert.ToString(reader["b.Titel"]);
                     string pathToFile = Convert.ToString(reader["b.Bestand"]);
@@ -333,6 +336,7 @@ namespace DatabaseConnection
                     string visible = Convert.ToString(reader["b.Zichtbaar"]);
                     int likes = Convert.ToInt32(reader["Likes"]);
                     int flags = Convert.ToInt32(reader["Flags"]);
+                    string uploader = Convert.ToString(reader["Gebruikersnaam"]);
 
                     if (visible == "N")
                     {
@@ -518,6 +522,35 @@ namespace DatabaseConnection
         }
 
         /// <summary>
+        /// Increase the amount of 'likes' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int LikePost(string username, string title)
+        {
+            decimal postId = GetPostId(title);
+            string rfid = GetRFIDFromUser(username);
+            string letter = "L";
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
+            return dbConnector.QueryNoResult(nonquery);
+
+        }
+
+        /// <summary>
+        /// Increase the amount of 'flags' on the given post by 1.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int FlagPost(string username, string title)
+        {
+            decimal postId = GetPostId(title);
+            string rfid = GetRFIDFromUser(username);
+            string letter = "F";
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
         /// Insert a category with a given name into the database. 
         /// This category will become a subcategory of the given parent category.
         /// </summary>
@@ -603,34 +636,7 @@ namespace DatabaseConnection
 
         
 
-        /// <summary>
-        /// Increase the amount of 'likes' on the given post by 1.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <returns></returns>
-        public int LikePost(string username, string title)
-        {
-            decimal postId = GetPostId(title);
-            string rfid = GetRFIDFromUser(username);
-            string letter = "L";
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId,rfid,letter);
-            return dbConnector.QueryNoResult(nonquery);
-
-        }
-
-        /// <summary>
-        /// Increase the amount of 'flags' on the given post by 1.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <returns></returns>
-        public int FlagPost(string username, string title)
-        {
-            decimal postId = GetPostId(title);
-            string rfid = GetRFIDFromUser(username);
-            string letter = "F";
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
-            return dbConnector.QueryNoResult(nonquery);
-        }
+        
         #endregion
 
         #region UPDATE
