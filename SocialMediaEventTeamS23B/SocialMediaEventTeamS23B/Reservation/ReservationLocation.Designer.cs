@@ -50,7 +50,6 @@
             this.lblReservationLocationDetails.Size = new System.Drawing.Size(42, 13);
             this.lblReservationLocationDetails.TabIndex = 1;
             this.lblReservationLocationDetails.Text = "Details:";
-            this.lblReservationLocationDetails.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblReservationLocationBungalow
             // 
