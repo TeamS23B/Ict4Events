@@ -21,11 +21,11 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
 
         public void refreshListView()
         {
+            lvMaterial.Items.Clear();
             List<Material> materials = adm.GetAllMaterials();
             foreach (Material material in materials)
             {
                 ListViewItem lvi = new ListViewItem(material.Type);
-                //lvi.SubItems.Add(material.Type);
                 lvi.SubItems.Add(material.Name);
                 lvi.SubItems.Add(material.Price.ToString());
                 lvi.SubItems.Add(material.State);
@@ -45,6 +45,11 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         }
 
         private void Admin___Add_Material_Load(object sender, EventArgs e)
+        {
+            refreshListView();
+        }
+
+        private void Admin___Add_Material_Activated(object sender, EventArgs e)
         {
             refreshListView();
         }

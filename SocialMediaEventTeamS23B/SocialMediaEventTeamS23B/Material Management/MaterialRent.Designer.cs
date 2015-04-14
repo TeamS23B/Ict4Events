@@ -63,6 +63,7 @@
             this.lbMaterialRentProductsInList.Name = "lbMaterialRentProductsInList";
             this.lbMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
             this.lbMaterialRentProductsInList.TabIndex = 1;
+            this.lbMaterialRentProductsInList.SelectedIndexChanged += new System.EventHandler(this.lbMaterialRentProductsInList_SelectedIndexChanged);
             // 
             // lblMaterialRentDetails
             // 
