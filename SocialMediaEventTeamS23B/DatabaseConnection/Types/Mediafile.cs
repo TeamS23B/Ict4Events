@@ -16,7 +16,7 @@ namespace DatabaseConnection.Types
 
         protected Mediafile(string title, string pathToFile)
         {
-            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(pathToFile))
+            if (string.IsNullOrEmpty(pathToFile))
             {
                 throw new InvalidDataException("Title or PathToFile is empty");
             }

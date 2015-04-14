@@ -658,12 +658,25 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int AddMediaPost(string rfid, int category, string title, string text, int commentOn,
+            DateTime timeOfPost, string filename)
+        {
+            var ext = filename.Substring(filename.LastIndexOf('.'));
+            var id = GetHighestId("Bericht");
+            var remoteFileName = "upload/"+id+ext;
+
+            FtpUpload(filename,remoteFileName);
+
+
+            return AddPost(rfid, category, title, text, commentOn, timeOfPost,remoteFileName);
+        }
+
         // AddPost bevat (nog) geen link naar een bestand.
-        public int AddPost(string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost)
+        public int AddPost(string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost,string filename = "")
         {
             decimal maxId = GetHighestId("Bericht") + 1;
             string postDate = timeOfPost.ToString("dd/MM/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatstOm, Zichtbaar) VALUES ({0}, '{1}', {2}, '{3}', '{4}', {5}, to_date('{6}','DD-MM-YYYY HH24:MI:SS'), '{7}')", maxId, rfid, category, title, text, commentOn == -1 ? "NULL" : commentOn.ToString(), timeOfPost, "J");
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatstOm, Zichtbaar,Bestand) VALUES ({0}, '{1}', {2}, '{3}', '{4}', {5}, to_date('{6}','DD-MM-YYYY HH24:MI:SS'), '{7}',{8})", maxId, rfid, category, title, text, commentOn == -1 ? "NULL" : commentOn.ToString(), timeOfPost, "J",filename==""?"null":"'"+filename+"'");
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -920,7 +933,7 @@ namespace DatabaseConnection
             using (var wc = new WebClient())
             {
                 wc.Credentials=new NetworkCredential("Uploader","aapje");
-                wc.UploadFile("ftp://192.168.20.112/"+remoteFile, localFile);
+                wc.UploadFile("ftp://192.168.20.112/"+remoteFile,"STOR", localFile);
             }
         }
 
