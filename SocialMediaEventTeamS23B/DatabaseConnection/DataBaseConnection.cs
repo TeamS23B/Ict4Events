@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Drawing;
 using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
@@ -118,7 +119,49 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
+        {
+            String RFIDPerson = "";
+            String TotalName = "";
+            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = {0})", RFID);
+            OracleDataReader odr = dbConnector.QueryReader(query);
+            while(odr.Read())
+            {
+                RFIDPerson = odr[0].ToString();
+                TotalName = odr[1].ToString() +" "+ odr[2].ToString() +" "+ odr[3].ToString(); 
+            }
+            MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
+            return info;
+        }
 
+
+        public List<MapLocation> GetMapLocations()
+        {
+            List<MapLocation> maplocations = new List<MapLocation>();
+            try
+            {
+                var query = "SELECT * FROM plaats";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    //veel was niet nodig
+                    int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
+                    int locationId = Convert.ToInt32(odr["LocatieId"]);
+                    int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
+                    int xMap = Convert.ToInt32(odr["xPlattegrond"]);
+                    int yMap = Convert.ToInt32(odr["yPlattegrond"]);
+                    int Width = Convert.ToInt32(odr["Breedte"]);
+                    int height = Convert.ToInt32(odr["Hoogte"]);
+                    //string Category = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap)));
+                }
+            }
+            catch
+            {
+
+            }
+            return maplocations;
+        }
         public List<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
@@ -410,6 +453,7 @@ namespace DatabaseConnection
             {
                 //Kijken of het personeel is 
                 string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
+                Console.WriteLine(sqlWerknemer);
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -672,6 +716,12 @@ namespace DatabaseConnection
         public int RmvMaterialFromEvent(Decimal materialId)
         {
             var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int RmvMaterial(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal WHERE materiaalId = {0}", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 

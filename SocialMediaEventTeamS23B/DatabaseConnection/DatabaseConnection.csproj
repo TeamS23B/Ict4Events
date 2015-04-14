@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+    <Reference Include="Oracle.DataAccess, Version=4.112.4.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\odp.net.x86.112.3.20\lib\net40\Oracle.DataAccess.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Phidget21.NET, Version=2.1.8.208, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,6 +58,7 @@
     <Compile Include="Types\Category.cs" />
     <Compile Include="Types\Event.cs" />
     <Compile Include="Types\MapLocation.cs" />
+    <Compile Include="Types\MaterialRentPersonalInfo.cs" />
     <Compile Include="Types\Mediafile.cs" />
     <Compile Include="Types\Post.cs" />
     <Compile Include="Types\Rented.cs" />

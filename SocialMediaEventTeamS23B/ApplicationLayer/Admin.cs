@@ -47,6 +47,11 @@ namespace ApplicationLayer
         {
             return dbc.GetAllMaterials();
         }
+
+        public void RemoveMaterial(Material material)
+        {
+            return dbc.RmvMaterial(material.MaterialId);
+        }
         
         public void AddMaterialToEvent (Material Material )
         {
@@ -76,7 +81,7 @@ namespace ApplicationLayer
 
         public List<Post> GetPosts()
         {
-            return dbc.GetPostsOf(0);
+            return null;// dbc.GetPostsOf(2);
         }
         public void EditVisitor(Visitor visitor, int Change)
         {
