@@ -30,6 +30,7 @@
         {
             this.gbMaterial = new System.Windows.Forms.GroupBox();
             this.lvMaterial = new System.Windows.Forms.ListView();
+            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +39,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbMaterial.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             this.chModel,
             this.chPrice,
             this.chState});
+            this.lvMaterial.FullRowSelect = true;
             this.lvMaterial.Location = new System.Drawing.Point(5, 18);
             this.lvMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.lvMaterial.Name = "lvMaterial";
@@ -69,6 +70,12 @@
             this.lvMaterial.TabIndex = 0;
             this.lvMaterial.UseCompatibleStateImageBehavior = false;
             this.lvMaterial.View = System.Windows.Forms.View.Details;
+            // 
+            // chId
+            // 
+            this.chId.Tag = "";
+            this.chId.Text = "Nr.";
+            this.chId.Width = 45;
             // 
             // chType
             // 
@@ -130,12 +137,6 @@
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // chId
-            // 
-            this.chId.Tag = "";
-            this.chId.Text = "Nr.";
-            this.chId.Width = 45;
             // 
             // Admin___Add_Material
             // 

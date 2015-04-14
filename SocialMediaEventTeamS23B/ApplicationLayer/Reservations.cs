@@ -10,12 +10,14 @@ namespace ApplicationLayer
 {
     public class Reservations
     {
-        private DatabaseConnection.DataBaseConnection dbConnection;
+        private DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
 
-        public Reservations(DatabaseConnection.DataBaseConnection dbConnection)
+        public Reservations()
         {
-            this.dbConnection = dbConnection;
+            
         }
+
+        
 
         public bool AddReservation(List<Visitor> members, Visitor leader, List<MapLocation> locations)
         {
@@ -47,6 +49,11 @@ namespace ApplicationLayer
                 throw new NullException("Reservation or Material is null!");
             //return dbConnection.RemoveMaterialFromReservation(reservation,material);
             return true;
+        }
+
+        public List<MapLocation> GetMapLocations()
+        {
+            return dbc.GetMapLocations();
         }
 
     }

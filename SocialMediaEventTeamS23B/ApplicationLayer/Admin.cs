@@ -50,7 +50,7 @@ namespace ApplicationLayer
 
         public void RemoveMaterial(Material material)
         {
-            return dbc.RmvMaterial(material.MaterialId);
+            dbc.RmvMaterial(material.MaterialId);
         }
         
         public void AddMaterialToEvent (Material Material )

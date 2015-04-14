@@ -20,7 +20,7 @@ namespace SocialMediaEventTeamS23B
     public partial class MaterialRent : Form
     {
         private RFID rfid;
-
+        private Material SelectedMaterial;
         private ApplicationLayer.MaterialRentInfo MaterialRentInfoS;
         private MaterialRentInfo MaterialRentCheckConnection;
         private List<Material> ListMaterials = new List<Material>();
@@ -28,9 +28,12 @@ namespace SocialMediaEventTeamS23B
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
+            gbRfidScan.Enabled = false;
             FillsListboxWithItemsForEvent();
             rfid = new RFID();
             rfid.open();
+
+            MaterialRentInfoS = new MaterialRentInfo(dbConnection);
 
             rfid.Attach += rfid_Attach;
             rfid.Detach += rfid_Detach;
@@ -102,10 +105,6 @@ namespace SocialMediaEventTeamS23B
             delayClean.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            delayClean.Stop();
-        }
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
 
@@ -123,6 +122,20 @@ namespace SocialMediaEventTeamS23B
                     lblHereComeTheStats.Text = material.State;
                 }
             }
+        }
+
+        private void delayClean_Tick(object sender, EventArgs e)
+        {
+            delayClean.Enabled = false;
+            //todo clean form
+        }
+
+        private void btnConfirmItemRent_Click(object sender, EventArgs e)
+        {
+            gbRfidScan.Enabled = false;
+            Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
+            SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
+
         }
 
 

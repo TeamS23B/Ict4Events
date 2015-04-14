@@ -123,13 +123,15 @@ namespace DatabaseConnection
         {
             String RFIDPerson = "";
             String TotalName = "";
-            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = {0})", RFID);
+            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = '{0}'", RFID);
             OracleDataReader odr = dbConnector.QueryReader(query);
             while(odr.Read())
             {
                 RFIDPerson = odr[0].ToString();
                 TotalName = odr[1].ToString() +" "+ odr[2].ToString() +" "+ odr[3].ToString(); 
             }
+            odr.Close();
+            dbConnector.CloseConnection();
             MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
             return info;
         }
@@ -150,10 +152,10 @@ namespace DatabaseConnection
                     int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
                     int xMap = Convert.ToInt32(odr["xPlattegrond"]);
                     int yMap = Convert.ToInt32(odr["yPlattegrond"]);
-                    int Width = Convert.ToInt32(odr["Breedte"]);
+                    int width = Convert.ToInt32(odr["Breedte"]);
                     int height = Convert.ToInt32(odr["Hoogte"]);
                     //string Category = Convert.ToString(odr["Categorie"]);
-                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap)));
+                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
                 }
             }
             catch
