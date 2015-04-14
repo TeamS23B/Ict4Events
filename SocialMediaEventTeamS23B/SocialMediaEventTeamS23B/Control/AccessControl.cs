@@ -18,6 +18,11 @@ namespace SocialMediaEventTeamS23B
 
         private ApplicationLayer.AccessControl accessControl;
 
+       
+        /// <summary>
+        /// Initiates rfid. attach/detach/error/tag and taglost
+        /// </summary>
+        /// <param name="dbc"></param>
         public AccessControl(DataBaseConnection dbc)
         {
             InitializeComponent();
@@ -31,6 +36,7 @@ namespace SocialMediaEventTeamS23B
 
             rfid.Tag += rfid_Tag;
             rfid.TagLost += rfid_TagLost;
+            
         }
 
         #region attatchment
@@ -61,6 +67,12 @@ namespace SocialMediaEventTeamS23B
         }
         #endregion
 
+        /// <summary>
+        /// Checks if the RFID which is checked, has paid for the event.
+        //  The led of the reader blinks green if it's ok, and red when he hasn't paid yet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void rfid_Tag(object sender, Phidgets.Events.TagEventArgs e)
         {
             lblRFID.Text = e.Tag;
@@ -89,6 +101,7 @@ namespace SocialMediaEventTeamS23B
                 lblPayed.ForeColor = Color.Red;
                 tr.Start(false);//flash error
             }
+            
 
         }
 
@@ -105,6 +118,10 @@ namespace SocialMediaEventTeamS23B
             lblPayed.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Makes the LED blink by using threats to make the LED sleep
+        /// </summary>
+        /// <param name="good"></param>
         private void flash(object good)
         {
             if ((bool)good)

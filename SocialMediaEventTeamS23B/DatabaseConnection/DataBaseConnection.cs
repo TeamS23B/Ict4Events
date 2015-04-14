@@ -119,6 +119,11 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        /// <summary>
+        /// gets the RFID and name of the person of the scanned RFID
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <returns></returns>
         public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
         {
             String RFIDPerson = "";
@@ -545,6 +550,13 @@ namespace DatabaseConnection
         //    }
         //}
 
+        /// <summary>
+        /// Checks the username and password of the person who wants to log in
+        /// after that it gives the person a certain function with permissions
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public string Login(string username, string password)
         {
             string function = "";
