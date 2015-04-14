@@ -54,7 +54,25 @@ namespace SocialMediaEventTeamS23B.SMSForms
                     obj.Top = lastMessage.Top + lastMessage.Height + 12;
                 }
                 panel2.Controls.Add(obj);
+                messages.Add(obj);
             }
+        }
+
+        private void btNewMessage_Click(object sender, EventArgs e)
+        {
+            var createPostFrm = new SMSCreatePost(user.RFID);
+            if (createPostFrm.ShowDialog()==DialogResult.OK)
+            {
+                Sms.PostMessage(createPostFrm.Post);
+            }
+            foreach (var smsMessageMain in messages)
+            {
+                smsMessageMain.Dispose();
+            }
+            messages.Clear();
+            loadPosts();
+
+
         }
         
     }

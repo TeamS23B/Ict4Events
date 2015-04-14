@@ -39,6 +39,11 @@ namespace ApplicationLayer
             return dbConnection.GetPostsOf(0);
         }
 
+        public void PostMessage(Post post)
+        {
+            dbConnection.AddPost(post.Uploader, 1, post.Title, post.Description, -1, post.PostedOn);
+        }
+
      
     }
 }

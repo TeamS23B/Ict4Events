@@ -663,7 +663,7 @@ namespace DatabaseConnection
         {
             decimal maxId = GetHighestId("Bericht") + 1;
             string postDate = timeOfPost.ToString("dd/MM/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", maxId, rfid, category, title, text, commentOn, timeOfPost);
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatstOm, Zichtbaar) VALUES ({0}, '{1}', {2}, '{3}', '{4}', {5}, to_date('{6}','DD-MM-YYYY HH24:MI:SS'), '{7}')", maxId, rfid, category, title, text, commentOn == -1 ? "NULL" : commentOn.ToString(), timeOfPost, "J");
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -796,13 +796,16 @@ namespace DatabaseConnection
         /// <param name="locationId"></param>
         /// <param name="reservationId"></param>
         /// <returns></returns>
-        public int AddLocationToReservation(int eventId, int locationId, int reservationId)
+        
+        
+        /*public int AddLocationToReservation(int eventId, int locationId, int reservationId)
         {
             
             var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
             return dbConnector.QueryNoResult(nonquery);
-        }
+        }*/
 
+       
         /// <summary>
         /// Add a record to the database that tells you which RFID has rented something.
         /// To record which items were in fact rented, use the 'AddRentMaterial' method.
@@ -840,6 +843,29 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(insertquery);
         }
 
+        public void AddLocationToReservation(int x,int y, string rfid)
+        {
+            int ReserveerId = 0 ;
+            var GetReserveerIdquery = String.Format("SELECT ReserveerId FROM reservering WHERE Leider = '"+ rfid + "'");
+            OracleDataReader orcldbr = dbConnector.QueryReader(GetReserveerIdquery);
+            while (orcldbr.Read())
+            {
+                ReserveerId = (int)orcldbr[0];
+            }
+            orcldbr.Close();
+            dbConnector.CloseConnection();
+            int PlaatsId = 0;
+            var GetPlaatsId = String.Format("Select PlaatsId FROM plaats WHERE xPlattegrond = {0} AND yPlattegrond = {1}", x, y);
+            while (orcldbr.Read())
+            {
+                PlaatsId = (int)orcldbr[0];
+            }
+            orcldbr.Close();
+            dbConnector.CloseConnection();
+            var insertquery = String.Format("INSERT INTO reserveer_plaats(EventId,ReserveerId,PlaatsId) VALUES(1,{0},{1}",ReserveerId,PlaatsId);
+            dbConnector.QueryNoResult(insertquery);
+
+        }
 
         #endregion
 

@@ -16,8 +16,9 @@ namespace SocialMediaEventTeamS23B
     {
         private Visitor leader;
         private List<Visitor> members = new List<Visitor>();
-        private MapLocation maplocation;
+        private List<MapLocation> maplocations = new List<MapLocation>();
 
+        private MapLocation maplocation;
         private ApplicationLayer.Reservations res;
         private List<MapLocation> NOTresMapLocations;
         private List<Button> b;
@@ -78,12 +79,12 @@ namespace SocialMediaEventTeamS23B
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            maplocations.Add(maplocation);
         }
 
         private void btnReservationLocationNext_Click(object sender, EventArgs e)
         {
-            ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocation);
+            ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocations);
             ResMaterial.Show();
         }
 
