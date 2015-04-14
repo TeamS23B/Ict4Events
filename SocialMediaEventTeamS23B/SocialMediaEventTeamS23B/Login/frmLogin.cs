@@ -50,9 +50,15 @@ namespace SocialMediaEventTeamS23B
             }
             try
             {
+                Console.WriteLine(tbPassword.Text);
+                var pwHash = Login.HashedBytes(Encoding.ASCII.GetBytes(tbPassword.Text));
+                Console.WriteLine(BitConverter.ToString(pwHash));
+                
+                Console.WriteLine(BitConverter.ToString(pwHash));
+                
                 en =
                     (Functions)
-                        Enum.Parse(typeof(Functions), login.LoginToApplication(tbUsername.Text, tbPassword.Text));
+                        Enum.Parse(typeof(Functions), login.LoginToApplication(tbUsername.Text, BitConverter.ToString(pwHash)));
 
             }
             catch (InvalidDataException iDataEx)

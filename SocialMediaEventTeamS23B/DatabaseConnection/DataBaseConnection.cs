@@ -119,6 +119,21 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
+        {
+            String RFIDPerson = "";
+            String TotalName = "";
+            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = {0})", RFID);
+            OracleDataReader odr = dbConnector.QueryReader(query);
+            while(odr.Read())
+            {
+                RFIDPerson = odr[0].ToString();
+                TotalName = odr[1].ToString() +" "+ odr[2].ToString() +" "+ odr[3].ToString(); 
+            }
+            MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
+            return info;
+        }
+
 
         public List<MapLocation> GetMapLocations()
         {
@@ -438,6 +453,7 @@ namespace DatabaseConnection
             {
                 //Kijken of het personeel is 
                 string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
+                Console.WriteLine(sqlWerknemer);
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -667,6 +683,21 @@ namespace DatabaseConnection
         {
             
             var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, Iban, Straatnaam, Huisnummer, Toevoeging, Plaatsnaam, Postcode) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})", rfid, "J", name, prefix, surname, email, password, userName, eventId, iban, street, number, suffix, city, postalCode);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Insert a reservation into the database.
+        /// </summary>
+        /// <param name="leiderRfid"></param>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        public int AddReservation(string leaderRfid, DateTime timeOfReservation)
+        {
+            decimal reservationId = GetHighestId("Reservering")+ 1;
+            string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
+
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
             return dbConnector.QueryNoResult(nonquery);
         }
 

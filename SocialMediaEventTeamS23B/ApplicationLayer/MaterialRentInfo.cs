@@ -27,6 +27,10 @@ namespace ApplicationLayer
         {
             return dbConnection.GetMaterialsInEvent();
         }
+        public MaterialRentPersonalInfo GetPersonalInfo(string RFID)
+        {
+           return dbConnection.PersonMaterialRentInfo(RFID);
+        }
     }
 
 }
