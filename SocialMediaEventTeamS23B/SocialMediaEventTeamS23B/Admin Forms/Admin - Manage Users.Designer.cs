@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbUsers = new System.Windows.Forms.GroupBox();
+            this.lbVisitors = new System.Windows.Forms.ListBox();
             this.gbMessages = new System.Windows.Forms.GroupBox();
             this.lbMessages = new System.Windows.Forms.ListBox();
             this.gbGroupLeader = new System.Windows.Forms.GroupBox();
@@ -40,7 +41,6 @@
             this.cbUserBlocked = new System.Windows.Forms.CheckBox();
             this.lbMaterials = new System.Windows.Forms.ListBox();
             this.btnBack = new System.Windows.Forms.Button();
-            this.lbVisitors = new System.Windows.Forms.ListBox();
             this.gbUsers.SuspendLayout();
             this.gbMessages.SuspendLayout();
             this.gbGroupLeader.SuspendLayout();
@@ -58,6 +58,16 @@
             this.gbUsers.TabIndex = 4;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Gebruikers";
+            // 
+            // lbVisitors
+            // 
+            this.lbVisitors.FormattingEnabled = true;
+            this.lbVisitors.Location = new System.Drawing.Point(4, 17);
+            this.lbVisitors.Margin = new System.Windows.Forms.Padding(2);
+            this.lbVisitors.Name = "lbVisitors";
+            this.lbVisitors.Size = new System.Drawing.Size(214, 277);
+            this.lbVisitors.TabIndex = 1;
+            this.lbVisitors.Click += new System.EventHandler(this.lbVisitors_Click);
             // 
             // gbMessages
             // 
@@ -145,9 +155,9 @@
             this.cbMessageVisible.Location = new System.Drawing.Point(15, 39);
             this.cbMessageVisible.Margin = new System.Windows.Forms.Padding(2);
             this.cbMessageVisible.Name = "cbMessageVisible";
-            this.cbMessageVisible.Size = new System.Drawing.Size(111, 17);
+            this.cbMessageVisible.Size = new System.Drawing.Size(117, 17);
             this.cbMessageVisible.TabIndex = 11;
-            this.cbMessageVisible.Text = "Bericht zichtbaar?";
+            this.cbMessageVisible.Text = "Bericht onzichtbaar";
             this.cbMessageVisible.UseVisualStyleBackColor = true;
             this.cbMessageVisible.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -158,10 +168,12 @@
             this.cbUserBlocked.Location = new System.Drawing.Point(15, 17);
             this.cbUserBlocked.Margin = new System.Windows.Forms.Padding(2);
             this.cbUserBlocked.Name = "cbUserBlocked";
-            this.cbUserBlocked.Size = new System.Drawing.Size(140, 17);
+            this.cbUserBlocked.Size = new System.Drawing.Size(134, 17);
             this.cbUserBlocked.TabIndex = 10;
-            this.cbUserBlocked.Text = "Gebruiker geblokkeerd?";
+            this.cbUserBlocked.Text = "Gebruiker geblokkeerd";
             this.cbUserBlocked.UseVisualStyleBackColor = true;
+            this.cbUserBlocked.CheckedChanged += new System.EventHandler(this.cbUserBlocked_CheckedChanged);
+            this.cbUserBlocked.Click += new System.EventHandler(this.cbUserBlocked_Click);
             // 
             // lbMaterials
             // 
@@ -182,16 +194,6 @@
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // lbVisitors
-            // 
-            this.lbVisitors.FormattingEnabled = true;
-            this.lbVisitors.Location = new System.Drawing.Point(4, 17);
-            this.lbVisitors.Margin = new System.Windows.Forms.Padding(2);
-            this.lbVisitors.Name = "lbVisitors";
-            this.lbVisitors.Size = new System.Drawing.Size(214, 277);
-            this.lbVisitors.TabIndex = 1;
-            this.lbVisitors.Click += new System.EventHandler(this.lbVisitors_Click);
             // 
             // Beheer___Gebruikers_Beheren
             // 

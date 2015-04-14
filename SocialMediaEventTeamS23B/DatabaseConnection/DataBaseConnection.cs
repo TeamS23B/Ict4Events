@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -608,6 +608,18 @@ namespace DatabaseConnection
         public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
         {
             var nonquery = String.Format("UPDATE flagRegels SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak = '{3}'", flags, ratio, time, autoCleanUp);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdVisitorBlock(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE deelnemer SET IsGeblokkeerd = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdPostVisibility(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}'", yesno, RFID);
             return dbConnector.QueryNoResult(nonquery);
         }
 

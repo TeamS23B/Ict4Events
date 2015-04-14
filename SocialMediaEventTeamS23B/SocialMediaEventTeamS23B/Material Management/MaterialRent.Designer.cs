@@ -42,6 +42,9 @@
             this.btnMaterialRentConfirm = new System.Windows.Forms.Button();
             this.delayClean = new System.Windows.Forms.Timer(this.components);
             this.btnReattach = new System.Windows.Forms.Button();
+            this.lbHereComeTheDetails = new System.Windows.Forms.Label();
+            this.lblHereComeTheRentCosts = new System.Windows.Forms.Label();
+            this.lblHereComeTheStats = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMaterialRentProductsInStorage
@@ -60,6 +63,7 @@
             this.lbMaterialRentProductsInList.Name = "lbMaterialRentProductsInList";
             this.lbMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
             this.lbMaterialRentProductsInList.TabIndex = 1;
+            this.lbMaterialRentProductsInList.SelectedIndexChanged += new System.EventHandler(this.lbMaterialRentProductsInList_SelectedIndexChanged);
             // 
             // lblMaterialRentDetails
             // 
@@ -84,9 +88,9 @@
             this.lblMaterialRentHireCost.AutoSize = true;
             this.lblMaterialRentHireCost.Location = new System.Drawing.Point(34, 312);
             this.lblMaterialRentHireCost.Name = "lblMaterialRentHireCost";
-            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(83, 13);
+            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(71, 13);
             this.lblMaterialRentHireCost.TabIndex = 4;
-            this.lblMaterialRentHireCost.Text = "Huurkosten : 20";
+            this.lblMaterialRentHireCost.Text = "Huurkosten : ";
             // 
             // lblMaterialRentScannedRfid
             // 
@@ -154,11 +158,38 @@
             this.btnReattach.Text = "Reattachment";
             this.btnReattach.UseVisualStyleBackColor = true;
             // 
+            // lbHereComeTheDetails
+            // 
+            this.lbHereComeTheDetails.AutoSize = true;
+            this.lbHereComeTheDetails.Location = new System.Drawing.Point(111, 288);
+            this.lbHereComeTheDetails.Name = "lbHereComeTheDetails";
+            this.lbHereComeTheDetails.Size = new System.Drawing.Size(0, 13);
+            this.lbHereComeTheDetails.TabIndex = 12;
+            // 
+            // lblHereComeTheRentCosts
+            // 
+            this.lblHereComeTheRentCosts.AutoSize = true;
+            this.lblHereComeTheRentCosts.Location = new System.Drawing.Point(111, 312);
+            this.lblHereComeTheRentCosts.Name = "lblHereComeTheRentCosts";
+            this.lblHereComeTheRentCosts.Size = new System.Drawing.Size(0, 13);
+            this.lblHereComeTheRentCosts.TabIndex = 13;
+            // 
+            // lblHereComeTheStats
+            // 
+            this.lblHereComeTheStats.AutoSize = true;
+            this.lblHereComeTheStats.Location = new System.Drawing.Point(111, 338);
+            this.lblHereComeTheStats.Name = "lblHereComeTheStats";
+            this.lblHereComeTheStats.Size = new System.Drawing.Size(0, 13);
+            this.lblHereComeTheStats.TabIndex = 14;
+            // 
             // MaterialRent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 425);
+            this.Controls.Add(this.lblHereComeTheStats);
+            this.Controls.Add(this.lblHereComeTheRentCosts);
+            this.Controls.Add(this.lbHereComeTheDetails);
             this.Controls.Add(this.btnReattach);
             this.Controls.Add(this.btnMaterialRentConfirm);
             this.Controls.Add(this.dateTimePickerMaterialRentEndDate);
@@ -193,5 +224,8 @@
         private System.Windows.Forms.Button btnMaterialRentConfirm;
         private System.Windows.Forms.Timer delayClean;
         private System.Windows.Forms.Button btnReattach;
+        private System.Windows.Forms.Label lbHereComeTheDetails;
+        private System.Windows.Forms.Label lblHereComeTheRentCosts;
+        private System.Windows.Forms.Label lblHereComeTheStats;
     }
 }

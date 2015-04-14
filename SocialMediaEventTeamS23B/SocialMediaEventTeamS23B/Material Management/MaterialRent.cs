@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApplicationLayer;
 using DatabaseConnection;
+using DatabaseConnection.Exceptions;
+using DatabaseConnection.Types;
 using Phidgets;
 using Phidgets.Events;
 
@@ -19,9 +22,25 @@ namespace SocialMediaEventTeamS23B
         private RFID rfid;
 
         private ApplicationLayer.AccessControl accessControl;
+        private MaterialRentInfo MaterialRentCheckConnection;
+        private List<Material> ListMaterials = new List<Material>();
+        private DataBaseConnection dbConnection;
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
+            dbConnection = new DataBaseConnection();
+            MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
+            ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
+            foreach (Material material in ListMaterials)
+            {
+                lbMaterialRentProductsInList.Items.Add(material);
+            }
+            lbMaterialRentProductsInList.DisplayMember = "Name";
+
+
+
+
+
             accessControl = new ApplicationLayer.AccessControl(dbc);//todo dbc
             rfid = new RFID();
             rfid.open();
@@ -133,12 +152,33 @@ namespace SocialMediaEventTeamS23B
                 rfid.LED = false;
             }
         }
-            
+
 
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
 
         }
-    
+        private void GetInfoFromMaterialRentFromDatabase()
+        {
+
+        }
+
+        private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Material MaterialSelected;
+            MaterialSelected = (Material)lbMaterialRentProductsInList.SelectedItem;
+            foreach (Material material in ListMaterials)
+            {
+                if (MaterialSelected == material)
+                {
+                    lbHereComeTheDetails.Text = material.Name;
+                    lblHereComeTheRentCosts.Text = Convert.ToString(material.Price);
+                    lblHereComeTheStats.Text = material.State;
+                }
+            }
+        }
+
+
+
     }
 }
