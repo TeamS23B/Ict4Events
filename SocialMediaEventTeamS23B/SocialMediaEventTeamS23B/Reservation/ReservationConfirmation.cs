@@ -45,12 +45,15 @@ namespace SocialMediaEventTeamS23B
             {
                 foreach (Visitor V in members)
                 {
-                    res.AddVisitor(V, leaderId);
+                    //res.AddVisitor(V, leaderId);
                 }
             }
             if (maplocations != null)
             {
-
+                foreach (MapLocation M in maplocations)
+                {
+                    res.RentWithXandYPosition(M.Coordinates.X, M.Coordinates.Y, leaderId);
+                }
             }
 
             if (toReserve != null)
