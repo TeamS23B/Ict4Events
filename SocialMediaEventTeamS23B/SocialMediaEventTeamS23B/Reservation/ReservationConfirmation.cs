@@ -37,6 +37,11 @@ namespace SocialMediaEventTeamS23B
             
         }
 
+        /// <summary>
+        /// Finalize confirmation, send all data to database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationConfirmationNext_Click(object sender, EventArgs e)
         {
             string leaderId = leader.RFID;
@@ -67,6 +72,11 @@ namespace SocialMediaEventTeamS23B
                 //sent alles close alls
         }
 
+        /// <summary>
+        /// Close the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationConfirmationPrevious_Click(object sender, EventArgs e)
         {
             this.Close();

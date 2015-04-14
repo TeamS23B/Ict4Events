@@ -34,6 +34,9 @@ namespace SocialMediaEventTeamS23B
             MakeButtons();
         }
 
+        /// <summary>
+        /// make the buttons on the map
+        /// </summary>
         private void MakeButtons()
         {
             foreach (MapLocation ML in NOTresMapLocations)
@@ -54,6 +57,12 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        /// event hander for button click:
+        ///     for getting location of the button > to insert into database the location of a reservation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void button_Click(object sender, EventArgs e)
         {
             var bt = (Button)sender;
@@ -67,32 +76,40 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        /// get location data from database.
+        /// </summary>
         private void GetLocationData()
         {
             NOTresMapLocations = res.GetNOTReserverdMapLocations();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// button 2 click event handler: add a maplocation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             maplocations.Add(maplocation);
         }
 
+        /// <summary>
+        /// open form of material adding
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationLocationNext_Click(object sender, EventArgs e)
         {
             ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocations);
             ResMaterial.Show();
         }
 
-        private void pictureBoxReservationLocationLocation_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        /// <summary>
+        /// close this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationLocationPrevious_Click(object sender, EventArgs e)
         {
             this.Close();
