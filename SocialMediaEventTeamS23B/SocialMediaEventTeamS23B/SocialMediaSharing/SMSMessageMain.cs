@@ -27,9 +27,9 @@ namespace SocialMediaEventTeamS23B.SMSForms
             this.dbConnection = dbConnection;
         }
 
-        private void SMSMessageMain_Load(object sender, EventArgs e)
+        private void SMSMessageMain_DoubleClick(object sender, EventArgs e)
         {
-            var smsShowMessage = new SMSShowMessage(Post,dbConnection);
+            var smsShowMessage = new SMSShowMessage(Post, dbConnection);
             smsShowMessage.Show();
         }
     }

@@ -25,7 +25,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             this.dbConnection = dbConnection;
             Sms = new SocialMediaSharing(dbConnection,user.Username);
             messages=new List<SMSMessageMain>();
-
+            loadPosts();
         }
 
         private Visitor user;
@@ -44,8 +44,15 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 var obj = new SMSMessageMain(content,dbConnection);
                 obj.Width = panel2.Width - 24;
                 obj.Left = 12;
-                var lastMessage = messages.Last();
-                obj.Top = lastMessage.Top + lastMessage.Height + 12;
+                var lastMessage = messages.LastOrDefault();
+                if (lastMessage == null)
+                {
+                    obj.Top = 12;
+                }
+                else
+                {
+                    obj.Top = lastMessage.Top + lastMessage.Height + 12;
+                }
                 panel2.Controls.Add(obj);
             }
         }
