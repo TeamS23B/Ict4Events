@@ -10,12 +10,14 @@ namespace ApplicationLayer
 {
     public class Reservations
     {
-        private DatabaseConnection.DataBaseConnection dbConnection;
+        private DatabaseConnection.DataBaseConnection dbc = new DatabaseConnection.DataBaseConnection();
 
-        public Reservations(DatabaseConnection.DataBaseConnection dbConnection)
+        public Reservations()
         {
-            this.dbConnection = dbConnection;
+            
         }
+
+        
 
         public bool AddReservation(List<Visitor> members, Visitor leader, List<MapLocation> locations)
         {
@@ -51,7 +53,7 @@ namespace ApplicationLayer
 
         public List<MapLocation> GetMapLocations()
         {
-            return dbConnection.GetMapLocations();
+            return dbc.GetMapLocations();
         }
 
     }
