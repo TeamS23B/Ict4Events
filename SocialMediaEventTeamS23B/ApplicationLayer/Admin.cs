@@ -78,9 +78,25 @@ namespace ApplicationLayer
         {
             return dbc.GetPostsOf();
         }
-        public void EditVisitor(Visitor visitor)
+        public void EditVisitor(Visitor visitor, int Change)
         {
-            
+
+            if (Change == 1)
+            {
+                dbc.UpdVisitorBlock(visitor.RFID, 'J');
+            }
+            else if(Change == 2)
+            {
+                dbc.UpdVisitorBlock(visitor.RFID, 'N');
+            }
+            else if (Change == 3)
+            {
+                dbc.UpdPostVisibility(visitor.RFID, 'N');
+            }
+            else if (Change == 4)
+            {
+                dbc.UpdPostVisibility(visitor.RFID, 'J');
+            }
         }
         public List<Material> VisitorMaterial(Visitor visitor)
         {

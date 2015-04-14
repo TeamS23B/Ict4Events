@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -190,16 +190,16 @@ namespace DatabaseConnection
             List<Material> materials = new List<Material>();
             try
             {
-                var query = "SELECT * FROM gehuurd_materiaal gm, materiaal m, huur h WHERE gm.MateriaalId = m.MateriaalId AND h.HuurId = gm.HuurId AND h.RFID = '" + RFID + "'";
+                var query = String.Format("SELECT m.MATERIAALID, m.MATMODEL, m.MATTYPE, m.KOSTPRIJS, m.HUURPRIJS, m.STATUS FROM gehuurd_materiaal gm INNER JOIN materiaal m ON gm.MateriaalId = m.MateriaalId INNER JOIN huur h ON h.HuurId = gm.HuurId WHERE h.RFID = '{0}'", RFID);
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
-                    int MaterialId = Convert.ToInt32(odr["m.MateriaalId"]);
-                    String Name = Convert.ToString(odr["m.MatModel"]);
-                    String Type = Convert.ToString(odr["m.MatType"]);
-                    double Price = Convert.ToDouble(odr["m.Kostprijs"]);
-                    double Rent = Convert.ToDouble(odr["m.Huurprijs"]);
-                    String State = Convert.ToString(odr["m.Status"]);
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
                     materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
                 }
             }
@@ -582,6 +582,18 @@ namespace DatabaseConnection
         public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
         {
             var nonquery = String.Format("UPDATE flagRegels SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak = '{3}'", flags, ratio, time, autoCleanUp);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdVisitorBlock(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE deelnemer SET IsGeblokkeerd = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdPostVisibility(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}'", yesno, RFID);
             return dbConnector.QueryNoResult(nonquery);
         }
 

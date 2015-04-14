@@ -47,7 +47,24 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (lbVisitors.SelectedItem.ToString() == SelectedVisitor.RFID + ": " + SelectedVisitor.Name)
+                {
+                    if (cbMessageVisible.CheckState.ToString() == "Checked")
+                    {
+                        admin.EditVisitor(SelectedVisitor, 3);
+                    }
+                    else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
+                    {
+                        admin.EditVisitor(SelectedVisitor, 4);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -96,6 +113,33 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     FillPosts(V);
                     FillMaterials(V);
                 }
+            }
+        }
+
+        private void cbUserBlocked_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbUserBlocked_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lbVisitors.SelectedItem.ToString() == SelectedVisitor.RFID + ": " + SelectedVisitor.Name)
+                {
+                    if (cbMessageVisible.CheckState.ToString() == "Checked")
+                    {
+                        admin.EditVisitor(SelectedVisitor, 1);
+                    }
+                    else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
+                    {
+                        admin.EditVisitor(SelectedVisitor, 2);
+                    }      
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

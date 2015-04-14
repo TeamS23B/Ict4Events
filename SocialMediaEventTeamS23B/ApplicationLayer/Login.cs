@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationLayer.Exceptions;
 using DatabaseConnection;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 
 namespace ApplicationLayer

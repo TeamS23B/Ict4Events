@@ -60,6 +60,7 @@
             this.lbMaterialRentProductsInList.Name = "lbMaterialRentProductsInList";
             this.lbMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
             this.lbMaterialRentProductsInList.TabIndex = 1;
+            this.lbMaterialRentProductsInList.SelectedIndexChanged += new System.EventHandler(this.lbMaterialRentProductsInList_SelectedIndexChanged);
             // 
             // lblMaterialRentDetails
             // 
@@ -84,9 +85,9 @@
             this.lblMaterialRentHireCost.AutoSize = true;
             this.lblMaterialRentHireCost.Location = new System.Drawing.Point(34, 312);
             this.lblMaterialRentHireCost.Name = "lblMaterialRentHireCost";
-            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(83, 13);
+            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(71, 13);
             this.lblMaterialRentHireCost.TabIndex = 4;
-            this.lblMaterialRentHireCost.Text = "Huurkosten : 20";
+            this.lblMaterialRentHireCost.Text = "Huurkosten : ";
             // 
             // lblMaterialRentScannedRfid
             // 

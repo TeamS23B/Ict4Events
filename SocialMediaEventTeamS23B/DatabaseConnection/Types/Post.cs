@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 
 namespace DatabaseConnection.Types
 {
@@ -29,7 +29,7 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("Title, Uploader or Descirption is empty");
             }
-            if (likes <= 0 || flags <= 0)
+            if (likes < 0 || flags < 0)
             {
                 throw new InvalidDataException("Likes or Flags is below zero");
             }
@@ -50,7 +50,7 @@ namespace DatabaseConnection.Types
             Uploader = uploader;
             Category = category;
             this.Id = id;
-        }
+            }
 
         public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id):this(title,comments,null,description,likes,flags,postedOn,uploader,category,id)
         {
