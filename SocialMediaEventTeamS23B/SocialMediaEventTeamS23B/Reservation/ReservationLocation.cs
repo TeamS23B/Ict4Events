@@ -15,6 +15,12 @@ namespace SocialMediaEventTeamS23B
         public ReservationLocation()
         {
             InitializeComponent();
+            GetLocationData();
+        }
+
+        private void GetLocationData()
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
