@@ -83,6 +83,7 @@
             this.btnReservationAddMaterial.TabIndex = 5;
             this.btnReservationAddMaterial.Text = "<<Toevoegen";
             this.btnReservationAddMaterial.UseVisualStyleBackColor = true;
+            this.btnReservationAddMaterial.Click += new System.EventHandler(this.btnReservationAddMaterial_Click);
             // 
             // btnReservationRemoveMaterial
             // 

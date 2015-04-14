@@ -15,13 +15,13 @@ namespace SocialMediaEventTeamS23B
     public partial class ReservationLocation : Form
     {
         private ApplicationLayer.Reservations res;
-        private List<MapLocation> mapLocations;
+        private List<MapLocation> NOTresMapLocations;
         private List<Button> b;
         public ReservationLocation()
         {
             InitializeComponent();
             res = new Reservations();
-            mapLocations = new List<MapLocation>();
+            NOTresMapLocations = new List<MapLocation>();
             b = new List<Button>();
             GetLocationData();
             MakeButtons();
@@ -29,7 +29,7 @@ namespace SocialMediaEventTeamS23B
 
         private void MakeButtons()
         {
-            foreach (MapLocation ML in mapLocations)
+            foreach (MapLocation ML in NOTresMapLocations)
             { 
                 string name = ML.LocationNumber.ToString();
                 Button button = new Button();
@@ -50,7 +50,7 @@ namespace SocialMediaEventTeamS23B
         void button_Click(object sender, EventArgs e)
         {
             var bt = (Button)sender;
-            foreach(MapLocation ML in mapLocations)
+            foreach(MapLocation ML in NOTresMapLocations)
             {
                 if (bt.Left == ML.Coordinates.X && bt.Top == ML.Coordinates.Y)
                 {
@@ -61,7 +61,7 @@ namespace SocialMediaEventTeamS23B
 
         private void GetLocationData()
         {
-            mapLocations = res.GetMapLocations();
+            NOTresMapLocations = res.GetNOTReserverdMapLocations();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -86,6 +86,11 @@ namespace SocialMediaEventTeamS23B
         private void pictureBoxReservationLocationLocation_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnReservationLocationPrevious_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
