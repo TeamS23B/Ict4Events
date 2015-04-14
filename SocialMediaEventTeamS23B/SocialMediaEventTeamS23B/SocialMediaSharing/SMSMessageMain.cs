@@ -21,7 +21,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
         {
             InitializeComponent();
             Post = post;
-            lblTitle.Text = "";
+            lblTitle.Text = post.Title;
             lblUsername.Text = post.Uploader;
             lblContent.Text = post.Description;
             this.dbConnection = dbConnection;

@@ -628,7 +628,7 @@ namespace DatabaseConnection
         {
             decimal maxId = GetHighestId("Bericht") + 1;
             string postDate = timeOfPost.ToString("dd/MM/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", maxId, rfid, category, title, text, commentOn, timeOfPost);
+            var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatstOm, Zichtbaar) VALUES ({0}, '{1}', {2}, '{3}', '{4}', {5}, to_date('{6}','DD-MM-YYYY HH24:MI:SS'), '{7}')", maxId, rfid, category, title, text, commentOn == -1 ? "NULL" : commentOn.ToString(), timeOfPost, "J");
             return dbConnector.QueryNoResult(nonquery);
         }
 
