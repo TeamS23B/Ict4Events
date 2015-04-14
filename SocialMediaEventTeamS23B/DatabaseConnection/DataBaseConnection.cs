@@ -455,7 +455,7 @@ namespace DatabaseConnection
             {
                 //Kijken of het personeel is 
                 string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
-                Console.WriteLine(sqlWerknemer);
+                
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -464,54 +464,29 @@ namespace DatabaseConnection
                 }
                 reader.Close();
                 dbConnector.CloseConnection();
-                if(string.IsNullOrEmpty(function))
-                {
+                
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
                     while (reader.Read())
-                {
-                        if (username == reader[0].ToString() && password == reader[1].ToString())
                         {
-                            function = function + "User";
-                }
-                        else
-                        {
-                            function = function;
+                            if (!string.IsNullOrEmpty((string)reader[0])&&!string.IsNullOrEmpty((string)reader[1]))
+                            {
+                                function += "User";
+                            }
+                            
                         }
-                    }
-                }
+                    
 
-                reader.Close();
-                dbConnector.CloseConnection();
-
-                if (dbConnector.QueryReader(sqlWerknemer) == null)
-                {
-                    string sqlDeelnemer = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
-                    reader = dbConnector.QueryReader(sqlDeelnemer);
-                    while (reader.Read())
-                    {
-                        if (username == reader[0].ToString() && password == reader[1].ToString())
-                        {
-                            function = "User";
-                        }
-                        else
-                        {
-                            function = "NonUser";
-                        }
-                    }
                     reader.Close();
                     dbConnector.CloseConnection();
-                }
-                else
-                {
-                    function = function;
-                }
+
+                
                  
                 return function;
             }
             catch
             {
-                return function = "error";
+                return "error";
             }
         }
 

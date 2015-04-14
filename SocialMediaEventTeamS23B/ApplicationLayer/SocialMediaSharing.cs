@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using DatabaseConnection;
+using DatabaseConnection.Types;
 
 namespace ApplicationLayer
 {
@@ -31,6 +32,11 @@ namespace ApplicationLayer
                 fileLocation = Path.GetFullPath(ofd.FileName);
             }
             return fileLocation;
+        }
+
+        public List<Post> GetPosts()
+        {
+            return dbConnection.GetPostsOf(0);
         }
 
      

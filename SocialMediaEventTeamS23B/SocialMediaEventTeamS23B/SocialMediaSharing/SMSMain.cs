@@ -15,16 +15,17 @@ namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSMain : Form
     {
+        private DataBaseConnection dbConnection;
+
         public SMSMain(DataBaseConnection dbConnection, Visitor user)
         {
             InitializeComponent();
             this.user = user;
             lblUsername.Text = user.Username;
-            
+            this.dbConnection = dbConnection;
             Sms = new SocialMediaSharing(dbConnection,user.Username);
             messages=new List<SMSMessageMain>();
 
-            tmrRefresh.Enabled = true;
         }
 
         private Visitor user;
@@ -34,24 +35,19 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         private int lastIndex;
         
-        private void tmrRefresh_Tick(object sender, EventArgs e)
+        private void loadPosts()
         {
             //checking for new content
-            /*var newContent = Sms.CheckContent(lastIndex);
+            var newContent = Sms.GetPosts();
             foreach (Post content in newContent)
             {
-                var obj = new SMSMessageMain(content);
+                var obj = new SMSMessageMain(content,dbConnection);
                 obj.Width = panel2.Width - 24;
                 obj.Left = 12;
                 var lastMessage = messages.Last();
                 obj.Top = lastMessage.Top + lastMessage.Height + 12;
                 panel2.Controls.Add(obj);
-            }*/
-        }
-
-        private void SMSMain_Load(object sender, EventArgs e)
-        {
-
+            }
         }
         
     }
