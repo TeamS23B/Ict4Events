@@ -21,27 +21,14 @@ namespace SocialMediaEventTeamS23B
     {
         private RFID rfid;
 
-        private ApplicationLayer.AccessControl accessControl;
+        private ApplicationLayer.MaterialRentInfo MaterialRentInfoS;
         private MaterialRentInfo MaterialRentCheckConnection;
         private List<Material> ListMaterials = new List<Material>();
         private DataBaseConnection dbConnection;
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
-            dbConnection = new DataBaseConnection();
-            MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
-            ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
-            foreach (Material material in ListMaterials)
-            {
-                lbMaterialRentProductsInList.Items.Add(material);
-            }
-            lbMaterialRentProductsInList.DisplayMember = "Name";
-
-
-
-
-
-            accessControl = new ApplicationLayer.AccessControl(dbc);//todo dbc
+            FillsListboxWithItemsForEvent();
             rfid = new RFID();
             rfid.open();
 
@@ -51,6 +38,18 @@ namespace SocialMediaEventTeamS23B
 
             rfid.Tag += rfid_Tag;
             rfid.TagLost += rfid_TagLost;
+        }
+
+        private void FillsListboxWithItemsForEvent()
+        {
+            dbConnection = new DataBaseConnection();
+            MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
+            ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
+            foreach (Material material in ListMaterials)
+            {
+                lbMaterialRentProductsInList.Items.Add(material);
+            }
+            lbMaterialRentProductsInList.DisplayMember = "Name";
         }
 
         #region attatchment
@@ -85,29 +84,15 @@ namespace SocialMediaEventTeamS23B
         {
             //lblRFID.Text = e.Tag;
             delayClean.Enabled = false;
-            var payed = false;
             try
             {
-                payed = accessControl.CheckPayment(e.Tag);
+                lblMaterialRentRfid.Text = MaterialRentInfoS.GetPersonalInfo(e.Tag).RFID;
+                lblMaterialRentName.Text = MaterialRentInfoS.GetPersonalInfo(e.Tag).TotalName;
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
-            }
-            var tr = new Thread(flash);
-
-            if (payed)
-            {
-                //lblPayed.Text = "Betaald";
-                //lblPayed.ForeColor = Color.LimeGreen;
-                tr.Start(true);//flash good
-            }
-            else
-            {
-                //lblPayed.Text = "Niet Betaald";
-                //lblPayed.ForeColor = Color.Red;
-                tr.Start(false);//flash error
             }
 
         }
@@ -120,49 +105,11 @@ namespace SocialMediaEventTeamS23B
         private void timer1_Tick(object sender, EventArgs e)
         {
             delayClean.Stop();
-            //lblRFID.Text = "00000000";
-            //lblPayed.Text = "-";
-            //lblPayed.ForeColor = Color.Black;
         }
-
-        private void flash(object good)
-        {
-            if ((bool)good)
-            {
-                rfid.LED = true;
-                Thread.Sleep(100);
-                rfid.LED = false;
-                Thread.Sleep(100);
-                rfid.LED = true;
-                Thread.Sleep(100);
-                rfid.LED = false;
-                Thread.Sleep(100);
-                rfid.LED = true;
-                Thread.Sleep(100);
-                rfid.LED = false;
-            }
-            else
-            {
-                rfid.LED = true;
-                Thread.Sleep(300);
-                rfid.LED = false;
-                Thread.Sleep(300);
-                rfid.LED = true;
-                Thread.Sleep(300);
-                rfid.LED = false;
-            }
-        }
-
-
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
 
         }
-        private void GetInfoFromMaterialRentFromDatabase()
-        {
-
-        }
-
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Material MaterialSelected;

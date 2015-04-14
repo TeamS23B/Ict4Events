@@ -118,6 +118,21 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
+        {
+            String RFIDPerson = "";
+            String TotalName = "";
+            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = {0})", RFID);
+            OracleDataReader odr = dbConnector.QueryReader(query);
+            while(odr.Read())
+            {
+                RFIDPerson = odr[0].ToString();
+                TotalName = odr[1].ToString() +" "+ odr[2].ToString() +" "+ odr[3].ToString(); 
+            }
+            MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
+            return info;
+        }
+
 
         public List<Location> GetLocations()
         {
