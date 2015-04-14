@@ -68,5 +68,13 @@ namespace ApplicationLayer
             return dbc.GetMapLocations();
         }
 
+        public void RentWithMaterialId(int MateriaalId)
+        {
+            if(MateriaalId != null)
+            {
+                dbc.AddMaterialToReserved(MateriaalId);
+            }
+        }
+
     }
 }
