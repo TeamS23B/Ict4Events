@@ -42,7 +42,10 @@ namespace SocialMediaEventTeamS23B
             rfid.Tag += rfid_Tag;
             rfid.TagLost += rfid_TagLost;
         }
-
+        /// <summary>
+        /// method to fill the listbox with information from the database
+        //  it selects the items which are available for the current event
+        /// </summary>
         private void FillsListboxWithItemsForEvent()
         {
             dbConnection = new DataBaseConnection();
@@ -53,10 +56,15 @@ namespace SocialMediaEventTeamS23B
                 lbMaterialRentProductsInList.Items.Add(material);
             }
             lbMaterialRentProductsInList.DisplayMember = "Name";
+
         }
 
         #region attatchment
-
+        /// <summary>
+        /// Errormessage if the rfid errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void rfid_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             MessageBox.Show("Phidgets Error: " + e.Code + " : " + e.Description);
@@ -64,12 +72,16 @@ namespace SocialMediaEventTeamS23B
             {
                 btnReattach.Visible = true;
             }
+            
         }
-
+        /// <summary>
+        /// This happens when you detach the RFID from the pc
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void rfid_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
-            //retry attachment
-            //e.Device.waitForAttachment(2000);
+
             MessageBox.Show("RFID is detached");
 
         }
@@ -80,7 +92,12 @@ namespace SocialMediaEventTeamS23B
             //Yay attatched :D
         }
         #endregion
-
+        /// <summary>
+        /// Reads the RFID tag 
+        //  and displays the name of the user and his RFID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void rfid_Tag(object sender, Phidgets.Events.TagEventArgs e)
         {
             //lblRFID.Text = e.Tag;
@@ -103,6 +120,15 @@ namespace SocialMediaEventTeamS23B
             delayClean.Start();
         }
 
+        /// <summary>
+        /// Reads the RFID 
+        //  Selects the materials you want to rent
+        //  Gets the material Id from the selected material 
+        //  Also gets the startdate and the enddate
+        //  enables and disables the right groupboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
             string CheckRfid = lblMaterialRentRfid.Text;
@@ -121,7 +147,14 @@ namespace SocialMediaEventTeamS23B
             }
             gbProducts.Enabled = true;
             gbRfidScan.Enabled = false;
+
         }
+        /// <summary>
+        ///  checks which material is selected and
+        //   and shows the details of the selected items each time an item is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Material MaterialSelected;
@@ -135,6 +168,7 @@ namespace SocialMediaEventTeamS23B
                     lblHereComeTheStats.Text = material.State;
                 }
             }
+
         }
 
         private void delayClean_Tick(object sender, EventArgs e)
@@ -142,7 +176,12 @@ namespace SocialMediaEventTeamS23B
             delayClean.Enabled = false;
             //todo clean form
         }
-
+        /// <summary>
+        /// Enables and disables the right groupboxes to select an product and to 
+        /// scan the RFID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirmItemRent_Click(object sender, EventArgs e)
         {
             gbRfidScan.Enabled = true;

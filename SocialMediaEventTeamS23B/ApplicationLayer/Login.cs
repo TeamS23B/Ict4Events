@@ -37,6 +37,7 @@ namespace ApplicationLayer
             {
                 throw new NullException("dbConnection is empty!");
             }
+            // Checks if there is a connection to the database
         }
 
         public string LoginToApplication(string username, string password)
@@ -48,7 +49,10 @@ namespace ApplicationLayer
             }
             Username = username;
             return result;
-            }
+            //checks the result of the log in.
+            // it checks the database to see if the user is a user and which kind of user
+        }
+
 
         public void LogoutFromApplication()
         {

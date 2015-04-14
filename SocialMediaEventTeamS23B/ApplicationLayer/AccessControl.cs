@@ -20,7 +20,7 @@ namespace ApplicationLayer
         }
 
         /// <summary>
-        /// Checks if de visitor has payed
+        /// Checks if de visitor has paid
         /// </summary>
         /// <param name="RFID">The RFID of the visitor</param>
         /// <returns>True if the user has payed, false if the user hasn't</returns>

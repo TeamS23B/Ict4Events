@@ -119,6 +119,11 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        /// <summary>
+        /// gets the RFID and name of the person of the scanned RFID
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <returns></returns>
         public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
         {
             String RFIDPerson = "";
@@ -135,6 +140,11 @@ namespace DatabaseConnection
             MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
             return info;
         }
+
+        /// <summary>
+        /// Get not reserved map location to return it.
+        /// </summary>
+        /// <returns></returns>
         public List<MapLocation> GetNOTReserverdMapLocations()
         {
             List<MapLocation> Reserverdmaplocations = new List<MapLocation>();
@@ -167,6 +177,10 @@ namespace DatabaseConnection
             return Reserverdmaplocations;
         }
 
+        /// <summary>
+        /// get all map locations to return it
+        /// </summary>
+        /// <returns></returns>
         public List<MapLocation> GetMapLocations()
         {
             List<MapLocation> maplocations = new List<MapLocation>();
@@ -198,6 +212,11 @@ namespace DatabaseConnection
             }
             return maplocations;
         }
+
+        /// <summary>
+        /// get all locations to return it
+        /// </summary>
+        /// <returns></returns>
         public List<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
@@ -229,6 +248,10 @@ namespace DatabaseConnection
             return locations;
         }
 
+        /// <summary>
+        /// Get all visitors from database to return it
+        /// </summary>
+        /// <returns></returns>
         public List<Visitor> GetVisitor()
         {
             List<Visitor> visitors = new List<Visitor>();
@@ -278,6 +301,12 @@ namespace DatabaseConnection
             }
             return visitors;
         }
+
+        /// <summary>
+        /// Get all materials of the visitor with given rfid from the database, to return it
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <returns></returns>
         public List<Material> MaterialsOfVisitor(string RFID)
         {
             List<Material> materials = new List<Material>();
@@ -345,6 +374,11 @@ namespace DatabaseConnection
             }
             return posts;
         }
+
+        /// <summary>
+        /// Get reserved materials from database
+        /// </summary>
+        /// <returns></returns>
         public List<Material> GetReservedMaterial()
         {
             List<Material> materials = new List<Material>();
@@ -374,6 +408,11 @@ namespace DatabaseConnection
             return materials;
         }
 
+        /// <summary>
+        /// get all posts from a given user, from the database
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public List<Post> GetPostsFromUser(string userName)
         {
             List<Post> posts = new List<Post>();
@@ -409,6 +448,10 @@ namespace DatabaseConnection
             return posts;
         }
 
+        /// <summary>
+        /// Get all materials in event from database
+        /// </summary>
+        /// <returns></returns>
         public List<Material> GetMaterialsInEvent()
         {
             List<Material> materials = new List<Material>();
@@ -438,6 +481,10 @@ namespace DatabaseConnection
             return materials;
         }
 
+        /// <summary>
+        /// get all materials
+        /// </summary>
+        /// <returns></returns>
         public List<Material> GetAllMaterials()
         {
             List<Material> materials = new List<Material>();
@@ -467,7 +514,11 @@ namespace DatabaseConnection
             return materials;
         }
 
-        // WORK IN PROGRESS
+        /// <summary>
+        /// get comments of a post, with given title, from database
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
         public List<Post> GetCommentsOfPost(string title)
         {
             try
@@ -511,40 +562,13 @@ namespace DatabaseConnection
             return null;
         }
 
-
         /// <summary>
-        /// Returns a list of post objects belonging to the current user.
-        /// ------ WORK IN PROGRESS --------
+        /// Checks the username and password of the person who wants to log in
+        /// after that it gives the person a certain function with permissions
         /// </summary>
         /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        //public List<Post> GetPostsFromUser(string username)
-        //{
-        //    List<Post> posts = new List<Post>();
-        //    try
-        //    {
-        //        string sqlPost = "SELECT * FROM Bericht WHERE Gebruikersnaam = '" + username + "'";
-        //        OracleDataReader reader = dbConnector.QueryReader(sqlPost);
-
-        //        while (reader.Read())
-        //        {
-                    
-        //            Mediafile mediafile;//nullable
-                    
-        //            string description;
-        //            decimal likes;
-        //            decimal flags;
-        //            DateTime postedOn;
-        //            string uploader;
-        //            Category category;
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-
         public string Login(string username, string password)
         {
             string function = "";
@@ -587,6 +611,11 @@ namespace DatabaseConnection
             }
         }
 
+        /// <summary>
+        /// get the highest id, give an idType to change the table in the database.
+        /// </summary>
+        /// <param name="idType"></param>
+        /// <returns></returns>
         public decimal GetHighestId(string idType)
         {
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
@@ -658,6 +687,17 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// insert a media post
+        /// </summary>
+        /// <param name="rfid"></param>
+        /// <param name="category"></param>
+        /// <param name="title"></param>
+        /// <param name="text"></param>
+        /// <param name="commentOn"></param>
+        /// <param name="timeOfPost"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public int AddMediaPost(string rfid, int category, string title, string text, int commentOn,
             DateTime timeOfPost, string filename)
         {
@@ -671,7 +711,17 @@ namespace DatabaseConnection
             return AddPost(rfid, category, title, text, commentOn, timeOfPost,remoteFileName);
         }
 
-        // AddPost bevat (nog) geen link naar een bestand.
+        /// <summary>
+        /// insert a post
+        /// </summary>
+        /// <param name="rfid"></param>
+        /// <param name="category"></param>
+        /// <param name="title"></param>
+        /// <param name="text"></param>
+        /// <param name="commentOn"></param>
+        /// <param name="timeOfPost"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public int AddPost(string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost,string filename = "")
         {
             decimal maxId = GetHighestId("Bericht") + 1;
@@ -742,7 +792,14 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-
+        /// <summary>
+        /// insert an event in the database
+        /// </summary>
+        /// <param name="locatieId"></param>
+        /// <param name="name"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public int AddEvent(Decimal locatieId, String name, DateTime startDate, DateTime endDate)
         {
             decimal maxId = GetHighestId("Event") + 1;
@@ -752,6 +809,11 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// insert a material to an event
+        /// </summary>
+        /// <param name="materialId"></param>
+        /// <returns></returns>
         public int AddMaterialToEvent(Decimal materialId)
         {
             var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES (1, {0})", materialId);
@@ -850,12 +912,23 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// insert a material to a reserved item.
+        /// </summary>
+        /// <param name="MaterialId"></param>
+        /// <returns></returns>
         public int AddMaterialToReserved(int MaterialId)
         {
             var insertquery = String.Format("INSERT INTO Gehuurd_materiaal(HuurId, MateriaalId) VALUES (1,{0})", MaterialId);
             return dbConnector.QueryNoResult(insertquery);
         }
 
+        /// <summary>
+        /// add a location to a reservation in the database
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="rfid"></param>
         public void AddLocationToReservation(int x,int y, string rfid)
         {
             int ReserveerId = 1 ;
@@ -885,12 +958,22 @@ namespace DatabaseConnection
 
         #region DELETE FROM
 
+        /// <summary>
+        /// delete a material from an event in database
+        /// </summary>
+        /// <param name="materialId"></param>
+        /// <returns></returns>
         public int RmvMaterialFromEvent(Decimal materialId)
         {
             var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// delete a material in database
+        /// </summary>
+        /// <param name="materialId"></param>
+        /// <returns></returns>
         public int RmvMaterial(Decimal materialId)
         {
             var nonquery = String.Format("DELETE FROM materiaal WHERE materiaalId = {0}", materialId);
@@ -901,18 +984,39 @@ namespace DatabaseConnection
 
         #region UPDATE
 
+        /// <summary>
+        /// update the flag rules
+        /// </summary>
+        /// <param name="flags"></param>
+        /// <param name="ratio"></param>
+        /// <param name="time"></param>
+        /// <param name="autoCleanUp"></param>
+        /// <returns></returns>
         public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
         {
             var nonquery = String.Format("UPDATE flagRegels SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak = '{3}'", flags, ratio, time, autoCleanUp);
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// update the blocking of a visitor
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <param name="yesno"></param>
+        /// <returns></returns>
         public int UpdVisitorBlock(String RFID, Char yesno)
         {
             var nonquery = String.Format("UPDATE deelnemer SET IsGeblokkeerd = '{0}' WHERE RFID = '{1}'", yesno, RFID);
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// update the post visibility
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <param name="title"></param>
+        /// <param name="yesno"></param>
+        /// <returns></returns>
         public int UpdPostVisibility(String RFID, String title, Char yesno)
         {
             var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}' AND Titel = '{2}'", yesno, RFID, title);

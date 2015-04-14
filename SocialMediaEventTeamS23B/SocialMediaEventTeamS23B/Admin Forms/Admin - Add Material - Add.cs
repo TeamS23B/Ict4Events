@@ -44,85 +44,85 @@ namespace SocialMediaEventTeamS23B
                 cbModel.Items.Add("Canon PowerShot S200");
                 cbModel.Items.Add("Canon IXUS 170");
             }
-                  // Hier ben ik gebleven     
+                      
             if (cbType.SelectedItem == "Laptop")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
+                cbModel.Items.Add("Toshiba Satelite L50");
+                cbModel.Items.Add("Acer Aspire V3-371-33A1");
             }
 
             if (cbType.SelectedItem == "Smartphone")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Microsoft Lumia 640");
+                cbModel.Items.Add("Samsung Galaxy S3");
+                
             }
 
             if (cbType.SelectedItem == "Tablet")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Archos 70C Cobalt");
+                cbModel.Items.Add("Samsung Galaxy Tab3 7.0 LITE");
+                
             }
 
             if (cbType.SelectedItem == "Lader")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Sony Lader");
+                cbModel.Items.Add("Samsung Lader");
+                cbModel.Items.Add("Archos Lader ");
+                cbModel.Items.Add("Toshiba Lader");
+                cbModel.Items.Add("Acer Lader");
+                cbModel.Items.Add("Canon Lader");
+                
             }
 
             if (cbType.SelectedItem == "Accu")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Sony Accu");
+                cbModel.Items.Add("Samsung Accu");
+                cbModel.Items.Add("Archos Accu ");
+                cbModel.Items.Add("Toshiba Accu");
+                cbModel.Items.Add("Acer Accu");
+                cbModel.Items.Add("Canon Accu");
+                cbModel.Items.Add("Microsoft Accu");
             }
 
             if (cbType.SelectedItem == "SD-Kaart")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Kingston Micro SD 4GB");
+                cbModel.Items.Add("Sandisk Micro SDHC 4GB");
+                
             }
 
             if (cbType.SelectedItem == "USB-Stick")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Kingston DataTraveler 16GB");
+                cbModel.Items.Add("Sandisk Cruzer Fit USB 16GB");
+                
             }
 
             if (cbType.SelectedItem == "Muis")
             {
                 cbModel.Items.Clear();
-                cbModel.Items.Add("Sony ILCE-3000");
-                cbModel.Items.Add("Sony NEX-7 E-mount");
-                cbModel.Items.Add("Canon PowerShot S120 ");
-                cbModel.Items.Add("Canon PowerShot S200");
-                cbModel.Items.Add("Canon IXUS 170");
+                cbModel.Items.Add("Logitec Wireless");
+                cbModel.Items.Add("Logitec Mouse M100");
+                cbModel.Items.Add("Rapoo 3000P ");
+                
             }
         }
 
+        /// <summary>
+        /// Adds the material to the database with the given cost price and rent price.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -139,6 +139,12 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        /// Transforms two separate strings into a single 'double'.
+        /// </summary>
+        /// <param name="upper"></param>
+        /// <param name="lower"></param>
+        /// <returns></returns>
         public double StringsToDouble(string upper, string lower)
         {
             int upInt = Convert.ToInt32(upper);

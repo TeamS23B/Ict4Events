@@ -31,6 +31,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             GetMaterials();
             
         }
+
+        /// <summary>
+        /// Add materials available at the event to lbMaterialOnLocation.
+        /// </summary>
         private void GetMaterialsInEvent()
         {
             lbMaterialOnLocation.Items.Clear();
@@ -40,6 +44,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                 lbMaterialOnLocation.Items.Add(ME.MaterialId + ": " + ME.Name);
             }
         }
+
+        /// <summary>
+        /// Add all materials to lbAllMaterial.
+        /// </summary>
         private void GetMaterials()
         {
             lbAllMaterial.Items.Clear();
@@ -61,6 +69,9 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             }
         }
 
+        /// <summary>
+        /// Retrieve all reservable locations and insert them into cbLocations.
+        /// </summary>
         private void GetLocations()
         {
             cbLocations.Items.Clear();
@@ -71,6 +82,11 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             }          
         }
 
+        /// <summary>
+        /// Create an event according to the given parameters.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
             Location EventLocation = null;
@@ -88,11 +104,21 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             MessageBox.Show("Event toegevoegd!");
         }
 
+        /// <summary>
+        /// Close the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Adds available material to the event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -110,10 +136,15 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             }
             catch
             {
-                MessageBox.Show("Noting Selected");
+                MessageBox.Show("Nothing Selected");
             }
         }
 
+        /// <summary>
+        /// Removes materials from the event and returns them to the 'material pool'.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
