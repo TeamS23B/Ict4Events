@@ -657,6 +657,13 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int AddLocationToReservation(int eventId, int locationId, int reservationId)
+        {
+            
+            var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
