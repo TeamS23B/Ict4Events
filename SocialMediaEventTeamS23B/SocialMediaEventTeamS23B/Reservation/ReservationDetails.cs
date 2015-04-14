@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection;
 using DatabaseConnection.Types;
+using ApplicationLayer;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -28,7 +29,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnReservationAddMember_Click(object sender, EventArgs e)
         {
-
+            //Login.HashedBytes(Encoding.UTF8.GetBytes(string aaaa));//encoding
         }
     }
 }
