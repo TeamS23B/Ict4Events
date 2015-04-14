@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Drawing;
 using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
@@ -136,6 +137,33 @@ namespace DatabaseConnection
         }
 
 
+        public List<MapLocation> GetMapLocations()
+        {
+            List<MapLocation> maplocations = new List<MapLocation>();
+            try
+            {
+                var query = "SELECT * FROM plaats";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    //veel was niet nodig
+                    int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
+                    int locationId = Convert.ToInt32(odr["LocatieId"]);
+                    int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
+                    int xMap = Convert.ToInt32(odr["xPlattegrond"]);
+                    int yMap = Convert.ToInt32(odr["yPlattegrond"]);
+                    int width = Convert.ToInt32(odr["Breedte"]);
+                    int height = Convert.ToInt32(odr["Hoogte"]);
+                    //string Category = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
+                }
+            }
+            catch
+            {
+
+            }
+            return maplocations;
+        }
         public List<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
@@ -675,6 +703,13 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int AddLocationToReservation(int eventId, int locationId, int reservationId)
+        {
+            
+            var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
@@ -683,6 +718,12 @@ namespace DatabaseConnection
         public int RmvMaterialFromEvent(Decimal materialId)
         {
             var nonquery = String.Format("DELETE FROM materiaal_event WHERE eventId = 1 AND materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int RmvMaterial(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal WHERE materiaalId = {0}", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
