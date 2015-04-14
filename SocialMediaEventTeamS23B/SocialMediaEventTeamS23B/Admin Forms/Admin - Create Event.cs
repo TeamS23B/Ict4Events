@@ -15,10 +15,10 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
 {
     public partial class Beheer___Event_Aanmaken : Form
     {
-        Admin admin;
-        List<Location> locations;
-        List<Material> materials;
-        List<Material> materialsInEvent;
+        private Admin admin;
+        private List<Location> locations;
+        private List<Material> materials;
+        private List<Material> materialsInEvent;
         public Beheer___Event_Aanmaken()
         {
             InitializeComponent();
@@ -117,16 +117,19 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         {
             try
             {
+                Material RemoveMaterial = null;
                 foreach (Material ME in materialsInEvent)
                 {
+                    
                     if (ME.MaterialId + ": " + ME.Name == lbMaterialOnLocation.SelectedItem.ToString())
                     {
                         lbAllMaterial.Items.Add(ME.MaterialId + ": " + ME.Name);
                         lbMaterialOnLocation.Items.Remove(ME.MaterialId + ": " + ME.Name);
-                        materialsInEvent.Remove(ME);
+                        RemoveMaterial = ME;
                         admin.RemoveMaterialFromEvent(ME);
                     }
                 }
+                materialsInEvent.Remove(RemoveMaterial);
             }
             catch (Exception ex)
             {

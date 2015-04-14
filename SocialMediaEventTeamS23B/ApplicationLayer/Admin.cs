@@ -22,7 +22,7 @@ namespace ApplicationLayer
         public void AddMaterial(String name, String type, double price, double rent, String state)
         {
             materials.Add(new Material((int)dbc.GetHighestId("Materiaal") + 1, name, type, price, rent, state));
-            dbc.AddMaterial(name, type, (Decimal)price, (Decimal)rent, state);
+            dbc.AddMaterial(name, type, price, rent, state);
         }
         public void EditMaterial(Material material)
         {
@@ -60,13 +60,47 @@ namespace ApplicationLayer
 
         public void EditFlaggingControl(int flags, int ratio, int time, bool autoCleanUp)
         {
-            if(autoCleanUp){
+            if(autoCleanUp)
+            {
                 dbc.UpdFlagRules(flags, ratio, time, 'J');
             }
             else if (!autoCleanUp)
             {
                 dbc.UpdFlagRules(flags, ratio, time, 'N');
             }           
+        }
+        public List<Visitor> GetVisitors()
+        {
+            return dbc.GetVisitor();
+        }
+
+        public List<Post> GetPosts()
+        {
+            return dbc.GetPostsOf();
+        }
+        public void EditVisitor(Visitor visitor, int Change)
+        {
+
+            if (Change == 1)
+            {
+                dbc.UpdVisitorBlock(visitor.RFID, 'J');
+            }
+            else if(Change == 2)
+            {
+                dbc.UpdVisitorBlock(visitor.RFID, 'N');
+            }
+            else if (Change == 3)
+            {
+                dbc.UpdPostVisibility(visitor.RFID, 'N');
+            }
+            else if (Change == 4)
+            {
+                dbc.UpdPostVisibility(visitor.RFID, 'J');
+            }
+        }
+        public List<Material> VisitorMaterial(Visitor visitor)
+        {
+            return dbc.MaterialsOfVisitor(visitor.RFID);
         }
     }
 }

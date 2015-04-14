@@ -44,7 +44,11 @@ namespace ApplicationLayer
 
         public Visitor GetVisitor()
         {
-            return null;
+            if (!IsLoggedIn)
+            {
+                throw new NotLoggedInException("The user isn't logged in!");
+            }
+            return dbConnection.GetVistitorFomUsername(Username);
         }
     }
 }

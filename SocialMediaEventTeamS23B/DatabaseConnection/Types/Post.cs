@@ -28,14 +28,14 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("Title, Uploader or Descirption is empty");
             }
-            if (likes <= 0 || flags <= 0)
+            if (likes < 0 || flags < 0)
             {
                 throw new InvalidDataException("Likes or Flags is below zero");
             }
-            if (category == null)
+            /*if (category == null)
             {
                 throw new InvalidDataException("category is null");
-            }
+            }*/
             Comments = comments;
             Mediafile = mediafile;//nullable
             Description = description;

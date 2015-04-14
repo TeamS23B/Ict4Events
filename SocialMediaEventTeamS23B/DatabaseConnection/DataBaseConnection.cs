@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using DatabaseConnection.Exeptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
@@ -147,6 +148,102 @@ namespace DatabaseConnection
             }
 
             return locations;
+        }
+
+        public List<Visitor> GetVisitor()
+        {
+            List<Visitor> visitors = new List<Visitor>();
+            try
+            {
+                var query = "SELECT * FROM deelnemer";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    string RFID = Convert.ToString(odr["RFID"]);
+                    string Name = Convert.ToString(odr["Voornaam"]);
+                    string Prefix =Convert.ToString(odr["Tussenvoegsel"]);
+                    string Surname = Convert.ToString(odr["Achternaam"]);
+                    string UserName = Convert.ToString(odr["Gebruikersnaam"]);
+                    string Leader = Convert.ToString(odr["IsLeider"]);
+                    if(Leader == "J")
+                    {
+                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                    }
+                    if(Leader == "N")
+                    {
+                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                    }                  
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return visitors;
+        }
+        public List<Material> MaterialsOfVisitor(string RFID)
+        {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = String.Format("SELECT m.MATERIAALID, m.MATMODEL, m.MATTYPE, m.KOSTPRIJS, m.HUURPRIJS, m.STATUS FROM gehuurd_materiaal gm INNER JOIN materiaal m ON gm.MateriaalId = m.MateriaalId INNER JOIN huur h ON h.HuurId = gm.HuurId WHERE h.RFID = '{0}'", RFID);
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return materials;
+        }
+        public List<Post> GetPostsOf()
+        {
+            List<Post> posts = new List<Post>();
+            try
+            {
+                String query = "SELECT * FROM bericht";
+                OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
+
+                while (reader.Read())
+                {
+                    int postId = Convert.ToInt32(reader["BerichtId"]);
+                    string rfid = Convert.ToString(reader["Rfid"]);
+                    int categoryId = Convert.ToInt32(reader["CategorieId"]);
+                    string commentTitle = Convert.ToString(reader["Titel"]);
+                    string pathToFile = Convert.ToString(reader["Bestand"]);
+                    string description = Convert.ToString(reader["Tekst"]);
+                    //int commentOf = Convert.ToInt32(reader["ReactieOp"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
+                    string visible = Convert.ToString(reader["Zichtbaar"]);
+                    posts.Add(new Post(commentTitle, new List<Post>(),description, 0,0,placedOn,rfid, null));
+                }
+            }
+            catch(Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return posts;
         }
 
         public List<Material> GetMaterialsInEvent()
@@ -352,6 +449,38 @@ namespace DatabaseConnection
             var query = String.Format("SELECT MAX({0}Id) FROM {1}", idType, idType);
             return dbConnector.QueryScalar<decimal>(query);
         }
+
+        /// <summary>
+        /// Get a visitor by a specific username
+        /// </summary>
+        /// <param name="username">the username</param>
+        /// <returns>A visitor reperesenting the user</returns>
+        public Visitor GetVistitorFomUsername(String username)
+        {
+            var querry = String.Format("SELECT * " +
+                                       "FROM deelnemer " +
+                                       "WHERE gebruikersnaam = {0}",username);
+            var reader = dbConnector.QueryReader(querry);
+            if (!reader.HasRows)
+            {
+                throw new InvalidDataException("Unkowm username!");
+            }
+            reader.Read();
+            Visitor visitor;
+            if (reader["HoortBij"] != DBNull.Value)
+            {
+                var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], address, (string)reader["rfid"]);
+            }
+            else
+            {
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["rfid"]);
+            }
+            reader.Close();
+            dbConnector.CloseConnection();
+            return visitor;
+
+        }
         #endregion
         #region INSERT INTO
 
@@ -363,10 +492,12 @@ namespace DatabaseConnection
         /// <param name="price"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public int AddMaterial(string name, string type, Decimal price, Decimal rent, String state)
+        public int AddMaterial(string name, string type, Double price, Double rent, String state)
         {
             decimal maxId = GetHighestId("Materiaal") + 1;
-            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, {1}, {2}, {3}, {4}, {5})", maxId, name, type, price, rent, state);
+            string pricestr = price.ToString().Replace(",",".");
+            string rentstr = rent.ToString().Replace(",", ".");
+            var nonquery = String.Format("INSERT INTO materiaal (MateriaalId, MatModel, MatType, Kostprijs, Huurprijs, Status) VALUES ({0}, '{1}', '{2}', {3}, {4}, '{5}')", maxId, name, type, pricestr, rentstr, state);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -443,7 +574,19 @@ namespace DatabaseConnection
 
         public int UpdFlagRules(Decimal flags, Decimal ratio, Decimal time, Char autoCleanUp)
         {
-            var nonquery = String.Format("UPDATE flagRules SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak '{3}'", flags, ratio, time, autoCleanUp);
+            var nonquery = String.Format("UPDATE flagRegels SET Flags = {0}, Verhouding = {1}, Tijd = {2}, Autoschoonmaak = '{3}'", flags, ratio, time, autoCleanUp);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdVisitorBlock(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE deelnemer SET IsGeblokkeerd = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdPostVisibility(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}'", yesno, RFID);
             return dbConnector.QueryNoResult(nonquery);
         }
 
