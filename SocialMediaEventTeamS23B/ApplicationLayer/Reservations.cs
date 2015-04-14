@@ -50,10 +50,30 @@ namespace ApplicationLayer
             //return dbConnection.RemoveMaterialFromReservation(reservation,material);
             return true;
         }
-
+        public List<Material> GetReservedEventMatrial()
+        {
+            return dbc.GetReservedMaterial();
+        }
+        
+        public List<Material> GetEventMatrial()
+        {
+            return dbc.GetMaterialsInEvent();
+        }
+        public List<MapLocation> GetNOTReserverdMapLocations()
+        {
+            return dbc.GetNOTReserverdMapLocations();
+        }
         public List<MapLocation> GetMapLocations()
         {
             return dbc.GetMapLocations();
+        }
+
+        public void RentWithMaterialId(int MateriaalId)
+        {
+            if(MateriaalId != null)
+            {
+                dbc.AddMaterialToReserved(MateriaalId);
+            }
         }
 
     }

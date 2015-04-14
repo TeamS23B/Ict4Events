@@ -8,32 +8,105 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection.Types;
+using ApplicationLayer;
 
 namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationMaterial : Form
     {
-        private List<Material> materials;
-        public ReservationMaterial()
+        Visitor leader;
+        List<Visitor> members = new List<Visitor>();
+        MapLocation maplocation;
+        List<Material> materialToReserve = new List<Material>();
+
+        ApplicationLayer.Reservations res;
+        private List<Material> materials;//beschikbaar materiaal
+        private List<Material> reservedMatrials;//gereserveerdmaterial
+        public ReservationMaterial(Visitor leader, List<Visitor> members, MapLocation maplocation)
         {
             InitializeComponent();
+            this.leader = leader;
+            this.members = members;
+            this.maplocation = maplocation;
+            res = new Reservations();
             materials = new List<Material>();
+            reservedMatrials = new List<Material>();
             FillList();
         }
         private void FillList()
         {
-
+            materials = res.GetEventMatrial();
+            reservedMatrials = res.GetReservedEventMatrial();
+            foreach (Material M in materials)
+            {  
+                int countTrue = 0;
+                foreach(Material RM in reservedMatrials)
+                {
+                    
+                    if(M.MaterialId == RM.MaterialId)
+                    {
+                        countTrue++;
+                    }
+                }
+                if(countTrue == 0)
+                {
+                    lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                }
+            }
         }
 
         private void btnReservationMaterialNext_Click(object sender, EventArgs e)
         {
-            ReservationConfirmation ResConfirmation = new ReservationConfirmation();
+            ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocation, materialToReserve);
             ResConfirmation.Show();
         }
 
         private void btnReservationMaterialPrevious_Click(object sender, EventArgs e)
         {
             this.Close();
+            
+        }
+
+        private void btnReservationAddMaterial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach(Material M in materials)
+                {
+                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    {
+                        lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                        lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+                        materialToReserve.Add(M);
+                    }
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Material M in materials)
+                {
+                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    {
+                        lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                        lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
