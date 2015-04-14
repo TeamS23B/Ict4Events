@@ -23,6 +23,11 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         public Post Post { get; private set; }
 
+        /// <summary>
+        /// event hander for make a post
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPost_Click(object sender, EventArgs e)
         {
             if (tbAttatchment.Text == "")
@@ -39,6 +44,11 @@ namespace SocialMediaEventTeamS23B.SMSForms
             DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// event hander to get a file string
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             var ofDiag = new OpenFileDialog()

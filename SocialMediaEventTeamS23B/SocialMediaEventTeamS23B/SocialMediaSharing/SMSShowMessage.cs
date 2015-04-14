@@ -29,7 +29,11 @@ namespace SocialMediaEventTeamS23B.SMSForms
         }
 
         private int nextYCord = 12;
-
+        /// <summary>
+        /// load comments
+        /// </summary>
+        /// <param name="post"></param>
+        /// <param name="indent"></param>
         private void LoadComments(Post post,int indent)
         {
             if (post.Comments == null)

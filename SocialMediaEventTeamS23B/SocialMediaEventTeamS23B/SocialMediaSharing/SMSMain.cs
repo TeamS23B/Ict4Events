@@ -35,6 +35,9 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         private int lastIndex;
         
+        /// <summary>
+        /// load the posts
+        /// </summary>
         private void loadPosts()
         {
             //checking for new content
@@ -58,6 +61,11 @@ namespace SocialMediaEventTeamS23B.SMSForms
             }
         }
 
+        /// <summary>
+        /// new message event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btNewMessage_Click(object sender, EventArgs e)
         {
             var createPostFrm = new SMSCreatePost(user.RFID);
