@@ -213,12 +213,20 @@ namespace DatabaseConnection
             }
             return materials;
         }
-        public List<Post> GetPostsOf()
+        /// <summary>
+        /// Get post from parent post, 0 for top
+        /// </summary>
+        /// <param name="id">parent post, 0 for top</param>
+        /// <returns>list of post from parent post</returns>
+        public List<Post> GetPostsOf(int id)
         {
             List<Post> posts = new List<Post>();
             try
             {
-                String query = "SELECT * FROM bericht";
+                String query = "SELECT * " +
+                               "FROM bericht " +
+                               "WHERE zichtbaar='J'" +
+                               "AND ReadtieOp="+(id>0?id.ToString():"NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
@@ -227,12 +235,11 @@ namespace DatabaseConnection
                     string rfid = Convert.ToString(reader["Rfid"]);
                     int categoryId = Convert.ToInt32(reader["CategorieId"]);
                     string commentTitle = Convert.ToString(reader["Titel"]);
-                    string pathToFile = Convert.ToString(reader["Bestand"]);
+                    var pathToFile = reader["Bestand"];
                     string description = Convert.ToString(reader["Tekst"]);
-                    int commentOf = Convert.ToInt32(reader["ReactieOp"]);
                     DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
-                    string visible = Convert.ToString(reader["Zichtbaar"]);
-                    posts.Add(new Post(commentTitle, null,description, 0,0,placedOn,rfid, null));
+                    Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
+                    posts.Add(new Post(commentTitle, null,mf,description, 0,0,placedOn,rfid, null,postId));
                 }
             }
             catch(Exception e)

@@ -31,7 +31,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblContent = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlComments = new System.Windows.Forms.Panel();
             this.lblComments = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -63,16 +63,16 @@
             this.lblContent.TabIndex = 2;
             this.lblContent.Text = "Content";
             // 
-            // panel1
+            // pnlComments
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlComments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(12, 92);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 357);
-            this.panel1.TabIndex = 3;
+            this.pnlComments.AutoScroll = true;
+            this.pnlComments.Location = new System.Drawing.Point(12, 92);
+            this.pnlComments.Name = "pnlComments";
+            this.pnlComments.Size = new System.Drawing.Size(360, 357);
+            this.pnlComments.TabIndex = 3;
             // 
             // lblComments
             // 
@@ -89,7 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.lblComments);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlComments);
             this.Controls.Add(this.lblContent);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblTitle);
@@ -108,7 +108,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblContent;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlComments;
         private System.Windows.Forms.Label lblComments;
     }
 }

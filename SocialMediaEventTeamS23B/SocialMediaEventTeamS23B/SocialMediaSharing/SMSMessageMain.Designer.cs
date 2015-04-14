@@ -71,6 +71,7 @@
             this.Controls.Add(this.lblTitle);
             this.Name = "SMSMessageMain";
             this.Size = new System.Drawing.Size(276, 103);
+            this.Load += new System.EventHandler(this.SMSMessageMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
