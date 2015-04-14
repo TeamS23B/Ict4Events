@@ -134,8 +134,8 @@ namespace SocialMediaEventTeamS23B
         private void btnConfirmItemRent_Click(object sender, EventArgs e)
         {
             gbRfidScan.Enabled = true;
-            Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
-            SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
+            //Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
+            //SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
 
         }
 
