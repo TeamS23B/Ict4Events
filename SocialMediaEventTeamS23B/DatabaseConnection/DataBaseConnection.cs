@@ -701,10 +701,48 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// Insert a connection between an event, a location and a reservation into the database
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="locationId"></param>
+        /// <param name="reservationId"></param>
+        /// <returns></returns>
         public int AddLocationToReservation(int eventId, int locationId, int reservationId)
         {
             
             var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Add a record to the database that tells you which RFID has rented something.
+        /// To record which items were in fact rented, use the 'AddRentMaterial' method.
+        /// </summary>
+        /// <param name="rentDate"></param>
+        /// <param name="returnDate"></param>
+        /// <param name="renteeRfid"></param>
+        /// <returns></returns>
+        public int AddRent(DateTime rentDate, DateTime returnDate, string renteeRfid)
+        {
+            decimal rentId = GetHighestId("Huur") + 1;
+            string rentDateString = rentDate.ToString("MM/dd/yyyy hh:mm:ss");
+            string returnDateString = returnDate.ToString("MM/dd/yyyy hh:mm:ss");
+
+            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, {1}, {2}, {3})", rentId, rentDateString, returnDateString,renteeRfid);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Connect a 'rent' record to actual materials.
+        /// When this method is executed, the materials will be connected to a rent date and return date.
+        /// </summary>
+        /// <param name="rentId"></param>
+        /// <param name="materialId"></param>
+        /// <returns></returns>
+        public int AddRentMaterial(int rentId, int materialId)
+        {
+            var nonquery = String.Format("INSERT INTO Reservering_Materiaal (HuurId, MateriaalId) VALUES ({0}, {1})", rentId, materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
