@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using DatabaseConnection.Exeptions;
+using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;

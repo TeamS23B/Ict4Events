@@ -36,7 +36,7 @@ namespace SocialMediaEventTeamS23B
                 lbMaterialRentProductsInList.Items.Add(material);
             }
             lbMaterialRentProductsInList.DisplayMember = "Name";
-            
+
 
 
 
@@ -152,7 +152,7 @@ namespace SocialMediaEventTeamS23B
                 rfid.LED = false;
             }
         }
-            
+
 
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
@@ -167,9 +167,9 @@ namespace SocialMediaEventTeamS23B
         {
             Material MaterialSelected;
             MaterialSelected = (Material)lbMaterialRentProductsInList.SelectedItem;
-            foreach(Material material in ListMaterials)
+            foreach (Material material in ListMaterials)
             {
-                if(MaterialSelected == material)
+                if (MaterialSelected == material)
                 {
                     lblMaterialRentDetails.Text = material.Type;
                     lblMaterialRentHireCost.Text = Convert.ToString(material.Rent);
@@ -177,6 +177,8 @@ namespace SocialMediaEventTeamS23B
                 }
             }
         }
-    
+
+
+
     }
 }
