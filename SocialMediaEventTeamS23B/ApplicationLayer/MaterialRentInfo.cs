@@ -47,9 +47,8 @@ namespace ApplicationLayer
         {
            return dbConnection.PersonMaterialRentInfo(RFID);
         }
-
         /// <summary>
-        /// Make a rent, and insert it into the database.
+        /// Rents the Product with the materiaalId, while it checks the RFID of the person
         /// </summary>
         /// <param name="rfid"></param>
         /// <param name="startdate"></param>
