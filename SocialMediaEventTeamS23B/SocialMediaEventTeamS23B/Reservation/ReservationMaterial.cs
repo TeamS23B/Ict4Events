@@ -98,7 +98,7 @@ namespace SocialMediaEventTeamS23B
                     {
                         lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
-
+                        materialToReserve.Remove(M);
                     }
                 }
 

@@ -16,8 +16,15 @@ namespace ApplicationLayer
         {
             
         }
+        public void AddVisitorLeader(Visitor v)
+        {
+            dbc.AddVisitorLeader(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, v.IBAN, v.Adress.Street, v.Adress.Number, v.Adress.Suffix, v.Adress.City, v.Adress.Postalcode);
+        }
 
-        
+        public void AddVisitor(Visitor v, string leaderId)
+        {
+            dbc.AddVisitor(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, leaderId);
+        }
 
         public bool AddReservation(List<Visitor> members, Visitor leader, List<MapLocation> locations)
         {
