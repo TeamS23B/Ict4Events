@@ -10,7 +10,7 @@ namespace DatabaseConnection.Types
     public class Visitor
     {
         public String Name { get; private set; }
-        public String Insertion { get; private set; } // tussenvoegsel
+        public String Prefix { get; private set; } // tussenvoegsel
         public String Surname { get; private set; }
         public AdressInfo Adress { get; private set; }
         public string RFID { get; private set; }
@@ -21,22 +21,22 @@ namespace DatabaseConnection.Types
         public String Username { get; private set; }
 
         // Leader
-        public Visitor(string username, string name, string surname, AdressInfo adress, string rfid):this( username, name,surname,adress,rfid,true)
+        public Visitor(string username, string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid):this( username,name,prefix,surname,email,iban,adress,rfid,true)
         {
             
         }
 
         // Visitor
-        public Visitor(string username, string name, string surname, string rfid):this(username,name,surname,null,rfid,false)
+        public Visitor(string username, string name, string prefix, string surname, string email, string rfid):this(username,name,prefix,surname,email,null,null,rfid,false)
         {
             
         }
 
-        private Visitor(string username, string name, string surname, AdressInfo adress, string rfid,bool isLeader)
+        private Visitor(string username,string prefix, string name, string surname, string email, string iban, AdressInfo adress, string rfid,bool isLeader)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username))
             {
-                throw new InvalidDataException("(User)(Sur)name is emtpy or null");
+                throw new InvalidDataException("(User)(Sur)name is empty or null");
             }
             if (isLeader && (adress == null ))
             {
@@ -46,6 +46,11 @@ namespace DatabaseConnection.Types
             Surname = surname;
             Adress = adress;
             RFID = rfid;
+            Email = email;
+            IBAN = iban;
+            Prefix = prefix;
+            Username = username;
+
         }
 
         public override string ToString()

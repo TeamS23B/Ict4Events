@@ -155,6 +155,7 @@ namespace DatabaseConnection
             List<Visitor> visitors = new List<Visitor>();
             try
             {
+                AdressInfo Adress = new AdressInfo("Unknown","Unknown",0,"Unknown");
                 var query = "SELECT * FROM deelnemer";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
@@ -165,13 +166,26 @@ namespace DatabaseConnection
                     string Surname = Convert.ToString(odr["Achternaam"]);
                     string UserName = Convert.ToString(odr["Gebruikersnaam"]);
                     string Leader = Convert.ToString(odr["IsLeider"]);
+                    string Iban = Convert.ToString(odr["Iban"]);
+                    string Email = Convert.ToString(odr["Email"]);
+                    string Street = Convert.ToString(odr["Straatnaam"]);
+                    int Number = Convert.ToInt32(odr["Huisnummer"]);
+                    string Suffix = Convert.ToString(odr["Toevoeging"]);
+                    string City = Convert.ToString(odr["Plaatsnaam"]);
+                    string PostalCode = Convert.ToString(odr["Postcode"]);
+
+                    if (Street != null && Number != null && City != null && PostalCode != null)
+                    {
+                        Adress = new AdressInfo(Street, City, Number, PostalCode);
+                    }
+
                     if(Leader == "J")
                     {
-                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,Iban,Adress,RFID));
                     }
                     if(Leader == "N")
                     {
-                        visitors.Add(new Visitor(UserName, Name, Prefix + " " + Surname, RFID));
+                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,RFID));
                     }                  
                 }
             }
@@ -481,11 +495,11 @@ namespace DatabaseConnection
             if (reader["HoortBij"] != DBNull.Value)
             {
                 var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["email"],(string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["email"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
