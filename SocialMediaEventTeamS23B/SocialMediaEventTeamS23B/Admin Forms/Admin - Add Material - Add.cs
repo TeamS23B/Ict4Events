@@ -130,6 +130,8 @@ namespace SocialMediaEventTeamS23B
                 double price = StringsToDouble(tbEuros.Text, tbCents.Text);
                 double rent = StringsToDouble(tbAdminEuros.Text, tbCents.Text);
                 adminMat.AddMaterial((string)cbType.SelectedItem, (string)cbModel.SelectedItem, price, rent, (string)cbState.SelectedItem);
+                MessageBox.Show("Item is toegevoegd.");
+                this.Close();
             }
             catch (Exception ex)
             {
