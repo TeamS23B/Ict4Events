@@ -15,8 +15,9 @@ namespace ApplicationLayer
         public string Details { get; set; }
         public int MyProperty { get; set; }
         private DataBaseConnection dbConnection;
+
         /// <summary>
-        /// Checks the connection 
+        /// Constructor to make a connection for material rent
         /// </summary>
         /// <param name="dbConnection"></param>
         public MaterialRentInfo(DataBaseConnection dbConnection)
@@ -27,16 +28,18 @@ namespace ApplicationLayer
                 throw new NullException("dbConnection is empty!");
             }
         }
+
         /// <summary>
-        /// Returns all the materials which are used at the event
+        /// Returns all the materials from the database which are in event
         /// </summary>
         /// <returns></returns>
         public List<Material> GetMaterialsInEvent()
         {
             return dbConnection.GetMaterialsInEvent();
         }
+
         /// <summary>
-        /// Returns the RFID-Code and Name of the scanned RFID
+        /// Get the info of a person what has the given RFID.
         /// </summary>
         /// <param name="RFID"></param>
         /// <returns></returns>
