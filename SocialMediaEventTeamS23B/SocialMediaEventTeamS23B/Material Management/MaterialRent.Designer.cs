@@ -84,9 +84,9 @@
             this.lblMaterialRentHireCost.AutoSize = true;
             this.lblMaterialRentHireCost.Location = new System.Drawing.Point(34, 312);
             this.lblMaterialRentHireCost.Name = "lblMaterialRentHireCost";
-            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(83, 13);
+            this.lblMaterialRentHireCost.Size = new System.Drawing.Size(71, 13);
             this.lblMaterialRentHireCost.TabIndex = 4;
-            this.lblMaterialRentHireCost.Text = "Huurkosten : 20";
+            this.lblMaterialRentHireCost.Text = "Huurkosten : ";
             // 
             // lblMaterialRentScannedRfid
             // 

@@ -171,9 +171,9 @@ namespace SocialMediaEventTeamS23B
             {
                 if(MaterialSelected == material)
                 {
-                    lblMaterialRentDetails.Text = material.Type;
-                    lblMaterialRentHireCost.Text = Convert.ToString(material.Rent);
-                    lblMaterialRentStatus.Text = material.State;
+                    lblMaterialRentDetails.Text += material.Type;
+                    lblMaterialRentHireCost.Text += Convert.ToString(material.Rent);
+                    lblMaterialRentStatus.Text += material.State;
                 }
             }
         }
