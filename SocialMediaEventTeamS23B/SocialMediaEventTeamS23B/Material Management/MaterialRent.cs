@@ -32,6 +32,8 @@ namespace SocialMediaEventTeamS23B
             rfid = new RFID();
             rfid.open();
 
+            MaterialRentInfoS = new MaterialRentInfo(dbConnection);
+
             rfid.Attach += rfid_Attach;
             rfid.Detach += rfid_Detach;
             rfid.Error += rfid_Error;
@@ -102,10 +104,6 @@ namespace SocialMediaEventTeamS23B
             delayClean.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            delayClean.Stop();
-        }
         private void btnMaterialRentConfirm_Click(object sender, EventArgs e)
         {
 
@@ -123,6 +121,12 @@ namespace SocialMediaEventTeamS23B
                     lblHereComeTheStats.Text = material.State;
                 }
             }
+        }
+
+        private void delayClean_Tick(object sender, EventArgs e)
+        {
+            delayClean.Enabled = false;
+            //todo clean form
         }
 
 
