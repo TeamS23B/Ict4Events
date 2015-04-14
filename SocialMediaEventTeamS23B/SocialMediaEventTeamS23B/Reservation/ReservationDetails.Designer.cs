@@ -285,6 +285,7 @@
             this.btnReservationRemoveMember.TabIndex = 26;
             this.btnReservationRemoveMember.Text = "Verwijderen";
             this.btnReservationRemoveMember.UseVisualStyleBackColor = true;
+            this.btnReservationRemoveMember.Click += new System.EventHandler(this.btnReservationRemoveMember_Click);
             // 
             // btnReservationDetailsNext
             // 
