@@ -194,7 +194,7 @@
             this.btnConfirmItemRent.TabIndex = 15;
             this.btnConfirmItemRent.Text = "Bevestigen";
             this.btnConfirmItemRent.UseVisualStyleBackColor = true;
-            this.btnConfirmItemRent.Click += new System.EventHandler(this.button1_Click);
+            this.btnConfirmItemRent.Click += new System.EventHandler(this.btnConfirmItemRent_Click);
             // 
             // gbRfidScan
             // 

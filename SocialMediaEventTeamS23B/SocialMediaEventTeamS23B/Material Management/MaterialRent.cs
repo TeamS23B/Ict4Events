@@ -130,6 +130,14 @@ namespace SocialMediaEventTeamS23B
             //todo clean form
         }
 
+        private void btnConfirmItemRent_Click(object sender, EventArgs e)
+        {
+            gbRfidScan.Enabled = false;
+            Material SelectedMaterial = new Material(0, null, null, 0, 0, null);
+            SelectedMaterial = (Material)lbMaterialRentProductsInList.SelectedItem;
+
+        }
+
 
 
     }
