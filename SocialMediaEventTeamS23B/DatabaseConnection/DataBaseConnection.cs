@@ -769,8 +769,8 @@ namespace DatabaseConnection
         /// <returns></returns>
         public int AddVisitorLeader(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string iban, string street, int number, string suffix, string city, string postalCode)
         {
-            
-            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, Iban, Straatnaam, Huisnummer, Toevoeging, Plaatsnaam, Postcode) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})", rfid, "J", name, prefix, surname, email, password, userName, eventId, iban, street, number, suffix, city, postalCode);
+
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, Iban, Straatnaam, Huisnummer, Toevoeging, Plaatsnaam, Postcode, IsGeblokkeerd, HoortBij) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', {8}, '{9}', '{10}', {11}, '{12}', '{13}', '{14}','{15}','{16}')", rfid, 'J', name, prefix, surname, email, password, userName, eventId, iban, street, number, suffix, city, postalCode, 'N', rfid);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -845,17 +845,18 @@ namespace DatabaseConnection
 
         public void AddLocationToReservation(int x,int y, string rfid)
         {
-            int ReserveerId = 0 ;
-            var GetReserveerIdquery = String.Format("SELECT ReserveerId FROM reservering WHERE Leider = '"+ rfid + "'");
-            OracleDataReader orcldbr = dbConnector.QueryReader(GetReserveerIdquery);
-            while (orcldbr.Read())
-            {
-                ReserveerId = (int)orcldbr[0];
-            }
-            orcldbr.Close();
-            dbConnector.CloseConnection();
+            int ReserveerId = 1 ;
+            //var GetReserveerIdquery = String.Format("SELECT ReserveerId FROM reservering WHERE Leider = '"+ rfid + "'");
+            //OracleDataReader orcldbr = dbConnector.QueryReader(GetReserveerIdquery);
+            //while (orcldbr.Read())
+            //{
+            //    ReserveerId = (int)orcldbr[0];
+            //}
+            //orcldbr.Close();
+            //dbConnector.CloseConnection();
             int PlaatsId = 0;
             var GetPlaatsId = String.Format("Select PlaatsId FROM plaats WHERE xPlattegrond = {0} AND yPlattegrond = {1}", x, y);
+            OracleDataReader orcldbr = dbConnector.QueryReader(GetPlaatsId);
             while (orcldbr.Read())
             {
                 PlaatsId = (int)orcldbr[0];

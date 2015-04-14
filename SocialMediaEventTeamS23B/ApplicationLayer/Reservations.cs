@@ -18,12 +18,12 @@ namespace ApplicationLayer
         }
         public void AddVisitorLeader(Visitor v)
         {
-            dbc.AddVisitorLeader(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, v.IBAN, v.Adress.Street, v.Adress.Number, v.Adress.Suffix, v.Adress.City, v.Adress.Postalcode);
+            dbc.AddVisitorLeader(1, v.RFID, v.Username, "21-B5-1C-8B-41-A0-D1-4B-9B-69-DB-07-E4-B6-E8-CB-4F-1E-CC-68", v.Name, v.Prefix, v.Surname, v.Email, v.IBAN, v.Adress.Street, v.Adress.Number, v.Adress.Suffix, v.Adress.City, v.Adress.Postalcode);
         }
 
         public void AddVisitor(Visitor v, string leaderId)
         {
-            dbc.AddVisitor(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, leaderId);
+            dbc.AddVisitor(1, v.RFID, v.Username, "21-B5-1C-8B-41-A0-D1-4B-9B-69-DB-07-E4-B6-E8-CB-4F-1E-CC-68", v.Name, v.Prefix, v.Surname, v.Email, leaderId);
         }
 
         public bool AddReservation(List<Visitor> members, Visitor leader, List<MapLocation> locations)
@@ -85,7 +85,7 @@ namespace ApplicationLayer
         public void RentWithXandYPosition(int x, int y, string LeiderId)
 
         {
-            if(x !=null && y!=null && String.IsNullOrEmpty(LeiderId))
+            if(x !=null && y!=null && !String.IsNullOrEmpty(LeiderId))
             {
                 dbc.AddLocationToReservation(x, y, LeiderId);
             }
