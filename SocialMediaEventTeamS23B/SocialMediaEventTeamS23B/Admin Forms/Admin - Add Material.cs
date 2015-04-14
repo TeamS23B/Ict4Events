@@ -58,7 +58,13 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            //int matId = lvMaterial.s
+            int matId = Convert.ToInt32(lvMaterial.SelectedIndices[0]);
+            DialogResult dr = MessageBox.Show(String.Format("Weet u zeker dat u {0} {1} wilt verwijderen?", Materials.ElementAt(matId).Type, Materials.ElementAt(matId).Name), "Beheersysteem", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                adm.RemoveMaterial(Materials.ElementAt(matId));
+                refreshListView();
+            }
         }
 
     }
