@@ -50,7 +50,8 @@ namespace DatabaseConnection.Types
             Uploader = uploader;
             Category = category;
             this.Id = id;
-            }
+            Title = title;
+        }
 
         public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id):this(title,comments,null,description,likes,flags,postedOn,uploader,category,id)
         {

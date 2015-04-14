@@ -96,16 +96,16 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        public decimal GetPostId(string title)
+        public int GetPostId(string title)
         {
             var query = String.Format(
                 "SELECT BerichtId " +
                 "FROM Bericht " +
-                "WHERE Titel = {0}; ",
+                "WHERE Titel = '{0}'",
                 title);
 
 
-            return dbConnector.QueryScalar<decimal>(query);
+            return dbConnector.QueryScalar<int>(query);
         }
 
         
@@ -318,8 +318,8 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE zichtbaar='J'" +
-                               "AND ReadtieOp="+(id>0?id.ToString():"NULL");
+                               "WHERE Zichtbaar='J'" +
+                               "AND ReactieOp " + (id > 0 ? "= "+id : "IS NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
@@ -330,7 +330,7 @@ namespace DatabaseConnection
                     string commentTitle = Convert.ToString(reader["Titel"]);
                     var pathToFile = reader["Bestand"];
                     string description = Convert.ToString(reader["Tekst"]);
-                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
                     Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
                     posts.Add(new Post(commentTitle, null,mf,description, 0,0,placedOn,rfid, null,postId));
                 }
@@ -591,12 +591,12 @@ namespace DatabaseConnection
 
                 var tus = reader["tussenvoegsel"];
 
-                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
                 var tus = reader["tussenvoegsel"];
-                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
@@ -627,7 +627,7 @@ namespace DatabaseConnection
         public int AddPost(string rfid, int category, string title, string text, int commentOn, DateTime timeOfPost)
         {
             decimal maxId = GetHighestId("Bericht") + 1;
-            string postDate = timeOfPost.ToString("MM/dd/yyyy hh:mm:ss");
+            string postDate = timeOfPost.ToString("dd/MM/yyyy hh:mm:ss");
             var nonquery = String.Format("INSERT INTO bericht (BerichtId, RFID, CategorieId, Titel, Tekst, ReactieOp, GeplaatsOm) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", maxId, rfid, category, title, text, commentOn, timeOfPost);
             return dbConnector.QueryNoResult(nonquery);
         }
@@ -698,9 +698,9 @@ namespace DatabaseConnection
         public int AddEvent(Decimal locatieId, String name, DateTime startDate, DateTime endDate)
         {
             decimal maxId = GetHighestId("Event") + 1;
-            string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
-            string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY HH24:MI:SS'), to_date('{4}','DD-MM-YYYY HH24:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
+            string beginDateString = startDate.ToString("dd/MM/yyyy hh:mm:ss");
+            string endDateString = endDate.ToString("dd/MM/yyyy hh:mm:ss");
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY hh:MI:SS'), to_date('{4}','DD-MM-YYYY hh:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -748,9 +748,9 @@ namespace DatabaseConnection
         public int AddReservation(string leaderRfid, DateTime timeOfReservation)
         {
             decimal reservationId = GetHighestId("Reservering")+ 1;
-            string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
+            string timeOfReservationString = timeOfReservation.ToString("dd/MM/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY hh:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -779,10 +779,10 @@ namespace DatabaseConnection
         public int AddRent(DateTime rentDate, DateTime returnDate, string renteeRfid)
         {
             decimal rentId = GetHighestId("Huur") + 1;
-            string rentDateString = rentDate.ToString("MM/dd/yyyy hh:mm:ss");
-            string returnDateString = returnDate.ToString("MM/dd/yyyy hh:mm:ss");
+            string rentDateString = rentDate.ToString("dd/MM/yyyy hh:mm:ss");
+            string returnDateString = returnDate.ToString("dd/MM/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, {1}, {2}, {3})", rentId, rentDateString, returnDateString,renteeRfid);
+            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, to_date('{1}','DD-MM-YYYY hh:MI:SS'), to_date('{2}','DD-MM-YYYY hh:MI:SS'), '{3}')", rentId, rentDateString, returnDateString, renteeRfid);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -795,7 +795,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public int AddRentMaterial(int rentId, int materialId)
         {
-            var nonquery = String.Format("INSERT INTO Reservering_Materiaal (HuurId, MateriaalId) VALUES ({0}, {1})", rentId, materialId);
+            var nonquery = String.Format("INSERT INTO Gehuurd_materiaal (HuurId, MateriaalId) VALUES ({0}, {1})", rentId, materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
 
