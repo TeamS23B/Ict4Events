@@ -47,13 +47,15 @@
             this.lblHereComeTheStats = new System.Windows.Forms.Label();
             this.btnConfirmItemRent = new System.Windows.Forms.Button();
             this.gbRfidScan = new System.Windows.Forms.GroupBox();
+            this.gbProducts = new System.Windows.Forms.GroupBox();
             this.gbRfidScan.SuspendLayout();
+            this.gbProducts.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMaterialRentProductsInStorage
             // 
             this.lblMaterialRentProductsInStorage.AutoSize = true;
-            this.lblMaterialRentProductsInStorage.Location = new System.Drawing.Point(31, 51);
+            this.lblMaterialRentProductsInStorage.Location = new System.Drawing.Point(27, 16);
             this.lblMaterialRentProductsInStorage.Name = "lblMaterialRentProductsInStorage";
             this.lblMaterialRentProductsInStorage.Size = new System.Drawing.Size(116, 13);
             this.lblMaterialRentProductsInStorage.TabIndex = 0;
@@ -62,7 +64,7 @@
             // lbMaterialRentProductsInList
             // 
             this.lbMaterialRentProductsInList.FormattingEnabled = true;
-            this.lbMaterialRentProductsInList.Location = new System.Drawing.Point(34, 93);
+            this.lbMaterialRentProductsInList.Location = new System.Drawing.Point(30, 42);
             this.lbMaterialRentProductsInList.Name = "lbMaterialRentProductsInList";
             this.lbMaterialRentProductsInList.Size = new System.Drawing.Size(134, 173);
             this.lbMaterialRentProductsInList.TabIndex = 1;
@@ -71,7 +73,7 @@
             // lblMaterialRentDetails
             // 
             this.lblMaterialRentDetails.AutoSize = true;
-            this.lblMaterialRentDetails.Location = new System.Drawing.Point(34, 288);
+            this.lblMaterialRentDetails.Location = new System.Drawing.Point(27, 247);
             this.lblMaterialRentDetails.Name = "lblMaterialRentDetails";
             this.lblMaterialRentDetails.Size = new System.Drawing.Size(39, 13);
             this.lblMaterialRentDetails.TabIndex = 2;
@@ -80,7 +82,7 @@
             // lblMaterialRentStatus
             // 
             this.lblMaterialRentStatus.AutoSize = true;
-            this.lblMaterialRentStatus.Location = new System.Drawing.Point(34, 338);
+            this.lblMaterialRentStatus.Location = new System.Drawing.Point(27, 279);
             this.lblMaterialRentStatus.Name = "lblMaterialRentStatus";
             this.lblMaterialRentStatus.Size = new System.Drawing.Size(37, 13);
             this.lblMaterialRentStatus.TabIndex = 3;
@@ -89,7 +91,7 @@
             // lblMaterialRentHireCost
             // 
             this.lblMaterialRentHireCost.AutoSize = true;
-            this.lblMaterialRentHireCost.Location = new System.Drawing.Point(34, 312);
+            this.lblMaterialRentHireCost.Location = new System.Drawing.Point(27, 266);
             this.lblMaterialRentHireCost.Name = "lblMaterialRentHireCost";
             this.lblMaterialRentHireCost.Size = new System.Drawing.Size(71, 13);
             this.lblMaterialRentHireCost.TabIndex = 4;
@@ -188,7 +190,7 @@
             // 
             // btnConfirmItemRent
             // 
-            this.btnConfirmItemRent.Location = new System.Drawing.Point(72, 370);
+            this.btnConfirmItemRent.Location = new System.Drawing.Point(89, 313);
             this.btnConfirmItemRent.Name = "btnConfirmItemRent";
             this.btnConfirmItemRent.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmItemRent.TabIndex = 15;
@@ -211,26 +213,38 @@
             this.gbRfidScan.TabStop = false;
             this.gbRfidScan.Text = "gbRfidScan";
             // 
+            // gbProducts
+            // 
+            this.gbProducts.Controls.Add(this.btnConfirmItemRent);
+            this.gbProducts.Controls.Add(this.lblMaterialRentProductsInStorage);
+            this.gbProducts.Controls.Add(this.lbMaterialRentProductsInList);
+            this.gbProducts.Controls.Add(this.lblMaterialRentDetails);
+            this.gbProducts.Controls.Add(this.lblMaterialRentHireCost);
+            this.gbProducts.Controls.Add(this.lblMaterialRentStatus);
+            this.gbProducts.Location = new System.Drawing.Point(12, 41);
+            this.gbProducts.Name = "gbProducts";
+            this.gbProducts.Size = new System.Drawing.Size(197, 352);
+            this.gbProducts.TabIndex = 17;
+            this.gbProducts.TabStop = false;
+            this.gbProducts.Text = "gbProducts";
+            // 
             // MaterialRent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 425);
-            this.Controls.Add(this.btnConfirmItemRent);
             this.Controls.Add(this.lblHereComeTheStats);
             this.Controls.Add(this.lblHereComeTheRentCosts);
             this.Controls.Add(this.lbHereComeTheDetails);
             this.Controls.Add(this.btnReattach);
-            this.Controls.Add(this.lblMaterialRentHireCost);
-            this.Controls.Add(this.lblMaterialRentStatus);
-            this.Controls.Add(this.lblMaterialRentDetails);
-            this.Controls.Add(this.lbMaterialRentProductsInList);
-            this.Controls.Add(this.lblMaterialRentProductsInStorage);
             this.Controls.Add(this.gbRfidScan);
+            this.Controls.Add(this.gbProducts);
             this.Name = "MaterialRent";
             this.Text = "MaterialRent";
             this.gbRfidScan.ResumeLayout(false);
             this.gbRfidScan.PerformLayout();
+            this.gbProducts.ResumeLayout(false);
+            this.gbProducts.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +270,6 @@
         private System.Windows.Forms.Label lblHereComeTheStats;
         private System.Windows.Forms.Button btnConfirmItemRent;
         private System.Windows.Forms.GroupBox gbRfidScan;
+        private System.Windows.Forms.GroupBox gbProducts;
     }
 }
