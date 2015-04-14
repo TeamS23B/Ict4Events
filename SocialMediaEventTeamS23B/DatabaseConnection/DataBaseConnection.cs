@@ -598,6 +598,8 @@ namespace DatabaseConnection
             var nonquery = String.Format("INSERT INTO materiaal_event (eventId, materiaalId) VALUES (1, {0})", materialId);
             return dbConnector.QueryNoResult(nonquery);
         }
+
+
         #endregion
 
         #region DELETE FROM
