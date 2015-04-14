@@ -49,7 +49,6 @@ namespace DatabaseConnection.Types
             Rent = rent;
             State = state;
         }
-
         public override string ToString()
         {
             return String.Format("{{MaterialId={0},Name={1},Price={2},Rent={3},State{4}}}",MaterialId,Name,Price,Rent,State);
