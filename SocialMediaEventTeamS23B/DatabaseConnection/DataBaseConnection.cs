@@ -632,22 +632,7 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        #endregion
-
-        #region UPDATE
-
-        
-
-        
-        #endregion
-
-        #region UPDATE
-
-        
-
-       
-
-        #endregion
+        #endregion      
        
         #region FTP
 
