@@ -57,6 +57,10 @@
             this.btnReservationRemoveMember = new System.Windows.Forms.Button();
             this.btnReservationDetailsNext = new System.Windows.Forms.Button();
             this.lblMembers = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.tbUserName = new System.Windows.Forms.TextBox();
+            this.tbDe = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblReservationFirstNameLeader
@@ -301,11 +305,47 @@
             this.lblMembers.TabIndex = 28;
             this.lblMembers.Text = "Andere Deelnemers";
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Location = new System.Drawing.Point(22, 9);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(125, 13);
+            this.lblUserName.TabIndex = 29;
+            this.lblUserName.Text = "Gebruikersnaam";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbUserName
+            // 
+            this.tbUserName.Location = new System.Drawing.Point(150, 6);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(145, 20);
+            this.tbUserName.TabIndex = 30;
+            // 
+            // tbDe
+            // 
+            this.tbDe.Location = new System.Drawing.Point(546, 22);
+            this.tbDe.Name = "tbDe";
+            this.tbDe.Size = new System.Drawing.Size(145, 20);
+            this.tbDe.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(546, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Gebruikersnaam";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ReservationDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 343);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbDe);
+            this.Controls.Add(this.tbUserName);
+            this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.lblMembers);
             this.Controls.Add(this.btnReservationDetailsNext);
             this.Controls.Add(this.btnReservationRemoveMember);
@@ -373,5 +413,9 @@
         private System.Windows.Forms.Button btnReservationRemoveMember;
         private System.Windows.Forms.Button btnReservationDetailsNext;
         private System.Windows.Forms.Label lblMembers;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.TextBox tbUserName;
+        private System.Windows.Forms.TextBox tbDe;
+        private System.Windows.Forms.Label label1;
     }
 }

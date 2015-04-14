@@ -76,7 +76,7 @@ namespace ApplicationLayer
 
         public List<Post> GetPosts()
         {
-            return dbc.GetPostsOf();
+            return dbc.GetPostsOf(0);
         }
         public void EditVisitor(Visitor visitor, int Change)
         {
