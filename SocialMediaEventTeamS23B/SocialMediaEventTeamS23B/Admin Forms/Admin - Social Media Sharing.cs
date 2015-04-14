@@ -33,6 +33,7 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         private void btnSaveFilter_Click(object sender, EventArgs e)
         {
             admin.EditFlaggingControl((int)nudFlags.Value, (int)nudRatio.Value, (int)nudTime.Value, cbAutoFilter.Checked);
+            MessageBox.Show("Settings saved!");
         }
     }
 }
