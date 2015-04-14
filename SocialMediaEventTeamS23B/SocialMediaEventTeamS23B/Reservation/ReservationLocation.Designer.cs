@@ -100,6 +100,7 @@
             this.btnReservationLocationNext.TabIndex = 5;
             this.btnReservationLocationNext.Text = "Volgende stap";
             this.btnReservationLocationNext.UseVisualStyleBackColor = true;
+            this.btnReservationLocationNext.Click += new System.EventHandler(this.btnReservationLocationNext_Click);
             // 
             // lblReservationLocationPersons
             // 

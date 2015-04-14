@@ -16,5 +16,10 @@ namespace SocialMediaEventTeamS23B
         {
             InitializeComponent();
         }
+
+        private void btnReservationConfirmationNext_Click(object sender, EventArgs e)
+        {
+            //sent alles close alls
+        }
     }
 }

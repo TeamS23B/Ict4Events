@@ -26,5 +26,11 @@ namespace SocialMediaEventTeamS23B
         {
 
         }
+
+        private void btnReservationLocationNext_Click(object sender, EventArgs e)
+        {
+            ReservationMaterial ResMaterial = new ReservationMaterial();
+            ResMaterial.Show();
+        }
     }
 }

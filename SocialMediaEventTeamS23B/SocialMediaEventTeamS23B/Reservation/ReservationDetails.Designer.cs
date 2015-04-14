@@ -271,6 +271,7 @@
             this.btnReservationAddMember.TabIndex = 25;
             this.btnReservationAddMember.Text = "Toevoegen";
             this.btnReservationAddMember.UseVisualStyleBackColor = true;
+            this.btnReservationAddMember.Click += new System.EventHandler(this.btnReservationAddMember_Click);
             // 
             // btnReservationRemoveMember
             // 
@@ -289,6 +290,7 @@
             this.btnReservationDetailsNext.TabIndex = 27;
             this.btnReservationDetailsNext.Text = "Volgende stap";
             this.btnReservationDetailsNext.UseVisualStyleBackColor = true;
+            this.btnReservationDetailsNext.Click += new System.EventHandler(this.btnReservationDetailsNext_Click);
             // 
             // lblMembers
             // 
