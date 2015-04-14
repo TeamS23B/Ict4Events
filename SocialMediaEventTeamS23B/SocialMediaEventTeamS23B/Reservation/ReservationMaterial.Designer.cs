@@ -128,6 +128,7 @@
             this.btnReservationMaterialNext.TabIndex = 28;
             this.btnReservationMaterialNext.Text = "Volgende stap";
             this.btnReservationMaterialNext.UseVisualStyleBackColor = true;
+            this.btnReservationMaterialNext.Click += new System.EventHandler(this.btnReservationMaterialNext_Click);
             // 
             // btnReservationMaterialPrevious
             // 

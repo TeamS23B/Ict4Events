@@ -179,8 +179,9 @@
             this.btnReservationConfirmationNext.Name = "btnReservationConfirmationNext";
             this.btnReservationConfirmationNext.Size = new System.Drawing.Size(145, 23);
             this.btnReservationConfirmationNext.TabIndex = 29;
-            this.btnReservationConfirmationNext.Text = "Volgende stap";
+            this.btnReservationConfirmationNext.Text = "Klaar";
             this.btnReservationConfirmationNext.UseVisualStyleBackColor = true;
+            this.btnReservationConfirmationNext.Click += new System.EventHandler(this.btnReservationConfirmationNext_Click);
             // 
             // btnReservationConfirmationPrevious
             // 
