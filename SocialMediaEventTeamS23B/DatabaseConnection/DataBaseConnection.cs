@@ -200,7 +200,7 @@ namespace DatabaseConnection
             List<Visitor> visitors = new List<Visitor>();
             try
             {
-                AdressInfo Adress = new AdressInfo("Unknown","Unknown",0,"Unknown");
+                AdressInfo Adress = new AdressInfo("Unknown","Unknown",999,"Unknown");
                 var query = "SELECT * FROM deelnemer";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
