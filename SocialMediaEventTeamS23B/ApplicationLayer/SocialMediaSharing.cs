@@ -15,30 +15,30 @@ namespace ApplicationLayer
         public string Username { get; set; }
         private DataBaseConnection dbConnection;
 
+        /// <summary>
+        /// Creates a new instance of Social Media Sharing
+        /// </summary>
+        /// <param name="dbConnection">A db connection to work against</param>
+        /// <param name="username">The currently loged in user</param>
         public SocialMediaSharing(DataBaseConnection dbConnection, string username)
         {
             this.Username = username;
             this.dbConnection = dbConnection;
         }
 
-        // Prompts a windows explorer window to select a file. When OK is clicked, return the full path of the selected file.
-        public string SelectFile()
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            DialogResult dr = ofd.ShowDialog();
-            string fileLocation = "Unknown";
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                fileLocation = Path.GetFullPath(ofd.FileName);
-            }
-            return fileLocation;
-        }
-
+        /// <summary>
+        /// Gets a list of posts
+        /// </summary>
+        /// <returns>All the posts in the top layer</returns>
         public List<Post> GetPosts()
         {
             return dbConnection.GetPostsOf(0);
         }
 
+        /// <summary>
+        /// Post a message to the database
+        /// </summary>
+        /// <param name="post">The message to post</param>
         public void PostMessage(Post post)
         {
             if (post.Mediafile==null)
