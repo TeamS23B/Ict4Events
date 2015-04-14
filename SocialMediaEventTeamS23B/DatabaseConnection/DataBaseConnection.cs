@@ -205,6 +205,7 @@ namespace DatabaseConnection
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
+                    int Number = 999;
                     string RFID = Convert.ToString(odr["RFID"]);
                     string Name = Convert.ToString(odr["Voornaam"]);
                     string Prefix =Convert.ToString(odr["Tussenvoegsel"]);
@@ -214,18 +215,17 @@ namespace DatabaseConnection
                     string Iban = Convert.ToString(odr["Iban"]);
                     string Email = Convert.ToString(odr["Emailadres"]);
                     string Street = Convert.ToString(odr["Straatnaam"]);
-                    int Number = Convert.ToInt32(odr["Huisnummer"]);
+                    if (Convert.ToString(odr["Huisnummer"])!= "")
+                    {
+                        Number = Convert.ToInt32(odr["Huisnummer"]);
+                    }
                     string Suffix = Convert.ToString(odr["Toevoeging"]);
                     string City = Convert.ToString(odr["Plaatsnaam"]);
                     string PostalCode = Convert.ToString(odr["Postcode"]);
-
-                    if (Street != null && Number != null && City != null && PostalCode != null)
-                    {
-                        Adress = new AdressInfo(Street, City, Number, PostalCode);
-                    }
-
+                                        
                     if(Leader == "J")
                     {
+                        Adress = new AdressInfo(Street, City, Number, PostalCode);
                         visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,Iban,Adress,RFID));
                     }
                     if(Leader == "N")
