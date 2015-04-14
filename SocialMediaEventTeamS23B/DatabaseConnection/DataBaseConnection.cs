@@ -624,6 +624,12 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int RmvMaterial(Decimal materialId)
+        {
+            var nonquery = String.Format("DELETE FROM materiaal WHERE materiaalId = {0}", materialId);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
         #endregion
 
         #region UPDATE
