@@ -79,9 +79,9 @@ namespace ApplicationLayer
             return dbc.GetVisitor();
         }
 
-        public List<Post> GetPosts()
+        public List<Post> GetPosts(string userName)
         {
-            return null;// dbc.GetPostsOf(2);
+            return dbc.GetPostsFromUser(userName);
         }
         public void EditVisitor(Visitor visitor, int Change)
         {

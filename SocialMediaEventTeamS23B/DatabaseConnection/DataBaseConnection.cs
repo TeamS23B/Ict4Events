@@ -46,7 +46,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public string GetRFIDFromUser(string username)
         {
-            var query = String.Format("SELECT Rfid FROM Deelnemer WHERE Gebruikersnaam = {0};", username);
+            var query = String.Format("SELECT Rfid FROM Deelnemer WHERE Gebruikersnaam = '{0}'", username);
             return dbConnector.QueryScalar<string>(query);
         }
 
@@ -57,7 +57,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public decimal GetLikesFromPost(string title)
         {
-            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalLikes FROM LIKEFLAG WHERE LikeOfFlag = 'L' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalLikes FROM LIKEFLAG WHERE LikeOfFlag = 'L' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}')", title);
             return dbConnector.QueryScalar<decimal>(query);
         
         }
@@ -69,7 +69,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public decimal GetFlagsFromPost(string title)
         {
-            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalFlags FROM LIKEFLAG WHERE LikeOfFlag = 'F' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}');", title);
+            var query = String.Format("SELECT COUNT(LikeOfFlag) AS TotalFlags FROM LIKEFLAG WHERE LikeOfFlag = 'F' AND BerichtId = (SELECT BerichtId FROM Bericht WHERE Titel = '{0}')", title);
             return dbConnector.QueryScalar<decimal>(query);
         
         }
@@ -84,7 +84,7 @@ namespace DatabaseConnection
             var query = String.Format(
                 "SELECT CategorieId " +
                 "FROM Categorie " +
-                "WHERE Naam = {0}; ",
+                "WHERE Naam = {0} ",
                 categoryName);
 
            
@@ -116,7 +116,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public char GetPayInfo(String RFID)
         {
-            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
+            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
         public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
@@ -338,6 +338,42 @@ namespace DatabaseConnection
             return posts;
         }
 
+        public List<Post> GetPostsFromUser(string userName)
+        {
+            List<Post> posts = new List<Post>();
+            string userRfid = GetRFIDFromUser(userName);
+            try
+            {
+                String query = "SELECT * " +
+                               "FROM bericht " +
+                               "WHERE Zichtbaar='J' " +
+                               "AND Rfid = '" + userRfid + "'";
+                OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
+
+                while (reader.Read())
+                {
+                    int postId = Convert.ToInt32(reader["BerichtId"]);
+                    string rfid = Convert.ToString(reader["Rfid"]);
+                    int categoryId = Convert.ToInt32(reader["CategorieId"]);
+                    string commentTitle = Convert.ToString(reader["Titel"]);
+                    var pathToFile = reader["Bestand"];
+                    string description = Convert.ToString(reader["Tekst"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
+                    Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
+                    posts.Add(new Post(commentTitle, null, mf, description, 0, 0, placedOn, rfid, null, postId));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return posts;
+        }
+
         public List<Material> GetMaterialsInEvent()
         {
             List<Material> materials = new List<Material>();
@@ -407,7 +443,7 @@ namespace DatabaseConnection
                     "SELECT b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR, COUNT(case when likeofflag = 'L' then 1 end) as likes, COUNT(case when likeofflag = 'F' then 1 end) as flags " +
                     "FROM bericht b LEFT OUTER JOIN likeflag l ON b.berichtId = l.berichtId "+
                     "WHERE b.REACTIEOP = {0} "+
-                    "GROUP BY b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR;",parentPostId);
+                    "GROUP BY b.BESTAND,b.CATEGORIEID,b.GEPLAATSTOM,b.REACTIEOP,b.RFID,b.TEKST,b.TITEL,b.ZICHTBAAR",parentPostId);
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
