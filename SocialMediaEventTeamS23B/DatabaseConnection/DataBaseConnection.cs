@@ -578,6 +578,18 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        public int UpdVisitorBlock(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE deelnemer SET IsGeblokkeerd = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int UpdPostVisibility(String RFID, Char yesno)
+        {
+            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
         #endregion
 
         #region UPDATE
