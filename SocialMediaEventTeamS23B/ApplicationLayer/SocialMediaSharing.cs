@@ -39,6 +39,19 @@ namespace ApplicationLayer
             return dbConnection.GetPostsOf(0);
         }
 
+        public void PostMessage(Post post)
+        {
+            if (post.Mediafile==null)
+            {
+                dbConnection.AddPost(post.Uploader, 1, post.Title, post.Description, -1, post.PostedOn);
+            }
+            else
+            {
+                dbConnection.AddMediaPost(post.Uploader, 1, post.Title, post.Description, -1, post.PostedOn,post.Mediafile.PathToFile);
+            }
+            
+        }
+
      
     }
 }

@@ -159,6 +159,7 @@
             this.btNewMessage.TabIndex = 5;
             this.btNewMessage.Text = "Nieuw Bericht";
             this.btNewMessage.UseVisualStyleBackColor = true;
+            this.btNewMessage.Click += new System.EventHandler(this.btNewMessage_Click);
             // 
             // SMSMain
             // 

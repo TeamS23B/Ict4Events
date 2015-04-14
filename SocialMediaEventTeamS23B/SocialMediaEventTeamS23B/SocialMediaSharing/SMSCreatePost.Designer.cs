@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.lblTitle = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbTitle = new System.Windows.Forms.TextBox();
+            this.tbText = new System.Windows.Forms.TextBox();
             this.lblText = new System.Windows.Forms.Label();
             this.lblAttachment = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbAttatchment = new System.Windows.Forms.TextBox();
             this.btnOpenFile = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbCategorie = new System.Windows.Forms.ComboBox();
             this.lblCategorie = new System.Windows.Forms.Label();
             this.btCancel = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
@@ -51,28 +51,28 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Titel";
             // 
-            // textBox1
+            // tbTitle
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.CausesValidation = false;
-            this.textBox1.Location = new System.Drawing.Point(79, 12);
-            this.textBox1.MaxLength = 200;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(293, 20);
-            this.textBox1.TabIndex = 1;
+            this.tbTitle.CausesValidation = false;
+            this.tbTitle.Location = new System.Drawing.Point(79, 12);
+            this.tbTitle.MaxLength = 200;
+            this.tbTitle.Name = "tbTitle";
+            this.tbTitle.Size = new System.Drawing.Size(293, 20);
+            this.tbTitle.TabIndex = 1;
             // 
-            // textBox2
+            // tbText
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.CausesValidation = false;
-            this.textBox2.Location = new System.Drawing.Point(79, 39);
-            this.textBox2.MaxLength = 2000;
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(293, 86);
-            this.textBox2.TabIndex = 2;
+            this.tbText.CausesValidation = false;
+            this.tbText.Location = new System.Drawing.Point(79, 39);
+            this.tbText.MaxLength = 2000;
+            this.tbText.Multiline = true;
+            this.tbText.Name = "tbText";
+            this.tbText.Size = new System.Drawing.Size(293, 86);
+            this.tbText.TabIndex = 2;
             // 
             // lblText
             // 
@@ -92,15 +92,15 @@
             this.lblAttachment.TabIndex = 4;
             this.lblAttachment.Text = "Attachment";
             // 
-            // textBox3
+            // tbAttatchment
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbAttatchment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(79, 131);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(166, 20);
-            this.textBox3.TabIndex = 5;
+            this.tbAttatchment.Location = new System.Drawing.Point(79, 131);
+            this.tbAttatchment.Name = "tbAttatchment";
+            this.tbAttatchment.ReadOnly = true;
+            this.tbAttatchment.Size = new System.Drawing.Size(166, 20);
+            this.tbAttatchment.TabIndex = 5;
             // 
             // btnOpenFile
             // 
@@ -111,15 +111,16 @@
             this.btnOpenFile.TabIndex = 6;
             this.btnOpenFile.Text = "Open";
             this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
-            // comboBox1
+            // cbCategorie
             // 
-            this.comboBox1.CausesValidation = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(79, 157);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 21);
-            this.comboBox1.TabIndex = 7;
+            this.cbCategorie.CausesValidation = false;
+            this.cbCategorie.FormattingEnabled = true;
+            this.cbCategorie.Location = new System.Drawing.Point(79, 157);
+            this.cbCategorie.Name = "cbCategorie";
+            this.cbCategorie.Size = new System.Drawing.Size(166, 21);
+            this.cbCategorie.TabIndex = 7;
             // 
             // lblCategorie
             // 
@@ -148,6 +149,7 @@
             this.btnPost.TabIndex = 10;
             this.btnPost.Text = "Post";
             this.btnPost.UseVisualStyleBackColor = true;
+            this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
             // 
             // btSubCategorie
             // 
@@ -169,13 +171,13 @@
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.lblCategorie);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbCategorie);
             this.Controls.Add(this.btnOpenFile);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tbAttatchment);
             this.Controls.Add(this.lblAttachment);
             this.Controls.Add(this.lblText);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbText);
+            this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -190,13 +192,13 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbTitle;
+        private System.Windows.Forms.TextBox tbText;
         private System.Windows.Forms.Label lblText;
         private System.Windows.Forms.Label lblAttachment;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbAttatchment;
         private System.Windows.Forms.Button btnOpenFile;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbCategorie;
         private System.Windows.Forms.Label lblCategorie;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btnPost;
