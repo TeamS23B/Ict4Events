@@ -382,8 +382,7 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE Zichtbaar='J' " +
-                               "AND Rfid = '" + userRfid + "'";
+                               "WHERE Rfid = '" + userRfid + "'";
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
