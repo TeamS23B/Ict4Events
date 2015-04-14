@@ -230,8 +230,8 @@ namespace DatabaseConnection
                     string pathToFile = Convert.ToString(reader["Bestand"]);
                     string description = Convert.ToString(reader["Tekst"]);
                     int commentOf = Convert.ToInt32(reader["ReactieOp"]);
-                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
-                    //string visible = Convert.ToString(reader["Zichtbaar"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
+                    string visible = Convert.ToString(reader["Zichtbaar"]);
                     posts.Add(new Post(commentTitle, null,description, 0,0,placedOn,rfid, null));
                 }
             }
