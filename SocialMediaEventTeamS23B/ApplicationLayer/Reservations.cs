@@ -134,7 +134,7 @@ namespace ApplicationLayer
         }
 
         /// <summary>
-        /// 
+        /// add material to reservation
         /// </summary>
         /// <param name="MateriaalId"></param>
         public void RentWithMaterialId(int MateriaalId)
@@ -144,6 +144,13 @@ namespace ApplicationLayer
                 dbc.AddMaterialToReserved(MateriaalId);
             }
         }
+
+        /// <summary>
+        /// add a location to a reservation
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="LeiderId"></param>
         public void RentWithXandYPosition(int x, int y, string LeiderId)
 
         {
