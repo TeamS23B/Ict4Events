@@ -69,6 +69,7 @@
             this.btnReservationLocationPrevious.TabIndex = 3;
             this.btnReservationLocationPrevious.Text = "Stap terug";
             this.btnReservationLocationPrevious.UseVisualStyleBackColor = true;
+            this.btnReservationLocationPrevious.Click += new System.EventHandler(this.btnReservationLocationPrevious_Click);
             // 
             // btnReservationLocationDivideGroup
             // 

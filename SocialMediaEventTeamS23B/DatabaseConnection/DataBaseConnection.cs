@@ -135,16 +135,16 @@ namespace DatabaseConnection
             MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
             return info;
         }
-        public List<MapLocation> GetReserverdMapLocations()
+        public List<MapLocation> GetNOTReserverdMapLocations()
         {
             List<MapLocation> Reserverdmaplocations = new List<MapLocation>();
             try
             {
-                var query = "SELECT * FROM plaats";
+                var query = "SELECT p.PlaatsId, p.LocatieId, p.PlaatsNr, p.xPlattegrond, p.yPlattegrond, p.Breedte, p.Hoogte, p.Categorie FROM plaats p, reservering_plaats rp WHERE p.PlaatsId <> rp.PlaatsId";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
-                    //veel was niet nodig
+                    
                     int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
                     int locationId = Convert.ToInt32(odr["LocatieId"]);
                     int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
@@ -159,6 +159,10 @@ namespace DatabaseConnection
             catch
             {
 
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
             }
             return Reserverdmaplocations;
         }
@@ -187,6 +191,10 @@ namespace DatabaseConnection
             catch
             {
 
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
             }
             return maplocations;
         }
@@ -336,6 +344,34 @@ namespace DatabaseConnection
                 dbConnector.CloseConnection();
             }
             return posts;
+        }
+        public List<Material> GetReservedMaterial()
+        {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT me.materiaalId FROM materiaal_event me, gehuurd_materiaal gm WHERE me.MATERIAALID = gm.MATERIAALID AND eventId = 1)";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return materials;
         }
 
         public List<Material> GetMaterialsInEvent()
@@ -761,6 +797,12 @@ namespace DatabaseConnection
         {
             var nonquery = String.Format("INSERT INTO Gehuurd_materiaal (HuurId, MateriaalId) VALUES ({0}, {1})", rentId, materialId);
             return dbConnector.QueryNoResult(nonquery);
+        }
+
+        public int AddMaterialToReserved(int MaterialId)
+        {
+            var insertquery = String.Format("INSERT INTO Gehuurd_materiaal(HuurId, MateriaalId) VALUES (1,{0})", MaterialId);
+            return dbConnector.QueryNoResult(insertquery);
         }
 
 

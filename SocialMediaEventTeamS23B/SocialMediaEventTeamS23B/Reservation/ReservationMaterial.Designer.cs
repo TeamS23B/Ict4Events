@@ -83,6 +83,7 @@
             this.btnReservationAddMaterial.TabIndex = 5;
             this.btnReservationAddMaterial.Text = "<<Toevoegen";
             this.btnReservationAddMaterial.UseVisualStyleBackColor = true;
+            this.btnReservationAddMaterial.Click += new System.EventHandler(this.btnReservationAddMaterial_Click);
             // 
             // btnReservationRemoveMaterial
             // 
@@ -92,6 +93,7 @@
             this.btnReservationRemoveMaterial.TabIndex = 6;
             this.btnReservationRemoveMaterial.Text = "Verwijderen>>";
             this.btnReservationRemoveMaterial.UseVisualStyleBackColor = true;
+            this.btnReservationRemoveMaterial.Click += new System.EventHandler(this.btnReservationRemoveMaterial_Click);
             // 
             // lblTotalAmount
             // 
