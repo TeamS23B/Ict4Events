@@ -16,16 +16,16 @@ namespace SocialMediaEventTeamS23B
     {
         Visitor leader;
         List<Visitor> members = new List<Visitor>();
-        MapLocation maplocation;
+        List<MapLocation> maplocations;
         List<Material> toReserve = new List<Material>();
 
         ApplicationLayer.Reservations res;
-        public ReservationConfirmation(Visitor leader, List<Visitor> members, MapLocation maplocation, List<Material> toReserve)
+        public ReservationConfirmation(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toReserve)
         {
             InitializeComponent();
             this.leader = leader;
             this.members = members;
-            this.maplocation = maplocation;
+            this.maplocations = maplocations;
             this.toReserve = toReserve;
             res = new Reservations();
             members = new List<Visitor>();
@@ -48,17 +48,20 @@ namespace SocialMediaEventTeamS23B
                     res.AddVisitor(V, leaderId);
                 }
             }
-
-
-            
-            foreach(Material M in toReserve)
+            if (maplocations != null)
             {
-                res.RentWithMaterialId(M.MaterialId);
+
             }
 
-
-            
-            //sent alles close alls
+            if (toReserve != null)
+            {
+                foreach (Material M in toReserve)
+                {
+                    res.RentWithMaterialId(M.MaterialId);
+                }
+            }
+            this.Close();
+                //sent alles close alls
         }
 
         private void btnReservationConfirmationPrevious_Click(object sender, EventArgs e)
