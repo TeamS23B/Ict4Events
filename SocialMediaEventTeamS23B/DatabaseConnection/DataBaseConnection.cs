@@ -664,7 +664,7 @@ namespace DatabaseConnection
             decimal maxId = GetHighestId("Event") + 1;
             string beginDateString = startDate.ToString("MM/dd/yyyy hh:mm:ss");
             string endDateString = endDate.ToString("MM/dd/yyyy hh:mm:ss");
-            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY HH24:MI:SS'), to_date('{4}','DD-MM-YYYY HH24:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
+            var nonquery = String.Format("INSERT INTO event (eventId, locatieId, beheerderId, eventNaam, startmoment, eindmoment) VALUES ({0}, {1}, 1, '{2}', to_date('{3}','DD-MM-YYYY hh:MI:SS'), to_date('{4}','DD-MM-YYYY hh:MI:SS'))", maxId, locatieId, name, beginDateString, endDateString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -714,7 +714,7 @@ namespace DatabaseConnection
             decimal reservationId = GetHighestId("Reservering")+ 1;
             string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY hh:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
             return dbConnector.QueryNoResult(nonquery);
         }
 
@@ -746,7 +746,7 @@ namespace DatabaseConnection
             string rentDateString = rentDate.ToString("MM/dd/yyyy hh:mm:ss");
             string returnDateString = returnDate.ToString("MM/dd/yyyy hh:mm:ss");
 
-            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, {1}, {2}, {3})", rentId, rentDateString, returnDateString,renteeRfid);
+            var nonquery = String.Format("INSERT INTO Huur (HuurId, BeginHuur, EindeHuur, Rfid) VALUES ({0}, to_date('{1}','DD-MM-YYYY hh:MI:SS'), to_date('{2}','DD-MM-YYYY hh:MI:SS'), '{3}')", rentId, rentDateString, returnDateString, renteeRfid);
             return dbConnector.QueryNoResult(nonquery);
         }
 
