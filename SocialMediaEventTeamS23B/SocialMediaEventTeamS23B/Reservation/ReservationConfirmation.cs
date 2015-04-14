@@ -50,7 +50,7 @@ namespace SocialMediaEventTeamS23B
             {
                 foreach (Visitor V in members)
                 {
-                    //res.AddVisitor(V, leaderId);
+                    res.AddVisitor(V, leaderId);
                 }
             }
             if (maplocations != null)
