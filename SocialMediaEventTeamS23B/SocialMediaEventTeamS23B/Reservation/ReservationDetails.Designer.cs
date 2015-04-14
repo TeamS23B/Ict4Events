@@ -59,13 +59,13 @@
             this.lblMembers = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.tbUserName = new System.Windows.Forms.TextBox();
-            this.tbDe = new System.Windows.Forms.TextBox();
+            this.tbUserNameMember = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblReservationFirstNameLeader
             // 
-            this.lblReservationFirstNameLeader.Location = new System.Drawing.Point(19, 41);
+            this.lblReservationFirstNameLeader.Location = new System.Drawing.Point(24, 67);
             this.lblReservationFirstNameLeader.Name = "lblReservationFirstNameLeader";
             this.lblReservationFirstNameLeader.Size = new System.Drawing.Size(125, 13);
             this.lblReservationFirstNameLeader.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             // lblReservationPrefixLeader
             // 
-            this.lblReservationPrefixLeader.Location = new System.Drawing.Point(19, 74);
+            this.lblReservationPrefixLeader.Location = new System.Drawing.Point(24, 100);
             this.lblReservationPrefixLeader.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationPrefixLeader.Name = "lblReservationPrefixLeader";
             this.lblReservationPrefixLeader.Size = new System.Drawing.Size(125, 13);
@@ -84,7 +84,7 @@
             // 
             // lblReservationLastNameLeader
             // 
-            this.lblReservationLastNameLeader.Location = new System.Drawing.Point(19, 107);
+            this.lblReservationLastNameLeader.Location = new System.Drawing.Point(24, 133);
             this.lblReservationLastNameLeader.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationLastNameLeader.Name = "lblReservationLastNameLeader";
             this.lblReservationLastNameLeader.Size = new System.Drawing.Size(125, 13);
@@ -94,7 +94,7 @@
             // 
             // lblReservationEmailaddressLeader
             // 
-            this.lblReservationEmailaddressLeader.Location = new System.Drawing.Point(19, 140);
+            this.lblReservationEmailaddressLeader.Location = new System.Drawing.Point(24, 166);
             this.lblReservationEmailaddressLeader.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationEmailaddressLeader.Name = "lblReservationEmailaddressLeader";
             this.lblReservationEmailaddressLeader.Size = new System.Drawing.Size(125, 13);
@@ -104,7 +104,7 @@
             // 
             // lblReservationStreetNameHouseNumber
             // 
-            this.lblReservationStreetNameHouseNumber.Location = new System.Drawing.Point(22, 173);
+            this.lblReservationStreetNameHouseNumber.Location = new System.Drawing.Point(27, 199);
             this.lblReservationStreetNameHouseNumber.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationStreetNameHouseNumber.Name = "lblReservationStreetNameHouseNumber";
             this.lblReservationStreetNameHouseNumber.Size = new System.Drawing.Size(122, 13);
@@ -114,7 +114,7 @@
             // 
             // lblReservationZipCodeResidence
             // 
-            this.lblReservationZipCodeResidence.Location = new System.Drawing.Point(16, 206);
+            this.lblReservationZipCodeResidence.Location = new System.Drawing.Point(21, 232);
             this.lblReservationZipCodeResidence.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationZipCodeResidence.Name = "lblReservationZipCodeResidence";
             this.lblReservationZipCodeResidence.Size = new System.Drawing.Size(128, 13);
@@ -124,7 +124,7 @@
             // 
             // lblReservationIBAN
             // 
-            this.lblReservationIBAN.Location = new System.Drawing.Point(19, 239);
+            this.lblReservationIBAN.Location = new System.Drawing.Point(24, 265);
             this.lblReservationIBAN.Margin = new System.Windows.Forms.Padding(7, 20, 3, 0);
             this.lblReservationIBAN.Name = "lblReservationIBAN";
             this.lblReservationIBAN.Size = new System.Drawing.Size(125, 13);
@@ -134,63 +134,63 @@
             // 
             // tbReservationStreetName
             // 
-            this.tbReservationStreetName.Location = new System.Drawing.Point(150, 170);
+            this.tbReservationStreetName.Location = new System.Drawing.Point(155, 196);
             this.tbReservationStreetName.Name = "tbReservationStreetName";
             this.tbReservationStreetName.Size = new System.Drawing.Size(108, 20);
             this.tbReservationStreetName.TabIndex = 7;
             // 
             // tbReservationEmailaddressLeader
             // 
-            this.tbReservationEmailaddressLeader.Location = new System.Drawing.Point(150, 137);
+            this.tbReservationEmailaddressLeader.Location = new System.Drawing.Point(155, 163);
             this.tbReservationEmailaddressLeader.Name = "tbReservationEmailaddressLeader";
             this.tbReservationEmailaddressLeader.Size = new System.Drawing.Size(145, 20);
             this.tbReservationEmailaddressLeader.TabIndex = 8;
             // 
             // tbReservationHouseNumber
             // 
-            this.tbReservationHouseNumber.Location = new System.Drawing.Point(264, 170);
+            this.tbReservationHouseNumber.Location = new System.Drawing.Point(269, 196);
             this.tbReservationHouseNumber.Name = "tbReservationHouseNumber";
             this.tbReservationHouseNumber.Size = new System.Drawing.Size(31, 20);
             this.tbReservationHouseNumber.TabIndex = 9;
             // 
             // tbReservationLastNameLeader
             // 
-            this.tbReservationLastNameLeader.Location = new System.Drawing.Point(150, 104);
+            this.tbReservationLastNameLeader.Location = new System.Drawing.Point(155, 130);
             this.tbReservationLastNameLeader.Name = "tbReservationLastNameLeader";
             this.tbReservationLastNameLeader.Size = new System.Drawing.Size(145, 20);
             this.tbReservationLastNameLeader.TabIndex = 10;
             // 
             // tbReservationPrefixLeader
             // 
-            this.tbReservationPrefixLeader.Location = new System.Drawing.Point(150, 71);
+            this.tbReservationPrefixLeader.Location = new System.Drawing.Point(155, 97);
             this.tbReservationPrefixLeader.Name = "tbReservationPrefixLeader";
             this.tbReservationPrefixLeader.Size = new System.Drawing.Size(145, 20);
             this.tbReservationPrefixLeader.TabIndex = 11;
             // 
             // tbReservationFirstNameLeader
             // 
-            this.tbReservationFirstNameLeader.Location = new System.Drawing.Point(150, 38);
+            this.tbReservationFirstNameLeader.Location = new System.Drawing.Point(155, 64);
             this.tbReservationFirstNameLeader.Name = "tbReservationFirstNameLeader";
             this.tbReservationFirstNameLeader.Size = new System.Drawing.Size(145, 20);
             this.tbReservationFirstNameLeader.TabIndex = 12;
             // 
             // tbReservationIBAN
             // 
-            this.tbReservationIBAN.Location = new System.Drawing.Point(150, 236);
+            this.tbReservationIBAN.Location = new System.Drawing.Point(155, 262);
             this.tbReservationIBAN.Name = "tbReservationIBAN";
             this.tbReservationIBAN.Size = new System.Drawing.Size(145, 20);
             this.tbReservationIBAN.TabIndex = 13;
             // 
             // tbReservationZipCode
             // 
-            this.tbReservationZipCode.Location = new System.Drawing.Point(150, 203);
+            this.tbReservationZipCode.Location = new System.Drawing.Point(155, 229);
             this.tbReservationZipCode.Name = "tbReservationZipCode";
             this.tbReservationZipCode.Size = new System.Drawing.Size(45, 20);
             this.tbReservationZipCode.TabIndex = 14;
             // 
             // tbReservationResidence
             // 
-            this.tbReservationResidence.Location = new System.Drawing.Point(201, 203);
+            this.tbReservationResidence.Location = new System.Drawing.Point(206, 229);
             this.tbReservationResidence.Name = "tbReservationResidence";
             this.tbReservationResidence.Size = new System.Drawing.Size(94, 20);
             this.tbReservationResidence.TabIndex = 15;
@@ -205,14 +205,14 @@
             // 
             // tbReservationFirstNameMember
             // 
-            this.tbReservationFirstNameMember.Location = new System.Drawing.Point(546, 61);
+            this.tbReservationFirstNameMember.Location = new System.Drawing.Point(546, 80);
             this.tbReservationFirstNameMember.Name = "tbReservationFirstNameMember";
             this.tbReservationFirstNameMember.Size = new System.Drawing.Size(145, 20);
             this.tbReservationFirstNameMember.TabIndex = 17;
             // 
             // lblReservationFirstNameMember
             // 
-            this.lblReservationFirstNameMember.Location = new System.Drawing.Point(543, 45);
+            this.lblReservationFirstNameMember.Location = new System.Drawing.Point(543, 64);
             this.lblReservationFirstNameMember.Name = "lblReservationFirstNameMember";
             this.lblReservationFirstNameMember.Size = new System.Drawing.Size(148, 13);
             this.lblReservationFirstNameMember.TabIndex = 18;
@@ -221,7 +221,7 @@
             // 
             // lblReservationPrefixMember
             // 
-            this.lblReservationPrefixMember.Location = new System.Drawing.Point(543, 84);
+            this.lblReservationPrefixMember.Location = new System.Drawing.Point(543, 103);
             this.lblReservationPrefixMember.Name = "lblReservationPrefixMember";
             this.lblReservationPrefixMember.Size = new System.Drawing.Size(148, 13);
             this.lblReservationPrefixMember.TabIndex = 19;
@@ -230,14 +230,14 @@
             // 
             // tbReservationPrefixMember
             // 
-            this.tbReservationPrefixMember.Location = new System.Drawing.Point(546, 100);
+            this.tbReservationPrefixMember.Location = new System.Drawing.Point(546, 119);
             this.tbReservationPrefixMember.Name = "tbReservationPrefixMember";
             this.tbReservationPrefixMember.Size = new System.Drawing.Size(145, 20);
             this.tbReservationPrefixMember.TabIndex = 20;
             // 
             // lblReservationLastNameMember
             // 
-            this.lblReservationLastNameMember.Location = new System.Drawing.Point(543, 123);
+            this.lblReservationLastNameMember.Location = new System.Drawing.Point(543, 142);
             this.lblReservationLastNameMember.Name = "lblReservationLastNameMember";
             this.lblReservationLastNameMember.Size = new System.Drawing.Size(148, 13);
             this.lblReservationLastNameMember.TabIndex = 21;
@@ -246,14 +246,14 @@
             // 
             // tbReservationLastNameMember
             // 
-            this.tbReservationLastNameMember.Location = new System.Drawing.Point(546, 139);
+            this.tbReservationLastNameMember.Location = new System.Drawing.Point(546, 158);
             this.tbReservationLastNameMember.Name = "tbReservationLastNameMember";
             this.tbReservationLastNameMember.Size = new System.Drawing.Size(145, 20);
             this.tbReservationLastNameMember.TabIndex = 22;
             // 
             // lblReservationEmailaddressMember
             // 
-            this.lblReservationEmailaddressMember.Location = new System.Drawing.Point(543, 162);
+            this.lblReservationEmailaddressMember.Location = new System.Drawing.Point(543, 181);
             this.lblReservationEmailaddressMember.Name = "lblReservationEmailaddressMember";
             this.lblReservationEmailaddressMember.Size = new System.Drawing.Size(148, 13);
             this.lblReservationEmailaddressMember.TabIndex = 23;
@@ -262,14 +262,14 @@
             // 
             // tbReservationEmailaddressMember
             // 
-            this.tbReservationEmailaddressMember.Location = new System.Drawing.Point(546, 178);
+            this.tbReservationEmailaddressMember.Location = new System.Drawing.Point(546, 197);
             this.tbReservationEmailaddressMember.Name = "tbReservationEmailaddressMember";
             this.tbReservationEmailaddressMember.Size = new System.Drawing.Size(145, 20);
             this.tbReservationEmailaddressMember.TabIndex = 24;
             // 
             // btnReservationAddMember
             // 
-            this.btnReservationAddMember.Location = new System.Drawing.Point(546, 204);
+            this.btnReservationAddMember.Location = new System.Drawing.Point(546, 223);
             this.btnReservationAddMember.Name = "btnReservationAddMember";
             this.btnReservationAddMember.Size = new System.Drawing.Size(145, 23);
             this.btnReservationAddMember.TabIndex = 25;
@@ -279,7 +279,7 @@
             // 
             // btnReservationRemoveMember
             // 
-            this.btnReservationRemoveMember.Location = new System.Drawing.Point(546, 233);
+            this.btnReservationRemoveMember.Location = new System.Drawing.Point(546, 252);
             this.btnReservationRemoveMember.Name = "btnReservationRemoveMember";
             this.btnReservationRemoveMember.Size = new System.Drawing.Size(145, 23);
             this.btnReservationRemoveMember.TabIndex = 26;
@@ -307,7 +307,7 @@
             // 
             // lblUserName
             // 
-            this.lblUserName.Location = new System.Drawing.Point(22, 9);
+            this.lblUserName.Location = new System.Drawing.Point(27, 35);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(125, 13);
             this.lblUserName.TabIndex = 29;
@@ -316,21 +316,21 @@
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(150, 6);
+            this.tbUserName.Location = new System.Drawing.Point(155, 32);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(145, 20);
             this.tbUserName.TabIndex = 30;
             // 
-            // tbDe
+            // tbUserNameMember
             // 
-            this.tbDe.Location = new System.Drawing.Point(546, 22);
-            this.tbDe.Name = "tbDe";
-            this.tbDe.Size = new System.Drawing.Size(145, 20);
-            this.tbDe.TabIndex = 31;
+            this.tbUserNameMember.Location = new System.Drawing.Point(546, 41);
+            this.tbUserNameMember.Name = "tbUserNameMember";
+            this.tbUserNameMember.Size = new System.Drawing.Size(145, 20);
+            this.tbUserNameMember.TabIndex = 31;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(546, 6);
+            this.label1.Location = new System.Drawing.Point(546, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 13);
             this.label1.TabIndex = 32;
@@ -343,7 +343,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 343);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbDe);
+            this.Controls.Add(this.tbUserNameMember);
             this.Controls.Add(this.tbUserName);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.lblMembers);
@@ -415,7 +415,7 @@
         private System.Windows.Forms.Label lblMembers;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TextBox tbUserName;
-        private System.Windows.Forms.TextBox tbDe;
+        private System.Windows.Forms.TextBox tbUserNameMember;
         private System.Windows.Forms.Label label1;
     }
 }
