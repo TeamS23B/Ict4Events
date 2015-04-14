@@ -54,10 +54,12 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     if (cbMessageVisible.CheckState.ToString() == "Checked")
                     {
                         admin.EditVisitor(SelectedVisitor, 3);
+                        
                     }
                     else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
                     {
                         admin.EditVisitor(SelectedVisitor, 4);
+                        
                     }
                 }
             }
@@ -108,13 +110,15 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             {
                 if (lbVisitors.SelectedItem.ToString() == SelectedVisitor.RFID + ": " + SelectedVisitor.Name)
                 {
-                    if (cbMessageVisible.CheckState.ToString() == "Checked")
+                    if (cbUserBlocked.CheckState.ToString() == "Checked")
                     {
                         admin.EditVisitor(SelectedVisitor, 1);
+                        MessageBox.Show("Gebruiker is geblokkeerd.");
                     }
-                    else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
+                    else if (cbUserBlocked.CheckState.ToString() == "Unchecked")
                     {
                         admin.EditVisitor(SelectedVisitor, 2);
+                        MessageBox.Show("Blokkering opgeheven.");
                     }
                 }
             }
@@ -130,6 +134,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             {
                 if (lbVisitors.SelectedItem.ToString() == V.RFID + ": " + V.Name)
                 {
+                    cbUserBlocked.Enabled = true;
                     lbMessages.Items.Clear();
                     lbMaterials.Items.Clear();
                     SelectedVisitor = V;
