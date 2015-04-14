@@ -28,6 +28,9 @@ namespace SocialMediaEventTeamS23B
         private Login login;
         private DataBaseConnection dbConnection;
 
+        /// <summary>
+        /// Makes all buttons invisible except the login button
+        /// </summary>
         private void MakeAllButtonsInvisible()
         {
             btnAccesControl.Visible = false;
@@ -41,6 +44,11 @@ namespace SocialMediaEventTeamS23B
 
         private enum Functions { Beheerder, Receptionist, Portier, Materiaalverhuur, User, NonUser, error, BeheerderUser, ReceptionistUser, PortierUser, MateriaalverhuurUser }
 
+        /// <summary>
+        /// Creates a hash password and checks if the username and password is correct and gives the user permissions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btLogin_Click(object sender, EventArgs e)
         {
             Functions en;
@@ -119,6 +127,9 @@ namespace SocialMediaEventTeamS23B
             
         }
 
+        /// <summary>
+        /// The next methods open certain buttons, dependant on the permissions the user has
+        /// </summary>
         private void ReceptionistUserControl()
         {
             btnReserving.Visible = true;
@@ -217,36 +228,61 @@ namespace SocialMediaEventTeamS23B
             AfterLoggingInVisibles();
         }
 
+        /// <summary>
+        /// Opens accescontrolform
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAccesControl_Click_1(object sender, EventArgs e)
         {
             AccessControl AccesControlForm = new AccessControl(dbConnection);
             AccesControlForm.Show();
         }
-
+        /// <summary>
+        /// Opens SocialMediaMainForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSocialMediaSharing_Click(object sender, EventArgs e)
         {
             SMSMain smsMainForm = new SMSMain(dbConnection, login.GetVisitor());
             smsMainForm.Show();
         }
-
+        /// <summary>
+        /// Opens MaterialRent form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMaterial_Click(object sender, EventArgs e)
         {
             MaterialRent MaterialRent = new MaterialRent(dbConnection);
             MaterialRent.Show();
         }
-
+        /// <summary>
+        /// Opens reservationform
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReserving_Click(object sender, EventArgs e)
         {
             ReservationDetails ReservationForm = new ReservationDetails(dbConnection);
             ReservationForm.Show();
         }
-
+        /// <summary>
+        /// shows admin form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             Admin_Forms.Admin___Menu AdminMenu = new Admin_Forms.Admin___Menu(dbConnection);
             AdminMenu.Show();
         }
-
+        /// <summary>
+        /// Clears the usernametextbox and the passwordtextbox and enables certain labels and buttons 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             MakeAllButtonsInvisible();
