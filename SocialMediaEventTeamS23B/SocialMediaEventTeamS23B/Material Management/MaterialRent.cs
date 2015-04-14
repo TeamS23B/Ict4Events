@@ -33,9 +33,10 @@ namespace SocialMediaEventTeamS23B
             ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
             foreach (Material material in ListMaterials)
             {
-
+                lbMaterialRentProductsInList.Items.Add(material);
             }
-
+            lbMaterialRentProductsInList.DisplayMember = "Name";
+            
 
 
 
@@ -160,6 +161,21 @@ namespace SocialMediaEventTeamS23B
         private void GetInfoFromMaterialRentFromDatabase()
         {
 
+        }
+
+        private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Material MaterialSelected;
+            MaterialSelected = (Material)lbMaterialRentProductsInList.SelectedItem;
+            foreach(Material material in ListMaterials)
+            {
+                if(MaterialSelected == material)
+                {
+                    lblMaterialRentDetails.Text = material.Type;
+                    lblMaterialRentHireCost.Text = Convert.ToString(material.Rent);
+                    lblMaterialRentStatus.Text = material.State;
+                }
+            }
         }
     
     }
