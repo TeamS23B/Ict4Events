@@ -117,6 +117,8 @@ namespace SocialMediaEventTeamS23B
             {
                 MessageBox.Show(ex.Message);
             }
+            gbProducts.Enabled = true;
+            gbRfidScan.Enabled = false;
         }
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
