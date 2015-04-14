@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Drawing;
 using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
@@ -118,7 +119,49 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = {0})", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        public MaterialRentPersonalInfo PersonMaterialRentInfo(String RFID)
+        {
+            String RFIDPerson = "";
+            String TotalName = "";
+            var query = String.Format("SELECT RFID, Voornaam, Tussenvoegsel, Achternaam FROM deelnemer WHERE RFID = {0})", RFID);
+            OracleDataReader odr = dbConnector.QueryReader(query);
+            while(odr.Read())
+            {
+                RFIDPerson = odr[0].ToString();
+                TotalName = odr[1].ToString() +" "+ odr[2].ToString() +" "+ odr[3].ToString(); 
+            }
+            MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
+            return info;
+        }
 
+
+        public List<MapLocation> GetMapLocations()
+        {
+            List<MapLocation> maplocations = new List<MapLocation>();
+            try
+            {
+                var query = "SELECT * FROM plaats";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    //veel was niet nodig
+                    int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
+                    int locationId = Convert.ToInt32(odr["LocatieId"]);
+                    int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
+                    int xMap = Convert.ToInt32(odr["xPlattegrond"]);
+                    int yMap = Convert.ToInt32(odr["yPlattegrond"]);
+                    int Width = Convert.ToInt32(odr["Breedte"]);
+                    int height = Convert.ToInt32(odr["Hoogte"]);
+                    //string Category = Convert.ToString(odr["Categorie"]);
+                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap)));
+                }
+            }
+            catch
+            {
+
+            }
+            return maplocations;
+        }
         public List<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
@@ -167,7 +210,7 @@ namespace DatabaseConnection
                     string UserName = Convert.ToString(odr["Gebruikersnaam"]);
                     string Leader = Convert.ToString(odr["IsLeider"]);
                     string Iban = Convert.ToString(odr["Iban"]);
-                    string Email = Convert.ToString(odr["Email"]);
+                    string Email = Convert.ToString(odr["Emailadres"]);
                     string Street = Convert.ToString(odr["Straatnaam"]);
                     int Number = Convert.ToInt32(odr["Huisnummer"]);
                     string Suffix = Convert.ToString(odr["Toevoeging"]);
@@ -410,6 +453,7 @@ namespace DatabaseConnection
             {
                 //Kijken of het personeel is 
                 string sqlWerknemer = "SELECT Functie FROM personeel WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord= '" + password + "'";
+                Console.WriteLine(sqlWerknemer);
                 OracleDataReader reader = dbConnector.QueryReader(sqlWerknemer); //Checkt query + leest het uit               
 
                 while (reader.Read())
@@ -495,11 +539,11 @@ namespace DatabaseConnection
             if (reader["HoortBij"] != DBNull.Value)
             {
                 var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["email"],(string)reader["iban"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["emailadres"],(string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["email"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
@@ -613,6 +657,50 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// Inserts a regular visitor into the database. Always add the group leader before adding regular visitors.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="rfid"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="prefix"></param>
+        /// <param name="surname"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public int AddVisitor(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string leaderRfid)
+        {
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, HoortBij) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})", rfid, "N", name, prefix, surname, email, password, userName, eventId, leaderRfid);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Inserts a group leader into the database. Always insert the group leader before adding regular visitors.
+        /// </summary>
+        /// <returns></returns>
+        public int AddVisitorLeader(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string iban, string street, int number, string suffix, string city, string postalCode)
+        {
+            
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, Iban, Straatnaam, Huisnummer, Toevoeging, Plaatsnaam, Postcode) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})", rfid, "J", name, prefix, surname, email, password, userName, eventId, iban, street, number, suffix, city, postalCode);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Insert a reservation into the database.
+        /// </summary>
+        /// <param name="leiderRfid"></param>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        public int AddReservation(string leaderRfid, DateTime timeOfReservation)
+        {
+            decimal reservationId = GetHighestId("Reservering")+ 1;
+            string timeOfReservationString = timeOfReservation.ToString("MM/dd/yyyy hh:mm:ss");
+
+            var nonquery = String.Format("INSERT INTO Reservering (ReserveringId, LeiderId, Reserveermoment) VALUES ({0}, {1}, to_date('{2}','DD-MM-YYYY HH24:MI:SS'))", reservationId, leaderRfid, timeOfReservationString);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
@@ -652,8 +740,8 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        #endregion      
-       
+        #endregion
+
         #region FTP
 
         /// <summary>
