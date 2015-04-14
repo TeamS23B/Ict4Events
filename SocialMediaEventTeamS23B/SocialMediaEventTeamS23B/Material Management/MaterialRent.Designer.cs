@@ -45,6 +45,9 @@
             this.lbHereComeTheDetails = new System.Windows.Forms.Label();
             this.lblHereComeTheRentCosts = new System.Windows.Forms.Label();
             this.lblHereComeTheStats = new System.Windows.Forms.Label();
+            this.btnConfirmItemRent = new System.Windows.Forms.Button();
+            this.gbRfidScan = new System.Windows.Forms.GroupBox();
+            this.gbRfidScan.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMaterialRentProductsInStorage
@@ -95,7 +98,7 @@
             // lblMaterialRentScannedRfid
             // 
             this.lblMaterialRentScannedRfid.AutoSize = true;
-            this.lblMaterialRentScannedRfid.Location = new System.Drawing.Point(321, 50);
+            this.lblMaterialRentScannedRfid.Location = new System.Drawing.Point(27, 29);
             this.lblMaterialRentScannedRfid.Name = "lblMaterialRentScannedRfid";
             this.lblMaterialRentScannedRfid.Size = new System.Drawing.Size(93, 13);
             this.lblMaterialRentScannedRfid.TabIndex = 5;
@@ -104,7 +107,7 @@
             // lblMaterialRentRfid
             // 
             this.lblMaterialRentRfid.AutoSize = true;
-            this.lblMaterialRentRfid.Location = new System.Drawing.Point(321, 93);
+            this.lblMaterialRentRfid.Location = new System.Drawing.Point(27, 53);
             this.lblMaterialRentRfid.Name = "lblMaterialRentRfid";
             this.lblMaterialRentRfid.Size = new System.Drawing.Size(41, 13);
             this.lblMaterialRentRfid.TabIndex = 6;
@@ -113,7 +116,7 @@
             // lblMaterialRentName
             // 
             this.lblMaterialRentName.AutoSize = true;
-            this.lblMaterialRentName.Location = new System.Drawing.Point(321, 131);
+            this.lblMaterialRentName.Location = new System.Drawing.Point(27, 82);
             this.lblMaterialRentName.Name = "lblMaterialRentName";
             this.lblMaterialRentName.Size = new System.Drawing.Size(68, 13);
             this.lblMaterialRentName.TabIndex = 7;
@@ -122,7 +125,7 @@
             // lblMaterialRentChooseEndDate
             // 
             this.lblMaterialRentChooseEndDate.AutoSize = true;
-            this.lblMaterialRentChooseEndDate.Location = new System.Drawing.Point(321, 206);
+            this.lblMaterialRentChooseEndDate.Location = new System.Drawing.Point(18, 147);
             this.lblMaterialRentChooseEndDate.Name = "lblMaterialRentChooseEndDate";
             this.lblMaterialRentChooseEndDate.Size = new System.Drawing.Size(91, 13);
             this.lblMaterialRentChooseEndDate.TabIndex = 8;
@@ -130,14 +133,14 @@
             // 
             // dateTimePickerMaterialRentEndDate
             // 
-            this.dateTimePickerMaterialRentEndDate.Location = new System.Drawing.Point(324, 246);
+            this.dateTimePickerMaterialRentEndDate.Location = new System.Drawing.Point(6, 195);
             this.dateTimePickerMaterialRentEndDate.Name = "dateTimePickerMaterialRentEndDate";
             this.dateTimePickerMaterialRentEndDate.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMaterialRentEndDate.TabIndex = 9;
             // 
             // btnMaterialRentConfirm
             // 
-            this.btnMaterialRentConfirm.Location = new System.Drawing.Point(324, 298);
+            this.btnMaterialRentConfirm.Location = new System.Drawing.Point(20, 256);
             this.btnMaterialRentConfirm.Name = "btnMaterialRentConfirm";
             this.btnMaterialRentConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnMaterialRentConfirm.TabIndex = 10;
@@ -182,28 +185,51 @@
             this.lblHereComeTheStats.Size = new System.Drawing.Size(0, 13);
             this.lblHereComeTheStats.TabIndex = 14;
             // 
+            // btnConfirmItemRent
+            // 
+            this.btnConfirmItemRent.Location = new System.Drawing.Point(72, 370);
+            this.btnConfirmItemRent.Name = "btnConfirmItemRent";
+            this.btnConfirmItemRent.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmItemRent.TabIndex = 15;
+            this.btnConfirmItemRent.Text = "Bevestigen";
+            this.btnConfirmItemRent.UseVisualStyleBackColor = true;
+            this.btnConfirmItemRent.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // gbRfidScan
+            // 
+            this.gbRfidScan.Controls.Add(this.lblMaterialRentScannedRfid);
+            this.gbRfidScan.Controls.Add(this.lblMaterialRentRfid);
+            this.gbRfidScan.Controls.Add(this.lblMaterialRentName);
+            this.gbRfidScan.Controls.Add(this.lblMaterialRentChooseEndDate);
+            this.gbRfidScan.Controls.Add(this.dateTimePickerMaterialRentEndDate);
+            this.gbRfidScan.Controls.Add(this.btnMaterialRentConfirm);
+            this.gbRfidScan.Location = new System.Drawing.Point(279, 41);
+            this.gbRfidScan.Name = "gbRfidScan";
+            this.gbRfidScan.Size = new System.Drawing.Size(197, 352);
+            this.gbRfidScan.TabIndex = 16;
+            this.gbRfidScan.TabStop = false;
+            this.gbRfidScan.Text = "gbRfidScan";
+            // 
             // MaterialRent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 425);
+            this.Controls.Add(this.btnConfirmItemRent);
             this.Controls.Add(this.lblHereComeTheStats);
             this.Controls.Add(this.lblHereComeTheRentCosts);
             this.Controls.Add(this.lbHereComeTheDetails);
             this.Controls.Add(this.btnReattach);
-            this.Controls.Add(this.btnMaterialRentConfirm);
-            this.Controls.Add(this.dateTimePickerMaterialRentEndDate);
-            this.Controls.Add(this.lblMaterialRentChooseEndDate);
-            this.Controls.Add(this.lblMaterialRentName);
-            this.Controls.Add(this.lblMaterialRentRfid);
-            this.Controls.Add(this.lblMaterialRentScannedRfid);
             this.Controls.Add(this.lblMaterialRentHireCost);
             this.Controls.Add(this.lblMaterialRentStatus);
             this.Controls.Add(this.lblMaterialRentDetails);
             this.Controls.Add(this.lbMaterialRentProductsInList);
             this.Controls.Add(this.lblMaterialRentProductsInStorage);
+            this.Controls.Add(this.gbRfidScan);
             this.Name = "MaterialRent";
             this.Text = "MaterialRent";
+            this.gbRfidScan.ResumeLayout(false);
+            this.gbRfidScan.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +253,7 @@
         private System.Windows.Forms.Label lbHereComeTheDetails;
         private System.Windows.Forms.Label lblHereComeTheRentCosts;
         private System.Windows.Forms.Label lblHereComeTheStats;
+        private System.Windows.Forms.Button btnConfirmItemRent;
+        private System.Windows.Forms.GroupBox gbRfidScan;
     }
 }
