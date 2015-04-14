@@ -67,7 +67,7 @@
             this.lbVisitors.Name = "lbVisitors";
             this.lbVisitors.Size = new System.Drawing.Size(214, 277);
             this.lbVisitors.TabIndex = 1;
-            this.lbVisitors.Click += new System.EventHandler(this.lbVisitors_Click);
+            this.lbVisitors.SelectedIndexChanged += new System.EventHandler(this.lbVisitors_SelectedIndexChanged);
             // 
             // gbMessages
             // 
@@ -173,7 +173,6 @@
             this.cbUserBlocked.Text = "Gebruiker geblokkeerd";
             this.cbUserBlocked.UseVisualStyleBackColor = true;
             this.cbUserBlocked.CheckedChanged += new System.EventHandler(this.cbUserBlocked_CheckedChanged);
-            this.cbUserBlocked.Click += new System.EventHandler(this.cbUserBlocked_Click);
             // 
             // lbMaterials
             // 

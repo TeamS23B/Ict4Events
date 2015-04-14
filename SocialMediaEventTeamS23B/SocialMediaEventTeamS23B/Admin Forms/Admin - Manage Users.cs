@@ -61,7 +61,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -79,17 +79,17 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
 
         private void Beheer___Gebruikers_Beheren_Click(object sender, EventArgs e)
         {
-            
-            
+
+
         }
         private void FillPosts(Visitor v)
         {
-            foreach(Post P in posts)
+            foreach (Post P in posts)
             {
                 if (SelectedVisitor.RFID == P.Uploader)
                 {
                     lbMessages.Items.Add(P);
-                }            
+                }
             }
         }
         private void FillMaterials(Visitor v)
@@ -99,26 +99,6 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             {
                 lbMaterials.Items.Add(M.MaterialId + ": " + M.Name);
             }
-        }
-
-        private void lbVisitors_Click(object sender, EventArgs e)
-        {
-            foreach (Visitor V in visitors)
-            {
-                if (lbVisitors.SelectedItem.ToString() == V.RFID + ": " + V.Name)
-                {
-                    lbMessages.Items.Clear();
-                    lbMaterials.Items.Clear();
-                    SelectedVisitor = V;
-                    FillPosts(V);
-                    FillMaterials(V);
-                }
-            }
-        }
-
-        private void cbUserBlocked_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cbUserBlocked_CheckedChanged(object sender, EventArgs e)
@@ -134,12 +114,27 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
                     {
                         admin.EditVisitor(SelectedVisitor, 2);
-                    }      
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lbVisitors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (Visitor V in visitors)
+            {
+                if (lbVisitors.SelectedItem.ToString() == V.RFID + ": " + V.Name)
+                {
+                    lbMessages.Items.Clear();
+                    lbMaterials.Items.Clear();
+                    SelectedVisitor = V;
+                    FillPosts(V);
+                    FillMaterials(V);
+                }
             }
         }
     }
