@@ -33,6 +33,9 @@ namespace SocialMediaEventTeamS23B
             reservedMatrials = new List<Material>();
             FillList();
         }
+        /// <summary>
+        /// Gets all the materials which are reserved for the event
+        /// </summary>
         private void FillList()
         {
             materials = res.GetEventMatrial();
@@ -55,18 +58,32 @@ namespace SocialMediaEventTeamS23B
             }
         }
 
+        /// <summary>
+        ///  shows the confirmation of the reservation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationMaterialNext_Click(object sender, EventArgs e)
         {
             ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocations, materialToReserve);
             ResConfirmation.Show();
         }
 
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationMaterialPrevious_Click(object sender, EventArgs e)
         {
             this.Close();
             
         }
-
+        /// <summary>
+        /// Adds materials to the reservation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationAddMaterial_Click(object sender, EventArgs e)
         {
             try
@@ -87,7 +104,12 @@ namespace SocialMediaEventTeamS23B
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
+        /// <summary>
+        /// deletes reserved items from the reserved list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
         {
             try

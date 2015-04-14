@@ -23,6 +23,12 @@ namespace SocialMediaEventTeamS23B
             resmembers = new List<Visitor>();
         }
 
+        /// <summary>
+        /// shows the locations which are available to rent 
+        /// Makes an address and a leader for the event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationDetailsNext_Click(object sender, EventArgs e)
         {
             try
@@ -38,6 +44,9 @@ namespace SocialMediaEventTeamS23B
                 MessageBox.Show(ex.Message);
             }     
         }
+        /// <summary>
+        /// Adds the members of the reservation
+        /// </summary>
         private void AddLbMembers()
         {
             foreach (Visitor V in resmembers)
@@ -45,6 +54,11 @@ namespace SocialMediaEventTeamS23B
                 lbReservationMembers.Items.Add(V.Name + ": " + V.Username);
             }
         }
+        /// <summary>
+        /// adds the members to the listbox (groups)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationAddMember_Click(object sender, EventArgs e)
         {
             try
@@ -60,6 +74,11 @@ namespace SocialMediaEventTeamS23B
             //Login.HashedBytes(Encoding.UTF8.GetBytes(string aaaa));//encoding
         }
 
+        /// <summary>
+        /// removes member from the reservations (of the members in the group)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReservationRemoveMember_Click(object sender, EventArgs e)
         {
             try
