@@ -167,7 +167,7 @@ namespace DatabaseConnection
                     string UserName = Convert.ToString(odr["Gebruikersnaam"]);
                     string Leader = Convert.ToString(odr["IsLeider"]);
                     string Iban = Convert.ToString(odr["Iban"]);
-                    string Email = Convert.ToString(odr["Email"]);
+                    string Email = Convert.ToString(odr["Emailadres"]);
                     string Street = Convert.ToString(odr["Straatnaam"]);
                     int Number = Convert.ToInt32(odr["Huisnummer"]);
                     string Suffix = Convert.ToString(odr["Toevoeging"]);
@@ -495,11 +495,11 @@ namespace DatabaseConnection
             if (reader["HoortBij"] != DBNull.Value)
             {
                 var address = new AdressInfo((string)reader["straat"], (string)reader["plaatsnaam"], (int)(decimal)reader["Huisnummer"], (string)reader["Toevoeging"], (string)reader["Postcode"]);
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["email"],(string)reader["iban"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"],(string)reader["emailadres"],(string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["email"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"],(string)reader["tussenvoegsel"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
@@ -613,6 +613,35 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
+        /// <summary>
+        /// Inserts a regular visitor into the database. Always add the group leader before adding regular visitors.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="rfid"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="prefix"></param>
+        /// <param name="surname"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public int AddVisitor(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string leaderRfid)
+        {
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, HoortBij) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})", rfid, "N", name, prefix, surname, email, password, userName, eventId, leaderRfid);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
+        /// <summary>
+        /// Inserts a group leader into the database. Always insert the group leader before adding regular visitors.
+        /// </summary>
+        /// <returns></returns>
+        public int AddVisitorLeader(int eventId, string rfid, string userName, string password, string name, string prefix, string surname, string email, string iban, string street, int number, string suffix, string city, string postalCode)
+        {
+            
+            var nonquery = String.Format("INSERT INTO Deelnemer (Rfid, IsLeider, Voornaam, Tussenvoegsel, Achternaam, Emailadres, Wachtwoord, Gebruikersnaam, Eventid, Iban, Straatnaam, Huisnummer, Toevoeging, Plaatsnaam, Postcode) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})", rfid, "J", name, prefix, surname, email, password, userName, eventId, iban, street, number, suffix, city, postalCode);
+            return dbConnector.QueryNoResult(nonquery);
+        }
+
 
         #endregion
 
@@ -646,8 +675,8 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        #endregion      
-       
+        #endregion
+
         #region FTP
 
         /// <summary>
