@@ -135,7 +135,33 @@ namespace DatabaseConnection
             MaterialRentPersonalInfo info = new MaterialRentPersonalInfo(RFIDPerson,TotalName);
             return info;
         }
+        public List<MapLocation> GetReserverdMapLocations()
+        {
+            List<MapLocation> Reserverdmaplocations = new List<MapLocation>();
+            try
+            {
+                var query = "SELECT * FROM plaats";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    //veel was niet nodig
+                    int mapLocationId = Convert.ToInt32(odr["PlaatsId"]);
+                    int locationId = Convert.ToInt32(odr["LocatieId"]);
+                    int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
+                    int xMap = Convert.ToInt32(odr["xPlattegrond"]);
+                    int yMap = Convert.ToInt32(odr["yPlattegrond"]);
+                    int width = Convert.ToInt32(odr["Breedte"]);
+                    int height = Convert.ToInt32(odr["Hoogte"]);
+                    string Cat = Convert.ToString(odr["Categorie"]);
+                    Reserverdmaplocations.Add(new MapLocation(mapLocationNr, new Point(xMap, yMap), new Point(width, height), Cat));
+                }
+            }
+            catch
+            {
 
+            }
+            return Reserverdmaplocations;
+        }
 
         public List<MapLocation> GetMapLocations()
         {
