@@ -25,7 +25,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblContent.Text = post.Description;
             lblUsername.Text = post.Uploader;
             this.dbConnection = dbConnection;
-            LoadComments(Post,0);
+            LoadComments(Post,dbConnection.GetPostId(post.Title));
         }
 
         private int nextYCord = 12;

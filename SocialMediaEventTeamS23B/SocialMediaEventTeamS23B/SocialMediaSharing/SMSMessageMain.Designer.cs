@@ -66,12 +66,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblContent);
             this.Controls.Add(this.lblTitle);
             this.Name = "SMSMessageMain";
             this.Size = new System.Drawing.Size(276, 103);
-            this.Load += new System.EventHandler(this.SMSMessageMain_Load);
+            this.DoubleClick += new System.EventHandler(this.SMSMessageMain_DoubleClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 

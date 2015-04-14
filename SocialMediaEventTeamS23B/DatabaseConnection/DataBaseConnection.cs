@@ -96,16 +96,16 @@ namespace DatabaseConnection
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
-        public decimal GetPostId(string title)
+        public int GetPostId(string title)
         {
             var query = String.Format(
                 "SELECT BerichtId " +
                 "FROM Bericht " +
-                "WHERE Titel = {0}; ",
+                "WHERE Titel = '{0}'",
                 title);
 
 
-            return dbConnector.QueryScalar<decimal>(query);
+            return dbConnector.QueryScalar<int>(query);
         }
 
         
@@ -284,8 +284,8 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE zichtbaar='J'" +
-                               "AND ReadtieOp="+(id>0?id.ToString():"NULL");
+                               "WHERE Zichtbaar='J'" +
+                               "AND ReactieOp " + (id > 0 ? "= "+id : "IS NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
@@ -296,7 +296,7 @@ namespace DatabaseConnection
                     string commentTitle = Convert.ToString(reader["Titel"]);
                     var pathToFile = reader["Bestand"];
                     string description = Convert.ToString(reader["Tekst"]);
-                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatsOm"]);
+                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
                     Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
                     posts.Add(new Post(commentTitle, null,mf,description, 0,0,placedOn,rfid, null,postId));
                 }
@@ -529,12 +529,12 @@ namespace DatabaseConnection
 
                 var tus = reader["tussenvoegsel"];
 
-                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
             }
             else
             {
                 var tus = reader["tussenvoegsel"];
-                visitor = new Visitor((string)reader["gebruikersnaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["voornaam"], (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
             }
             reader.Close();
             dbConnector.CloseConnection();
