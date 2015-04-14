@@ -108,7 +108,15 @@ namespace SocialMediaEventTeamS23B
             int MaterialId = CheckMaterial.MaterialId;
             DateTime Today = DateTime.Now;
             DateTime EndDate = dateTimePickerMaterialRentEndDate.Value;
-            MaterialRentInfoS.MakeRent(CheckRfid, Today, EndDate, MaterialId);
+            try
+            {
+                MaterialRentInfoS.MakeRent(CheckRfid, Today, EndDate, MaterialId);
+                MessageBox.Show("Materiaal is uitgeleend.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void lbMaterialRentProductsInList_SelectedIndexChanged(object sender, EventArgs e)
         {
