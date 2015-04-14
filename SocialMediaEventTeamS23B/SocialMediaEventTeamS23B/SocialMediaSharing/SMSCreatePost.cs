@@ -25,7 +25,17 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         private void btnPost_Click(object sender, EventArgs e)
         {
-            Post=new Post(tbTitle.Text,new List<Post>(),tbText.Text,0,0,DateTime.Now,username,null,0 );
+            if (tbAttatchment.Text == "")
+            {
+                Post = new Post(tbTitle.Text, new List<Post>(), tbText.Text, 0, 0, DateTime.Now, username, null, 0);    
+            }
+            else
+            {
+                Mediafile mf = new PictureFile("", tbAttatchment.Text);
+
+                Post = new Post(tbTitle.Text, new List<Post>(), mf , tbText.Text, 0, 0, DateTime.Now, username,null, 0);
+            }
+            
             DialogResult = DialogResult.OK;
         }
 

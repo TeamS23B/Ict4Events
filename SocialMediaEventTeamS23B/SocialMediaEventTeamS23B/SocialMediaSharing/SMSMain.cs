@@ -64,13 +64,14 @@ namespace SocialMediaEventTeamS23B.SMSForms
             if (createPostFrm.ShowDialog()==DialogResult.OK)
             {
                 Sms.PostMessage(createPostFrm.Post);
+                foreach (var smsMessageMain in messages)
+                {
+                    smsMessageMain.Dispose();
+                }
+                messages.Clear();
+                loadPosts();
             }
-            foreach (var smsMessageMain in messages)
-            {
-                smsMessageMain.Dispose();
-            }
-            messages.Clear();
-            loadPosts();
+            
 
 
         }
