@@ -125,7 +125,16 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
+            AfterLoggingInVisibles();
+        }
+
+        private void AfterLoggingInVisibles()
+        {
             btLogin.Visible = false;
+            lblUsername.Visible = false;
+            lblPassword.Visible = false;
+            tbPassword.Visible = false;
+            tbUsername.Visible = false;
         }
 
         private void MaterialRentUserControl()
@@ -134,7 +143,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void GuardUserControl()
@@ -143,7 +152,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void AdminUserControl()
@@ -155,7 +164,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void NonUserControl()
@@ -170,7 +179,7 @@ namespace SocialMediaEventTeamS23B
             btnSocialMediaSharing.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void MaterialControl()
@@ -178,7 +187,7 @@ namespace SocialMediaEventTeamS23B
             btnMaterial.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void ReserveControl()
@@ -186,7 +195,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void AccesControl()
@@ -194,7 +203,7 @@ namespace SocialMediaEventTeamS23B
             btnAccesControl.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void AdminControl()
@@ -205,7 +214,7 @@ namespace SocialMediaEventTeamS23B
             btnReserving.Visible = true;
             btnLogOut.Visible = true;
             lblLoggedIn.Text = "U bent ingelogd";
-            btLogin.Visible = false;
+            AfterLoggingInVisibles();
         }
 
         private void btnAccesControl_Click_1(object sender, EventArgs e)

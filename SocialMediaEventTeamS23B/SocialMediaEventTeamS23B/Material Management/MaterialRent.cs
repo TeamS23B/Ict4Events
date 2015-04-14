@@ -77,10 +77,6 @@ namespace SocialMediaEventTeamS23B
             btnReattach.Visible = false;
             //Yay attatched :D
         }
-        private void btReattatch_Click(object sender, EventArgs e)
-        {
-            rfid.waitForAttachment(10000);
-        }
         #endregion
 
         void rfid_Tag(object sender, Phidgets.Events.TagEventArgs e)
