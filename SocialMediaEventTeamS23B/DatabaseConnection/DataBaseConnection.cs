@@ -677,15 +677,6 @@ namespace DatabaseConnection
 
         #endregion
 
-        #region UPDATE
-
-        
-
-        
-        #endregion
-
-        
-       
         #region FTP
 
         /// <summary>
