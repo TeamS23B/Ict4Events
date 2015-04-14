@@ -464,7 +464,7 @@ namespace DatabaseConnection
                 }
                 reader.Close();
                 dbConnector.CloseConnection();
-                if(!string.IsNullOrEmpty(function))
+                if(string.IsNullOrEmpty(function))
                 {
                     string sqlCheckIfWorkerIsParticipant = "SELECT Gebruikersnaam,Wachtwoord FROM deelnemer WHERE Gebruikersnaam = '" + username + "' AND Wachtwoord = '" + password + "'";
                     reader = dbConnector.QueryReader(sqlCheckIfWorkerIsParticipant);
