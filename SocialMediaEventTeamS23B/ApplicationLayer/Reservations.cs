@@ -49,5 +49,10 @@ namespace ApplicationLayer
             return true;
         }
 
+        public List<MapLocation> GetMapLocations()
+        {
+            return dbConnection.GetMapLocations();
+        }
+
     }
 }

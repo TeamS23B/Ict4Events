@@ -16,6 +16,12 @@ namespace SocialMediaEventTeamS23B
         {
             InitializeComponent();
             GetLocationData();
+            MakeButtons();
+        }
+
+        private void MakeButtons()
+        {
+
         }
 
         private void GetLocationData()
@@ -37,6 +43,11 @@ namespace SocialMediaEventTeamS23B
         {
             ReservationMaterial ResMaterial = new ReservationMaterial();
             ResMaterial.Show();
+        }
+
+        private void pictureBoxReservationLocationLocation_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

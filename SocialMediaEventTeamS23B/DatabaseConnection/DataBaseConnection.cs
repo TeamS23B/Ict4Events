@@ -150,10 +150,10 @@ namespace DatabaseConnection
                     int mapLocationNr = Convert.ToInt32(odr["PlaatsNr"]);
                     int xMap = Convert.ToInt32(odr["xPlattegrond"]);
                     int yMap = Convert.ToInt32(odr["yPlattegrond"]);
-                    int Width = Convert.ToInt32(odr["Breedte"]);
+                    int width = Convert.ToInt32(odr["Breedte"]);
                     int height = Convert.ToInt32(odr["Hoogte"]);
                     //string Category = Convert.ToString(odr["Categorie"]);
-                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap)));
+                    maplocations.Add(new MapLocation(mapLocationId, new Point(xMap, yMap), new Point(width, height)));
                 }
             }
             catch
