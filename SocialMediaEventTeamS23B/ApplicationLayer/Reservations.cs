@@ -75,6 +75,14 @@ namespace ApplicationLayer
                 dbc.AddMaterialToReserved(MateriaalId);
             }
         }
+        public void RentWithXandYPosition(int x, int y, string LeiderId)
+
+        {
+            if(x !=null && y!=null && String.IsNullOrEmpty(LeiderId))
+            {
+                dbc.AddLocationToReservation(x, y, LeiderId);
+            }
+        }
 
     }
 }
