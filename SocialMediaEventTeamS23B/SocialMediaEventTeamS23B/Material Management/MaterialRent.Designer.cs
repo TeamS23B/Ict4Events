@@ -148,6 +148,7 @@
             // delayClean
             // 
             this.delayClean.Interval = 2000;
+            this.delayClean.Tick += new System.EventHandler(this.delayClean_Tick);
             // 
             // btnReattach
             // 
