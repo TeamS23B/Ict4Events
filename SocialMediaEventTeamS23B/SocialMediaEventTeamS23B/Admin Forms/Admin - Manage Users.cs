@@ -19,6 +19,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         private List<Post> posts;
         private List<Material> materials;
         private Visitor SelectedVisitor;
+        private Post SelectedPost;
         public Beheer___Gebruikers_Beheren()
         {
             InitializeComponent();
@@ -49,17 +50,18 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         {
             try
             {
-                if (lbVisitors.SelectedItem.ToString() == SelectedVisitor.RFID + ": " + SelectedVisitor.Name)
+                if (lbMessages.SelectedItem.ToString() == "Title: " + SelectedPost.Title + " | " + SelectedPost.PostedOn)
                 {
                     if (cbMessageVisible.CheckState.ToString() == "Checked")
                     {
-                        admin.EditVisitor(SelectedVisitor, 3);
+                        admin.EditPost(SelectedVisitor, SelectedPost.Title, 3);
+                        MessageBox.Show("Bericht is nu onzichtbaar.");
                         
                     }
                     else if (cbMessageVisible.CheckState.ToString() == "Unchecked")
                     {
-                        admin.EditVisitor(SelectedVisitor, 4);
-                        
+                        admin.EditPost(SelectedVisitor, SelectedPost.Title, 4);
+                        MessageBox.Show("Bericht is nu zichtbaar.");
                     }
                 }
             }
@@ -135,6 +137,8 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                 if (lbVisitors.SelectedItem.ToString() == V.RFID + ": " + V.Name)
                 {
                     cbUserBlocked.Enabled = true;
+                    cbMessageVisible.Enabled = false;
+                    lbMessages.ClearSelected();
                     lbMessages.Items.Clear();
                     lbMaterials.Items.Clear();
                     SelectedVisitor = V;
@@ -143,6 +147,23 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     FillMaterials(V);
                 }
             }
+        }
+
+        private void lbMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbMessages.SelectedIndex != -1)
+            {
+                foreach (Post P in posts)
+                {
+                    if (lbMessages.SelectedItem.ToString() == "Title: " + P.Title + " | " + P.PostedOn)
+                    {
+                        cbMessageVisible.Enabled = true;
+                        SelectedPost = P;
+
+                    }
+                }
+            }
+            
         }
     }
 }

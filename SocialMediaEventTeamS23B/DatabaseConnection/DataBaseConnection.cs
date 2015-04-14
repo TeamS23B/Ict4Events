@@ -873,9 +873,9 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(nonquery);
         }
 
-        public int UpdPostVisibility(String RFID, Char yesno)
+        public int UpdPostVisibility(String RFID, String title, Char yesno)
         {
-            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}'", yesno, RFID);
+            var nonquery = String.Format("UPDATE bericht SET Zichtbaar = '{0}' WHERE RFID = '{1}' AND Titel = '{2}'", yesno, RFID, title);
             return dbConnector.QueryNoResult(nonquery);
         }
 
