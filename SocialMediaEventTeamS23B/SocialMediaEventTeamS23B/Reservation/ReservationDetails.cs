@@ -15,12 +15,12 @@ namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationDetails : Form
     {
-        List<Visitor> members;
-        Visitor leader;
+        public List<Visitor> resmembers { get; private set; }
+        public Visitor resleader { get; private set; }
         public ReservationDetails(DataBaseConnection dbc)
         {
             InitializeComponent();
-            members = new List<Visitor>();
+            resmembers = new List<Visitor>();
         }
 
         private void btnReservationDetailsNext_Click(object sender, EventArgs e)
@@ -28,8 +28,8 @@ namespace SocialMediaEventTeamS23B
             try
             {
                 AdressInfo adressinfo = new AdressInfo(tbReservationStreetName.Text, tbReservationResidence.Text, Convert.ToInt32(tbReservationHouseNumber.Text), tbReservationZipCode.Text);
-                leader = new Visitor(tbUserName.Text, tbReservationFirstNameLeader.Text, tbReservationPrefixLeader.Text, tbReservationLastNameLeader.Text, tbReservationEmailaddressLeader.Text, tbReservationIBAN.Text, adressinfo,/*RFID nu combo van username en first name*/tbUserNameMember.Text + tbReservationFirstNameMember.Text);
-                ReservationLocation ResLocation = new ReservationLocation();
+                resleader = new Visitor(tbUserName.Text, tbReservationFirstNameLeader.Text, tbReservationPrefixLeader.Text, tbReservationLastNameLeader.Text, tbReservationEmailaddressLeader.Text, tbReservationIBAN.Text, adressinfo,/*RFID nu combo van username en first name*/tbUserNameMember.Text + tbReservationFirstNameMember.Text);
+                ReservationLocation ResLocation = new ReservationLocation(resleader, resmembers);
                 ResLocation.Show();
             }
             catch(Exception ex)
@@ -39,7 +39,7 @@ namespace SocialMediaEventTeamS23B
         }
         private void AddLbMembers()
         {
-            foreach (Visitor V in members)
+            foreach (Visitor V in resmembers)
             {
                 lbReservationMembers.Items.Add(V.Name + ": " + V.Username);
             }
@@ -48,7 +48,7 @@ namespace SocialMediaEventTeamS23B
         {
             try
             {
-                members.Add(new Visitor(tbUserNameMember.Text, tbReservationFirstNameMember.Text, tbReservationPrefixMember.Text, tbReservationLastNameMember.Text, tbReservationEmailaddressMember.Text, tbUserNameMember.Text + tbReservationFirstNameMember.Text));
+                resmembers.Add(new Visitor(tbUserNameMember.Text, tbReservationFirstNameMember.Text, tbReservationPrefixMember.Text, tbReservationLastNameMember.Text, tbReservationEmailaddressMember.Text, tbUserNameMember.Text + tbReservationFirstNameMember.Text));
                 AddLbMembers();
             }
             catch(Exception ex)
@@ -64,7 +64,7 @@ namespace SocialMediaEventTeamS23B
             try
             {
                 Visitor SelectedVisitor = null;
-                foreach(Visitor V in members)
+                foreach(Visitor V in resmembers)
                 {
                     if(lbReservationMembers.SelectedItem.ToString() == V.Name + ": " + V.Username)
                     {
@@ -72,7 +72,7 @@ namespace SocialMediaEventTeamS23B
                         SelectedVisitor = V;
                     }
                 }
-                members.Remove(SelectedVisitor);
+                resmembers.Remove(SelectedVisitor);
             }
             catch (Exception ex)
             {

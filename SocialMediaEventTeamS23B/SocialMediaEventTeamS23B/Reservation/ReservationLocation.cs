@@ -14,12 +14,18 @@ namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationLocation : Form
     {
+        private Visitor leader;
+        private List<Visitor> members = new List<Visitor>();
+        private MapLocation maplocation;
+
         private ApplicationLayer.Reservations res;
         private List<MapLocation> NOTresMapLocations;
         private List<Button> b;
-        public ReservationLocation()
+        public ReservationLocation(Visitor leader, List<Visitor> members)
         {
             InitializeComponent();
+            this.leader = leader;
+            this.members = members;
             res = new Reservations();
             NOTresMapLocations = new List<MapLocation>();
             b = new List<Button>();
@@ -55,6 +61,7 @@ namespace SocialMediaEventTeamS23B
                 if (bt.Left == ML.Coordinates.X && bt.Top == ML.Coordinates.Y)
                 {
                     lblReservationLocationBungalow.Text = ML.Cat;
+                    maplocation = ML;
                 }
             }
         }
@@ -71,15 +78,12 @@ namespace SocialMediaEventTeamS23B
 
         private void button2_Click(object sender, EventArgs e)
         {
-            foreach (Button B in b)
-            {
-                
-            }
+
         }
 
         private void btnReservationLocationNext_Click(object sender, EventArgs e)
         {
-            ReservationMaterial ResMaterial = new ReservationMaterial();
+            ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocation);
             ResMaterial.Show();
         }
 

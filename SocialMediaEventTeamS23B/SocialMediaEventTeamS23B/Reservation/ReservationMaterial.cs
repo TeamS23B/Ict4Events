@@ -14,12 +14,20 @@ namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationMaterial : Form
     {
+        Visitor leader;
+        List<Visitor> members = new List<Visitor>();
+        MapLocation maplocation;
+        List<Material> materialToReserve = new List<Material>();
+
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial()
+        public ReservationMaterial(Visitor leader, List<Visitor> members, MapLocation maplocation)
         {
             InitializeComponent();
+            this.leader = leader;
+            this.members = members;
+            this.maplocation = maplocation;
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
@@ -49,7 +57,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnReservationMaterialNext_Click(object sender, EventArgs e)
         {
-            ReservationConfirmation ResConfirmation = new ReservationConfirmation();
+            ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocation, materialToReserve);
             ResConfirmation.Show();
         }
 
@@ -69,7 +77,7 @@ namespace SocialMediaEventTeamS23B
                     {
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
-
+                        materialToReserve.Add(M);
                     }
                 }
                 
