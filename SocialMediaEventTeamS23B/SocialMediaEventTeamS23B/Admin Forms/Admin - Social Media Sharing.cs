@@ -25,11 +25,21 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
 
         }
 
+        /// <summary>
+        /// Close the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Save the current filter settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveFilter_Click(object sender, EventArgs e)
         {
             admin.EditFlaggingControl((int)nudFlags.Value, (int)nudRatio.Value, (int)nudTime.Value, cbAutoFilter.Checked);
