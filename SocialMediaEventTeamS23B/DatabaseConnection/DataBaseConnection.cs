@@ -382,8 +382,7 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE Zichtbaar='J' " +
-                               "AND Rfid = '" + userRfid + "'";
+                               "WHERE Rfid = '" + userRfid + "'";
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
 
                 while (reader.Read())
@@ -797,13 +796,16 @@ namespace DatabaseConnection
         /// <param name="locationId"></param>
         /// <param name="reservationId"></param>
         /// <returns></returns>
-        public int AddLocationToReservation(int eventId, int locationId, int reservationId)
+        
+        
+        /*public int AddLocationToReservation(int eventId, int locationId, int reservationId)
         {
             
             var nonquery = String.Format("INSERT INTO Reservering_Plaats (EventId, ReserveringId, PlaatsId) VALUES ({0}, {1}, {2})", eventId, reservationId, locationId);
             return dbConnector.QueryNoResult(nonquery);
-        }
+        }*/
 
+       
         /// <summary>
         /// Add a record to the database that tells you which RFID has rented something.
         /// To record which items were in fact rented, use the 'AddRentMaterial' method.
@@ -841,6 +843,29 @@ namespace DatabaseConnection
             return dbConnector.QueryNoResult(insertquery);
         }
 
+        public void AddLocationToReservation(int x,int y, string rfid)
+        {
+            int ReserveerId = 0 ;
+            var GetReserveerIdquery = String.Format("SELECT ReserveerId FROM reservering WHERE Leider = '"+ rfid + "'");
+            OracleDataReader orcldbr = dbConnector.QueryReader(GetReserveerIdquery);
+            while (orcldbr.Read())
+            {
+                ReserveerId = (int)orcldbr[0];
+            }
+            orcldbr.Close();
+            dbConnector.CloseConnection();
+            int PlaatsId = 0;
+            var GetPlaatsId = String.Format("Select PlaatsId FROM plaats WHERE xPlattegrond = {0} AND yPlattegrond = {1}", x, y);
+            while (orcldbr.Read())
+            {
+                PlaatsId = (int)orcldbr[0];
+            }
+            orcldbr.Close();
+            dbConnector.CloseConnection();
+            var insertquery = String.Format("INSERT INTO reserveer_plaats(EventId,ReserveerId,PlaatsId) VALUES(1,{0},{1}",ReserveerId,PlaatsId);
+            dbConnector.QueryNoResult(insertquery);
+
+        }
 
         #endregion
 
