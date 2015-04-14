@@ -60,15 +60,7 @@ namespace DatabaseConnection.Types
 
         public override string ToString()
         {
-            PropertyDescriptorCollection coll = TypeDescriptor.GetProperties(this);
-            StringBuilder builder = new StringBuilder();
-            builder.Append("{");
-            foreach (PropertyDescriptor pd in coll)
-            {
-                builder.Append(string.Format("{0}={1},", pd.Name, pd.GetValue(this).ToString()));
-            }
-            builder.Append("}");
-            return builder.ToString();
+            return "Title: " + Title + " | " + PostedOn;
         }
     }
 }

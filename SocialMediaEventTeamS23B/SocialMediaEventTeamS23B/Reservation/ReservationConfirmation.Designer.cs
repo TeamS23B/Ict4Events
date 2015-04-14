@@ -191,6 +191,7 @@
             this.btnReservationConfirmationPrevious.TabIndex = 30;
             this.btnReservationConfirmationPrevious.Text = "Terug";
             this.btnReservationConfirmationPrevious.UseVisualStyleBackColor = true;
+            this.btnReservationConfirmationPrevious.Click += new System.EventHandler(this.btnReservationConfirmationPrevious_Click);
             // 
             // ReservationConfirmation
             // 

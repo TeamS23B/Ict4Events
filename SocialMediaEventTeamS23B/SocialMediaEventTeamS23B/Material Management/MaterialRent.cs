@@ -69,7 +69,9 @@ namespace SocialMediaEventTeamS23B
         void rfid_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
             //retry attachment
-            e.Device.waitForAttachment(10000);
+            //e.Device.waitForAttachment(2000);
+            MessageBox.Show("RFID is detached");
+
         }
 
         void rfid_Attach(object sender, Phidgets.Events.AttachEventArgs e)

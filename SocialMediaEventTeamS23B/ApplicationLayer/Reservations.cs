@@ -16,8 +16,15 @@ namespace ApplicationLayer
         {
             
         }
+        public void AddVisitorLeader(Visitor v)
+        {
+            dbc.AddVisitorLeader(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, v.IBAN, v.Adress.Street, v.Adress.Number, v.Adress.Suffix, v.Adress.City, v.Adress.Postalcode);
+        }
 
-        
+        public void AddVisitor(Visitor v, string leaderId)
+        {
+            dbc.AddVisitor(1, v.RFID, v.Username, "aapje", v.Name, v.Prefix, v.Surname, v.Email, leaderId);
+        }
 
         public bool AddReservation(List<Visitor> members, Visitor leader, List<MapLocation> locations)
         {
@@ -66,6 +73,22 @@ namespace ApplicationLayer
         public List<MapLocation> GetMapLocations()
         {
             return dbc.GetMapLocations();
+        }
+
+        public void RentWithMaterialId(int MateriaalId)
+        {
+            if(MateriaalId != null)
+            {
+                dbc.AddMaterialToReserved(MateriaalId);
+            }
+        }
+        public void RentWithXandYPosition(int x, int y, string LeiderId)
+
+        {
+            if(x !=null && y!=null && String.IsNullOrEmpty(LeiderId))
+            {
+                dbc.AddLocationToReservation(x, y, LeiderId);
+            }
         }
 
     }

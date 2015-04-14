@@ -14,12 +14,20 @@ namespace SocialMediaEventTeamS23B
 {
     public partial class ReservationMaterial : Form
     {
+        Visitor leader;
+        List<Visitor> members = new List<Visitor>();
+        List<MapLocation> maplocations;
+        List<Material> materialToReserve = new List<Material>();
+
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial()
+        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations)
         {
             InitializeComponent();
+            this.leader = leader;
+            this.members = members;
+            this.maplocations = maplocations;
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
@@ -49,7 +57,7 @@ namespace SocialMediaEventTeamS23B
 
         private void btnReservationMaterialNext_Click(object sender, EventArgs e)
         {
-            ReservationConfirmation ResConfirmation = new ReservationConfirmation();
+            ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocations, materialToReserve);
             ResConfirmation.Show();
         }
 
@@ -69,12 +77,33 @@ namespace SocialMediaEventTeamS23B
                     {
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
-
+                        materialToReserve.Add(M);
                     }
                 }
                 
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Material M in materials)
+                {
+                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    {
+                        lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                        lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+                        materialToReserve.Remove(M);
+                    }
+                }
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

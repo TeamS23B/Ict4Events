@@ -31,7 +31,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         }
         private void FillLists()
         {
-            posts = admin.GetPosts();
+            //posts = admin.GetPosts();
             materials = admin.GetAllMaterials();
         }
 
@@ -88,6 +88,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             {
                 if (SelectedVisitor.RFID == P.Uploader)
                 {
+                    lbMessages.Items.Clear();
                     lbMessages.Items.Add(P);
                 }
             }
@@ -132,6 +133,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     lbMessages.Items.Clear();
                     lbMaterials.Items.Clear();
                     SelectedVisitor = V;
+                    posts = admin.GetPosts(V.Username);
                     FillPosts(V);
                     FillMaterials(V);
                 }
