@@ -25,6 +25,20 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblContent.Text = post.Description;
             lblUsername.Text = post.Uploader;
             this.dbConnection = dbConnection;
+            if (post.Mediafile != null)
+            {
+                lblComments.Top += 100;
+                pnlComments.Height -= 100;
+                pnlComments.Top += 100;
+                var pb = new PictureBox();
+                pb.Left = 12;
+                pb.Width = this.Width - 24;
+                pb.Top = lblContent.Top + lblContent.Height + 12;
+                pb.Height = lblComments.Top - pb.Top - 12;
+                pb.Load("http://192.168.20.112/"+post.Mediafile.PathToFile);
+                pb.SizeMode=PictureBoxSizeMode.Zoom;
+                Controls.Add(pb);
+            }
             LoadComments(Post,dbConnection.GetPostId(post.Title));
         }
 
@@ -48,6 +62,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 cmnt.Width = pnlComments.Width - cmnt.Left - 12;
                 nextYCord += cmnt.Height + 12;
                 pnlComments.Controls.Add(cmnt);
+                comment.Comments = dbConnection.GetPostsOf(comment.Id);
                 comment.Comments.ForEach(cmntOnCmnt => LoadComments(cmntOnCmnt, indent + 1));
             }
         }

@@ -347,17 +347,15 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE Zichtbaar='J'" +
+                               "WHERE Zichtbaar='J' " +
                                "AND ReactieOp " + (id > 0 ? "= "+id : "IS NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
-                reader.Read();
-                Console.WriteLine("Reading from database...");
-                do
+                
+                while (reader.Read())
                 {
-                    
                     posts.Add(readPost(reader));
-                } while (reader.Read());
-
+                }
+                
             }
             catch(Exception e)
             {
@@ -380,9 +378,7 @@ namespace DatabaseConnection
             var pathToFile = reader["Bestand"];
             string description = Convert.ToString(reader["Tekst"]);
             DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
-
-            Console.WriteLine(commentTitle);
-
+            
             Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
             return new Post(commentTitle, null, mf, description, 0, 0, placedOn, rfid, null, postId);
         }
