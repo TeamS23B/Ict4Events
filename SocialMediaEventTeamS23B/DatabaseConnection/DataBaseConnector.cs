@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
 
-namespace DatabaseConnection
+namespace DatabaseConnection 
 {
     internal class DataBaseConnector
     {
