@@ -95,12 +95,32 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         }
 
+        private bool isClearedSearch = true;
+
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
+            if (tbSearch.Text == "")
+            {
+                if (!isClearedSearch)
+                {
+                    messages.ForEach(mes=>mes.BackColor=Color.White);
+                    isClearedSearch = true;
+                }
+                return;
+            }
+            isClearedSearch = false;
+            messages.ForEach(mes=>mes.BackColor=postContainsString(mes.Post,tbSearch.Text)?Color.LimeGreen:Color.White);
+        }
 
+        private bool postContainsString(Post post, string text)
+        {
+            return post.Title.IndexOf(text, StringComparison.OrdinalIgnoreCase)>=0||
+            post.Description.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
         }
         
     }
+
+    
 
     public interface IMainItem
     {
@@ -110,5 +130,8 @@ namespace SocialMediaEventTeamS23B.SMSForms
         int Height { get; set; }
         void Dispose();
         AnchorStyles Anchor { get; set; }
+
+        Post Post { get; }
+        Color BackColor { get; set; }
     }
 }
