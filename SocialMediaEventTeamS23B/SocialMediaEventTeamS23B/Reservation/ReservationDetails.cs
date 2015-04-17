@@ -17,6 +17,9 @@ namespace SocialMediaEventTeamS23B
     {
         public List<Visitor> resmembers { get; private set; }
         public Visitor resleader { get; private set; }
+        
+        private string newRFID = "";
+        private static int counter = 1000000;
         public ReservationDetails(DataBaseConnection dbc)
         {
             InitializeComponent();
@@ -29,12 +32,21 @@ namespace SocialMediaEventTeamS23B
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+
+        private string RFIDCount()
+        {
+            string a = "dcq";
+            counter++;
+            return newRFID = counter.ToString() + a;
+        }
         private void btnReservationDetailsNext_Click(object sender, EventArgs e)
         {
             try
             {
+                string RFID = RFIDCount();
                 AdressInfo adressinfo = new AdressInfo(tbReservationStreetName.Text, tbReservationResidence.Text, Convert.ToInt32(tbReservationHouseNumber.Text), tbReservationZipCode.Text);
-                resleader = new Visitor(tbUserName.Text, tbReservationFirstNameLeader.Text, tbReservationPrefixLeader.Text, tbReservationLastNameLeader.Text, tbReservationEmailaddressLeader.Text, tbReservationIBAN.Text, adressinfo,/*RFID nu combo van username en first name*/"2833b389cq");
+                resleader = new Visitor(tbUserName.Text, tbReservationFirstNameLeader.Text, tbReservationPrefixLeader.Text, tbReservationLastNameLeader.Text, tbReservationEmailaddressLeader.Text, tbReservationIBAN.Text, adressinfo,RFID);
                 ReservationLocation ResLocation = new ReservationLocation(resleader, resmembers);
                 ResLocation.Show();
                 

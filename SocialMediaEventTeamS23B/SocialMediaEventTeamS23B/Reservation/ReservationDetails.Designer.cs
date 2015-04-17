@@ -176,10 +176,13 @@
             // 
             // tbReservationIBAN
             // 
+            this.tbReservationIBAN.AutoCompleteCustomSource.AddRange(new string[] {
+            "NL12ABNA0123456789"});
             this.tbReservationIBAN.Location = new System.Drawing.Point(155, 262);
             this.tbReservationIBAN.Name = "tbReservationIBAN";
             this.tbReservationIBAN.Size = new System.Drawing.Size(145, 20);
             this.tbReservationIBAN.TabIndex = 13;
+            this.tbReservationIBAN.Text = "NL12ABNA0123456789";
             // 
             // tbReservationZipCode
             // 

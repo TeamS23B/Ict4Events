@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection.Types;
 using ApplicationLayer;
+using DatabaseConnection.Exceptions;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -91,7 +92,14 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            maplocations.Add(maplocation);
+            if (maplocation != null)
+            {
+                maplocations.Add(maplocation);
+            }
+            else
+            {
+                throw new InvalidDataException("selecteer een locatie");
+            } 
         }
 
         /// <summary>

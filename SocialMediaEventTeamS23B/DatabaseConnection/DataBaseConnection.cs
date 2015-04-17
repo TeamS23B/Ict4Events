@@ -150,7 +150,7 @@ namespace DatabaseConnection
             List<MapLocation> Reserverdmaplocations = new List<MapLocation>();
             try
             {
-                var query = "SELECT p.PlaatsId, p.LocatieId, p.PlaatsNr, p.xPlattegrond, p.yPlattegrond, p.Breedte, p.Hoogte, p.Categorie FROM plaats p, reservering_plaats rp WHERE p.PlaatsId <> rp.PlaatsId";
+                var query = "SELECT p.PlaatsId, p.LocatieId, p.PlaatsNr, p.xPlattegrond, p.yPlattegrond, p.Breedte, p.Hoogte, p.Categorie FROM plaats p WHERE p.plaatsId NOT IN (SELECT pl.PlaatsId FROM plaats pl, reservering_plaats rp WHERE pl.PlaatsId = rp.PlaatsId)";
                 OracleDataReader odr = dbConnector.QueryReader(query);
                 while (odr.Read())
                 {
@@ -949,7 +949,7 @@ namespace DatabaseConnection
             }
             orcldbr.Close();
             dbConnector.CloseConnection();
-            var insertquery = String.Format("INSERT INTO reserveer_plaats(EventId,ReserveerId,PlaatsId) VALUES(1,{0},{1}",ReserveerId,PlaatsId);
+            var insertquery = String.Format("INSERT INTO reservering_plaats(EventId,ReserveringId,PlaatsId) VALUES(1,{0},{1})", ReserveerId, PlaatsId);
             dbConnector.QueryNoResult(insertquery);
 
         }
