@@ -350,22 +350,18 @@ namespace DatabaseConnection
                                "WHERE Zichtbaar='J'" +
                                "AND ReactieOp " + (id > 0 ? "= "+id : "IS NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
-
-                while (reader.Read())
+                reader.Read();
+                Console.WriteLine("Reading from database...");
+                do
                 {
-                    int postId = Convert.ToInt32(reader["BerichtId"]);
-                    string rfid = Convert.ToString(reader["Rfid"]);
-                    int categoryId = Convert.ToInt32(reader["CategorieId"]);
-                    string commentTitle = Convert.ToString(reader["Titel"]);
-                    var pathToFile = reader["Bestand"];
-                    string description = Convert.ToString(reader["Tekst"]);
-                    DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
-                    Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
-                    posts.Add(new Post(commentTitle, null,mf,description, 0,0,placedOn,rfid, null,postId));
-                }
+                    
+                    posts.Add(readPost(reader));
+                } while (reader.Read());
+
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 string message = e.Message;
             }
             finally
@@ -373,6 +369,22 @@ namespace DatabaseConnection
                 dbConnector.CloseConnection();
             }
             return posts;
+        }
+
+        private Post readPost(OracleDataReader reader)
+        {
+            int postId = Convert.ToInt32(reader["BerichtId"]);
+            string rfid = Convert.ToString(reader["Rfid"]);
+            int categoryId = Convert.ToInt32(reader["CategorieId"]);
+            string commentTitle = Convert.ToString(reader["Titel"]);
+            var pathToFile = reader["Bestand"];
+            string description = Convert.ToString(reader["Tekst"]);
+            DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
+
+            Console.WriteLine(commentTitle);
+
+            Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
+            return new Post(commentTitle, null, mf, description, 0, 0, placedOn, rfid, null, postId);
         }
 
         /// <summary>

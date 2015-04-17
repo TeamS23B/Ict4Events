@@ -12,7 +12,7 @@ using DatabaseConnection.Types;
 
 namespace SocialMediaEventTeamS23B.SMSForms
 {
-    public partial class SMSMessageMain : UserControl
+    public partial class SMSMessageMain : UserControl,IMainItem
     {
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;

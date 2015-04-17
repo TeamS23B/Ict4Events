@@ -72,6 +72,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(3, 63);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(270, 139);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
@@ -79,12 +80,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblContent);
             this.Controls.Add(this.lblTitle);
             this.Name = "SMSMesageMainMedia";
             this.Size = new System.Drawing.Size(276, 205);
+            this.DoubleClick += new System.EventHandler(this.SMSMessageMainMedia_DoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

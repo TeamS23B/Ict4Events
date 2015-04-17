@@ -24,14 +24,14 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblUsername.Text = user.Username;
             this.dbConnection = dbConnection;
             Sms = new SocialMediaSharing(dbConnection,user.Username);
-            messages=new List<SMSMessageMain>();
+            messages=new List<IMainItem>();
             loadPosts();
         }
 
         private Visitor user;
         private SocialMediaSharing Sms;
 
-        private List<SMSMessageMain> messages; 
+        private List<IMainItem> messages; 
 
         private int lastIndex;
         
@@ -42,9 +42,20 @@ namespace SocialMediaEventTeamS23B.SMSForms
         {
             //checking for new content
             var newContent = Sms.GetPosts();
+            Console.WriteLine("Writing to form...");
             foreach (Post content in newContent)
             {
-                var obj = new SMSMessageMain(content,dbConnection);
+                Console.WriteLine(content.Title);
+                IMainItem obj;
+                if (content.Mediafile == null)
+                {
+                    obj = new SMSMessageMain(content, dbConnection);
+                }
+                else
+                {
+                    obj=new SMSMesageMainMedia(content,dbConnection);
+                }
+                obj.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 obj.Width = panel2.Width - 24;
                 obj.Left = 12;
                 var lastMessage = messages.LastOrDefault();
@@ -56,7 +67,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 {
                     obj.Top = lastMessage.Top + lastMessage.Height + 12;
                 }
-                panel2.Controls.Add(obj);
+                panel2.Controls.Add((Control)obj);
                 messages.Add(obj);
             }
         }
@@ -83,6 +94,44 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
 
         }
+
+        private bool isClearedSearch = true;
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tbSearch.Text == "")
+            {
+                if (!isClearedSearch)
+                {
+                    messages.ForEach(mes=>mes.BackColor=Color.White);
+                    isClearedSearch = true;
+                }
+                return;
+            }
+            isClearedSearch = false;
+            messages.ForEach(mes=>mes.BackColor=postContainsString(mes.Post,tbSearch.Text)?Color.LimeGreen:Color.White);
+        }
+
+        private bool postContainsString(Post post, string text)
+        {
+            return post.Title.IndexOf(text, StringComparison.OrdinalIgnoreCase)>=0||
+            post.Description.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
         
+    }
+
+    
+
+    public interface IMainItem
+    {
+        int Top { get; set; }
+        int Left { get; set; }
+        int Width { get; set; }
+        int Height { get; set; }
+        void Dispose();
+        AnchorStyles Anchor { get; set; }
+
+        Post Post { get; }
+        Color BackColor { get; set; }
     }
 }
