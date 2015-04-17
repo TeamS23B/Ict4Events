@@ -90,11 +90,14 @@ namespace SocialMediaEventTeamS23B
             {
                 foreach(Material M in materials)
                 {
-                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    if (!string.IsNullOrEmpty(lbReservationNotReserved.SelectedItem.ToString()))
                     {
-                        lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
-                        lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
-                        materialToReserve.Add(M);
+                        if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                        {
+                            lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                            lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+                            materialToReserve.Add(M);
+                        }
                     }
                 }
                 
@@ -123,7 +126,6 @@ namespace SocialMediaEventTeamS23B
                         materialToReserve.Remove(M);
                     }
                 }
-
             }
             catch (Exception ex)
             {
