@@ -79,6 +79,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationConfirmationPrevious_Click(object sender, EventArgs e)
         {
+            ReservationMaterial resm = new ReservationMaterial(leader, members, maplocations, toReserve);
+            resm.Show();
             this.Close();
         }
     }

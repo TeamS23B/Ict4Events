@@ -22,7 +22,7 @@ namespace SocialMediaEventTeamS23B
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations)
+        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toreserve)
         {
             InitializeComponent();
             this.leader = leader;
@@ -31,6 +31,10 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
+            if (toreserve != null)
+            {
+                materialToReserve = toreserve;
+            }
             FillList();
         }
         /// <summary>
@@ -76,6 +80,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationMaterialPrevious_Click(object sender, EventArgs e)
         {
+            ReservationLocation resl = new ReservationLocation(leader, members, maplocations);
+            resl.Show();
             this.Close();
             
         }
