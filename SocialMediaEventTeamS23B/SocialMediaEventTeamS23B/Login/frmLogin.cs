@@ -265,7 +265,7 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReserving_Click(object sender, EventArgs e)
         {
-            ReservationDetails ReservationForm = new ReservationDetails(dbConnection);
+            ReservationDetails ReservationForm = new ReservationDetails(null, null);
             ReservationForm.Show();
         }
         /// <summary>

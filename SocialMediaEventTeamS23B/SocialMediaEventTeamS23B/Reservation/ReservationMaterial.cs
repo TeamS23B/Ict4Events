@@ -22,7 +22,7 @@ namespace SocialMediaEventTeamS23B
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toReserve)
+        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toreserve)
         {
             InitializeComponent();
             this.leader = leader;
@@ -31,9 +31,9 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
-            if (toReserve != null)
+            if (toreserve != null)
             {
-                materialToReserve = toReserve;
+                materialToReserve = toreserve;
             }
             FillList();
         }
@@ -80,6 +80,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationMaterialPrevious_Click(object sender, EventArgs e)
         {
+            ReservationLocation resl = new ReservationLocation(leader, members, maplocations);
+            resl.Show();
             this.Close();
             
         }
@@ -96,15 +98,15 @@ namespace SocialMediaEventTeamS23B
                 {
                     if (!string.IsNullOrEmpty(lbReservationNotReserved.SelectedItem.ToString()))
                     {
-                        if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
-                        {
+                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    {
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Add(M);
                             break;
                         }
                     }
-                } 
+                }
             }
             catch(Exception ex)
             {

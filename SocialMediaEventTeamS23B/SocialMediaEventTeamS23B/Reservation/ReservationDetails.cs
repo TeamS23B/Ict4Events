@@ -20,12 +20,22 @@ namespace SocialMediaEventTeamS23B
         
         private string newRFID = "";
         private static int counter = 1000000;
-        public ReservationDetails(DataBaseConnection dbc)
+        public ReservationDetails(Visitor leader, List<Visitor> members)
         {
             InitializeComponent();
             resmembers = new List<Visitor>();
+            resleader = leader;
+            if (members != null)
+            {
+                resmembers = members;
+            }
+            AddLbMembers(leader);
         }
 
+        private void lists()
+        {
+
+        }
         /// <summary>
         /// shows the locations which are available to rent 
         /// Makes an address and a leader for the event
@@ -47,8 +57,9 @@ namespace SocialMediaEventTeamS23B
                 string RFID = RFIDCount();
                 AdressInfo adressinfo = new AdressInfo(tbReservationStreetName.Text, tbReservationResidence.Text, Convert.ToInt32(tbReservationHouseNumber.Text), tbReservationZipCode.Text);
                 resleader = new Visitor(tbUserName.Text, tbReservationFirstNameLeader.Text, tbReservationPrefixLeader.Text, tbReservationLastNameLeader.Text, tbReservationEmailaddressLeader.Text, tbReservationIBAN.Text, adressinfo,RFID);
-                ReservationLocation ResLocation = new ReservationLocation(resleader, resmembers);
+                ReservationLocation ResLocation = new ReservationLocation(resleader, resmembers, null);
                 ResLocation.Show();
+                this.Close();
                 
             }
             catch(Exception ex)
@@ -59,11 +70,20 @@ namespace SocialMediaEventTeamS23B
         /// <summary>
         /// Adds the members of the reservation
         /// </summary>
-        private void AddLbMembers()
+        private void AddLbMembers(Visitor Leader)
         {
-            foreach (Visitor V in resmembers)
+            lbReservationMembers.Items.Clear();
+            if (resmembers != null)
             {
-                lbReservationMembers.Items.Add(V.Name + ": " + V.Username);
+                foreach (Visitor V in resmembers)
+                {
+                    lbReservationMembers.Items.Add(V.Name + ": " + V.Username);
+                }
+            }
+            if (Leader != null)
+            {
+                tbUserName.Text = Leader.Username;
+                tbReservationFirstNameLeader.Text = Leader.Name;
             }
         }
         /// <summary>
@@ -75,8 +95,8 @@ namespace SocialMediaEventTeamS23B
         {
             try
             {
-                resmembers.Add(new Visitor(tbUserNameMember.Text, tbReservationFirstNameMember.Text, tbReservationPrefixMember.Text, tbReservationLastNameMember.Text, tbReservationEmailaddressMember.Text, tbUserNameMember.Text + tbReservationFirstNameMember.Text));
-                AddLbMembers();
+                resmembers.Add(new Visitor(tbUserNameMember.Text, tbReservationFirstNameMember.Text, tbReservationPrefixMember.Text, tbReservationLastNameMember.Text, tbReservationEmailaddressMember.Text, tbUserNameMember.Text));
+                AddLbMembers(null);
             }
             catch(Exception ex)
             {
@@ -105,6 +125,7 @@ namespace SocialMediaEventTeamS23B
                     }
                 }
                 resmembers.Remove(SelectedVisitor);
+                AddLbMembers(null);
             }
             catch (Exception ex)
             {
