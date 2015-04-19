@@ -36,6 +36,32 @@ namespace SocialMediaEventTeamS23B
                 materialToReserve = toreserve;
             }
             FillList();
+            AlreadyReserved();
+        }
+        private void AlreadyReserved()
+        {
+            if (materialToReserve != null)
+            {
+                foreach (Material M in materialToReserve)
+                {
+                    lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+                    lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                    
+                }
+                updatecost();
+            }
+        }
+
+        private void updatecost()
+        {
+            double total = 0;
+            foreach (Material M in materialToReserve)
+            {
+                total += M.Rent;
+                string newtotal = total.ToString();
+                lblReservationMaterialCost.Text = newtotal;
+            }
+            
         }
         /// <summary>
         /// Gets all the materials which are reserved for the event
@@ -71,6 +97,7 @@ namespace SocialMediaEventTeamS23B
         {
             ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocations, materialToReserve);
             ResConfirmation.Show();
+            this.Close();
         }
 
         /// <summary>
@@ -103,10 +130,12 @@ namespace SocialMediaEventTeamS23B
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Add(M);
+
                             break;
                         }
                     }
                 }
+                updatecost();
             }
             catch(Exception ex)
             {
@@ -130,6 +159,11 @@ namespace SocialMediaEventTeamS23B
                         lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Remove(M);
+                        string a = lblReservationMaterialCost.Text.ToString();
+                        double b = Convert.ToDouble(a);
+                        double total = b - M.Rent;
+                        string newtotal = total.ToString();
+                        lblReservationMaterialCost.Text = newtotal;
                         break;
                     }
                 }

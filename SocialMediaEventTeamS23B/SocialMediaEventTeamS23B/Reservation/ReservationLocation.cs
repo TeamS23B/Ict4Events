@@ -31,7 +31,7 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             NOTresMapLocations = new List<MapLocation>();
             b = new List<Button>();
-            if (maplocation != null)
+            if (maplocations != null)
             {
                 this.maplocations = maplocations;
             }
