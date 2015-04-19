@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection.Types;
 using ApplicationLayer;
+using DatabaseConnection.Exceptions;
 
 namespace SocialMediaEventTeamS23B
 {
@@ -22,7 +23,7 @@ namespace SocialMediaEventTeamS23B
         private ApplicationLayer.Reservations res;
         private List<MapLocation> NOTresMapLocations;
         private List<Button> b;
-        public ReservationLocation(Visitor leader, List<Visitor> members)
+        public ReservationLocation(Visitor leader, List<Visitor> members, List<MapLocation> maplocations)
         {
             InitializeComponent();
             this.leader = leader;
@@ -30,6 +31,10 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             NOTresMapLocations = new List<MapLocation>();
             b = new List<Button>();
+            if (maplocations != null)
+            {
+                this.maplocations = maplocations;
+            }
             GetLocationData();
             MakeButtons();
         }
@@ -91,7 +96,15 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            maplocations.Add(maplocation);
+            if (maplocation != null)
+            {
+                maplocations.Add(maplocation);
+                MessageBox.Show("location: " + maplocation.LocationNumber);
+            }
+            else
+            {
+                throw new InvalidDataException("selecteer een locatie");
+            } 
         }
 
         /// <summary>
@@ -101,8 +114,9 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationLocationNext_Click(object sender, EventArgs e)
         {
-            ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocations);
+            ReservationMaterial ResMaterial = new ReservationMaterial(leader, members, maplocations, null);
             ResMaterial.Show();
+            this.Close();
         }
 
         /// <summary>
@@ -112,6 +126,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationLocationPrevious_Click(object sender, EventArgs e)
         {
+            ReservationDetails resd = new ReservationDetails(leader, members);
+            resd.Show();
             this.Close();
         }
     }

@@ -22,7 +22,7 @@ namespace SocialMediaEventTeamS23B
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations)
+        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toreserve)
         {
             InitializeComponent();
             this.leader = leader;
@@ -31,7 +31,37 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
+            if (toreserve != null)
+            {
+                materialToReserve = toreserve;
+            }
             FillList();
+            AlreadyReserved();
+        }
+        private void AlreadyReserved()
+        {
+            if (materialToReserve != null)
+            {
+                foreach (Material M in materialToReserve)
+                {
+                    lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+                    lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
+                    
+                }
+                updatecost();
+            }
+        }
+
+        private void updatecost()
+        {
+            double total = 0;
+            foreach (Material M in materialToReserve)
+            {
+                total += M.Rent;
+                string newtotal = total.ToString();
+                lblReservationMaterialCost.Text = newtotal;
+            }
+            
         }
         /// <summary>
         /// Gets all the materials which are reserved for the event
@@ -67,6 +97,7 @@ namespace SocialMediaEventTeamS23B
         {
             ReservationConfirmation ResConfirmation = new ReservationConfirmation(leader, members, maplocations, materialToReserve);
             ResConfirmation.Show();
+            this.Close();
         }
 
         /// <summary>
@@ -76,6 +107,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationMaterialPrevious_Click(object sender, EventArgs e)
         {
+            ReservationLocation resl = new ReservationLocation(leader, members, maplocations);
+            resl.Show();
             this.Close();
             
         }
@@ -90,14 +123,19 @@ namespace SocialMediaEventTeamS23B
             {
                 foreach(Material M in materials)
                 {
+                    if (!string.IsNullOrEmpty(lbReservationNotReserved.SelectedItem.ToString()))
+                    {
                     if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
                     {
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Add(M);
+
+                            break;
+                        }
                     }
                 }
-                
+                updatecost();
             }
             catch(Exception ex)
             {
@@ -116,14 +154,19 @@ namespace SocialMediaEventTeamS23B
             {
                 foreach (Material M in materials)
                 {
-                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                    if (lbReservationReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
                     {
                         lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Remove(M);
+                        string a = lblReservationMaterialCost.Text.ToString();
+                        double b = Convert.ToDouble(a);
+                        double total = b - M.Rent;
+                        string newtotal = total.ToString();
+                        lblReservationMaterialCost.Text = newtotal;
+                        break;
                     }
                 }
-
             }
             catch (Exception ex)
             {
