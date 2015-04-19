@@ -22,7 +22,7 @@ namespace SocialMediaEventTeamS23B
         ApplicationLayer.Reservations res;
         private List<Material> materials;//beschikbaar materiaal
         private List<Material> reservedMatrials;//gereserveerdmaterial
-        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations)
+        public ReservationMaterial(Visitor leader, List<Visitor> members, List<MapLocation> maplocations, List<Material> toReserve)
         {
             InitializeComponent();
             this.leader = leader;
@@ -31,6 +31,10 @@ namespace SocialMediaEventTeamS23B
             res = new Reservations();
             materials = new List<Material>();
             reservedMatrials = new List<Material>();
+            if (toReserve != null)
+            {
+                materialToReserve = toReserve;
+            }
             FillList();
         }
         /// <summary>
@@ -92,17 +96,15 @@ namespace SocialMediaEventTeamS23B
                 {
                     if (!string.IsNullOrEmpty(lbReservationNotReserved.SelectedItem.ToString()))
                     {
-                    if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
-                    {
+                        if (lbReservationNotReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+                        {
                         lbReservationReserved.Items.Add(M.MaterialId + ": " + M.Name);
                         lbReservationNotReserved.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialToReserve.Add(M);
                             break;
                         }
                     }
-                }
-                }
-                
+                } 
             }
             catch(Exception ex)
             {
