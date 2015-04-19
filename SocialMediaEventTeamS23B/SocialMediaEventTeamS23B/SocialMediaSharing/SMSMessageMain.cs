@@ -16,12 +16,15 @@ namespace SocialMediaEventTeamS23B.SMSForms
     {
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
+
+        private string username;
+
         /// <summary>
         /// message main
         /// </summary>
         /// <param name="post"></param>
         /// <param name="dbConnection"></param>
-        public SMSMessageMain(Post post,DataBaseConnection dbConnection)
+        public SMSMessageMain(Post post,DataBaseConnection dbConnection, string username)
         {
             InitializeComponent();
             Post = post;
@@ -29,6 +32,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblUsername.Text = post.Uploader;
             lblContent.Text = post.Description;
             this.dbConnection = dbConnection;
+            this.username = username;
         }
         /// <summary>
         /// make a message
@@ -37,7 +41,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
         /// <param name="e"></param>
         private void SMSMessageMain_DoubleClick(object sender, EventArgs e)
         {
-            var smsShowMessage = new SMSShowMessage(Post, dbConnection);
+            var smsShowMessage = new SMSShowMessage(Post, dbConnection,username);
             smsShowMessage.Show();
         }
     }

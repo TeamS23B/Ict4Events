@@ -33,6 +33,7 @@
             this.lblContent = new System.Windows.Forms.Label();
             this.pnlComments = new System.Windows.Forms.Panel();
             this.lblComments = new System.Windows.Forms.Label();
+            this.btAddComment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -56,10 +57,9 @@
             // 
             // lblContent
             // 
-            this.lblContent.AutoSize = true;
             this.lblContent.Location = new System.Drawing.Point(14, 35);
             this.lblContent.Name = "lblContent";
-            this.lblContent.Size = new System.Drawing.Size(44, 13);
+            this.lblContent.Size = new System.Drawing.Size(358, 41);
             this.lblContent.TabIndex = 2;
             this.lblContent.Text = "Content";
             // 
@@ -71,7 +71,7 @@
             this.pnlComments.AutoScroll = true;
             this.pnlComments.Location = new System.Drawing.Point(12, 92);
             this.pnlComments.Name = "pnlComments";
-            this.pnlComments.Size = new System.Drawing.Size(360, 357);
+            this.pnlComments.Size = new System.Drawing.Size(360, 328);
             this.pnlComments.TabIndex = 3;
             // 
             // lblComments
@@ -83,11 +83,22 @@
             this.lblComments.TabIndex = 4;
             this.lblComments.Text = "Reacties";
             // 
+            // btAddComment
+            // 
+            this.btAddComment.Location = new System.Drawing.Point(12, 426);
+            this.btAddComment.Name = "btAddComment";
+            this.btAddComment.Size = new System.Drawing.Size(360, 23);
+            this.btAddComment.TabIndex = 5;
+            this.btAddComment.Text = "Reactie Toevoegen";
+            this.btAddComment.UseVisualStyleBackColor = true;
+            this.btAddComment.Click += new System.EventHandler(this.btAddComment_Click);
+            // 
             // SMSShowMessage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 461);
+            this.Controls.Add(this.btAddComment);
             this.Controls.Add(this.lblComments);
             this.Controls.Add(this.pnlComments);
             this.Controls.Add(this.lblContent);
@@ -110,5 +121,6 @@
         private System.Windows.Forms.Label lblContent;
         private System.Windows.Forms.Panel pnlComments;
         private System.Windows.Forms.Label lblComments;
+        private System.Windows.Forms.Button btAddComment;
     }
 }

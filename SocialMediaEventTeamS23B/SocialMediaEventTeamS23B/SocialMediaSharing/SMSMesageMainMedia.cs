@@ -16,12 +16,13 @@ namespace SocialMediaEventTeamS23B.SMSForms
     {
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
+        private string username;
         /// <summary>
         /// message main
         /// </summary>
         /// <param name="post"></param>
         /// <param name="dbConnection"></param>
-        public SMSMesageMainMedia(Post post, DataBaseConnection dbConnection)
+        public SMSMesageMainMedia(Post post, DataBaseConnection dbConnection,string username)
         {
             InitializeComponent();
             Post = post;
@@ -30,6 +31,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblContent.Text = post.Description;
             this.dbConnection = dbConnection;
             pictureBox1.Load("http://192.168.20.112/"+post.Mediafile.PathToFile);
+            this.username = username;
         }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
         /// <param name="e"></param>
         private void SMSMessageMainMedia_DoubleClick(object sender, EventArgs e)
         {
-            var smsShowMessage = new SMSShowMessage(Post, dbConnection);
+            var smsShowMessage = new SMSShowMessage(Post, dbConnection,username);
             smsShowMessage.Show();
         }
     }

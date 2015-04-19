@@ -16,8 +16,9 @@ namespace SocialMediaEventTeamS23B.SMSForms
     {
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
+        private string username;
 
-        public SMSShowMessage(Post post, DataBaseConnection dbConnection)
+        public SMSShowMessage(Post post, DataBaseConnection dbConnection, string username)
         {
             Post = post;
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             lblContent.Text = post.Description;
             lblUsername.Text = post.Uploader;
             this.dbConnection = dbConnection;
+            this.username = username;
             if (post.Mediafile != null)
             {
                 lblComments.Top += 100;
@@ -64,6 +66,16 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 pnlComments.Controls.Add(cmnt);
                 comment.Comments = dbConnection.GetPostsOf(comment.Id);
                 comment.Comments.ForEach(cmntOnCmnt => LoadComments(cmntOnCmnt, indent + 1));
+            }
+        }
+
+        private void btAddComment_Click(object sender, EventArgs e)
+        {
+            var postDiag = new SMSCreatePost(username);
+            if (postDiag.ShowDialog() == DialogResult.OK)
+            {
+                dbConnection.AddPost(postDiag.Post.Uploader, 1, postDiag.Post.Title, postDiag.Post.Description, Post.Id,
+                    DateTime.Now);
             }
         }
     }
