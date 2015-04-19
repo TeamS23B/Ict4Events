@@ -99,7 +99,7 @@ namespace SocialMediaEventTeamS23B
             if (maplocation != null)
             {
                 maplocations.Add(maplocation);
-                MessageBox.Show("Location : " + maplocation.LocationNumber);
+                MessageBox.Show("location: " + maplocation.LocationNumber);
             }
             else
             {
