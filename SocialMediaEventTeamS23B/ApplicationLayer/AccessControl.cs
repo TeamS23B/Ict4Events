@@ -39,6 +39,10 @@ namespace ApplicationLayer
                     throw new DatabaseConnection.Exceptions.InvalidDataException("Error: Payment Unknown");
             }
         }
+        public List<Visitor> VisitorsAtTheEvent()
+        {
+            return AllPresent;
+        }
 
     }
 }
