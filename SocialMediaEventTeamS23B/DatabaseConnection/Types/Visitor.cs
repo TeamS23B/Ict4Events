@@ -16,23 +16,24 @@ namespace DatabaseConnection.Types
         public string RFID { get; private set; }
         public string IBAN { get; private set; }
         public string Email { get; private set; }
+        public bool IsHere { get; private set; }
 
         // "User"
         public String Username { get; private set; }
 
         // Leader
-        public Visitor(string username, string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid):this( username,name,prefix,surname,email,iban,adress,rfid,true)
+        public Visitor(string username, string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid, bool IsHere):this( username,name,prefix,surname,email,iban,adress,rfid,IsHere,true)
         {
             
         }
-
         // Visitor
-        public Visitor(string username, string name, string prefix, string surname, string email, string rfid):this(username,name,prefix,surname,email,null,null,rfid,false)
+        public Visitor(string username, string name, string prefix, string surname, string email, string rfid, bool IsHere):this(username,name,prefix,surname,email,null,null,rfid,IsHere,false)
         {
             
         }
+        
 
-        private Visitor(string username,string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid,bool isLeader)
+        private Visitor(string username,string name, string prefix, string surname, string email, string iban, AdressInfo adress, string rfid,bool isHere,bool isLeader)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username))
             {
@@ -50,6 +51,7 @@ namespace DatabaseConnection.Types
             IBAN = iban;
             Prefix = prefix;
             Username = username;
+            IsHere = isHere;
 
         }
 

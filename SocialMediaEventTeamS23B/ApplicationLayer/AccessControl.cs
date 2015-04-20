@@ -17,6 +17,7 @@ namespace ApplicationLayer
         public AccessControl(DataBaseConnection dbc)
         {
             this.dbc = dbc;
+            AllPresent = new List<Visitor>();
         }
 
         /// <summary>
@@ -26,15 +27,21 @@ namespace ApplicationLayer
         /// <returns>True if the user has payed, false if the user hasn't</returns>
         public bool CheckPayment(string RFID)
         {
+            
             switch (dbc.GetPayInfo(RFID))
             {
                 case 'J':
+                    AllPresent.Add(dbc.GetVisitor(RFID));
                     return true;
                 case 'N':
                     return false;
                 default:
                     throw new DatabaseConnection.Exceptions.InvalidDataException("Error: Payment Unknown");
             }
+        }
+        public List<Visitor> VisitorsAtTheEvent()
+        {
+            return AllPresent;
         }
 
     }

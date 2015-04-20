@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseConnection;
 using Phidgets;
+using DatabaseConnection.Types;
+
 namespace SocialMediaEventTeamS23B
 {
     public partial class AccessControl : Form
@@ -17,6 +19,7 @@ namespace SocialMediaEventTeamS23B
         private RFID rfid;
 
         private ApplicationLayer.AccessControl accessControl;
+        
 
        
         /// <summary>
@@ -147,6 +150,15 @@ namespace SocialMediaEventTeamS23B
                 rfid.LED = true;
                 Thread.Sleep(300);
                 rfid.LED = false;
+            }
+        }
+
+        private void btnAllHere_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            foreach(Visitor visitor in accessControl.VisitorsAtTheEvent())
+            {
+                listBox1.Items.Add(visitor);
             }
         }
     }
