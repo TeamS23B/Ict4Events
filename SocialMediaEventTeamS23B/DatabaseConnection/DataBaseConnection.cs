@@ -118,7 +118,7 @@ namespace DatabaseConnection
         public char GetPayInfo(String RFID)
         {
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
-            return dbConnector.QueryScalar<char>(query);
+            return dbConnector.QueryScalar<string>(query)[0];
         }
         /// <summary>
         /// gets the RFID and name of the person of the scanned RFID
