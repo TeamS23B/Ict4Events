@@ -33,7 +33,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             }
             else
             {
-                var name = dbConnection.GetUsernameFromRrid(post.Uploader);
+                var name = dbConnection.GetUsernameFromRfid(post.Uploader);
                 RfidUsernameCache.Add(post.Uploader, name);
                 lblUsername.Text = name;
 
