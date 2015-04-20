@@ -147,7 +147,7 @@ namespace SocialMediaEventTeamS23B
             }
             gbProducts.Enabled = true;
             gbRfidScan.Enabled = false;
-
+            this.Close();
         }
         /// <summary>
         ///  checks which material is selected and
