@@ -36,7 +36,6 @@
             this.lblError = new System.Windows.Forms.Label();
             this.btReattatch = new System.Windows.Forms.Button();
             this.delayClean = new System.Windows.Forms.Timer(this.components);
-            this.btnAllHere = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -108,16 +107,6 @@
             // 
             this.delayClean.Interval = 2000;
             // 
-            // btnAllHere
-            // 
-            this.btnAllHere.Location = new System.Drawing.Point(12, 117);
-            this.btnAllHere.Name = "btnAllHere";
-            this.btnAllHere.Size = new System.Drawing.Size(144, 24);
-            this.btnAllHere.TabIndex = 6;
-            this.btnAllHere.Text = "alle aanwezige";
-            this.btnAllHere.UseVisualStyleBackColor = true;
-            this.btnAllHere.Click += new System.EventHandler(this.btnAllHere_Click);
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -132,7 +121,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.btnAllHere);
             this.Controls.Add(this.btReattatch);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblPayed);
@@ -159,7 +147,6 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btReattatch;
         private System.Windows.Forms.Timer delayClean;
-        private System.Windows.Forms.Button btnAllHere;
         private System.Windows.Forms.ListBox listBox1;
     }
 }
