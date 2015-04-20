@@ -862,9 +862,9 @@ namespace DatabaseConnection
         public int FlagPost(string username, string title)
         {
             decimal postId = GetPostId(title);
-            string rfid = GetRFIDFromUser(username);
+            
             string letter = "F";
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, '{1}', '{2}')", postId, rfid, letter);
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, '{1}', '{2}')", postId, username, letter);
             return dbConnector.QueryNoResult(nonquery);
         }
 

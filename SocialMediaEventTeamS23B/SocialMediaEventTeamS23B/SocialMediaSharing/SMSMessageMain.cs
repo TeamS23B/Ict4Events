@@ -62,18 +62,32 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         private void btnLike_Click(object sender, EventArgs e)
         {
-            string username = dbConnection.GetUsernameFromRfid(Post.Uploader);
-            dbConnection.LikePost(username, Post.Title);
-            decimal likes = dbConnection.GetLikesFromPost(Post.Title);
-            lblLikes.Text = Convert.ToString(likes);   
+            if (dbConnection.HasUserLikedOrFlagged(username, Post.Id) == true)
+            {
+                MessageBox.Show("Je hebt dit bericht al geliked / geflagged");
+            }
+            else
+            {
+
+                dbConnection.LikePost(username, Post.Title);
+                decimal likes = dbConnection.GetLikesFromPost(Post.Title);
+                lblLikes.Text = Convert.ToString(likes);
+            }  
         }
 
         private void btnFlag_Click(object sender, EventArgs e)
         {
-            string username = dbConnection.GetUsernameFromRfid(Post.Uploader);
-            dbConnection.FlagPost(username, Post.Title);
-            decimal flags = dbConnection.GetFlagsFromPost(Post.Title);
-            lblFlags.Text = Convert.ToString(flags);
+            if (dbConnection.HasUserLikedOrFlagged(username, Post.Id) == true)
+            {
+                MessageBox.Show("Je hebt dit bericht al geliked / geflagged");
+            }
+            else
+            {
+
+                dbConnection.FlagPost(username, Post.Title);
+                decimal flags = dbConnection.GetFlagsFromPost(Post.Title);
+                lblFlags.Text = Convert.ToString(flags);
+            }
         }
     }
 }
