@@ -131,6 +131,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                         lbAllMaterial.Items.Remove(M.MaterialId + ": " + M.Name);
                         materialsInEvent.Add(M);
                         admin.AddMaterialToEvent(M);
+                        break;
                     }
                 }
             }
@@ -159,13 +160,14 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                         lbMaterialOnLocation.Items.Remove(ME.MaterialId + ": " + ME.Name);
                         RemoveMaterial = ME;
                         admin.RemoveMaterialFromEvent(ME);
+                        break;
                     }
                 }
                 materialsInEvent.Remove(RemoveMaterial);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Nothing Selected");
             }
         }
     }

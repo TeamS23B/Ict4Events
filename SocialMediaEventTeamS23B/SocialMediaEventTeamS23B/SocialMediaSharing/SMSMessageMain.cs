@@ -14,21 +14,38 @@ namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSMessageMain : UserControl,IMainItem
     {
+        private static Dictionary<string,string> RfidUsernameCache = new Dictionary<string, string>();
+
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
+
+        private string username;
+
         /// <summary>
         /// message main
         /// </summary>
         /// <param name="post"></param>
         /// <param name="dbConnection"></param>
-        public SMSMessageMain(Post post,DataBaseConnection dbConnection)
+        public SMSMessageMain(Post post,DataBaseConnection dbConnection, string username)
         {
             InitializeComponent();
             Post = post;
             lblTitle.Text = post.Title;
-            lblUsername.Text = post.Uploader;
+            if (RfidUsernameCache.ContainsKey(post.Uploader))
+            {
+
+                lblUsername.Text = RfidUsernameCache[post.Uploader];
+            }
+            else
+            {
+                var name = dbConnection.GetUsernameFromRrid(post.Uploader);
+                RfidUsernameCache.Add(post.Uploader,name);
+                lblUsername.Text = name;
+
+            }
             lblContent.Text = post.Description;
             this.dbConnection = dbConnection;
+            this.username = username;
         }
         /// <summary>
         /// make a message
@@ -37,7 +54,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
         /// <param name="e"></param>
         private void SMSMessageMain_DoubleClick(object sender, EventArgs e)
         {
-            var smsShowMessage = new SMSShowMessage(Post, dbConnection);
+            var smsShowMessage = new SMSShowMessage(Post, dbConnection,username);
             smsShowMessage.Show();
         }
     }

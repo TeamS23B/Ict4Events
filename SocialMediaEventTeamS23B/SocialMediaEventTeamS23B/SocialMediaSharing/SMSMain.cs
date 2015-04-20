@@ -49,11 +49,11 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 IMainItem obj;
                 if (content.Mediafile == null)
                 {
-                    obj = new SMSMessageMain(content, dbConnection);
+                    obj = new SMSMessageMain(content, dbConnection,user.RFID);
                 }
                 else
                 {
-                    obj=new SMSMesageMainMedia(content,dbConnection);
+                    obj=new SMSMesageMainMedia(content,dbConnection,user.RFID);
                 }
                 obj.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 obj.Width = panel2.Width - 24;

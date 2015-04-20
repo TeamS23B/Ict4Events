@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Drawing;
-using DatabaseConnection.Exceptions;
 using DatabaseConnection.Types;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
+using InvalidDataException = DatabaseConnection.Exceptions.InvalidDataException;
 
 namespace DatabaseConnection
 {
@@ -416,17 +417,15 @@ namespace DatabaseConnection
             {
                 String query = "SELECT * " +
                                "FROM bericht " +
-                               "WHERE Zichtbaar='J'" +
+                               "WHERE Zichtbaar='J' " +
                                "AND ReactieOp " + (id > 0 ? "= "+id : "IS NULL");
                 OracleDataReader reader = dbConnector.QueryReader(query); //Checkt query + leest het uit
-                reader.Read();
-                Console.WriteLine("Reading from database...");
-                do
+                
+                while (reader.Read())
                 {
-                    
                     posts.Add(readPost(reader));
-                } while (reader.Read());
-
+                }
+                
             }
             catch(Exception e)
             {
@@ -449,9 +448,7 @@ namespace DatabaseConnection
             var pathToFile = reader["Bestand"];
             string description = Convert.ToString(reader["Tekst"]);
             DateTime placedOn = Convert.ToDateTime(reader["GeplaatstOm"]);
-
-            Console.WriteLine(commentTitle);
-
+            
             Mediafile mf = pathToFile == DBNull.Value ? null : new PictureFile("", (string)pathToFile);
             return new Post(commentTitle, null, mf, description, 0, 0, placedOn, rfid, null, postId);
         }
@@ -747,6 +744,14 @@ namespace DatabaseConnection
             dbConnector.CloseConnection();
             return visitor;
 
+        }
+
+        public string GetUsernameFromRrid(String rfid)
+        {
+            var query = "SELECT gebruikersnaam " +
+                        "FROM deelnemer " +
+                        "WHERE rfid = '"+rfid+"'";
+            return dbConnector.QueryScalar<String>(query);
         }
         #endregion
         #region INSERT INTO
@@ -1116,11 +1121,25 @@ namespace DatabaseConnection
         /// <returns></returns>
         public void FtpUpload(String localFile, String remoteFile)
         {
-            using (var wc = new WebClient())
-            {
-                wc.Credentials=new NetworkCredential("Uploader","aapje");
-                wc.UploadFile("ftp://192.168.20.112/"+remoteFile,"STOR", localFile);
-            }
+            //create a ftp request of File Upload type
+            var request = (FtpWebRequest) WebRequest.Create("ftp://192.168.20.112/"+remoteFile);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+            //set credidentials
+            request.Credentials=new NetworkCredential("Uploader","aapje");
+            //disable ssl and passive mode, otherwise there is no connection possible
+            request.EnableSsl = false;
+            request.UsePassive = false;
+            //read the file to memory
+            var file = File.ReadAllBytes(localFile);
+            request.ContentLength = file.Length;
+            //create a stream to write to
+            var writeStream = request.GetRequestStream();
+            writeStream.Write(file,0,file.Length);
+            //close the connection
+            writeStream.Close();
+            //get the response
+            var response = (FtpWebResponse)request.GetResponse();
+            Console.WriteLine(response.StatusDescription);
         }
 
         #endregion
