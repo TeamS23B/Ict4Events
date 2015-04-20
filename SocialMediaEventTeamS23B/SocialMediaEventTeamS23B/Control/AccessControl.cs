@@ -104,13 +104,6 @@ namespace SocialMediaEventTeamS23B
                 lblPayed.ForeColor = Color.Red;
                 tr.Start(false);//flash error
             }
-            foreach(Visitor Visitor in accessControl.VisitorsAtTheEvent())
-            {
-               if(accessControl.VisitorsAtTheEvent().Contains(Visitor/*accessControl.GetVisitorChecked(lblRFID.Text)*/))
-               {
-                   accessControl.VisitorsAtTheEvent().Remove(Visitor);
-               }
-            }
            
 
         }
@@ -118,6 +111,8 @@ namespace SocialMediaEventTeamS23B
         void rfid_TagLost(object sender, Phidgets.Events.TagEventArgs e)
         {
             delayClean.Start();
+            lblRFID.Text = "";
+            lblPayed.Text = "";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
