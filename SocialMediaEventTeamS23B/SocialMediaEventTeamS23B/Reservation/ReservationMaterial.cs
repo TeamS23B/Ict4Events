@@ -148,7 +148,33 @@ namespace SocialMediaEventTeamS23B
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
+        //private void btnReservationRemoveMaterial_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        foreach (Material M in materials)
+        //        {
+        //            if (lbReservationReserved.SelectedItem.ToString() == M.MaterialId + ": " + M.Name)
+        //            {
+        //                lbReservationNotReserved.Items.Add(M.MaterialId + ": " + M.Name);
+        //                lbReservationReserved.Items.Remove(M.MaterialId + ": " + M.Name);
+        //                materialToReserve.Remove(M);
+        //                string a = lblReservationMaterialCost.Text.ToString();
+        //                double b = Convert.ToDouble(a);
+        //                double total = b - M.Rent;
+        //                string newtotal = total.ToString();
+        //                lblReservationMaterialCost.Text = newtotal;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+        private void btnReservationRemoveMaterial_Click_1(object sender, EventArgs e)
         {
             try
             {

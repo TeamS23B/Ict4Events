@@ -27,6 +27,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
         public Beheer___Gebruikers_Beheren()
         {
             InitializeComponent();
+            gbGroupLeader.Visible = false;
             admin = new Admin();
             visitors = new List<Visitor>();
             posts = new List<Post>();

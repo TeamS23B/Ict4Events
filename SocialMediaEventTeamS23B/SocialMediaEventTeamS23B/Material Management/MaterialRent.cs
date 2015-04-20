@@ -29,6 +29,7 @@ namespace SocialMediaEventTeamS23B
         {
             InitializeComponent();
             gbRfidScan.Enabled = false;
+            btnReattach.Visible = false;
             FillsListboxWithItemsForEvent();
             rfid = new RFID();
             rfid.open();
