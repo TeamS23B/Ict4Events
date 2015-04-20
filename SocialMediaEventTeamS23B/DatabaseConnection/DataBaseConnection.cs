@@ -676,6 +676,14 @@ namespace DatabaseConnection
             return visitor;
 
         }
+
+        public string GetUsernameFromRrid(String rfid)
+        {
+            var query = "SELECT gebruikersnaam " +
+                        "FROM deelnemer " +
+                        "WHERE rfid = '"+rfid+"'";
+            return dbConnector.QueryScalar<String>(query);
+        }
         #endregion
         #region INSERT INTO
 
