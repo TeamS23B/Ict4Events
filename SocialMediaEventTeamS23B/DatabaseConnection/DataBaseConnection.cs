@@ -757,7 +757,7 @@ namespace DatabaseConnection
             decimal postId = GetPostId(title);
             string rfid = GetRFIDFromUser(username);
             string letter = "L";
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, '{1}', '{2}')", postId, rfid, letter);
             return dbConnector.QueryNoResult(nonquery);
 
         }
@@ -772,7 +772,7 @@ namespace DatabaseConnection
             decimal postId = GetPostId(title);
             string rfid = GetRFIDFromUser(username);
             string letter = "F";
-            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, {1}, {2})", postId, rfid, letter);
+            var nonquery = String.Format("INSERT INTO Likeflag (BerichtId, Rfid, LikeOfFlag) VALUES ({0}, '{1}', '{2}')", postId, rfid, letter);
             return dbConnector.QueryNoResult(nonquery);
         }
 

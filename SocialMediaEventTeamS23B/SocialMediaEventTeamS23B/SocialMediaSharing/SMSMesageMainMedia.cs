@@ -29,6 +29,8 @@ namespace SocialMediaEventTeamS23B.SMSForms
             InitializeComponent();
             Post = post;
             lblTitle.Text = post.Title;
+            lblLikes.Text = Convert.ToString(dbConnection.GetLikesFromPost(post.Title));
+            lblFlags.Text = Convert.ToString(dbConnection.GetFlagsFromPost(post.Title));
             if (RfidUsernameCache.ContainsKey(post.Uploader))
             {
 
@@ -56,6 +58,22 @@ namespace SocialMediaEventTeamS23B.SMSForms
         {
             var smsShowMessage = new SMSShowMessage(Post, dbConnection,username);
             smsShowMessage.Show();
+        }
+
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+            string username = dbConnection.GetUsernameFromRrid(Post.Uploader);
+            dbConnection.LikePost(username, Post.Title);
+            decimal likes = dbConnection.GetLikesFromPost(Post.Title);
+            lblLikes.Text = Convert.ToString(likes);            
+        }
+
+        private void btnFlag_Click(object sender, EventArgs e)
+        {
+            string username = dbConnection.GetUsernameFromRrid(Post.Uploader);
+            dbConnection.FlagPost(username, Post.Title);
+            decimal flags = dbConnection.GetFlagsFromPost(Post.Title);
+            lblFlags.Text = Convert.ToString(flags);
         }
     }
 }

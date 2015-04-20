@@ -45,9 +45,10 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(12, 15);
+            this.lblTitle.Location = new System.Drawing.Point(16, 18);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(27, 13);
+            this.lblTitle.Size = new System.Drawing.Size(35, 17);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Titel";
             // 
@@ -56,10 +57,11 @@
             this.tbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTitle.CausesValidation = false;
-            this.tbTitle.Location = new System.Drawing.Point(79, 12);
+            this.tbTitle.Location = new System.Drawing.Point(105, 15);
+            this.tbTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbTitle.MaxLength = 200;
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(293, 20);
+            this.tbTitle.Size = new System.Drawing.Size(389, 22);
             this.tbTitle.TabIndex = 1;
             // 
             // tbText
@@ -67,28 +69,31 @@
             this.tbText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbText.CausesValidation = false;
-            this.tbText.Location = new System.Drawing.Point(79, 39);
+            this.tbText.Location = new System.Drawing.Point(105, 48);
+            this.tbText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbText.MaxLength = 2000;
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
-            this.tbText.Size = new System.Drawing.Size(293, 86);
+            this.tbText.Size = new System.Drawing.Size(389, 105);
             this.tbText.TabIndex = 2;
             // 
             // lblText
             // 
             this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(12, 46);
+            this.lblText.Location = new System.Drawing.Point(16, 57);
+            this.lblText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(34, 13);
+            this.lblText.Size = new System.Drawing.Size(43, 17);
             this.lblText.TabIndex = 3;
             this.lblText.Text = "Tekst";
             // 
             // lblAttachment
             // 
             this.lblAttachment.AutoSize = true;
-            this.lblAttachment.Location = new System.Drawing.Point(12, 135);
+            this.lblAttachment.Location = new System.Drawing.Point(16, 166);
+            this.lblAttachment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAttachment.Name = "lblAttachment";
-            this.lblAttachment.Size = new System.Drawing.Size(61, 13);
+            this.lblAttachment.Size = new System.Drawing.Size(79, 17);
             this.lblAttachment.TabIndex = 4;
             this.lblAttachment.Text = "Attachment";
             // 
@@ -96,18 +101,20 @@
             // 
             this.tbAttatchment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAttatchment.Location = new System.Drawing.Point(79, 131);
+            this.tbAttatchment.Location = new System.Drawing.Point(105, 161);
+            this.tbAttatchment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAttatchment.Name = "tbAttatchment";
             this.tbAttatchment.ReadOnly = true;
-            this.tbAttatchment.Size = new System.Drawing.Size(166, 20);
+            this.tbAttatchment.Size = new System.Drawing.Size(220, 22);
             this.tbAttatchment.TabIndex = 5;
             // 
             // btnOpenFile
             // 
             this.btnOpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFile.Location = new System.Drawing.Point(251, 130);
+            this.btnOpenFile.Location = new System.Drawing.Point(335, 160);
+            this.btnOpenFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(121, 23);
+            this.btnOpenFile.Size = new System.Drawing.Size(161, 28);
             this.btnOpenFile.TabIndex = 6;
             this.btnOpenFile.Text = "Open";
             this.btnOpenFile.UseVisualStyleBackColor = true;
@@ -116,36 +123,41 @@
             // cbCategorie
             // 
             this.cbCategorie.CausesValidation = false;
+            this.cbCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategorie.FormattingEnabled = true;
-            this.cbCategorie.Location = new System.Drawing.Point(79, 157);
+            this.cbCategorie.Location = new System.Drawing.Point(105, 193);
+            this.cbCategorie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbCategorie.Name = "cbCategorie";
-            this.cbCategorie.Size = new System.Drawing.Size(166, 21);
+            this.cbCategorie.Size = new System.Drawing.Size(220, 24);
             this.cbCategorie.TabIndex = 7;
             // 
             // lblCategorie
             // 
             this.lblCategorie.AutoSize = true;
-            this.lblCategorie.Location = new System.Drawing.Point(12, 160);
+            this.lblCategorie.Location = new System.Drawing.Point(16, 197);
+            this.lblCategorie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategorie.Name = "lblCategorie";
-            this.lblCategorie.Size = new System.Drawing.Size(52, 13);
+            this.lblCategorie.Size = new System.Drawing.Size(69, 17);
             this.lblCategorie.TabIndex = 8;
             this.lblCategorie.Text = "Categorie";
             // 
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(12, 184);
+            this.btCancel.Location = new System.Drawing.Point(16, 226);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(110, 23);
+            this.btCancel.Size = new System.Drawing.Size(147, 28);
             this.btCancel.TabIndex = 9;
             this.btCancel.Text = "Annuleer";
             this.btCancel.UseVisualStyleBackColor = true;
             // 
             // btnPost
             // 
-            this.btnPost.Location = new System.Drawing.Point(128, 184);
+            this.btnPost.Location = new System.Drawing.Point(171, 226);
+            this.btnPost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPost.Name = "btnPost";
-            this.btnPost.Size = new System.Drawing.Size(244, 23);
+            this.btnPost.Size = new System.Drawing.Size(325, 28);
             this.btnPost.TabIndex = 10;
             this.btnPost.Text = "Post";
             this.btnPost.UseVisualStyleBackColor = true;
@@ -153,9 +165,10 @@
             // 
             // btSubCategorie
             // 
-            this.btSubCategorie.Location = new System.Drawing.Point(251, 155);
+            this.btSubCategorie.Location = new System.Drawing.Point(335, 191);
+            this.btSubCategorie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btSubCategorie.Name = "btSubCategorie";
-            this.btSubCategorie.Size = new System.Drawing.Size(121, 23);
+            this.btSubCategorie.Size = new System.Drawing.Size(161, 28);
             this.btSubCategorie.TabIndex = 11;
             this.btSubCategorie.Text = "Nieuwe Sub Categorie";
             this.btSubCategorie.UseVisualStyleBackColor = true;
@@ -163,10 +176,10 @@
             // SMSCreatePost
             // 
             this.AcceptButton = this.btnPost;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(384, 214);
+            this.ClientSize = new System.Drawing.Size(512, 263);
             this.Controls.Add(this.btSubCategorie);
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btCancel);
@@ -180,6 +193,7 @@
             this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SMSCreatePost";

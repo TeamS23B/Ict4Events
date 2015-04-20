@@ -53,7 +53,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
                 }
                 else
                 {
-                    obj=new SMSMesageMainMedia(content,dbConnection,user.RFID);
+                    obj = new SMSMesageMainMedia(content, dbConnection, user.RFID);
                 }
                 obj.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 obj.Width = panel2.Width - 24;
