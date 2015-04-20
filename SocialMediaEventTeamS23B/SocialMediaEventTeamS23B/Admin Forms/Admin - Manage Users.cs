@@ -208,6 +208,7 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
                     {
                         cbMessageVisible.Enabled = true;
                         SelectedPost = P;
+                        
 
                     }
                 }

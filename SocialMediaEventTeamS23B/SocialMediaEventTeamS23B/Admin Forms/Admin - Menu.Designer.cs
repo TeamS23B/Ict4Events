@@ -36,39 +36,43 @@
             // 
             // btnAdminAddMaterial
             // 
-            this.btnAdminAddMaterial.Location = new System.Drawing.Point(12, 12);
+            this.btnAdminAddMaterial.Location = new System.Drawing.Point(16, 15);
+            this.btnAdminAddMaterial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdminAddMaterial.Name = "btnAdminAddMaterial";
-            this.btnAdminAddMaterial.Size = new System.Drawing.Size(130, 78);
+            this.btnAdminAddMaterial.Size = new System.Drawing.Size(173, 96);
             this.btnAdminAddMaterial.TabIndex = 0;
-            this.btnAdminAddMaterial.Text = "Add Material";
+            this.btnAdminAddMaterial.Text = "Materiaal Toevoegen";
             this.btnAdminAddMaterial.UseVisualStyleBackColor = true;
             this.btnAdminAddMaterial.Click += new System.EventHandler(this.btnAdminAddMaterial_Click);
             // 
             // btnAdminCreateEvent
             // 
-            this.btnAdminCreateEvent.Location = new System.Drawing.Point(148, 12);
+            this.btnAdminCreateEvent.Location = new System.Drawing.Point(197, 15);
+            this.btnAdminCreateEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdminCreateEvent.Name = "btnAdminCreateEvent";
-            this.btnAdminCreateEvent.Size = new System.Drawing.Size(130, 78);
+            this.btnAdminCreateEvent.Size = new System.Drawing.Size(173, 96);
             this.btnAdminCreateEvent.TabIndex = 1;
-            this.btnAdminCreateEvent.Text = "Create Event";
+            this.btnAdminCreateEvent.Text = "Event Aanmaken";
             this.btnAdminCreateEvent.UseVisualStyleBackColor = true;
             this.btnAdminCreateEvent.Click += new System.EventHandler(this.btnAdminCreateEvent_Click);
             // 
             // btnAdminManageUsers
             // 
-            this.btnAdminManageUsers.Location = new System.Drawing.Point(12, 96);
+            this.btnAdminManageUsers.Location = new System.Drawing.Point(16, 118);
+            this.btnAdminManageUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdminManageUsers.Name = "btnAdminManageUsers";
-            this.btnAdminManageUsers.Size = new System.Drawing.Size(130, 78);
+            this.btnAdminManageUsers.Size = new System.Drawing.Size(173, 96);
             this.btnAdminManageUsers.TabIndex = 2;
-            this.btnAdminManageUsers.Text = "Manage Users";
+            this.btnAdminManageUsers.Text = "Gebruikers Beheren";
             this.btnAdminManageUsers.UseVisualStyleBackColor = true;
             this.btnAdminManageUsers.Click += new System.EventHandler(this.btnAdminManageUsers_Click);
             // 
             // btnAdminSocialMediaSharing
             // 
-            this.btnAdminSocialMediaSharing.Location = new System.Drawing.Point(148, 96);
+            this.btnAdminSocialMediaSharing.Location = new System.Drawing.Point(197, 118);
+            this.btnAdminSocialMediaSharing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdminSocialMediaSharing.Name = "btnAdminSocialMediaSharing";
-            this.btnAdminSocialMediaSharing.Size = new System.Drawing.Size(130, 78);
+            this.btnAdminSocialMediaSharing.Size = new System.Drawing.Size(173, 96);
             this.btnAdminSocialMediaSharing.TabIndex = 3;
             this.btnAdminSocialMediaSharing.Text = "Social Media Sharing";
             this.btnAdminSocialMediaSharing.UseVisualStyleBackColor = true;
@@ -76,13 +80,14 @@
             // 
             // Admin___Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 186);
+            this.ClientSize = new System.Drawing.Size(387, 229);
             this.Controls.Add(this.btnAdminSocialMediaSharing);
             this.Controls.Add(this.btnAdminManageUsers);
             this.Controls.Add(this.btnAdminCreateEvent);
             this.Controls.Add(this.btnAdminAddMaterial);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Admin___Menu";
             this.Text = "Admin___Menu";
             this.ResumeLayout(false);

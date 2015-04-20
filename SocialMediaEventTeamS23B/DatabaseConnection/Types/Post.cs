@@ -21,6 +21,7 @@ namespace DatabaseConnection.Types
         public int Id { get; private set; }
 
         public String Title  { get; set; }
+        public bool Visible { get; set; }
 
         public Post(string title, List<Post> comments, Mediafile mediafile, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id)
         {
@@ -41,16 +42,17 @@ namespace DatabaseConnection.Types
             {
                 throw new InvalidDataException("id < 0");
             }
-            Comments = comments;
-            Mediafile = mediafile;//nullable
-            Description = description;
-            Likes = likes;
-            Flags = flags;
-            PostedOn = postedOn;
-            Uploader = uploader;
-            Category = category;
+            this.Comments = comments;
+            this.Mediafile = mediafile;//nullable
+            this.Description = description;
+            this.Likes = likes;
+            this.Flags = flags;
+            this.PostedOn = postedOn;
+            this.Uploader = uploader;
+            this.Category = category;
             this.Id = id;
-            Title = title;
+            this.Title = title;
+            
         }
 
         public Post(string title, List<Post> comments, string description, int likes, int flags, DateTime postedOn, string uploader, Category category, int id):this(title,comments,null,description,likes,flags,postedOn,uploader,category,id)
