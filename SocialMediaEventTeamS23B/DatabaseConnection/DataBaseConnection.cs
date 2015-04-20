@@ -119,6 +119,23 @@ namespace DatabaseConnection
             var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
             return dbConnector.QueryScalar<char>(query);
         }
+        //Dit verwijderen ? 
+        /*public Visitor AddVisitorToEvent(String RFID)
+        {
+            AdressInfo Adressinfo;
+            try
+            {
+                var query = String.Format("SELECT Straatnaam, Plaatnaam, Huisnummer,Toevoeging, Postcode FROM deelnemer WHERE RFID = '{0}' ", RFID);
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    Adressinfo = new AdressInfo(odr[0].ToString(), odr[1].ToString(), Convert.ToInt32(odr[2]), odr[3].ToString(), odr[4].ToString());
+                }
+                odr.Close();
+                var queryParticipant = String.Format("SELECT Voornaam,Tussenvoegsel,Achternaam,RFID,IBAN,Emailadres FROM deelnemer WHERE RFID = '{0}')", RFID);
+                
+            }
+        }*/
         /// <summary>
         /// gets the RFID and name of the person of the scanned RFID
         /// </summary>
@@ -283,11 +300,11 @@ namespace DatabaseConnection
                     if(Leader == "J")
                     {
                         Adress = new AdressInfo(Street, City, Number, PostalCode);
-                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,Iban,Adress,RFID));
+                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,Iban,Adress,RFID,false));
                     }
                     if(Leader == "N")
                     {
-                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,RFID));
+                        visitors.Add(new Visitor(UserName,Name,Prefix,Surname,Email,RFID,false));
                     }                  
                 }
             }
@@ -300,6 +317,58 @@ namespace DatabaseConnection
                 dbConnector.CloseConnection();
             }
             return visitors;
+        }
+
+        public Visitor GetVisitor(String RFID)
+        {
+            Visitor visitor;
+            try
+            {
+                AdressInfo Adress = new AdressInfo("Unknown", "Unknown", 999, "Unknown");
+                var query = String.Format("SELECT * FROM deelnemer WHERE RFID = '{0}'", RFID);
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int Number = 999;
+                    string RFIDParticipant = Convert.ToString(odr["RFID"]);
+                    string Name = Convert.ToString(odr["Voornaam"]);
+                    string Prefix = Convert.ToString(odr["Tussenvoegsel"]);
+                    string Surname = Convert.ToString(odr["Achternaam"]);
+                    string UserName = Convert.ToString(odr["Gebruikersnaam"]);
+                    string Leader = Convert.ToString(odr["IsLeider"]);
+                    string Iban = Convert.ToString(odr["Iban"]);
+                    string Email = Convert.ToString(odr["Emailadres"]);
+                    string Street = Convert.ToString(odr["Straatnaam"]);
+                    if (Convert.ToString(odr["Huisnummer"]) != "")
+                    {
+                        Number = Convert.ToInt32(odr["Huisnummer"]);
+                    }
+                    string Suffix = Convert.ToString(odr["Toevoeging"]);
+                    string City = Convert.ToString(odr["Plaatsnaam"]);
+                    string PostalCode = Convert.ToString(odr["Postcode"]);
+
+                    if (Leader == "J")
+                    {
+                        Adress = new AdressInfo(Street, City, Number, PostalCode);
+                        visitor = new Visitor(UserName, Name, Prefix, Surname, Email, Iban, Adress, RFIDParticipant,true);
+                        return visitor;
+                    }
+                    if (Leader == "N")
+                    {
+                        visitor = new Visitor(UserName, Name, Prefix, Surname, Email, RFIDParticipant,true);
+                        return visitor;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return null;
         }
 
         /// <summary>
@@ -667,12 +736,12 @@ namespace DatabaseConnection
 
                 var tus = reader["tussenvoegsel"];
 
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["iban"], address, (string)reader["rfid"],true);
             }
             else
             {
                 var tus = reader["tussenvoegsel"];
-                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"]);
+                visitor = new Visitor((string)reader["gebruikersnaam"], (string)reader["voornaam"], tus == DBNull.Value ? "" : (string)tus, (string)reader["achternaam"], (string)reader["emailadres"], (string)reader["rfid"],true);
             }
             reader.Close();
             dbConnector.CloseConnection();

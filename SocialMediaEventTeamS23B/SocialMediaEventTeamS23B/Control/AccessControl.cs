@@ -17,6 +17,7 @@ namespace SocialMediaEventTeamS23B
         private RFID rfid;
 
         private ApplicationLayer.AccessControl accessControl;
+        
 
        
         /// <summary>
@@ -148,6 +149,11 @@ namespace SocialMediaEventTeamS23B
                 Thread.Sleep(300);
                 rfid.LED = false;
             }
+        }
+
+        private void btnAllHere_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
