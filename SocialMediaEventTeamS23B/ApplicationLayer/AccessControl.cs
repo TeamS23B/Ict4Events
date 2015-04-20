@@ -43,6 +43,9 @@ namespace ApplicationLayer
         {
             return AllPresent;
         }
-
+        public Visitor GetVisitorChecked(string RFID)
+        {
+            return dbc.GetVisitor(RFID);
+        }
     }
 }

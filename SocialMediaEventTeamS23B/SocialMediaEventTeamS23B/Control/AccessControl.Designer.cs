@@ -144,6 +144,7 @@
             this.MinimizeBox = false;
             this.Name = "AccessControl";
             this.Text = "Toegangs controlle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AccessControl_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

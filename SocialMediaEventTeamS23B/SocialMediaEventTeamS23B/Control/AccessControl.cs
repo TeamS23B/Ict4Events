@@ -104,7 +104,14 @@ namespace SocialMediaEventTeamS23B
                 lblPayed.ForeColor = Color.Red;
                 tr.Start(false);//flash error
             }
-            
+            foreach(Visitor Visitor in accessControl.VisitorsAtTheEvent())
+            {
+               if(accessControl.VisitorsAtTheEvent().Contains(Visitor/*accessControl.GetVisitorChecked(lblRFID.Text)*/))
+               {
+                   accessControl.VisitorsAtTheEvent().Remove(Visitor);
+               }
+            }
+           
 
         }
 
@@ -160,6 +167,11 @@ namespace SocialMediaEventTeamS23B
             {
                 listBox1.Items.Add(visitor);
             }
+        }
+
+        private void AccessControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rfid.close();
         }
     }
 }
