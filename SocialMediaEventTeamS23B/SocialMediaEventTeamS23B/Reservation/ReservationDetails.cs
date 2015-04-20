@@ -32,10 +32,6 @@ namespace SocialMediaEventTeamS23B
             AddLbMembers(leader);
         }
 
-        private void lists()
-        {
-
-        }
         /// <summary>
         /// shows the locations which are available to rent 
         /// Makes an address and a leader for the event
@@ -84,6 +80,14 @@ namespace SocialMediaEventTeamS23B
             {
                 tbUserName.Text = Leader.Username;
                 tbReservationFirstNameLeader.Text = Leader.Name;
+                tbReservationLastNameLeader.Text = Leader.Surname;
+                tbReservationPrefixLeader.Text = Leader.Prefix;
+                tbReservationResidence.Text = Leader.Adress.City;
+                tbReservationStreetName.Text = Leader.Adress.Street;
+                tbReservationZipCode.Text = Leader.Adress.Postalcode;
+                tbReservationHouseNumber.Text = Leader.Adress.Number.ToString();
+                tbReservationEmailaddressLeader.Text = Leader.Email;
+                tbReservationIBAN.Text = Leader.IBAN;
             }
         }
         /// <summary>

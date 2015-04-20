@@ -14,6 +14,8 @@ namespace SocialMediaEventTeamS23B.SMSForms
 {
     public partial class SMSShowMessage : Form
     {
+        private static Dictionary<string, string> RfidUsernameCache = new Dictionary<string, string>();
+
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
         private string username;
@@ -24,7 +26,18 @@ namespace SocialMediaEventTeamS23B.SMSForms
             InitializeComponent();
             lblTitle.Text = post.Title;
             lblContent.Text = post.Description;
-            lblUsername.Text = post.Uploader;
+            if (RfidUsernameCache.ContainsKey(post.Uploader))
+            {
+
+                lblUsername.Text = RfidUsernameCache[post.Uploader];
+            }
+            else
+            {
+                var name = dbConnection.GetUsernameFromRrid(post.Uploader);
+                RfidUsernameCache.Add(post.Uploader, name);
+                lblUsername.Text = name;
+
+            }
             this.dbConnection = dbConnection;
             this.username = username;
             if (post.Mediafile != null)
