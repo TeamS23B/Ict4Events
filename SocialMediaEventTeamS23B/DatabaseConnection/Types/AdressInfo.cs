@@ -40,7 +40,7 @@ namespace DatabaseConnection.Types
 
         public override string ToString()
         {
-            return String.Format("{{Street={0},City={1},Number={2},Suffix={3},Country={4},Postalcode={5}", Street, City,
+            return String.Format("{{Street={0},City={1},Number={2},Suffix={3},Postalcode={4}", Street, City,
                 Number, Suffix, Postalcode);
         }
     }

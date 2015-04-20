@@ -59,9 +59,8 @@
             // lbAllMaterial
             // 
             this.lbAllMaterial.FormattingEnabled = true;
-            this.lbAllMaterial.ItemHeight = 16;
-            this.lbAllMaterial.Location = new System.Drawing.Point(312, 59);
-            this.lbAllMaterial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbAllMaterial.Location = new System.Drawing.Point(234, 48);
+            this.lbAllMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.lbAllMaterial.Name = "lbAllMaterial";
             this.lbAllMaterial.Size = new System.Drawing.Size(192, 404);
             this.lbAllMaterial.TabIndex = 0;
@@ -95,8 +94,8 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(509, 170);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(382, 138);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(107, 43);
             this.btnAdd.TabIndex = 10;
@@ -106,8 +105,8 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(509, 245);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRemove.Location = new System.Drawing.Point(382, 199);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(107, 43);
             this.btnRemove.TabIndex = 11;
@@ -119,32 +118,32 @@
             // 
             this.cbLocations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocations.FormattingEnabled = true;
-            this.cbLocations.Location = new System.Drawing.Point(163, 121);
-            this.cbLocations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbLocations.Location = new System.Drawing.Point(86, 98);
+            this.cbLocations.Margin = new System.Windows.Forms.Padding(2);
             this.cbLocations.Name = "cbLocations";
-            this.cbLocations.Size = new System.Drawing.Size(121, 24);
+            this.cbLocations.Size = new System.Drawing.Size(128, 21);
             this.cbLocations.TabIndex = 12;
             // 
             // nudStartDay
             // 
-            this.nudStartDay.Location = new System.Drawing.Point(115, 151);
-            this.nudStartDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudStartDay.Location = new System.Drawing.Point(86, 123);
+            this.nudStartDay.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartDay.Name = "nudStartDay";
             this.nudStartDay.Size = new System.Drawing.Size(44, 22);
             this.nudStartDay.TabIndex = 13;
             // 
             // nudStartMonth
             // 
-            this.nudStartMonth.Location = new System.Drawing.Point(164, 151);
-            this.nudStartMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudStartMonth.Location = new System.Drawing.Point(123, 123);
+            this.nudStartMonth.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartMonth.Name = "nudStartMonth";
             this.nudStartMonth.Size = new System.Drawing.Size(44, 22);
             this.nudStartMonth.TabIndex = 14;
             // 
             // nudStartYear
             // 
-            this.nudStartYear.Location = new System.Drawing.Point(213, 151);
-            this.nudStartYear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudStartYear.Location = new System.Drawing.Point(160, 123);
+            this.nudStartYear.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartYear.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -166,8 +165,8 @@
             // 
             // nudEndYear
             // 
-            this.nudEndYear.Location = new System.Drawing.Point(213, 181);
-            this.nudEndYear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudEndYear.Location = new System.Drawing.Point(160, 147);
+            this.nudEndYear.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndYear.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -189,16 +188,16 @@
             // 
             // nudEndMonth
             // 
-            this.nudEndMonth.Location = new System.Drawing.Point(164, 181);
-            this.nudEndMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudEndMonth.Location = new System.Drawing.Point(123, 147);
+            this.nudEndMonth.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndMonth.Name = "nudEndMonth";
             this.nudEndMonth.Size = new System.Drawing.Size(44, 22);
             this.nudEndMonth.TabIndex = 17;
             // 
             // nudEndDay
             // 
-            this.nudEndDay.Location = new System.Drawing.Point(115, 181);
-            this.nudEndDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudEndDay.Location = new System.Drawing.Point(86, 147);
+            this.nudEndDay.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndDay.Name = "nudEndDay";
             this.nudEndDay.Size = new System.Drawing.Size(44, 22);
             this.nudEndDay.TabIndex = 16;
@@ -224,17 +223,16 @@
             // lbMaterialOnLocation
             // 
             this.lbMaterialOnLocation.FormattingEnabled = true;
-            this.lbMaterialOnLocation.ItemHeight = 16;
-            this.lbMaterialOnLocation.Location = new System.Drawing.Point(621, 59);
-            this.lbMaterialOnLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbMaterialOnLocation.Location = new System.Drawing.Point(466, 48);
+            this.lbMaterialOnLocation.Margin = new System.Windows.Forms.Padding(2);
             this.lbMaterialOnLocation.Name = "lbMaterialOnLocation";
             this.lbMaterialOnLocation.Size = new System.Drawing.Size(192, 404);
             this.lbMaterialOnLocation.TabIndex = 21;
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(16, 420);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBack.Location = new System.Drawing.Point(12, 341);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(107, 43);
             this.btnBack.TabIndex = 22;
@@ -253,16 +251,15 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(164, 87);
-            this.tbName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbName.Location = new System.Drawing.Point(86, 71);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(120, 22);
+            this.tbName.Size = new System.Drawing.Size(128, 20);
             this.tbName.TabIndex = 24;
             // 
             // btnAddEvent
             // 
-            this.btnAddEvent.Location = new System.Drawing.Point(144, 228);
-            this.btnAddEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddEvent.Location = new System.Drawing.Point(108, 185);
+            this.btnAddEvent.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEvent.Name = "btnAddEvent";
             this.btnAddEvent.Size = new System.Drawing.Size(141, 43);
             this.btnAddEvent.TabIndex = 26;
@@ -295,7 +292,7 @@
             this.Controls.Add(this.lblStartDate);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.lbAllMaterial);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Beheer___Event_Aanmaken";
             this.Text = "Beheer___Event_Aanmaken";
             ((System.ComponentModel.ISupportInitialize)(this.nudStartDay)).EndInit();
