@@ -104,13 +104,15 @@ namespace SocialMediaEventTeamS23B
                 lblPayed.ForeColor = Color.Red;
                 tr.Start(false);//flash error
             }
-            
+           
 
         }
 
         void rfid_TagLost(object sender, Phidgets.Events.TagEventArgs e)
         {
             delayClean.Start();
+            lblRFID.Text = "";
+            lblPayed.Text = "";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -160,6 +162,11 @@ namespace SocialMediaEventTeamS23B
             {
                 listBox1.Items.Add(visitor);
             }
+        }
+
+        private void AccessControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rfid.close();
         }
     }
 }

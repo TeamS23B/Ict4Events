@@ -13,11 +13,13 @@ namespace ApplicationLayer
     {
         public List<Visitor> AllPresent { get; private set; }
         private DataBaseConnection dbc;
+        private Visitor VisitorCheck;
 
         public AccessControl(DataBaseConnection dbc)
         {
             this.dbc = dbc;
             AllPresent = new List<Visitor>();
+            VisitorCheck = new Visitor(null, null, null, null, null, null, false);
         }
 
         /// <summary>
@@ -27,15 +29,33 @@ namespace ApplicationLayer
         /// <returns>True if the user has payed, false if the user hasn't</returns>
         public bool CheckPayment(string RFID)
         {
-            
             switch (dbc.GetPayInfo(RFID))
             {
                 case 'J':
-                    AllPresent.Add(dbc.GetVisitor(RFID));
+                    
+                    foreach(Visitor visitor in AllPresent)
+                    {
+                        if(RFID == visitor.RFID)
+                        {
+                            VisitorCheck = visitor;
+                        }
+                        else
+                        {
+                            AllPresent.Add(dbc.GetVisitor(RFID));
+                        }
+                    }
+                    try
+                    { 
+                        AllPresent.Remove(VisitorCheck); 
+                    }
+                    catch
+                    {
+                        
+                    }
                     return true;
                 case 'N':
                     return false;
-                default:
+                default: 
                     throw new DatabaseConnection.Exceptions.InvalidDataException("Error: Payment Unknown");
             }
         }
@@ -43,6 +63,9 @@ namespace ApplicationLayer
         {
             return AllPresent;
         }
-
+        public Visitor GetVisitorChecked(string RFID)
+        {
+            return dbc.GetVisitor(RFID);
+        }
     }
 }
