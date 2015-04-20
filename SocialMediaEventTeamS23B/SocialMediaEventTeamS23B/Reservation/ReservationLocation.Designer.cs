@@ -58,8 +58,7 @@
             // 
             // btnReservationLocationPrevious
             // 
-            this.btnReservationLocationPrevious.Location = new System.Drawing.Point(1499, 118);
-            this.btnReservationLocationPrevious.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReservationLocationPrevious.Location = new System.Drawing.Point(1128, 516);
             this.btnReservationLocationPrevious.Name = "btnReservationLocationPrevious";
             this.btnReservationLocationPrevious.Size = new System.Drawing.Size(100, 28);
             this.btnReservationLocationPrevious.TabIndex = 3;
@@ -80,8 +79,7 @@
             // 
             // btnReservationLocationNext
             // 
-            this.btnReservationLocationNext.Location = new System.Drawing.Point(1607, 118);
-            this.btnReservationLocationNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReservationLocationNext.Location = new System.Drawing.Point(1209, 516);
             this.btnReservationLocationNext.Name = "btnReservationLocationNext";
             this.btnReservationLocationNext.Size = new System.Drawing.Size(100, 28);
             this.btnReservationLocationNext.TabIndex = 5;
@@ -94,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1715, 1045);
+            this.ClientSize = new System.Drawing.Size(1286, 859);
             this.Controls.Add(this.btnReservationLocationNext);
             this.Controls.Add(this.btnReservationLocationDivideGroup);
             this.Controls.Add(this.btnReservationLocationPrevious);

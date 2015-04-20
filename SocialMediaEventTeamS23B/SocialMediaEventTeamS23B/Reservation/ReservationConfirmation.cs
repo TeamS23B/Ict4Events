@@ -29,11 +29,22 @@ namespace SocialMediaEventTeamS23B
             this.toReserve = toReserve;
             res = new Reservations();
             members = new List<Visitor>();
-            GetData();
+            FillConfirmation();
             
         }
-        private void GetData()
+        private void FillConfirmation()
         {
+            double total = 0;
+            foreach(MapLocation M in maplocations)
+            {
+                lbReservationLocations.Items.Add("Locatie: " + M.LocationNumber + " Categorie: " + M.Cat);
+            }
+            foreach (Material M in toReserve)
+            {
+                lbReservationMaterials.Items.Add("Naam: " + M.Name + " Borg: " + M.Rent + " Status: " + M.State);
+                 total += M.Rent; 
+            }
+            lblReservationMaterialTotalCost.Text = total.ToString();
             
         }
 
@@ -79,6 +90,8 @@ namespace SocialMediaEventTeamS23B
         /// <param name="e"></param>
         private void btnReservationConfirmationPrevious_Click(object sender, EventArgs e)
         {
+            ReservationMaterial resm = new ReservationMaterial(leader, members, maplocations, toReserve);
+            resm.Show();
             this.Close();
         }
     }
