@@ -121,10 +121,10 @@
             // 
             this.cbLocations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocations.FormattingEnabled = true;
-            this.cbLocations.Location = new System.Drawing.Point(122, 98);
+            this.cbLocations.Location = new System.Drawing.Point(86, 98);
             this.cbLocations.Margin = new System.Windows.Forms.Padding(2);
             this.cbLocations.Name = "cbLocations";
-            this.cbLocations.Size = new System.Drawing.Size(92, 21);
+            this.cbLocations.Size = new System.Drawing.Size(128, 21);
             this.cbLocations.TabIndex = 12;
             // 
             // nudStartDay
@@ -257,9 +257,9 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(123, 71);
+            this.tbName.Location = new System.Drawing.Point(86, 71);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(91, 20);
+            this.tbName.Size = new System.Drawing.Size(128, 20);
             this.tbName.TabIndex = 24;
             // 
             // btnAddEvent
