@@ -50,6 +50,8 @@ namespace SocialMediaEventTeamS23B
         /// </summary>
         private void FillsListboxWithItemsForEvent()
         {
+            lbMaterialRentProductsInList.Items.Clear();
+            lbGereserveerdMateriaal.Items.Clear();
             dbConnection = new DataBaseConnection();
             MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
             ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
@@ -126,8 +128,6 @@ namespace SocialMediaEventTeamS23B
         void rfid_TagLost(object sender, Phidgets.Events.TagEventArgs e)
         {
             delayClean.Start();
-            lblMaterialRentRfid.Text = "";
-            lblMaterialRentName.Text = "";
         }
 
         /// <summary>
@@ -157,7 +157,8 @@ namespace SocialMediaEventTeamS23B
             }
             gbProducts.Enabled = true;
             gbRfidScan.Enabled = false;
-            this.Close();
+            FillsListboxWithItemsForEvent();
+            //this.Close();
         }
         /// <summary>
         ///  checks which material is selected and
