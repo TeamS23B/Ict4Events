@@ -19,6 +19,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
         public Post Post { get; private set; }
         private DataBaseConnection dbConnection;
         private string username;
+        private string loggedInRfid;
         /// <summary>
         /// message main
         /// </summary>
@@ -38,7 +39,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             }
             else
             {
-                var name = dbConnection.GetUsernameFromRrid(post.Uploader);
+                var name = dbConnection.GetUsernameFromRfid(post.Uploader);
                 RfidUsernameCache.Add(post.Uploader, name);
                 lblUsername.Text = name;
 
@@ -47,6 +48,7 @@ namespace SocialMediaEventTeamS23B.SMSForms
             this.dbConnection = dbConnection;
             pictureBox1.Load("http://192.168.20.112/"+post.Mediafile.PathToFile);
             this.username = username;
+            this.loggedInRfid = dbConnection.GetRFIDFromUser(username);
         }
 
         /// <summary>
@@ -62,18 +64,34 @@ namespace SocialMediaEventTeamS23B.SMSForms
 
         private void btnLike_Click(object sender, EventArgs e)
         {
-            string username = dbConnection.GetUsernameFromRrid(Post.Uploader);
-            dbConnection.LikePost(username, Post.Title);
-            decimal likes = dbConnection.GetLikesFromPost(Post.Title);
-            lblLikes.Text = Convert.ToString(likes);            
+            if (dbConnection.HasUserLikedOrFlagged(username, Post.Id) == true)
+            {
+                MessageBox.Show("Je hebt dit bericht al geliked / geflagged");
+            }
+            else
+            {
+                
+                dbConnection.LikePost(username, Post.Title);
+                decimal likes = dbConnection.GetLikesFromPost(Post.Title);
+                lblLikes.Text = Convert.ToString(likes);        
+            }
+                
         }
 
         private void btnFlag_Click(object sender, EventArgs e)
         {
-            string username = dbConnection.GetUsernameFromRrid(Post.Uploader);
-            dbConnection.FlagPost(username, Post.Title);
-            decimal flags = dbConnection.GetFlagsFromPost(Post.Title);
-            lblFlags.Text = Convert.ToString(flags);
+            if (dbConnection.HasUserLikedOrFlagged(username, Post.Id) == true)
+            {
+                MessageBox.Show("Je hebt dit bericht al geliked / geflagged");
+            }
+            else
+            {
+                
+                dbConnection.FlagPost(username, Post.Title);
+                decimal flags = dbConnection.GetFlagsFromPost(Post.Title);
+                lblFlags.Text = Convert.ToString(flags);
+            }
+            
         }
     }
 }

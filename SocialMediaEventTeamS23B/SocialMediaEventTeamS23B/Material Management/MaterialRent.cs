@@ -25,10 +25,12 @@ namespace SocialMediaEventTeamS23B
         private MaterialRentInfo MaterialRentCheckConnection;
         private List<Material> ListMaterials = new List<Material>();
         private DataBaseConnection dbConnection;
+        private List<Material> RentedMaterial = new List<Material>();
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
             gbRfidScan.Enabled = false;
+            btnReattach.Visible = false;
             FillsListboxWithItemsForEvent();
             rfid = new RFID();
             rfid.open();
@@ -48,6 +50,8 @@ namespace SocialMediaEventTeamS23B
         /// </summary>
         private void FillsListboxWithItemsForEvent()
         {
+            lbMaterialRentProductsInList.Items.Clear();
+            lbGereserveerdMateriaal.Items.Clear();
             dbConnection = new DataBaseConnection();
             MaterialRentCheckConnection = new MaterialRentInfo(dbConnection);
             ListMaterials = MaterialRentCheckConnection.GetMaterialsInEvent();
@@ -56,6 +60,12 @@ namespace SocialMediaEventTeamS23B
                 lbMaterialRentProductsInList.Items.Add(material);
             }
             lbMaterialRentProductsInList.DisplayMember = "Name";
+
+            RentedMaterial = dbConnection.GetReservedMaterial();
+            foreach (Material M in RentedMaterial)
+            {
+                lbGereserveerdMateriaal.Items.Add(M.Name);
+            }
 
         }
 
@@ -147,7 +157,8 @@ namespace SocialMediaEventTeamS23B
             }
             gbProducts.Enabled = true;
             gbRfidScan.Enabled = false;
-
+            FillsListboxWithItemsForEvent();
+            //this.Close();
         }
         /// <summary>
         ///  checks which material is selected and

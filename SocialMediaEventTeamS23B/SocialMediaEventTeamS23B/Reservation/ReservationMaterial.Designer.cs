@@ -93,7 +93,7 @@
             this.btnReservationRemoveMaterial.TabIndex = 6;
             this.btnReservationRemoveMaterial.Text = "Verwijderen>>";
             this.btnReservationRemoveMaterial.UseVisualStyleBackColor = true;
-            //this.btnReservationRemoveMaterial.Click += new System.EventHandler(this.btnReservationRemoveMaterial_Click);
+            this.btnReservationRemoveMaterial.Click += new System.EventHandler(this.btnReservationRemoveMaterial_Click_1);
             // 
             // lblTotalAmount
             // 

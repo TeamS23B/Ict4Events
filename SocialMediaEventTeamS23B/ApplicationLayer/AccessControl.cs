@@ -13,13 +13,11 @@ namespace ApplicationLayer
     {
         public List<Visitor> AllPresent { get; private set; }
         private DataBaseConnection dbc;
-        private Visitor VisitorCheck;
 
         public AccessControl(DataBaseConnection dbc)
         {
             this.dbc = dbc;
             AllPresent = new List<Visitor>();
-            VisitorCheck = new Visitor(null, null, null, null, null, null, false);
         }
 
         /// <summary>
@@ -32,26 +30,27 @@ namespace ApplicationLayer
             switch (dbc.GetPayInfo(RFID))
             {
                 case 'J':
-                    
+
+                    Visitor a = dbc.GetVisitor(RFID);
+                    Visitor q = null;
+                    int count = 0;
                     foreach(Visitor visitor in AllPresent)
                     {
-                        if(RFID == visitor.RFID)
+                        if(visitor.RFID == a.RFID)
                         {
-                            VisitorCheck = visitor;
-                        }
-                        else
-                        {
-                            AllPresent.Add(dbc.GetVisitor(RFID));
+                            q = visitor;
+                            count++;
                         }
                     }
-                    try
-                    { 
-                        AllPresent.Remove(VisitorCheck); 
-                    }
-                    catch
+                    if (count > 0)
                     {
-                        
+                        AllPresent.Remove(q);
                     }
+                    else
+                    {
+                        AllPresent.Add(a);
+                    }
+                    
                     return true;
                 case 'N':
                     return false;

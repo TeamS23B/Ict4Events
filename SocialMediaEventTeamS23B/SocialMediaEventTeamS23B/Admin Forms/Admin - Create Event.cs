@@ -100,8 +100,16 @@ namespace SocialMediaEventTeamS23B.Beheer_Forms
             }
             DateTime startDate = new DateTime((int)nudStartYear.Value, (int)nudStartMonth.Value, (int)nudStartDay.Value);
             DateTime endDate = new DateTime((int)nudEndYear.Value, (int)nudEndMonth.Value, (int)nudEndDay.Value);
-            admin.AddEvent(EventLocation, tbName.Text, startDate, endDate);
-            MessageBox.Show("Event toegevoegd!");
+            if (startDate > endDate)
+            {
+                MessageBox.Show("Start datum moet later zijn dan eind datum");
+            }
+            else
+            {
+                admin.AddEvent(EventLocation, tbName.Text, startDate, endDate);
+                MessageBox.Show("Event toegevoegd!");
+            }
+            
         }
 
         /// <summary>

@@ -59,45 +59,48 @@
             // lbAllMaterial
             // 
             this.lbAllMaterial.FormattingEnabled = true;
-            this.lbAllMaterial.Location = new System.Drawing.Point(234, 48);
+            this.lbAllMaterial.Location = new System.Drawing.Point(261, 55);
             this.lbAllMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.lbAllMaterial.Name = "lbAllMaterial";
-            this.lbAllMaterial.Size = new System.Drawing.Size(192, 404);
+            this.lbAllMaterial.Size = new System.Drawing.Size(145, 329);
             this.lbAllMaterial.TabIndex = 0;
             // 
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(13, 124);
+            this.lblLocation.Location = new System.Drawing.Point(10, 101);
+            this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(54, 17);
+            this.lblLocation.Size = new System.Drawing.Size(42, 13);
             this.lblLocation.TabIndex = 5;
             this.lblLocation.Text = "Locatie";
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(12, 154);
+            this.lblStartDate.Location = new System.Drawing.Point(9, 125);
+            this.lblStartDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(77, 17);
+            this.lblStartDate.Size = new System.Drawing.Size(58, 13);
             this.lblStartDate.TabIndex = 6;
             this.lblStartDate.Text = "Startdatum";
             // 
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(15, 183);
+            this.lblEndDate.Location = new System.Drawing.Point(11, 149);
+            this.lblEndDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(75, 17);
+            this.lblEndDate.Size = new System.Drawing.Size(57, 13);
             this.lblEndDate.TabIndex = 7;
             this.lblEndDate.Text = "Einddatum";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(382, 138);
+            this.btnAdd.Location = new System.Drawing.Point(410, 138);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(107, 43);
+            this.btnAdd.Size = new System.Drawing.Size(80, 35);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Toevoegen >>";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -105,10 +108,10 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(382, 199);
+            this.btnRemove.Location = new System.Drawing.Point(410, 190);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(107, 43);
+            this.btnRemove.Size = new System.Drawing.Size(80, 35);
             this.btnRemove.TabIndex = 11;
             this.btnRemove.Text = "Verwijderen <<";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -118,31 +121,41 @@
             // 
             this.cbLocations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocations.FormattingEnabled = true;
-            this.cbLocations.Location = new System.Drawing.Point(86, 98);
+            this.cbLocations.Location = new System.Drawing.Point(112, 98);
             this.cbLocations.Margin = new System.Windows.Forms.Padding(2);
             this.cbLocations.Name = "cbLocations";
-            this.cbLocations.Size = new System.Drawing.Size(128, 21);
+            this.cbLocations.Size = new System.Drawing.Size(97, 21);
             this.cbLocations.TabIndex = 12;
             // 
             // nudStartDay
             // 
-            this.nudStartDay.Location = new System.Drawing.Point(86, 123);
+            this.nudStartDay.Location = new System.Drawing.Point(83, 123);
             this.nudStartDay.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartDay.Name = "nudStartDay";
-            this.nudStartDay.Size = new System.Drawing.Size(44, 22);
+            this.nudStartDay.Size = new System.Drawing.Size(33, 20);
             this.nudStartDay.TabIndex = 13;
+            this.nudStartDay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nudStartMonth
             // 
-            this.nudStartMonth.Location = new System.Drawing.Point(123, 123);
+            this.nudStartMonth.Location = new System.Drawing.Point(120, 123);
             this.nudStartMonth.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartMonth.Name = "nudStartMonth";
-            this.nudStartMonth.Size = new System.Drawing.Size(44, 22);
+            this.nudStartMonth.Size = new System.Drawing.Size(33, 20);
             this.nudStartMonth.TabIndex = 14;
+            this.nudStartMonth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nudStartYear
             // 
-            this.nudStartYear.Location = new System.Drawing.Point(160, 123);
+            this.nudStartYear.Location = new System.Drawing.Point(157, 123);
             this.nudStartYear.Margin = new System.Windows.Forms.Padding(2);
             this.nudStartYear.Maximum = new decimal(new int[] {
             3000,
@@ -155,7 +168,7 @@
             0,
             0});
             this.nudStartYear.Name = "nudStartYear";
-            this.nudStartYear.Size = new System.Drawing.Size(69, 22);
+            this.nudStartYear.Size = new System.Drawing.Size(52, 20);
             this.nudStartYear.TabIndex = 15;
             this.nudStartYear.Value = new decimal(new int[] {
             2015,
@@ -165,7 +178,7 @@
             // 
             // nudEndYear
             // 
-            this.nudEndYear.Location = new System.Drawing.Point(160, 147);
+            this.nudEndYear.Location = new System.Drawing.Point(157, 147);
             this.nudEndYear.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndYear.Maximum = new decimal(new int[] {
             3000,
@@ -178,7 +191,7 @@
             0,
             0});
             this.nudEndYear.Name = "nudEndYear";
-            this.nudEndYear.Size = new System.Drawing.Size(69, 22);
+            this.nudEndYear.Size = new System.Drawing.Size(52, 20);
             this.nudEndYear.TabIndex = 18;
             this.nudEndYear.Value = new decimal(new int[] {
             2015,
@@ -188,53 +201,65 @@
             // 
             // nudEndMonth
             // 
-            this.nudEndMonth.Location = new System.Drawing.Point(123, 147);
+            this.nudEndMonth.Location = new System.Drawing.Point(120, 147);
             this.nudEndMonth.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndMonth.Name = "nudEndMonth";
-            this.nudEndMonth.Size = new System.Drawing.Size(44, 22);
+            this.nudEndMonth.Size = new System.Drawing.Size(33, 20);
             this.nudEndMonth.TabIndex = 17;
+            this.nudEndMonth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nudEndDay
             // 
-            this.nudEndDay.Location = new System.Drawing.Point(86, 147);
+            this.nudEndDay.Location = new System.Drawing.Point(83, 147);
             this.nudEndDay.Margin = new System.Windows.Forms.Padding(2);
             this.nudEndDay.Name = "nudEndDay";
-            this.nudEndDay.Size = new System.Drawing.Size(44, 22);
+            this.nudEndDay.Size = new System.Drawing.Size(33, 20);
             this.nudEndDay.TabIndex = 16;
+            this.nudEndDay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblAllMaterial
             // 
             this.lblAllMaterial.AutoSize = true;
-            this.lblAllMaterial.Location = new System.Drawing.Point(312, 36);
+            this.lblAllMaterial.Location = new System.Drawing.Point(258, 29);
+            this.lblAllMaterial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAllMaterial.Name = "lblAllMaterial";
-            this.lblAllMaterial.Size = new System.Drawing.Size(93, 17);
+            this.lblAllMaterial.Size = new System.Drawing.Size(70, 13);
             this.lblAllMaterial.TabIndex = 19;
             this.lblAllMaterial.Text = "Alle Materiaal";
             // 
             // lblMaterialOnLocation
             // 
             this.lblMaterialOnLocation.AutoSize = true;
-            this.lblMaterialOnLocation.Location = new System.Drawing.Point(620, 36);
+            this.lblMaterialOnLocation.Location = new System.Drawing.Point(491, 29);
+            this.lblMaterialOnLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaterialOnLocation.Name = "lblMaterialOnLocation";
-            this.lblMaterialOnLocation.Size = new System.Drawing.Size(131, 17);
+            this.lblMaterialOnLocation.Size = new System.Drawing.Size(99, 13);
             this.lblMaterialOnLocation.TabIndex = 20;
             this.lblMaterialOnLocation.Text = "Materiaal op locatie";
             // 
             // lbMaterialOnLocation
             // 
             this.lbMaterialOnLocation.FormattingEnabled = true;
-            this.lbMaterialOnLocation.Location = new System.Drawing.Point(466, 48);
+            this.lbMaterialOnLocation.Location = new System.Drawing.Point(494, 55);
             this.lbMaterialOnLocation.Margin = new System.Windows.Forms.Padding(2);
             this.lbMaterialOnLocation.Name = "lbMaterialOnLocation";
-            this.lbMaterialOnLocation.Size = new System.Drawing.Size(192, 404);
+            this.lbMaterialOnLocation.Size = new System.Drawing.Size(145, 329);
             this.lbMaterialOnLocation.TabIndex = 21;
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(12, 341);
+            this.btnBack.Location = new System.Drawing.Point(9, 277);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(107, 43);
+            this.btnBack.Size = new System.Drawing.Size(80, 35);
             this.btnBack.TabIndex = 22;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -243,25 +268,27 @@
             // lblEventName
             // 
             this.lblEventName.AutoSize = true;
-            this.lblEventName.Location = new System.Drawing.Point(15, 91);
+            this.lblEventName.Location = new System.Drawing.Point(11, 74);
+            this.lblEventName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEventName.Name = "lblEventName";
-            this.lblEventName.Size = new System.Drawing.Size(45, 17);
+            this.lblEventName.Size = new System.Drawing.Size(35, 13);
             this.lblEventName.TabIndex = 23;
             this.lblEventName.Text = "Naam";
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(86, 71);
+            this.tbName.Location = new System.Drawing.Point(112, 71);
+            this.tbName.Margin = new System.Windows.Forms.Padding(2);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(128, 20);
+            this.tbName.Size = new System.Drawing.Size(97, 20);
             this.tbName.TabIndex = 24;
             // 
             // btnAddEvent
             // 
-            this.btnAddEvent.Location = new System.Drawing.Point(108, 185);
+            this.btnAddEvent.Location = new System.Drawing.Point(103, 190);
             this.btnAddEvent.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(141, 43);
+            this.btnAddEvent.Size = new System.Drawing.Size(106, 35);
             this.btnAddEvent.TabIndex = 26;
             this.btnAddEvent.Text = "Event toevoegen";
             this.btnAddEvent.UseVisualStyleBackColor = true;
@@ -269,9 +296,9 @@
             // 
             // Beheer___Event_Aanmaken
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 486);
+            this.ClientSize = new System.Drawing.Size(650, 395);
             this.Controls.Add(this.btnAddEvent);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.lblEventName);

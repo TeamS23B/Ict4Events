@@ -18,6 +18,7 @@ namespace SocialMediaEventTeamS23B.Admin_Forms
         public Admin___Add_Material()
         {
             InitializeComponent();
+            btnEdit.Visible = false;
         }
 
         /// <summary>
