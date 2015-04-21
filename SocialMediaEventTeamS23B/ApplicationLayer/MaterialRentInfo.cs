@@ -35,7 +35,7 @@ namespace ApplicationLayer
         /// <returns></returns>
         public List<Material> GetMaterialsInEvent()
         {
-            return dbConnection.GetMaterialsInEvent();
+            return dbConnection.GetMaterialsNotRented();
         }
 
         /// <summary>
@@ -59,6 +59,11 @@ namespace ApplicationLayer
             dbConnection.AddRent(startdate, enddate, rfid);
             int highestId = (int)dbConnection.GetHighestId("Huur");
             dbConnection.AddRentMaterial(highestId, materiaalId);
+        }
+
+        public List<Material> GetRentedEventMatrial()
+        {
+            return dbConnection.GetReservedMaterial();
         }
     }
 

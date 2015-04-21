@@ -558,6 +558,34 @@ namespace DatabaseConnection
             }
             return materials;
         }
+        public List<Material> GetMaterialsNotRented()
+        {
+            List<Material> materials = new List<Material>();
+            try
+            {
+                var query = "SELECT * FROM materiaal WHERE materiaalId IN (SELECT materiaalId FROM materiaal_event WHERE eventId = 1) AND materiaalId NOT IN (SELECT materiaalId FROM GEHUURD_MATERIAAL)";
+                OracleDataReader odr = dbConnector.QueryReader(query);
+                while (odr.Read())
+                {
+                    int MaterialId = Convert.ToInt32(odr["MateriaalId"]);
+                    String Name = Convert.ToString(odr["MatModel"]);
+                    String Type = Convert.ToString(odr["MatType"]);
+                    double Price = Convert.ToDouble(odr["Kostprijs"]);
+                    double Rent = Convert.ToDouble(odr["Huurprijs"]);
+                    String State = Convert.ToString(odr["Status"]);
+                    materials.Add(new Material(MaterialId, Name, Type, Price, Rent, State));
+                }
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+            finally
+            {
+                dbConnector.CloseConnection();
+            }
+            return materials;
+        }
 
         /// <summary>
         /// get all materials

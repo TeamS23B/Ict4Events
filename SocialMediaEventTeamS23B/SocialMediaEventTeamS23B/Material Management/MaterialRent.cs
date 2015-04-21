@@ -25,6 +25,7 @@ namespace SocialMediaEventTeamS23B
         private MaterialRentInfo MaterialRentCheckConnection;
         private List<Material> ListMaterials = new List<Material>();
         private DataBaseConnection dbConnection;
+        private List<Material> RentedMaterial = new List<Material>();
         public MaterialRent(DataBaseConnection dbc)
         {
             InitializeComponent();
@@ -57,6 +58,12 @@ namespace SocialMediaEventTeamS23B
                 lbMaterialRentProductsInList.Items.Add(material);
             }
             lbMaterialRentProductsInList.DisplayMember = "Name";
+
+            RentedMaterial = dbConnection.GetReservedMaterial();
+            foreach (Material M in RentedMaterial)
+            {
+                lbGereserveerdMateriaal.Items.Add(M.Name);
+            }
 
         }
 
@@ -119,6 +126,8 @@ namespace SocialMediaEventTeamS23B
         void rfid_TagLost(object sender, Phidgets.Events.TagEventArgs e)
         {
             delayClean.Start();
+            lblMaterialRentRfid.Text = "";
+            lblMaterialRentName.Text = "";
         }
 
         /// <summary>
