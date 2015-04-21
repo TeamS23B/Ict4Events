@@ -117,7 +117,7 @@ namespace DatabaseConnection
         /// <returns></returns>
         public char GetPayInfo(String RFID)
         {
-            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT LeiderId FROM deelnemer WHERE RFID = '{0}')", RFID);
+            var query = String.Format("SELECT isBetaald FROM reservering WHERE LeiderId = (SELECT RFID FROM deelnemer WHERE RFID = '{0}')", RFID);
             return dbConnector.QueryScalar<string>(query)[0];
         }
         //Dit verwijderen ? 

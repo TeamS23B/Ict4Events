@@ -86,7 +86,7 @@
             // lblMaterialRentStatus
             // 
             this.lblMaterialRentStatus.AutoSize = true;
-            this.lblMaterialRentStatus.Location = new System.Drawing.Point(27, 279);
+            this.lblMaterialRentStatus.Location = new System.Drawing.Point(27, 297);
             this.lblMaterialRentStatus.Name = "lblMaterialRentStatus";
             this.lblMaterialRentStatus.Size = new System.Drawing.Size(37, 13);
             this.lblMaterialRentStatus.TabIndex = 3;
@@ -95,7 +95,7 @@
             // lblMaterialRentHireCost
             // 
             this.lblMaterialRentHireCost.AutoSize = true;
-            this.lblMaterialRentHireCost.Location = new System.Drawing.Point(27, 266);
+            this.lblMaterialRentHireCost.Location = new System.Drawing.Point(26, 271);
             this.lblMaterialRentHireCost.Name = "lblMaterialRentHireCost";
             this.lblMaterialRentHireCost.Size = new System.Drawing.Size(71, 13);
             this.lblMaterialRentHireCost.TabIndex = 4;
@@ -215,7 +215,6 @@
             this.gbRfidScan.Size = new System.Drawing.Size(197, 352);
             this.gbRfidScan.TabIndex = 16;
             this.gbRfidScan.TabStop = false;
-            this.gbRfidScan.Text = "gbRfidScan";
             // 
             // gbProducts
             // 
@@ -230,7 +229,6 @@
             this.gbProducts.Size = new System.Drawing.Size(197, 352);
             this.gbProducts.TabIndex = 17;
             this.gbProducts.TabStop = false;
-            this.gbProducts.Text = "gbProducts";
             // 
             // lbGereserveerdMateriaal
             // 
@@ -249,7 +247,6 @@
             this.groupBox1.Size = new System.Drawing.Size(195, 352);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // label1
             // 

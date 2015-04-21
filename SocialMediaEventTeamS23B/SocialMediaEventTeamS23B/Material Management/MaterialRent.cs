@@ -93,6 +93,7 @@ namespace SocialMediaEventTeamS23B
         {
 
             MessageBox.Show("RFID is detached");
+            //e.Device
 
         }
 
@@ -128,6 +129,9 @@ namespace SocialMediaEventTeamS23B
         void rfid_TagLost(object sender, Phidgets.Events.TagEventArgs e)
         {
             delayClean.Start();
+
+            e.Tag.DefaultIfEmpty();
+
         }
 
         /// <summary>
@@ -146,18 +150,28 @@ namespace SocialMediaEventTeamS23B
             int MaterialId = CheckMaterial.MaterialId;
             DateTime Today = DateTime.Now;
             DateTime EndDate = dateTimePickerMaterialRentEndDate.Value;
-            try
+            if(EndDate >= Today)
             {
-                MaterialRentInfoS.MakeRent(CheckRfid, Today, EndDate, MaterialId);
-                MessageBox.Show("Materiaal is uitgeleend.");
+                try
+                {
+                    MaterialRentInfoS.MakeRent(CheckRfid, Today, EndDate, MaterialId);
+                    MessageBox.Show("Materiaal is uitgeleend.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                gbProducts.Enabled = true;
+                gbRfidScan.Enabled = false;
+                FillsListboxWithItemsForEvent();
+                lblMaterialRentRfid.Text = "";
+                lblMaterialRentName.Text = "";
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Verkeerde datum");
             }
-            gbProducts.Enabled = true;
-            gbRfidScan.Enabled = false;
-            FillsListboxWithItemsForEvent();
+           
             //this.Close();
         }
         /// <summary>
@@ -175,7 +189,7 @@ namespace SocialMediaEventTeamS23B
                 if (MaterialSelected == material)
                 {
                     lbHereComeTheDetails.Text = material.Name;
-                    lblHereComeTheRentCosts.Text = Convert.ToString(material.Price);
+                    lblHereComeTheRentCosts.Text = Convert.ToString(material.Rent);
                     lblHereComeTheStats.Text = material.State;
                 }
             }
